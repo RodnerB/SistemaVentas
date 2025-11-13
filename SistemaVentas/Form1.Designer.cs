@@ -45,6 +45,7 @@
             btnClientes.TabIndex = 0;
             btnClientes.Text = "Clientes";
             btnClientes.UseVisualStyleBackColor = true;
+            btnClientes.Click += btnClientes_Click;
             // 
             // btnArticulos
             // 
@@ -54,7 +55,7 @@
             btnArticulos.TabIndex = 1;
             btnArticulos.Text = "Artículos";
             btnArticulos.UseVisualStyleBackColor = true;
-            btnArticulos.Click += button2_Click;
+            btnArticulos.Click += btnArticulos_Click;
             // 
             // btnFacturacion
             // 
@@ -64,6 +65,7 @@
             btnFacturacion.TabIndex = 2;
             btnFacturacion.Text = "Facturación";
             btnFacturacion.UseVisualStyleBackColor = true;
+            btnFacturacion.Click += btnFacturacion_Click;
             // 
             // btnDetalles
             // 
@@ -73,6 +75,7 @@
             btnDetalles.TabIndex = 3;
             btnDetalles.Text = "Detalles";
             btnDetalles.UseVisualStyleBackColor = true;
+            btnDetalles.Click += btnDetalles_Click;
             // 
             // btnUnidadesDeMedida
             // 
@@ -82,6 +85,7 @@
             btnUnidadesDeMedida.TabIndex = 4;
             btnUnidadesDeMedida.Text = "Unidades de medida";
             btnUnidadesDeMedida.UseVisualStyleBackColor = true;
+            btnUnidadesDeMedida.Click += btnUnidadesDeMedida_Click;
             // 
             // btnConfiguracion
             // 
@@ -91,6 +95,7 @@
             btnConfiguracion.TabIndex = 5;
             btnConfiguracion.Text = "Configuración";
             btnConfiguracion.UseVisualStyleBackColor = true;
+            btnConfiguracion.Click += btnConfiguracion_Click;
             // 
             // lblSistemaDeFacturacion
             // 
@@ -117,7 +122,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Form1";
-            Text = "Form1";
+            Text = "Menú principal";
             ResumeLayout(false);
             PerformLayout();
         }

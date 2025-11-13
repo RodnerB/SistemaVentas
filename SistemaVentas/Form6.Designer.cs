@@ -137,6 +137,7 @@
             btnVolverMenuPrincipal.TabIndex = 10;
             btnVolverMenuPrincipal.Text = "Volver al menú principal";
             btnVolverMenuPrincipal.UseVisualStyleBackColor = true;
+            btnVolverMenuPrincipal.Click += btnVolverMenuPrincipal_Click;
             // 
             // Form6
             // 
@@ -157,7 +158,8 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Form6";
-            Text = "Form6";
+            Text = "Unidades de medidas";
+            Load += Form6_Load;
             ((System.ComponentModel.ISupportInitialize)dgvUnidades).EndInit();
             ResumeLayout(false);
             PerformLayout();
