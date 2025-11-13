@@ -10,19 +10,14 @@ using System.Windows.Forms;
 
 namespace SistemaVentas
 {
-    public partial class Form1 : Form
+    public partial class Form6 : Form
     {
-        public Form1()
+        public Form6()
         {
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblSistemaDeFacturacion_Click(object sender, EventArgs e)
+        private void lblCodUni_Click(object sender, EventArgs e)
         {
 
         }
