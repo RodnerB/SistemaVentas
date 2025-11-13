@@ -210,6 +210,7 @@
             btnVolverMenuPrincipal.TabIndex = 18;
             btnVolverMenuPrincipal.Text = "Volver al menú principal";
             btnVolverMenuPrincipal.UseVisualStyleBackColor = true;
+            btnVolverMenuPrincipal.Click += btnVolverMenuPrincipal_Click;
             // 
             // Form4
             // 
@@ -238,7 +239,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Form4";
-            Text = "Form4";
+            Text = "Facturación";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();

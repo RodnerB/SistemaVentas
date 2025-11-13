@@ -12,9 +12,24 @@ namespace SistemaVentas
 {
     public partial class Form7 : Form
     {
+        Form1 formMenuPrincipal; // variable de referencia al formulario principal
         public Form7()
         {
             InitializeComponent();
+        }
+
+        // Constructor que recibe una referencia al formulario principal
+        public Form7(Form1 MenuPrincipal)
+        {
+            InitializeComponent(); // Inicializa los componentes gráficos del formulario
+            this.formMenuPrincipal = MenuPrincipal; // Guarda la referencia del formulario principal que abrió este formulario
+        }
+
+        // Evento del botón para volver al menú principal
+        private void btnVolverMenuPrincipal_Click(object sender, EventArgs e)
+        {
+            this.formMenuPrincipal.Show();// Muestra el formulario principal nuevamente
+            this.Close(); //Cierra el formulario actual de clientes
         }
     }
 }

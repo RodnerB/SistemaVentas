@@ -152,6 +152,7 @@
             btnVolverMenuPrincipal.TabIndex = 12;
             btnVolverMenuPrincipal.Text = "Volver al menú principal";
             btnVolverMenuPrincipal.UseVisualStyleBackColor = true;
+            btnVolverMenuPrincipal.Click += btnVolverMenuPrincipal_Click;
             // 
             // txtFax
             // 
@@ -182,7 +183,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Form7";
-            Text = "Form7";
+            Text = "Configuración";
             ResumeLayout(false);
             PerformLayout();
         }

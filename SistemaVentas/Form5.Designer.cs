@@ -153,6 +153,7 @@
             btnVolverMenuPrincipal.TabIndex = 12;
             btnVolverMenuPrincipal.Text = "Volver al menú principal";
             btnVolverMenuPrincipal.UseVisualStyleBackColor = true;
+            btnVolverMenuPrincipal.Click += btnVolverMenuPrincipal_Click;
             // 
             // Form5
             // 
@@ -175,7 +176,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Form5";
-            Text = "Form5";
+            Text = "Detalles";
             ((System.ComponentModel.ISupportInitialize)dgvDetFact).EndInit();
             ResumeLayout(false);
             PerformLayout();

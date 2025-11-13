@@ -245,6 +245,7 @@
             btnVolverMenuPrincipal.TabIndex = 22;
             btnVolverMenuPrincipal.Text = "Volver al menú principal";
             btnVolverMenuPrincipal.UseVisualStyleBackColor = true;
+            btnVolverMenuPrincipal.Click += btnVolverMenuPrincipal_Click_1;
             // 
             // Form3
             // 
@@ -277,7 +278,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Form3";
-            Text = "Form3";
+            Text = "Artículos";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
