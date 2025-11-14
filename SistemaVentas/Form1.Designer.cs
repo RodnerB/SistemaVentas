@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SistemaVentas
+﻿namespace SistemaVentas
 {
     partial class Form1
     {

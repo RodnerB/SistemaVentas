@@ -62,11 +62,13 @@
             // 
             // dgvClientes
             // 
+            dgvClientes.AllowUserToAddRows = false;
             dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvClientes.ColumnHeadersVisible = false;
             dgvClientes.Location = new Point(408, 12);
             dgvClientes.Name = "dgvClientes";
             dgvClientes.RowHeadersWidth = 51;
-            dgvClientes.Size = new Size(212, 484);
+            dgvClientes.Size = new Size(535, 484);
             dgvClientes.TabIndex = 0;
             dgvClientes.CellContentClick += dgvClientes_CellContentClick;
             // 
@@ -305,7 +307,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(632, 508);
+            ClientSize = new Size(955, 508);
             Controls.Add(btnVolverMenuPrincipal);
             Controls.Add(btnBuscarCli);
             Controls.Add(btnEliminarCli);
