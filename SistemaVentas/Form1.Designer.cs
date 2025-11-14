@@ -1,4 +1,6 @@
-﻿namespace SistemaVentas
+﻿using System;
+
+namespace SistemaVentas
 {
     partial class Form1
     {
@@ -136,5 +138,6 @@
         private Button btnUnidadesDeMedida;
         private Button btnConfiguracion;
         private Label lblSistemaDeFacturacion;
+
     }
 }
