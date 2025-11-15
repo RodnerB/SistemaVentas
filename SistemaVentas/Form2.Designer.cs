@@ -95,6 +95,7 @@
             inpCodCliente.Name = "inpCodCliente";
             inpCodCliente.Size = new Size(323, 27);
             inpCodCliente.TabIndex = 3;
+            inpCodCliente.KeyDown += EventoTeclaPresionada;
             // 
             // lblNomCli
             // 

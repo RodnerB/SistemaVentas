@@ -78,9 +78,47 @@ namespace SistemaVentas
             return clienteEncontrado;
         }
 
-        public void GuardarCliente(int[] cliente)
+        private void GuardarCliente( Cliente cliente)
         {
+            try
+            {
+                using (SqlConnection conexion = ConexionDB.ObtenerConexion())
+                {
+                    string consulta = "INSERT INTO SFTCLIE0 (CODCLI, NOMCLI, APECLI, DIRCLI, SECCLI, CIUCLI, TELCLI, NUMFAX, LIMCRE, BALCLI, OBSCLI) " +
+                                        "VALUES (@CODCLI, @NOMCLI, @APECLI, @DIRCLI, @SECCLI, @CIUCLI, @TELCLI, @NUMFAX, @LIMCRE, @BALCLI, @OBSCLI)";
+                    using (SqlCommand comando = new SqlCommand(consulta, conexion))
+                    {
+                        comando.Parameters.AddWithValue("@CODCLI", cliente.CodigoCliente);
+                        comando.Parameters.AddWithValue("@NOMCLI", cliente.NombreCliente);
+                        comando.Parameters.AddWithValue("@APECLI", cliente.ApellidoCliente);
+                        comando.Parameters.AddWithValue("@DIRCLI", cliente.DireccionCliente);
+                        comando.Parameters.AddWithValue("@SECCLI", cliente.SectorCliente);
+                        comando.Parameters.AddWithValue("@CIUCLI", cliente.CiudadCliente);
+                        comando.Parameters.AddWithValue("@TELCLI", cliente.TelefonoCliente);
+                        comando.Parameters.AddWithValue("@NUMFAX", cliente.FaxCliente);
+                        comando.Parameters.AddWithValue("@LIMCRE", cliente.LimiteCreditoCliente);
+                        comando.Parameters.AddWithValue("@BALCLI", cliente.BalanceActualCliente);
+                        comando.Parameters.AddWithValue("@OBSCLI", cliente.ObservacionesCliente);
 
+                        int filasAfectadas = comando.ExecuteNonQuery();
+                        if (filasAfectadas > 0)
+                        {
+                            MessageBox.Show("Cliente guardado exitosamente.", "Éxito",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        } else
+                        {
+                            MessageBox.Show("No se pudo guardar el cliente.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+
+            catch( Exception ex)
+            {
+                MessageBox.Show("Error al guardar el cliente: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
 
@@ -103,7 +141,22 @@ namespace SistemaVentas
 
         private void btnAgregarCliente_Click(object sender, EventArgs e)
         {
+            Cliente cliente = new Cliente
+            {
+                CodigoCliente = inpCodCliente.Text,
+                NombreCliente = inpNomCliente.Text,
+                ApellidoCliente = inpApeCliente.Text,
+                DireccionCliente = inpDirCliente.Text,
+                SectorCliente = inpSecCliente.Text,
+                CiudadCliente = inpCiuCliente.Text,
+                TelefonoCliente = inpTelCliente.Text,
+                FaxCliente = inpFaxCliente.Text,
+                LimiteCreditoCliente = Convert.ToDecimal(inpCredCliente.Text),
+                BalanceActualCliente = Convert.ToDecimal(inpBalCliente.Text),
+                ObservacionesCliente = inpObsCliente.Text
+            };
 
+            GuardarCliente(cliente);    
         }
     }
 }
