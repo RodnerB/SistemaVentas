@@ -31,28 +31,28 @@
             dgvClientes = new DataGridView();
             lblClientes = new Label();
             lblCodCli = new Label();
-            txtCodCli = new TextBox();
+            inpCodCliente = new TextBox();
             lblNomCli = new Label();
-            txtNomCli = new TextBox();
+            inpNomCliente = new TextBox();
             lblApeCli = new Label();
-            txtApeCli = new TextBox();
+            inpApeCliente = new TextBox();
             lblDirCli = new Label();
-            txtDirCli = new TextBox();
+            inpDirCliente = new TextBox();
             lblSecCli = new Label();
-            txtSecCli = new TextBox();
+            inpSecCliente = new TextBox();
             lblCiuCli = new Label();
-            txtCiuCli = new TextBox();
+            inpCiuCliente = new TextBox();
             lblTelCli = new Label();
-            txtTelCli = new TextBox();
+            inpTelCliente = new TextBox();
             lblFax = new Label();
-            txtFax = new TextBox();
+            inpFaxCliente = new TextBox();
             lblNumCre = new Label();
-            txtNumCre = new TextBox();
+            inpCredCliente = new TextBox();
             lblBalCli = new Label();
-            txtBalCli = new TextBox();
+            inpBalCliente = new TextBox();
             lblObsCli = new Label();
-            txtObsCli = new TextBox();
-            btnAgregarCli = new Button();
+            inpObsCliente = new TextBox();
+            btnAgregarCliente = new Button();
             btnModificarCli = new Button();
             btnEliminarCli = new Button();
             btnBuscarCli = new Button();
@@ -62,13 +62,14 @@
             // 
             // dgvClientes
             // 
+            dgvClientes.AllowUserToAddRows = false;
             dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvClientes.ColumnHeadersVisible = false;
             dgvClientes.Location = new Point(408, 12);
             dgvClientes.Name = "dgvClientes";
             dgvClientes.RowHeadersWidth = 51;
-            dgvClientes.Size = new Size(212, 484);
+            dgvClientes.Size = new Size(535, 484);
             dgvClientes.TabIndex = 0;
-            dgvClientes.CellContentClick += dgvClientes_CellContentClick;
             // 
             // lblClientes
             // 
@@ -88,12 +89,12 @@
             lblCodCli.TabIndex = 2;
             lblCodCli.Text = "Código:";
             // 
-            // txtCodCli
+            // inpCodCliente
             // 
-            txtCodCli.Location = new Point(79, 32);
-            txtCodCli.Name = "txtCodCli";
-            txtCodCli.Size = new Size(323, 27);
-            txtCodCli.TabIndex = 3;
+            inpCodCliente.Location = new Point(79, 32);
+            inpCodCliente.Name = "inpCodCliente";
+            inpCodCliente.Size = new Size(323, 27);
+            inpCodCliente.TabIndex = 3;
             // 
             // lblNomCli
             // 
@@ -104,12 +105,12 @@
             lblNomCli.TabIndex = 4;
             lblNomCli.Text = "Nombre:";
             // 
-            // txtNomCli
+            // inpNomCliente
             // 
-            txtNomCli.Location = new Point(79, 65);
-            txtNomCli.Name = "txtNomCli";
-            txtNomCli.Size = new Size(323, 27);
-            txtNomCli.TabIndex = 5;
+            inpNomCliente.Location = new Point(79, 65);
+            inpNomCliente.Name = "inpNomCliente";
+            inpNomCliente.Size = new Size(323, 27);
+            inpNomCliente.TabIndex = 5;
             // 
             // lblApeCli
             // 
@@ -120,12 +121,12 @@
             lblApeCli.TabIndex = 6;
             lblApeCli.Text = "Apellido:";
             // 
-            // txtApeCli
+            // inpApeCliente
             // 
-            txtApeCli.Location = new Point(79, 98);
-            txtApeCli.Name = "txtApeCli";
-            txtApeCli.Size = new Size(323, 27);
-            txtApeCli.TabIndex = 7;
+            inpApeCliente.Location = new Point(79, 98);
+            inpApeCliente.Name = "inpApeCliente";
+            inpApeCliente.Size = new Size(323, 27);
+            inpApeCliente.TabIndex = 7;
             // 
             // lblDirCli
             // 
@@ -136,12 +137,12 @@
             lblDirCli.TabIndex = 8;
             lblDirCli.Text = "Dirección:";
             // 
-            // txtDirCli
+            // inpDirCliente
             // 
-            txtDirCli.Location = new Point(93, 131);
-            txtDirCli.Name = "txtDirCli";
-            txtDirCli.Size = new Size(309, 27);
-            txtDirCli.TabIndex = 9;
+            inpDirCliente.Location = new Point(93, 131);
+            inpDirCliente.Name = "inpDirCliente";
+            inpDirCliente.Size = new Size(309, 27);
+            inpDirCliente.TabIndex = 9;
             // 
             // lblSecCli
             // 
@@ -152,12 +153,12 @@
             lblSecCli.TabIndex = 10;
             lblSecCli.Text = "Sector:";
             // 
-            // txtSecCli
+            // inpSecCliente
             // 
-            txtSecCli.Location = new Point(72, 164);
-            txtSecCli.Name = "txtSecCli";
-            txtSecCli.Size = new Size(330, 27);
-            txtSecCli.TabIndex = 11;
+            inpSecCliente.Location = new Point(72, 164);
+            inpSecCliente.Name = "inpSecCliente";
+            inpSecCliente.Size = new Size(330, 27);
+            inpSecCliente.TabIndex = 11;
             // 
             // lblCiuCli
             // 
@@ -168,12 +169,12 @@
             lblCiuCli.TabIndex = 12;
             lblCiuCli.Text = "Ciudad:";
             // 
-            // txtCiuCli
+            // inpCiuCliente
             // 
-            txtCiuCli.Location = new Point(77, 197);
-            txtCiuCli.Name = "txtCiuCli";
-            txtCiuCli.Size = new Size(325, 27);
-            txtCiuCli.TabIndex = 13;
+            inpCiuCliente.Location = new Point(77, 197);
+            inpCiuCliente.Name = "inpCiuCliente";
+            inpCiuCliente.Size = new Size(325, 27);
+            inpCiuCliente.TabIndex = 13;
             // 
             // lblTelCli
             // 
@@ -184,12 +185,12 @@
             lblTelCli.TabIndex = 14;
             lblTelCli.Text = "Teléfono:";
             // 
-            // txtTelCli
+            // inpTelCliente
             // 
-            txtTelCli.Location = new Point(88, 230);
-            txtTelCli.Name = "txtTelCli";
-            txtTelCli.Size = new Size(314, 27);
-            txtTelCli.TabIndex = 15;
+            inpTelCliente.Location = new Point(88, 230);
+            inpTelCliente.Name = "inpTelCliente";
+            inpTelCliente.Size = new Size(314, 27);
+            inpTelCliente.TabIndex = 15;
             // 
             // lblFax
             // 
@@ -200,12 +201,12 @@
             lblFax.TabIndex = 16;
             lblFax.Text = "Fax:";
             // 
-            // txtFax
+            // inpFaxCliente
             // 
-            txtFax.Location = new Point(51, 263);
-            txtFax.Name = "txtFax";
-            txtFax.Size = new Size(351, 27);
-            txtFax.TabIndex = 17;
+            inpFaxCliente.Location = new Point(51, 263);
+            inpFaxCliente.Name = "inpFaxCliente";
+            inpFaxCliente.Size = new Size(351, 27);
+            inpFaxCliente.TabIndex = 17;
             // 
             // lblNumCre
             // 
@@ -216,12 +217,12 @@
             lblNumCre.TabIndex = 18;
             lblNumCre.Text = "Límite de crédito:";
             // 
-            // txtNumCre
+            // inpCredCliente
             // 
-            txtNumCre.Location = new Point(143, 296);
-            txtNumCre.Name = "txtNumCre";
-            txtNumCre.Size = new Size(259, 27);
-            txtNumCre.TabIndex = 19;
+            inpCredCliente.Location = new Point(143, 296);
+            inpCredCliente.Name = "inpCredCliente";
+            inpCredCliente.Size = new Size(259, 27);
+            inpCredCliente.TabIndex = 19;
             // 
             // lblBalCli
             // 
@@ -232,12 +233,12 @@
             lblBalCli.TabIndex = 20;
             lblBalCli.Text = "Balance actual:";
             // 
-            // txtBalCli
+            // inpBalCliente
             // 
-            txtBalCli.Location = new Point(126, 329);
-            txtBalCli.Name = "txtBalCli";
-            txtBalCli.Size = new Size(276, 27);
-            txtBalCli.TabIndex = 21;
+            inpBalCliente.Location = new Point(126, 329);
+            inpBalCliente.Name = "inpBalCliente";
+            inpBalCliente.Size = new Size(276, 27);
+            inpBalCliente.TabIndex = 21;
             // 
             // lblObsCli
             // 
@@ -248,21 +249,22 @@
             lblObsCli.TabIndex = 22;
             lblObsCli.Text = "Observaciones: ";
             // 
-            // txtObsCli
+            // inpObsCliente
             // 
-            txtObsCli.Location = new Point(130, 362);
-            txtObsCli.Name = "txtObsCli";
-            txtObsCli.Size = new Size(272, 27);
-            txtObsCli.TabIndex = 23;
+            inpObsCliente.Location = new Point(130, 362);
+            inpObsCliente.Name = "inpObsCliente";
+            inpObsCliente.Size = new Size(272, 27);
+            inpObsCliente.TabIndex = 23;
             // 
-            // btnAgregarCli
+            // btnAgregarCliente
             // 
-            btnAgregarCli.Location = new Point(12, 432);
-            btnAgregarCli.Name = "btnAgregarCli";
-            btnAgregarCli.Size = new Size(125, 29);
-            btnAgregarCli.TabIndex = 24;
-            btnAgregarCli.Text = "Agregar cliente";
-            btnAgregarCli.UseVisualStyleBackColor = true;
+            btnAgregarCliente.Location = new Point(12, 432);
+            btnAgregarCliente.Name = "btnAgregarCliente";
+            btnAgregarCliente.Size = new Size(125, 29);
+            btnAgregarCliente.TabIndex = 24;
+            btnAgregarCliente.Text = "Agregar cliente";
+            btnAgregarCliente.UseVisualStyleBackColor = true;
+            btnAgregarCliente.Click += btnAgregarCliente_Click;
             // 
             // btnModificarCli
             // 
@@ -305,33 +307,33 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(632, 508);
+            ClientSize = new Size(955, 508);
             Controls.Add(btnVolverMenuPrincipal);
             Controls.Add(btnBuscarCli);
             Controls.Add(btnEliminarCli);
             Controls.Add(btnModificarCli);
-            Controls.Add(btnAgregarCli);
-            Controls.Add(txtObsCli);
+            Controls.Add(btnAgregarCliente);
+            Controls.Add(inpObsCliente);
             Controls.Add(lblObsCli);
-            Controls.Add(txtBalCli);
+            Controls.Add(inpBalCliente);
             Controls.Add(lblBalCli);
-            Controls.Add(txtNumCre);
+            Controls.Add(inpCredCliente);
             Controls.Add(lblNumCre);
-            Controls.Add(txtFax);
+            Controls.Add(inpFaxCliente);
             Controls.Add(lblFax);
-            Controls.Add(txtTelCli);
+            Controls.Add(inpTelCliente);
             Controls.Add(lblTelCli);
-            Controls.Add(txtCiuCli);
+            Controls.Add(inpCiuCliente);
             Controls.Add(lblCiuCli);
-            Controls.Add(txtSecCli);
+            Controls.Add(inpSecCliente);
             Controls.Add(lblSecCli);
-            Controls.Add(txtDirCli);
+            Controls.Add(inpDirCliente);
             Controls.Add(lblDirCli);
-            Controls.Add(txtApeCli);
+            Controls.Add(inpApeCliente);
             Controls.Add(lblApeCli);
-            Controls.Add(txtNomCli);
+            Controls.Add(inpNomCliente);
             Controls.Add(lblNomCli);
-            Controls.Add(txtCodCli);
+            Controls.Add(inpCodCliente);
             Controls.Add(lblCodCli);
             Controls.Add(lblClientes);
             Controls.Add(dgvClientes);
@@ -349,28 +351,28 @@
         private DataGridView dgvClientes;
         private Label lblClientes;
         private Label lblCodCli;
-        private TextBox txtCodCli;
+        private TextBox inpCodCliente;
         private Label lblNomCli;
-        private TextBox txtNomCli;
+        private TextBox inpNomCliente;
         private Label lblApeCli;
-        private TextBox txtApeCli;
+        private TextBox inpApeCliente;
         private Label lblDirCli;
-        private TextBox txtDirCli;
+        private TextBox inpDirCliente;
         private Label lblSecCli;
-        private TextBox txtSecCli;
+        private TextBox inpSecCliente;
         private Label lblCiuCli;
-        private TextBox txtCiuCli;
+        private TextBox inpCiuCliente;
         private Label lblTelCli;
-        private TextBox txtTelCli;
+        private TextBox inpTelCliente;
         private Label lblFax;
-        private TextBox txtFax;
+        private TextBox inpFaxCliente;
         private Label lblNumCre;
-        private TextBox txtNumCre;
+        private TextBox inpCredCliente;
         private Label lblBalCli;
-        private TextBox txtBalCli;
+        private TextBox inpBalCliente;
         private Label lblObsCli;
-        private TextBox txtObsCli;
-        private Button btnAgregarCli;
+        private TextBox inpObsCliente;
+        private Button btnAgregarCliente;
         private Button btnModificarCli;
         private Button btnEliminarCli;
         private Button btnBuscarCli;
