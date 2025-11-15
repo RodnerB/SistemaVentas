@@ -7,7 +7,7 @@ namespace SistemaVentas
     
     internal class ConexionDB
     {
-        private static string connectionString = @"Server=LAPTOP-TDE5MEQB;Database=BDPROGRAMACION3;Trusted_Connection=True;";
+        private static string connectionString = ConnectionString.GetConnectionString();
 
         public static SqlConnection ObtenerConexion()
         {
