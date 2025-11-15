@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Linq.Expressions;
 
 namespace SistemaVentas
 {
@@ -38,14 +39,48 @@ namespace SistemaVentas
                 }
             }
 
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar los clientes: " + ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+        // Busca clientes mediante el codigo del cliente
+        private bool BuscarCliente(string codigoCliente)
         {
+            bool clienteEncontrado = false;
+            try
+            {
+                using (SqlConnection conexion = ConexionDB.ObtenerConexion())
+                {
+                    string consulta = "SELECT CODCLI, NOMCLI FROM SFTCLIE0 WHERE CODCLI = @CodigoCliente";
+                    SqlCommand comando = new SqlCommand(consulta, conexion);
+                    comando.Parameters.AddWithValue("@CodigoCliente", codigoCliente);
+
+                    SqlDataReader lector = comando.ExecuteReader();
+
+                    if (lector.Read())
+                    {
+                        // Mostrar los datos del cliente en los controles correspondientes
+                        inpCodCliente.Text = lector["CODCLI"].ToString();
+                        inpNomCliente.Text = lector["NOMCLI"].ToString();
+                        clienteEncontrado = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar el cliente: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return clienteEncontrado;
+        }
+
+        public void GuardarCliente(int[] cliente)
+        {
+
 
         }
 
@@ -54,6 +89,21 @@ namespace SistemaVentas
         {
             formMenuPrincipal.Show(); // Muestra el formulario principal nuevamente
             this.Close(); //Cierra el formulario actual de clientes
+        }
+
+        private void EventoTeclaPresionada(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && inpCodCliente.Text.Length > 0)
+            {
+                // si el cliente NO es encontrado, enfoca el proximo input
+                if (!BuscarCliente(inpCodCliente.Text))
+                    inpNomCliente.Focus();
+            }
+        }
+
+        private void btnAgregarCliente_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
