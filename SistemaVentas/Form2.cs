@@ -28,7 +28,9 @@ namespace SistemaVentas
             {
                 if (c is TextBox)
                 {
+#pragma warning disable CS8622 // La nulabilidad de los tipos de referencia del tipo de parámetro no coincide con el delegado de destino (posiblemente debido a los atributos de nulabilidad).
                     c.KeyDown += EventoMoverConEnter;
+#pragma warning restore CS8622 // La nulabilidad de los tipos de referencia del tipo de parámetro no coincide con el delegado de destino (posiblemente debido a los atributos de nulabilidad).
                 }
             }
         }
@@ -142,8 +144,10 @@ namespace SistemaVentas
 
         }
 
-        private void EliminarCliente(string codigoCliente)
+        private void EliminarCliente(Cliente cliente)
         {
+            if (cliente.CodigoCliente == null) return;
+            string codigoCliente = cliente.CodigoCliente;
             try
             {
                 using (SqlConnection conexion = ConexionDB.ObtenerConexion())
@@ -213,7 +217,7 @@ namespace SistemaVentas
             }
         }
 
-        private Cliente ObtenerCliente()
+        private Cliente ObtenerClienteEnInputs()
         {
             return new Cliente
             {
@@ -225,8 +229,8 @@ namespace SistemaVentas
                 CiudadCliente = inpCiuCliente.Text,
                 TelefonoCliente = inpTelCliente.Text,
                 FaxCliente = inpFaxCliente.Text,
-                LimiteCreditoCliente = Convert.ToDecimal(inpCredCliente.Text),
-                BalanceActualCliente = Convert.ToDecimal(inpBalCliente.Text),
+                LimiteCreditoCliente = Convert.ToDecimal(inpCredCliente.Text == "" ? 0 : inpCredCliente.Text),
+                BalanceActualCliente = Convert.ToDecimal(inpBalCliente.Text == "" ? 0 : inpBalCliente.Text),
                 ObservacionesCliente = inpObsCliente.Text
             };
         }
@@ -234,18 +238,20 @@ namespace SistemaVentas
 
         private void btnAgregarCliente_Click(object sender, EventArgs e)
         {
-            GuardarCliente(ObtenerCliente());
+            GuardarCliente(ObtenerClienteEnInputs());
         }
 
         private void btnEliminarCli_Click(object sender, EventArgs e)
         {
-            Cliente cliente = ObtenerCliente();
-            EliminarCliente(cliente.CodigoCliente);
+            Cliente? cliente = BuscarCliente(inpCodCliente.Text);
+            if (cliente == null) return;
+            EliminarCliente(cliente);
         }
 
         private void btnModificarCli_Click(object sender, EventArgs e)
         {
-            Cliente? cliente = ObtenerCliente();
+            Cliente? cliente = BuscarCliente(inpCodCliente.Text); 
+            if (cliente == null) return;
             ModificarClientes(cliente);
         }
     }
