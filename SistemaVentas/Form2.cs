@@ -36,6 +36,9 @@ namespace SistemaVentas
                     adaptador.Fill(tabla);
 
                     dgvClientes.DataSource = tabla;
+
+                    dgvClientes.Columns["CODCLI"].HeaderText = "Código Cliente";
+                    dgvClientes.Columns["NOMCLI"].HeaderText = "Nombre Cliente";
                 }
             }
 
@@ -47,14 +50,14 @@ namespace SistemaVentas
         }
 
         // Busca clientes mediante el codigo del cliente
-        private bool BuscarCliente(string codigoCliente)
+        private Cliente? BuscarCliente(string codigoCliente)
         {
-            bool clienteEncontrado = false;
+            Cliente? cliente = null;
             try
             {
                 using (SqlConnection conexion = ConexionDB.ObtenerConexion())
                 {
-                    string consulta = "SELECT CODCLI, NOMCLI FROM SFTCLIE0 WHERE CODCLI = @CodigoCliente";
+                    string consulta = "SELECT * FROM SFTCLIE0 WHERE CODCLI = @CodigoCliente";
                     SqlCommand comando = new SqlCommand(consulta, conexion);
                     comando.Parameters.AddWithValue("@CodigoCliente", codigoCliente);
 
@@ -65,7 +68,20 @@ namespace SistemaVentas
                         // Mostrar los datos del cliente en los controles correspondientes
                         inpCodCliente.Text = lector["CODCLI"].ToString();
                         inpNomCliente.Text = lector["NOMCLI"].ToString();
-                        clienteEncontrado = true;
+                        cliente = new Cliente
+                        {
+                            CodigoCliente = lector["CODCLI"] is DBNull ? "" : lector["CODCLI"].ToString(),
+                            NombreCliente = lector["NOMCLI"] is DBNull ? "" : lector["NOMCLI"].ToString(),
+                            ApellidoCliente = lector["APECLI"] is DBNull ? "" : lector["APECLI"].ToString(),
+                            DireccionCliente = lector["DIRCLI"] is DBNull ? "" : lector["DIRCLI"].ToString(),
+                            SectorCliente = lector["SECCLI"] is DBNull ? "" : lector["SECCLI"].ToString(),
+                            CiudadCliente = lector["CIUCLI"] is DBNull ? "" : lector["CIUCLI"].ToString(),
+                            TelefonoCliente = lector["TELCLI"] is DBNull ? "" : lector["TELCLI"].ToString(),
+                            FaxCliente = lector["NUMFAX"] is DBNull ? "" : lector["NUMFAX"].ToString(),
+                            LimiteCreditoCliente = Convert.ToDecimal(lector["LIMCRE"]),
+                            BalanceActualCliente = Convert.ToDecimal(lector["BALCLI"]),
+                            ObservacionesCliente = lector["OBSCLI"] is DBNull ? "" : lector["OBSCLI"].ToString()
+                        };
                     }
                 }
             }
@@ -75,7 +91,7 @@ namespace SistemaVentas
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            return clienteEncontrado;
+            return cliente;
         }
 
         private void GuardarCliente( Cliente cliente)
@@ -105,6 +121,7 @@ namespace SistemaVentas
                         {
                             MessageBox.Show("Cliente guardado exitosamente.", "Éxito",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            CargarClientes(); // Recarga la lista de clientes después de guardar uno nuevo
                         } else
                         {
                             MessageBox.Show("No se pudo guardar el cliente.", "Error",
@@ -120,6 +137,8 @@ namespace SistemaVentas
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+            
+
         }
 
         // Evento del botón para volver al menú principal
@@ -134,8 +153,8 @@ namespace SistemaVentas
             if (e.KeyCode == Keys.Enter && inpCodCliente.Text.Length > 0)
             {
                 // si el cliente NO es encontrado, enfoca el proximo input
-                if (!BuscarCliente(inpCodCliente.Text))
-                    inpNomCliente.Focus();
+                Cliente? cliente = BuscarCliente(inpCodCliente.Text);
+                if (cliente == null) inpNomCliente.Focus();
             }
         }
 
