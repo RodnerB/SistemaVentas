@@ -229,8 +229,8 @@ namespace SistemaVentas
                 CiudadCliente = inpCiuCliente.Text,
                 TelefonoCliente = inpTelCliente.Text,
                 FaxCliente = inpFaxCliente.Text,
-                LimiteCreditoCliente = Convert.ToDecimal(inpCredCliente.Text),
-                BalanceActualCliente = Convert.ToDecimal(inpBalCliente.Text),
+                LimiteCreditoCliente = Convert.ToDecimal(inpCredCliente.Text == "" ? 0 : inpCredCliente.Text),
+                BalanceActualCliente = Convert.ToDecimal(inpBalCliente.Text == "" ? 0 : inpBalCliente.Text),
                 ObservacionesCliente = inpObsCliente.Text
             };
         }
