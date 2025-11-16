@@ -23,7 +23,7 @@
             {"BALCLI", "Balance Actual Cliente" },
             {"OBSCLI", "Observaciones Cliente" }
         };
-        public string? CodigoCliente { get; set; }
+        public string? CodigoCliente { get; set; } = "";
         public string? NombreCliente { get; set; }
         public string? ApellidoCliente { get; set; }
         public string? DireccionCliente { get; set; }
