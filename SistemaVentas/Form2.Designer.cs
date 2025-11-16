@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             dgvClientes = new DataGridView();
             lblClientes = new Label();
             lblCodCli = new Label();
@@ -67,6 +68,14 @@
             dgvClientes.AllowUserToResizeColumns = false;
             dgvClientes.AllowUserToResizeRows = false;
             dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvClientes.Location = new Point(357, 9);
             dgvClientes.Margin = new Padding(3, 2, 3, 2);
@@ -101,7 +110,7 @@
             inpCodCliente.Name = "inpCodCliente";
             inpCodCliente.Size = new Size(283, 23);
             inpCodCliente.TabIndex = 3;
-            inpCodCliente.KeyDown += EventoTeclaPresionada;
+            inpCodCliente.KeyDown += DetectarClienteEvento;
             // 
             // lblNomCli
             // 
@@ -293,6 +302,7 @@
             btnModificarCli.TabIndex = 25;
             btnModificarCli.Text = "Modificar cliente";
             btnModificarCli.UseVisualStyleBackColor = true;
+            btnModificarCli.Click += btnModificarCli_Click;
             // 
             // btnEliminarCli
             // 
@@ -303,6 +313,7 @@
             btnEliminarCli.TabIndex = 26;
             btnEliminarCli.Text = "Eliminar cliente";
             btnEliminarCli.UseVisualStyleBackColor = true;
+            btnEliminarCli.Click += btnEliminarCli_Click;
             // 
             // btnBuscarCli
             // 
@@ -364,6 +375,7 @@
             MinimizeBox = false;
             Name = "Form2";
             Text = "Clientes";
+            KeyDown += RefrezcarPagina;
             ((System.ComponentModel.ISupportInitialize)dgvClientes).EndInit();
             ResumeLayout(false);
             PerformLayout();
