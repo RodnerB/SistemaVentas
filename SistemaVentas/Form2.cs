@@ -35,27 +35,7 @@ namespace SistemaVentas
 
         private void CargarClientes()
         {
-            try
-            {
-                using (SqlConnection conexion = ConexionDB.ObtenerConexion())
-                {
-                    string consulta = "SELECT CODCLI, NOMCLI FROM SFTCLIE0";
-                    SqlDataAdapter adaptador = new SqlDataAdapter(consulta, conexion);
-                    DataTable tabla = new DataTable();
-                    adaptador.Fill(tabla);
-
-                    dgvClientes.DataSource = tabla;
-
-                    dgvClientes.Columns["CODCLI"].HeaderText = "Código Cliente";
-                    dgvClientes.Columns["NOMCLI"].HeaderText = "Nombre Cliente";
-                }
-            }
-
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al cargar los clientes: " + ex.Message, "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            Cliente.ObtenerClientes(dgvClientes);
         }
 
         private void ModificarClientes(Cliente cliente)
@@ -112,49 +92,7 @@ namespace SistemaVentas
         }
 
         // Busca clientes mediante el codigo del cliente
-        private Cliente? BuscarCliente(string codigoCliente)
-        {
-            Cliente? cliente = null;
-            try
-            {
-                using (SqlConnection conexion = ConexionDB.ObtenerConexion())
-                {
-                    string consulta = "SELECT * FROM SFTCLIE0 WHERE CODCLI = @CodigoCliente";
-                    SqlCommand comando = new SqlCommand(consulta, conexion);
-                    comando.Parameters.AddWithValue("@CodigoCliente", codigoCliente);
-
-                    SqlDataReader lector = comando.ExecuteReader();
-
-                    if (lector.Read())
-                    {
-                        // Mostrar los datos del cliente en los controles correspondientes
-                        inpCodCliente.Text = lector["CODCLI"].ToString();
-                        inpNomCliente.Text = lector["NOMCLI"].ToString();
-                        cliente = new Cliente
-                        {
-                            CodigoCliente = lector["CODCLI"] is DBNull ? "" : lector["CODCLI"].ToString(),
-                            NombreCliente = lector["NOMCLI"] is DBNull ? "" : lector["NOMCLI"].ToString(),
-                            ApellidoCliente = lector["APECLI"] is DBNull ? "" : lector["APECLI"].ToString(),
-                            DireccionCliente = lector["DIRCLI"] is DBNull ? "" : lector["DIRCLI"].ToString(),
-                            SectorCliente = lector["SECCLI"] is DBNull ? "" : lector["SECCLI"].ToString(),
-                            CiudadCliente = lector["CIUCLI"] is DBNull ? "" : lector["CIUCLI"].ToString(),
-                            TelefonoCliente = lector["TELCLI"] is DBNull ? "" : lector["TELCLI"].ToString(),
-                            FaxCliente = lector["NUMFAX"] is DBNull ? "" : lector["NUMFAX"].ToString(),
-                            LimiteCreditoCliente = Convert.ToDecimal(lector["LIMCRE"]),
-                            BalanceActualCliente = Convert.ToDecimal(lector["BALCLI"]),
-                            ObservacionesCliente = lector["OBSCLI"] is DBNull ? "" : lector["OBSCLI"].ToString()
-                        };
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al buscar el cliente: " + ex.Message, "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            return cliente;
-        }
+        private Cliente? BuscarCliente(string codigoCliente) => Cliente.ObtenerClientePorCodigo(codigoCliente);
 
         private void GuardarCliente(Cliente cliente)
         {
@@ -309,23 +247,6 @@ namespace SistemaVentas
         {
             Cliente? cliente = ObtenerCliente();
             ModificarClientes(cliente);
-        }
-
-        private void RefrezcarPagina(object sender, KeyEventArgs e)
-        {
-
-            if (e.KeyCode == Keys.F5)
-            {
-                // Crear una nueva instancia del mismo formulario
-                Form2 nuevo = new Form2(formMenuPrincipal);
-
-                // Mostrar el nuevo
-                nuevo.Show();
-
-                // Cerrar el actual
-                this.Close();
-
-            }
         }
     }
 }
