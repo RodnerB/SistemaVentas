@@ -15,12 +15,10 @@ namespace SistemaVentas
         public Form1()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
-        private void lblSistemaDeFacturacion_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
