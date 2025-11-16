@@ -375,7 +375,6 @@
             MinimizeBox = false;
             Name = "Form2";
             Text = "Clientes";
-            KeyDown += RefrezcarPagina;
             ((System.ComponentModel.ISupportInitialize)dgvClientes).EndInit();
             ResumeLayout(false);
             PerformLayout();
