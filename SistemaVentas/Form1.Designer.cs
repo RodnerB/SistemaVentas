@@ -105,7 +105,7 @@
             lblSistemaDeFacturacion.Size = new Size(192, 20);
             lblSistemaDeFacturacion.TabIndex = 6;
             lblSistemaDeFacturacion.Text = "SISTEMA DE FACTURACIÓN";
-            lblSistemaDeFacturacion.Click += lblSistemaDeFacturacion_Click;
+
             // 
             // Form1
             // 
@@ -122,7 +122,6 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Form1";
-            Text = "Menú principal";
             ResumeLayout(false);
             PerformLayout();
         }

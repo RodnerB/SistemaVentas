@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 
 namespace SistemaVentas
 {
@@ -22,6 +23,7 @@ namespace SistemaVentas
             InitializeComponent(); // Inicializa los componentes gráficos del formulario
             formMenuPrincipal = MenuPrincipal; // Guarda la referencia del formulario principal que abrió este formulario
             CargarClientes();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void CargarClientes()

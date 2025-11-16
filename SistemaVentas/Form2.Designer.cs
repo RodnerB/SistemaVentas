@@ -68,7 +68,7 @@
             dgvClientes.Location = new Point(408, 12);
             dgvClientes.Name = "dgvClientes";
             dgvClientes.RowHeadersWidth = 51;
-            dgvClientes.Size = new Size(535, 484);
+            dgvClientes.Size = new Size(927, 484);
             dgvClientes.TabIndex = 0;
             // 
             // lblClientes
@@ -308,7 +308,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(955, 508);
+            ClientSize = new Size(1347, 508);
             Controls.Add(btnVolverMenuPrincipal);
             Controls.Add(btnBuscarCli);
             Controls.Add(btnEliminarCli);

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
+            dgvArticulos = new DataGridView();
             lblArticulos = new Label();
             lblCodArt = new Label();
             txtCodArt = new TextBox();
@@ -51,17 +51,17 @@
             btnEliminarArt = new Button();
             btnBuscarArt = new Button();
             btnVolverMenuPrincipal = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvArticulos).BeginInit();
             SuspendLayout();
             // 
-            // dataGridView1
+            // dgvArticulos
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(408, 12);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(212, 484);
-            dataGridView1.TabIndex = 0;
+            dgvArticulos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvArticulos.Location = new Point(408, 12);
+            dgvArticulos.Name = "dgvArticulos";
+            dgvArticulos.RowHeadersWidth = 51;
+            dgvArticulos.Size = new Size(924, 484);
+            dgvArticulos.TabIndex = 0;
             // 
             // lblArticulos
             // 
@@ -209,6 +209,7 @@
             btnAgregarArt.TabIndex = 18;
             btnAgregarArt.Text = "Agregar artículo";
             btnAgregarArt.UseVisualStyleBackColor = true;
+            btnAgregarArt.Click += btnAgregarArt_Click;
             // 
             // btnModificarArt
             // 
@@ -218,6 +219,7 @@
             btnModificarArt.TabIndex = 19;
             btnModificarArt.Text = "Modificar artículo";
             btnModificarArt.UseVisualStyleBackColor = true;
+            btnModificarArt.Click += btnModificarArt_Click;
             // 
             // btnEliminarArt
             // 
@@ -227,6 +229,7 @@
             btnEliminarArt.TabIndex = 20;
             btnEliminarArt.Text = "Eliminar artículo";
             btnEliminarArt.UseVisualStyleBackColor = true;
+            btnEliminarArt.Click += btnEliminarArt_Click;
             // 
             // btnBuscarArt
             // 
@@ -236,6 +239,7 @@
             btnBuscarArt.TabIndex = 21;
             btnBuscarArt.Text = "Buscar artículo";
             btnBuscarArt.UseVisualStyleBackColor = true;
+            btnBuscarArt.Click += btnBuscarArt_Click;
             // 
             // btnVolverMenuPrincipal
             // 
@@ -251,7 +255,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(632, 508);
+            ClientSize = new Size(1347, 508);
             Controls.Add(btnVolverMenuPrincipal);
             Controls.Add(btnBuscarArt);
             Controls.Add(btnEliminarArt);
@@ -274,19 +278,19 @@
             Controls.Add(txtCodArt);
             Controls.Add(lblCodArt);
             Controls.Add(lblArticulos);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvArticulos);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Form3";
             Text = "Artículos";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvArticulos).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private DataGridView dgvArticulos;
         private Label lblArticulos;
         private Label lblCodArt;
         private TextBox txtCodArt;
