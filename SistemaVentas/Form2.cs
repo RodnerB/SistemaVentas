@@ -23,7 +23,14 @@ namespace SistemaVentas
             InitializeComponent(); // Inicializa los componentes gráficos del formulario
             formMenuPrincipal = MenuPrincipal; // Guarda la referencia del formulario principal que abrió este formulario
             CargarClientes();
-            this.StartPosition = FormStartPosition.CenterScreen;
+
+            foreach (Control c in this.Controls)
+            {
+                if (c is TextBox)
+                {
+                    c.KeyDown += EventoMoverConEnter;
+                }
+            }
         }
 
         private void CargarClientes()
@@ -38,6 +45,9 @@ namespace SistemaVentas
                     adaptador.Fill(tabla);
 
                     dgvClientes.DataSource = tabla;
+
+                    dgvClientes.Columns["CODCLI"].HeaderText = "Código Cliente";
+                    dgvClientes.Columns["NOMCLI"].HeaderText = "Nombre Cliente";
                 }
             }
 
@@ -48,15 +58,68 @@ namespace SistemaVentas
             }
         }
 
-        // Busca clientes mediante el codigo del cliente
-        private bool BuscarCliente(string codigoCliente)
+        private void ModificarClientes(Cliente cliente)
         {
-            bool clienteEncontrado = false;
             try
             {
                 using (SqlConnection conexion = ConexionDB.ObtenerConexion())
                 {
-                    string consulta = "SELECT CODCLI, NOMCLI FROM SFTCLIE0 WHERE CODCLI = @CodigoCliente";
+                    string consulta = @"UPDATE SFTCLIE0 SET
+                                        NOMCLI = @NOMCLI,
+                                        APECLI = @APECLI,
+                                        DIRCLI = @DIRCLI,
+                                        SECCLI = @SECCLI,
+                                        CIUCLI = @CIUCLI,
+                                        TELCLI = @TELCLI,
+                                        NUMFAX = @NUMFAX,
+                                        LIMCRE = @LIMCRE,
+                                        BALCLI = @BALCLI,
+                                        OBSCLI = @OBSCLI
+                                    WHERE CODCLI = @CODCLI";
+                    using (SqlCommand comando = new SqlCommand(consulta, conexion))
+                    {
+                        comando.Parameters.AddWithValue("@CODCLI", cliente.CodigoCliente);
+                        comando.Parameters.AddWithValue("@NOMCLI", cliente.NombreCliente);
+                        comando.Parameters.AddWithValue("@APECLI", cliente.ApellidoCliente);
+                        comando.Parameters.AddWithValue("@DIRCLI", cliente.DireccionCliente);
+                        comando.Parameters.AddWithValue("@SECCLI", cliente.SectorCliente);
+                        comando.Parameters.AddWithValue("@CIUCLI", cliente.CiudadCliente);
+                        comando.Parameters.AddWithValue("@TELCLI", cliente.TelefonoCliente);
+                        comando.Parameters.AddWithValue("@NUMFAX", cliente.FaxCliente);
+                        comando.Parameters.AddWithValue("@LIMCRE", cliente.LimiteCreditoCliente);
+                        comando.Parameters.AddWithValue("@BALCLI", cliente.BalanceActualCliente);
+                        comando.Parameters.AddWithValue("@OBSCLI", cliente.ObservacionesCliente);
+                        int filasAfectadas = comando.ExecuteNonQuery();
+                        if (filasAfectadas > 0)
+                        {
+                            MessageBox.Show("Cliente modificado exitosamente.", "Éxito",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            CargarClientes(); // Recarga la lista de clientes después de modificar uno
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo modificar el cliente.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al modificar el cliente: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Busca clientes mediante el codigo del cliente
+        private Cliente? BuscarCliente(string codigoCliente)
+        {
+            Cliente? cliente = null;
+            try
+            {
+                using (SqlConnection conexion = ConexionDB.ObtenerConexion())
+                {
+                    string consulta = "SELECT * FROM SFTCLIE0 WHERE CODCLI = @CodigoCliente";
                     SqlCommand comando = new SqlCommand(consulta, conexion);
                     comando.Parameters.AddWithValue("@CodigoCliente", codigoCliente);
 
@@ -67,7 +130,20 @@ namespace SistemaVentas
                         // Mostrar los datos del cliente en los controles correspondientes
                         inpCodCliente.Text = lector["CODCLI"].ToString();
                         inpNomCliente.Text = lector["NOMCLI"].ToString();
-                        clienteEncontrado = true;
+                        cliente = new Cliente
+                        {
+                            CodigoCliente = lector["CODCLI"] is DBNull ? "" : lector["CODCLI"].ToString(),
+                            NombreCliente = lector["NOMCLI"] is DBNull ? "" : lector["NOMCLI"].ToString(),
+                            ApellidoCliente = lector["APECLI"] is DBNull ? "" : lector["APECLI"].ToString(),
+                            DireccionCliente = lector["DIRCLI"] is DBNull ? "" : lector["DIRCLI"].ToString(),
+                            SectorCliente = lector["SECCLI"] is DBNull ? "" : lector["SECCLI"].ToString(),
+                            CiudadCliente = lector["CIUCLI"] is DBNull ? "" : lector["CIUCLI"].ToString(),
+                            TelefonoCliente = lector["TELCLI"] is DBNull ? "" : lector["TELCLI"].ToString(),
+                            FaxCliente = lector["NUMFAX"] is DBNull ? "" : lector["NUMFAX"].ToString(),
+                            LimiteCreditoCliente = Convert.ToDecimal(lector["LIMCRE"]),
+                            BalanceActualCliente = Convert.ToDecimal(lector["BALCLI"]),
+                            ObservacionesCliente = lector["OBSCLI"] is DBNull ? "" : lector["OBSCLI"].ToString()
+                        };
                     }
                 }
             }
@@ -77,10 +153,10 @@ namespace SistemaVentas
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            return clienteEncontrado;
+            return cliente;
         }
 
-        private void GuardarCliente( Cliente cliente)
+        private void GuardarCliente(Cliente cliente)
         {
             try
             {
@@ -107,7 +183,9 @@ namespace SistemaVentas
                         {
                             MessageBox.Show("Cliente guardado exitosamente.", "Éxito",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        } else
+                            CargarClientes(); // Recarga la lista de clientes después de guardar uno nuevo
+                        }
+                        else
                         {
                             MessageBox.Show("No se pudo guardar el cliente.", "Error",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -116,12 +194,46 @@ namespace SistemaVentas
                 }
             }
 
-            catch( Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Error al guardar el cliente: " + ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+
+
+        }
+
+        private void EliminarCliente(string codigoCliente)
+        {
+            try
+            {
+                using (SqlConnection conexion = ConexionDB.ObtenerConexion())
+                {
+                    string consulta = "DELETE FROM SFTCLIE0 WHERE CODCLI = @CodigoCliente";
+                    using (SqlCommand comando = new SqlCommand(consulta, conexion))
+                    {
+                        comando.Parameters.AddWithValue("@CodigoCliente", codigoCliente);
+                        int filasAfectadas = comando.ExecuteNonQuery();
+                        if (filasAfectadas > 0)
+                        {
+                            MessageBox.Show("Cliente eliminado exitosamente.", "Éxito",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            CargarClientes(); // Recarga la lista de clientes después de eliminar uno
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo eliminar el cliente.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar el cliente: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         // Evento del botón para volver al menú principal
@@ -131,19 +243,41 @@ namespace SistemaVentas
             this.Close(); //Cierra el formulario actual de clientes
         }
 
-        private void EventoTeclaPresionada(object sender, KeyEventArgs e)
+        private void DetectarClienteEvento(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter && inpCodCliente.Text.Length > 0)
             {
-                // si el cliente NO es encontrado, enfoca el proximo input
-                if (!BuscarCliente(inpCodCliente.Text))
-                    inpNomCliente.Focus();
+                // si el cliente es encontrado, rellena automáticamente los campos
+                Cliente? cliente = BuscarCliente(inpCodCliente.Text);
+                if (cliente != null)
+                {
+                    inpNomCliente.Text = cliente.NombreCliente;
+                    inpApeCliente.Text = cliente.ApellidoCliente;
+                    inpDirCliente.Text = cliente.DireccionCliente;
+                    inpSecCliente.Text = cliente.SectorCliente;
+                    inpCiuCliente.Text = cliente.CiudadCliente;
+                    inpTelCliente.Text = cliente.TelefonoCliente;
+                    inpFaxCliente.Text = cliente.FaxCliente;
+                    inpCredCliente.Text = cliente.LimiteCreditoCliente.ToString();
+                    inpBalCliente.Text = cliente.BalanceActualCliente.ToString();
+                    inpObsCliente.Text = cliente.ObservacionesCliente;
+
+                }
+            }
+        }
+        private void EventoMoverConEnter(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // evita sonido y salto de línea
+
+                this.SelectNextControl((Control)sender, true, true, true, true);
             }
         }
 
-        private void btnAgregarCliente_Click(object sender, EventArgs e)
+        private Cliente ObtenerCliente()
         {
-            Cliente cliente = new Cliente
+            return new Cliente
             {
                 CodigoCliente = inpCodCliente.Text,
                 NombreCliente = inpNomCliente.Text,
@@ -157,8 +291,41 @@ namespace SistemaVentas
                 BalanceActualCliente = Convert.ToDecimal(inpBalCliente.Text),
                 ObservacionesCliente = inpObsCliente.Text
             };
+        }
 
-            GuardarCliente(cliente);    
+
+        private void btnAgregarCliente_Click(object sender, EventArgs e)
+        {
+            GuardarCliente(ObtenerCliente());
+        }
+
+        private void btnEliminarCli_Click(object sender, EventArgs e)
+        {
+            Cliente cliente = ObtenerCliente();
+            EliminarCliente(cliente.CodigoCliente);
+        }
+
+        private void btnModificarCli_Click(object sender, EventArgs e)
+        {
+            Cliente? cliente = ObtenerCliente();
+            ModificarClientes(cliente);
+        }
+
+        private void RefrezcarPagina(object sender, KeyEventArgs e)
+        {
+
+            if (e.KeyCode == Keys.F5)
+            {
+                // Crear una nueva instancia del mismo formulario
+                Form2 nuevo = new Form2(formMenuPrincipal);
+
+                // Mostrar el nuevo
+                nuevo.Show();
+
+                // Cerrar el actual
+                this.Close();
+
+            }
         }
     }
 }
