@@ -18,6 +18,7 @@ namespace SistemaVentas
 
         private void CargarFacturas() => Factura.ObtenerFacturas(dgvFacturas);
 
+        // Método para obtener los datos de entrada y crear un objeto Factura
         private Factura obtenerFacturaInputs()
         {
             float descuento = inpDescFactura.Text.Length == 0 ? 0 : float.Parse(inpDescFactura.Text);
@@ -25,8 +26,8 @@ namespace SistemaVentas
             return new Factura(
                 Convert.ToInt32(inpNumFactura.Text),
                 inpDateTime.Value,
-                cmbCodCliente.Text == "Contado" ? "1" : "2",
-                cmbCondicion.Text,
+                cmbCodCliente.SelectedValue.ToString(),
+                cmbCondicion.Text == "Contado" ? "1" : "2",
                 descuento,
                 montoFactura
             );
@@ -36,10 +37,6 @@ namespace SistemaVentas
         {
             // Lógica para obtener y cargar los clientes en el ComboBox
             DataTable tablaClientes = Utilidades.UtilidadesBD.ObtenerTodosLosRegistros("SELECT CODCLI, NOMCLI FROM SFTCLIE0");
-            foreach(DataRow fila in tablaClientes.Rows)
-            {
-                fila["NOMCLI"] = fila["CODCLI"] + " - " + fila["NOMCLI"]; // Modifica el nombre del cliente para que contenta su codigo
-            }
             cmbCodCliente.DataSource = tablaClientes;
             cmbCodCliente.DisplayMember = "NOMCLI"; // Muestra el nombre del cliente
             cmbCodCliente.ValueMember = "CODCLI"; // Usa el código del cliente como valor
@@ -55,7 +52,9 @@ namespace SistemaVentas
         private void btnAgregarFac_Click(object sender, EventArgs e)
         {
             Factura factura = obtenerFacturaInputs();
-            
+            Factura.InsertarFactura(factura);
+            CargarFacturas();
+
         }
     }
 }

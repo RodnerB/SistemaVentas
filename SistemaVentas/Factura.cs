@@ -4,6 +4,11 @@
     {
         private const string getFacturasQuery = "SELECT * FROM SFTFAC0";
         private const string getFacturaPorCodigoQuery = "SELECT * FROM SFTFAC0 WHERE NUMFAC = @codigo";
+        private const string insertarFacturaQuery = @"
+                INSERT INTO SFTFAC0 
+                (NUMFAC, FECFAC, CODCLI, CONDICION, DESCUENTO, MONFAC) 
+                VALUES 
+                (@NumeroFactura, @FechaFactura, @CodigoCliente, @Condicion, @Descuento, @MontoFactura)";
         static Dictionary<string, string> facturasHeaders = new Dictionary<string, string>()
         {
             {"NUMFAC", "Número Factura" }, // Tipo integer
@@ -50,6 +55,28 @@
                 datos["CONDICION"].ToString()!,
                 Convert.ToSingle(datos["DESCUENTO"]),
                 Convert.ToSingle(datos["MONFAC"])
+            );
+        }
+
+        private static Dictionary<string, object> ObtenerParametrosFactura(Factura factura)
+        {
+            return new Dictionary<string, object>()
+            {
+                {"@NumeroFactura", factura.numeroFactura },
+                {"@FechaFactura", factura.fechaFactura },
+                {"@CodigoCliente", factura.codigoCliente ?? "" },
+                {"@Condicion", factura.condicion },
+                {"@Descuento", factura.descuento },
+                {"@MontoFactura", factura.montoFactura }
+            };
+        }
+
+        public static void InsertarFactura(Factura factura)
+        {
+            Utilidades.UtilidadesBD.GuardarRegistro(
+                insertarFacturaQuery,
+                ObtenerParametrosFactura(factura),
+                "Factura"
             );
         }
 
