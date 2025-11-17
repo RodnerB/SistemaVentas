@@ -77,217 +77,204 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
             dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvClientes.Location = new Point(357, 9);
-            dgvClientes.Margin = new Padding(3, 2, 3, 2);
+            dgvClientes.Location = new Point(423, 12);
             dgvClientes.Name = "dgvClientes";
             dgvClientes.RowHeadersVisible = false;
             dgvClientes.RowHeadersWidth = 51;
-            dgvClientes.Size = new Size(468, 363);
+            dgvClientes.Size = new Size(1413, 484);
             dgvClientes.TabIndex = 0;
             // 
             // lblClientes
             // 
             lblClientes.AutoSize = true;
-            lblClientes.Location = new Point(10, 9);
+            lblClientes.Location = new Point(11, 12);
             lblClientes.Name = "lblClientes";
-            lblClientes.Size = new Size(58, 15);
+            lblClientes.Size = new Size(72, 20);
             lblClientes.TabIndex = 1;
             lblClientes.Text = "CLIENTES";
             // 
             // lblCodCli
             // 
             lblCodCli.AutoSize = true;
-            lblCodCli.Location = new Point(10, 29);
+            lblCodCli.Location = new Point(11, 39);
             lblCodCli.Name = "lblCodCli";
-            lblCodCli.Size = new Size(49, 15);
+            lblCodCli.Size = new Size(61, 20);
             lblCodCli.TabIndex = 2;
             lblCodCli.Text = "Código:";
             // 
             // inpCodCliente
             // 
-            inpCodCliente.Location = new Point(69, 24);
-            inpCodCliente.Margin = new Padding(3, 2, 3, 2);
+            inpCodCliente.Location = new Point(79, 32);
             inpCodCliente.Name = "inpCodCliente";
-            inpCodCliente.Size = new Size(283, 23);
+            inpCodCliente.Size = new Size(323, 27);
             inpCodCliente.TabIndex = 3;
             inpCodCliente.KeyDown += DetectarClienteEvento;
             // 
             // lblNomCli
             // 
             lblNomCli.AutoSize = true;
-            lblNomCli.Location = new Point(10, 54);
+            lblNomCli.Location = new Point(11, 72);
             lblNomCli.Name = "lblNomCli";
-            lblNomCli.Size = new Size(54, 15);
+            lblNomCli.Size = new Size(67, 20);
             lblNomCli.TabIndex = 4;
             lblNomCli.Text = "Nombre:";
             // 
             // inpNomCliente
             // 
-            inpNomCliente.Location = new Point(69, 49);
-            inpNomCliente.Margin = new Padding(3, 2, 3, 2);
+            inpNomCliente.Location = new Point(79, 65);
             inpNomCliente.Name = "inpNomCliente";
-            inpNomCliente.Size = new Size(283, 23);
+            inpNomCliente.Size = new Size(323, 27);
             inpNomCliente.TabIndex = 5;
             // 
             // lblApeCli
             // 
             lblApeCli.AutoSize = true;
-            lblApeCli.Location = new Point(10, 79);
+            lblApeCli.Location = new Point(11, 105);
             lblApeCli.Name = "lblApeCli";
-            lblApeCli.Size = new Size(54, 15);
+            lblApeCli.Size = new Size(69, 20);
             lblApeCli.TabIndex = 6;
             lblApeCli.Text = "Apellido:";
             // 
             // inpApeCliente
             // 
-            inpApeCliente.Location = new Point(69, 74);
-            inpApeCliente.Margin = new Padding(3, 2, 3, 2);
+            inpApeCliente.Location = new Point(79, 99);
             inpApeCliente.Name = "inpApeCliente";
-            inpApeCliente.Size = new Size(283, 23);
+            inpApeCliente.Size = new Size(323, 27);
             inpApeCliente.TabIndex = 7;
             // 
             // lblDirCli
             // 
             lblDirCli.AutoSize = true;
-            lblDirCli.Location = new Point(10, 104);
+            lblDirCli.Location = new Point(11, 139);
             lblDirCli.Name = "lblDirCli";
-            lblDirCli.Size = new Size(60, 15);
+            lblDirCli.Size = new Size(75, 20);
             lblDirCli.TabIndex = 8;
             lblDirCli.Text = "Dirección:";
             // 
             // inpDirCliente
             // 
-            inpDirCliente.Location = new Point(81, 98);
-            inpDirCliente.Margin = new Padding(3, 2, 3, 2);
+            inpDirCliente.Location = new Point(93, 131);
             inpDirCliente.Name = "inpDirCliente";
-            inpDirCliente.Size = new Size(271, 23);
+            inpDirCliente.Size = new Size(309, 27);
             inpDirCliente.TabIndex = 9;
             // 
             // lblSecCli
             // 
             lblSecCli.AutoSize = true;
-            lblSecCli.Location = new Point(10, 128);
+            lblSecCli.Location = new Point(11, 171);
             lblSecCli.Name = "lblSecCli";
-            lblSecCli.Size = new Size(43, 15);
+            lblSecCli.Size = new Size(54, 20);
             lblSecCli.TabIndex = 10;
             lblSecCli.Text = "Sector:";
             // 
             // inpSecCliente
             // 
-            inpSecCliente.Location = new Point(63, 123);
-            inpSecCliente.Margin = new Padding(3, 2, 3, 2);
+            inpSecCliente.Location = new Point(72, 164);
             inpSecCliente.Name = "inpSecCliente";
-            inpSecCliente.Size = new Size(289, 23);
+            inpSecCliente.Size = new Size(330, 27);
             inpSecCliente.TabIndex = 11;
             // 
             // lblCiuCli
             // 
             lblCiuCli.AutoSize = true;
-            lblCiuCli.Location = new Point(10, 153);
+            lblCiuCli.Location = new Point(11, 204);
             lblCiuCli.Name = "lblCiuCli";
-            lblCiuCli.Size = new Size(48, 15);
+            lblCiuCli.Size = new Size(59, 20);
             lblCiuCli.TabIndex = 12;
             lblCiuCli.Text = "Ciudad:";
             // 
             // inpCiuCliente
             // 
-            inpCiuCliente.Location = new Point(67, 148);
-            inpCiuCliente.Margin = new Padding(3, 2, 3, 2);
+            inpCiuCliente.Location = new Point(77, 197);
             inpCiuCliente.Name = "inpCiuCliente";
-            inpCiuCliente.Size = new Size(285, 23);
+            inpCiuCliente.Size = new Size(325, 27);
             inpCiuCliente.TabIndex = 13;
             // 
             // lblTelCli
             // 
             lblTelCli.AutoSize = true;
-            lblTelCli.Location = new Point(10, 178);
+            lblTelCli.Location = new Point(11, 237);
             lblTelCli.Name = "lblTelCli";
-            lblTelCli.Size = new Size(56, 15);
+            lblTelCli.Size = new Size(70, 20);
             lblTelCli.TabIndex = 14;
             lblTelCli.Text = "Teléfono:";
             // 
             // inpTelCliente
             // 
-            inpTelCliente.Location = new Point(77, 172);
-            inpTelCliente.Margin = new Padding(3, 2, 3, 2);
+            inpTelCliente.Location = new Point(88, 229);
             inpTelCliente.Name = "inpTelCliente";
-            inpTelCliente.Size = new Size(275, 23);
+            inpTelCliente.Size = new Size(314, 27);
             inpTelCliente.TabIndex = 15;
             // 
             // lblFax
             // 
             lblFax.AutoSize = true;
-            lblFax.Location = new Point(10, 202);
+            lblFax.Location = new Point(11, 269);
             lblFax.Name = "lblFax";
-            lblFax.Size = new Size(27, 15);
+            lblFax.Size = new Size(33, 20);
             lblFax.TabIndex = 16;
             lblFax.Text = "Fax:";
             // 
             // inpFaxCliente
             // 
-            inpFaxCliente.Location = new Point(45, 197);
-            inpFaxCliente.Margin = new Padding(3, 2, 3, 2);
+            inpFaxCliente.Location = new Point(51, 263);
             inpFaxCliente.Name = "inpFaxCliente";
-            inpFaxCliente.Size = new Size(308, 23);
+            inpFaxCliente.Size = new Size(351, 27);
             inpFaxCliente.TabIndex = 17;
             // 
             // lblNumCre
             // 
             lblNumCre.AutoSize = true;
-            lblNumCre.Location = new Point(10, 227);
+            lblNumCre.Location = new Point(11, 303);
             lblNumCre.Name = "lblNumCre";
-            lblNumCre.Size = new Size(99, 15);
+            lblNumCre.Size = new Size(125, 20);
             lblNumCre.TabIndex = 18;
             lblNumCre.Text = "Límite de crédito:";
             // 
             // inpCredCliente
             // 
-            inpCredCliente.Location = new Point(125, 222);
-            inpCredCliente.Margin = new Padding(3, 2, 3, 2);
+            inpCredCliente.Location = new Point(143, 296);
             inpCredCliente.Name = "inpCredCliente";
-            inpCredCliente.Size = new Size(227, 23);
+            inpCredCliente.Size = new Size(259, 27);
             inpCredCliente.TabIndex = 19;
             // 
             // lblBalCli
             // 
             lblBalCli.AutoSize = true;
-            lblBalCli.Location = new Point(10, 252);
+            lblBalCli.Location = new Point(11, 336);
             lblBalCli.Name = "lblBalCli";
-            lblBalCli.Size = new Size(86, 15);
+            lblBalCli.Size = new Size(108, 20);
             lblBalCli.TabIndex = 20;
             lblBalCli.Text = "Balance actual:";
             // 
             // inpBalCliente
             // 
-            inpBalCliente.Location = new Point(110, 247);
-            inpBalCliente.Margin = new Padding(3, 2, 3, 2);
+            inpBalCliente.Location = new Point(126, 329);
             inpBalCliente.Name = "inpBalCliente";
-            inpBalCliente.Size = new Size(242, 23);
+            inpBalCliente.Size = new Size(276, 27);
             inpBalCliente.TabIndex = 21;
             // 
             // lblObsCli
             // 
             lblObsCli.AutoSize = true;
-            lblObsCli.Location = new Point(10, 277);
+            lblObsCli.Location = new Point(11, 369);
             lblObsCli.Name = "lblObsCli";
-            lblObsCli.Size = new Size(90, 15);
+            lblObsCli.Size = new Size(112, 20);
             lblObsCli.TabIndex = 22;
             lblObsCli.Text = "Observaciones: ";
             // 
             // inpObsCliente
             // 
-            inpObsCliente.Location = new Point(114, 272);
-            inpObsCliente.Margin = new Padding(3, 2, 3, 2);
+            inpObsCliente.Location = new Point(130, 363);
             inpObsCliente.Name = "inpObsCliente";
-            inpObsCliente.Size = new Size(238, 23);
+            inpObsCliente.Size = new Size(271, 27);
             inpObsCliente.TabIndex = 23;
             // 
             // btnAgregarCliente
             // 
-            btnAgregarCliente.Location = new Point(10, 324);
-            btnAgregarCliente.Margin = new Padding(3, 2, 3, 2);
+            btnAgregarCliente.Location = new Point(11, 432);
             btnAgregarCliente.Name = "btnAgregarCliente";
-            btnAgregarCliente.Size = new Size(109, 22);
+            btnAgregarCliente.Size = new Size(125, 29);
             btnAgregarCliente.TabIndex = 24;
             btnAgregarCliente.Text = "Agregar cliente";
             btnAgregarCliente.UseVisualStyleBackColor = true;
@@ -295,10 +282,9 @@
             // 
             // btnModificarCli
             // 
-            btnModificarCli.Location = new Point(125, 324);
-            btnModificarCli.Margin = new Padding(3, 2, 3, 2);
+            btnModificarCli.Location = new Point(143, 432);
             btnModificarCli.Name = "btnModificarCli";
-            btnModificarCli.Size = new Size(115, 22);
+            btnModificarCli.Size = new Size(131, 29);
             btnModificarCli.TabIndex = 25;
             btnModificarCli.Text = "Modificar cliente";
             btnModificarCli.UseVisualStyleBackColor = true;
@@ -306,10 +292,9 @@
             // 
             // btnEliminarCli
             // 
-            btnEliminarCli.Location = new Point(245, 324);
-            btnEliminarCli.Margin = new Padding(3, 2, 3, 2);
+            btnEliminarCli.Location = new Point(280, 432);
             btnEliminarCli.Name = "btnEliminarCli";
-            btnEliminarCli.Size = new Size(107, 22);
+            btnEliminarCli.Size = new Size(122, 29);
             btnEliminarCli.TabIndex = 26;
             btnEliminarCli.Text = "Eliminar cliente";
             btnEliminarCli.UseVisualStyleBackColor = true;
@@ -317,20 +302,18 @@
             // 
             // btnBuscarCli
             // 
-            btnBuscarCli.Location = new Point(10, 350);
-            btnBuscarCli.Margin = new Padding(3, 2, 3, 2);
+            btnBuscarCli.Location = new Point(11, 467);
             btnBuscarCli.Name = "btnBuscarCli";
-            btnBuscarCli.Size = new Size(109, 22);
+            btnBuscarCli.Size = new Size(125, 29);
             btnBuscarCli.TabIndex = 27;
             btnBuscarCli.Text = "Buscar cliente";
             btnBuscarCli.UseVisualStyleBackColor = true;
             // 
             // btnVolverMenuPrincipal
             // 
-            btnVolverMenuPrincipal.Location = new Point(125, 350);
-            btnVolverMenuPrincipal.Margin = new Padding(3, 2, 3, 2);
+            btnVolverMenuPrincipal.Location = new Point(143, 467);
             btnVolverMenuPrincipal.Name = "btnVolverMenuPrincipal";
-            btnVolverMenuPrincipal.Size = new Size(227, 22);
+            btnVolverMenuPrincipal.Size = new Size(259, 29);
             btnVolverMenuPrincipal.TabIndex = 28;
             btnVolverMenuPrincipal.Text = "Volver al menú principal";
             btnVolverMenuPrincipal.UseVisualStyleBackColor = true;
@@ -338,9 +321,9 @@
             // 
             // Form2
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(836, 381);
+            ClientSize = new Size(1848, 508);
             Controls.Add(btnVolverMenuPrincipal);
             Controls.Add(btnBuscarCli);
             Controls.Add(btnEliminarCli);
@@ -370,7 +353,6 @@
             Controls.Add(lblCodCli);
             Controls.Add(lblClientes);
             Controls.Add(dgvClientes);
-            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Form2";

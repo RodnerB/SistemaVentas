@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Data.SqlClient;
 
 namespace SistemaVentas
 {
@@ -16,23 +17,18 @@ namespace SistemaVentas
         public Form6()
         {
             InitializeComponent();
-        }
-
-        private void lblCodUni_Click(object sender, EventArgs e)
-        {
+            this.StartPosition = FormStartPosition.CenterScreen;
 
         }
 
-        private void Form6_Load(object sender, EventArgs e)
-        {
-
-        }
 
         // Constructor que recibe una referencia al formulario principal
         public Form6(Form1 formMenuPrincipal)
         {
             InitializeComponent(); // Inicializa los componentes gráficos del formulario
             this.formMenuPrincipal = formMenuPrincipal; // Guarda la referencia del formulario principal que abrió este formulario
+            this.StartPosition = FormStartPosition.CenterScreen;
+     
         }
 
         // Evento del botón para volver al menú principal
@@ -42,5 +38,5 @@ namespace SistemaVentas
             this.Close(); //Cierra el formulario actual de clientes
         }
     }
-    
+
 }
