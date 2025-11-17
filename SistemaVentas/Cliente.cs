@@ -26,7 +26,7 @@ namespace SistemaVentas
             {"OBSCLI", "Observaciones Cliente" }
         };
 
-        private static Dictionary<string, object> ObtenerParametrosInsertarCliente(Cliente cliente)
+        private static Dictionary<string, object> ObtenerParametrosCliente(Cliente cliente)
         {
             if (cliente.CodigoCliente == null) throw new ArgumentException("El código del cliente no puede ser nulo.");
             if (cliente.NombreCliente == null) throw new ArgumentException("El nombre del cliente no puede ser nulo.");
@@ -50,7 +50,7 @@ namespace SistemaVentas
         {
             Utilidades.UtilidadesBD.GuardarRegistro(
                 insertarClienteQuery,
-                ObtenerParametrosInsertarCliente(cliente),
+                ObtenerParametrosCliente(cliente),
                 "Cliente"
             );
         }
