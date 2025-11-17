@@ -1,15 +1,17 @@
-﻿namespace SistemaVentas
+﻿using System.CodeDom;
+
+namespace SistemaVentas
 {
     class Cliente
     {
         private const string getClientesQuery = "SELECT * FROM SFTCLIE0";
         private const string getClientePorCodigoQuery = "SELECT * FROM SFTCLIE0 WHERE CODCLI = @codigo";
-        private const string insertClienteQuery = @"
+        private const string insertarClienteQuery = @"
             INSERT INTO SFTCLIE0 
             (CODCLI, NOMCLI, APECLI, DIRCLI, SECCLI, CIUCLI, TELCLI, NUMFAX, LIMCRE, BALCLI, OBSCLI) 
             VALUES 
             (@CodigoCliente, @NombreCliente, @ApellidoCliente, @DireccionCliente, @SectorCliente, @CiudadCliente, @TelefonoCliente, @FaxCliente, @LimiteCreditoCliente, @BalanceActualCliente, @ObservacionesCliente)";
-        static Dictionary<string, string> clientesHeaders = new Dictionary<string, string>()
+        private static Dictionary<string, string> clientesHeaders = new Dictionary<string, string>()
         {
             {"CODCLI", "Código Cliente" },
             {"NOMCLI", "Nombre Cliente" },
@@ -23,6 +25,37 @@
             {"BALCLI", "Balance Actual Cliente" },
             {"OBSCLI", "Observaciones Cliente" }
         };
+
+        private static Dictionary<string, object> ObtenerParametrosInsertarCliente(Cliente cliente)
+        {
+            if (cliente.CodigoCliente == null) throw new ArgumentException("El código del cliente no puede ser nulo.");
+            if (cliente.NombreCliente == null) throw new ArgumentException("El nombre del cliente no puede ser nulo.");
+            return new Dictionary<string, object>()
+            {
+                {"@CodigoCliente", cliente.CodigoCliente},
+                {"@NombreCliente", cliente.NombreCliente ?? ""},
+                {"@ApellidoCliente", cliente.ApellidoCliente ?? ""},
+                {"@DireccionCliente", cliente.DireccionCliente ?? ""},
+                {"@SectorCliente", cliente.SectorCliente ?? ""},
+                {"@CiudadCliente", cliente.CiudadCliente ?? ""},
+                {"@TelefonoCliente", cliente.TelefonoCliente ?? ""},
+                {"@FaxCliente", cliente.FaxCliente ?? ""},
+                {"@LimiteCreditoCliente", cliente.LimiteCreditoCliente ?? 0 },
+                {"@BalanceActualCliente", cliente.BalanceActualCliente ?? 0 },
+                {"@ObservacionesCliente", cliente.ObservacionesCliente ?? ""}
+            };
+        }
+
+        public static void InsertarCliente(Cliente cliente)
+        {
+            Utilidades.UtilidadesBD.GuardarRegistro(
+                insertarClienteQuery,
+                ObtenerParametrosInsertarCliente(cliente),
+                "Cliente"
+            );
+        }
+
+
         public string? CodigoCliente { get; set; } = "";
         public string? NombreCliente { get; set; }
         public string? ApellidoCliente { get; set; }
@@ -50,7 +83,7 @@
                 getClientePorCodigoQuery,
                 codigoCliente);
 
-            if (datos == null) return null;
+            if (datos == null) throw new ArgumentNullException("Cliente no encontrado");
 
             return new Cliente()
             {
