@@ -68,7 +68,6 @@
             lblCodUni.Size = new Size(148, 20);
             lblCodUni.TabIndex = 2;
             lblCodUni.Text = "Código de la unidad:";
-            lblCodUni.Click += lblCodUni_Click;
             // 
             // txtCodUni
             // 
@@ -159,7 +158,6 @@
             MinimizeBox = false;
             Name = "Form6";
             Text = "Unidades de medidas";
-            Load += Form6_Load;
             ((System.ComponentModel.ISupportInitialize)dgvUnidades).EndInit();
             ResumeLayout(false);
             PerformLayout();
