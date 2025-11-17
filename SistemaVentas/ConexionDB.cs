@@ -5,7 +5,7 @@ using Microsoft.Data.SqlClient;
 namespace SistemaVentas
 {
     
-    internal class ConexionDB
+    public class ConexionDB
     {
         private static string connectionString = ConnectionString.GetConnectionString();
 
