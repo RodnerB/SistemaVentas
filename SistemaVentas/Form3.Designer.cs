@@ -52,7 +52,7 @@
             btnBuscarArt = new Button();
             btnVolverMenuPrincipal = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvArticulos).BeginInit();
-
+            SuspendLayout();
             // 
             // dgvArticulos
             // 
@@ -249,7 +249,7 @@
             btnVolverMenuPrincipal.TabIndex = 22;
             btnVolverMenuPrincipal.Text = "Volver al menú principal";
             btnVolverMenuPrincipal.UseVisualStyleBackColor = true;
-
+            btnVolverMenuPrincipal.Click += btnVolverMenuPrincipal_Click_1;
             // 
             // Form3
             // 

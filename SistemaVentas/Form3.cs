@@ -211,8 +211,8 @@ namespace SistemaVentas
                 MessageBox.Show("Artículo no encontrado.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-        // Evento para volver al menú principal
-        private void btnVolverMenuPrincipal_Click(object sender, EventArgs e)
+
+        private void btnVolverMenuPrincipal_Click_1(object sender, EventArgs e)
         {
             formMenuPrincipal.Show();
             this.Close();
