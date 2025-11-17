@@ -12,30 +12,14 @@ namespace SistemaVentas.Utilidades
             DataGridView gridView,
             Dictionary<string, string> encabezados)
         {
-            try
+            DataTable tabla = UtilidadesBD.ObtenerTodosLosRegistros(consulta);
+            gridView.DataSource = tabla;
+            foreach(var encabezado in encabezados)
             {
-                using(SqlConnection conexion = ConexionDB.ObtenerConexion())
+                if(gridView.Columns.Contains(encabezado.Key))
                 {
-                    SqlDataAdapter adaptador = new SqlDataAdapter(consulta, conexion);
-                    DataTable tabla = new DataTable();
-                    adaptador.Fill(tabla);
-                    gridView.DataSource = tabla;
-                    foreach (var encabezado in encabezados)
-                    {
-                        if (gridView.Columns.Contains(encabezado.Key))
-                        {
-                            gridView.Columns[encabezado.Key].HeaderText = encabezado.Value;
-                        }
-                    }
+                    gridView.Columns[encabezado.Key].HeaderText = encabezado.Value;
                 }
-            }
-
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Error al cargar los datos en el grid: " + ex.Message,
-                                "Error de base de datos",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
             }
         }
     }

@@ -1,33 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Data;
 
 namespace SistemaVentas
 {
     public partial class Form4 : Form
     {
         Form1 formMenuPrincipal; // variable de referencia al formulario principal
-        public Form4()
-        {
-            InitializeComponent();
-        }
 
         // Constructor que recibe una referencia al formulario principal
         public Form4(Form1 MenuPrincipal)
         {
             InitializeComponent();  // Inicializa los componentes gráficos del formulario
             formMenuPrincipal = MenuPrincipal;  // Guarda la referencia del formulario principal que abrió este formulario
+            CargarFacturas(); // Carga las facturas en el DataGridView al iniciar el formulario
+            cmbCondicion.SelectedIndex = 0;
+            ObtenerClientesComboBox();
         }
 
-        private void Facturación(object sender, EventArgs e)
-        {
+        private void CargarFacturas() => Factura.ObtenerFacturas(dgvFacturas);
 
+        private Factura obtenerFacturaInputs()
+        {
+            float descuento = inpDescFactura.Text.Length == 0 ? 0 : float.Parse(inpDescFactura.Text);
+            float montoFactura = inpMonFactura.Text.Length == 0 ? 0 : float.Parse(inpMonFactura.Text);
+            return new Factura(
+                Convert.ToInt32(inpNumFactura.Text),
+                inpDateTime.Value,
+                cmbCodCliente.Text == "Contado" ? "1" : "2",
+                cmbCondicion.Text,
+                descuento,
+                montoFactura
+            );
+        }
+
+        private void ObtenerClientesComboBox()
+        {
+            // Lógica para obtener y cargar los clientes en el ComboBox
+            DataTable tablaClientes = Utilidades.UtilidadesBD.ObtenerTodosLosRegistros("SELECT CODCLI, NOMCLI FROM SFTCLIE0");
+            foreach(DataRow fila in tablaClientes.Rows)
+            {
+                fila["NOMCLI"] = fila["CODCLI"] + " - " + fila["NOMCLI"]; // Modifica el nombre del cliente para que contenta su codigo
+            }
+            cmbCodCliente.DataSource = tablaClientes;
+            cmbCodCliente.DisplayMember = "NOMCLI"; // Muestra el nombre del cliente
+            cmbCodCliente.ValueMember = "CODCLI"; // Usa el código del cliente como valor
         }
 
         // Evento del botón para volver al menú principal
@@ -35,6 +50,12 @@ namespace SistemaVentas
         {
             formMenuPrincipal.Show(); // Muestra el formulario principal nuevamente
             this.Close(); //Cierra el formulario actual de clientes
+        }
+
+        private void btnAgregarFac_Click(object sender, EventArgs e)
+        {
+            Factura factura = obtenerFacturaInputs();
+            
         }
     }
 }

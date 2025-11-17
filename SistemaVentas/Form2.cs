@@ -94,54 +94,24 @@ namespace SistemaVentas
         }
 
         // Busca clientes mediante el codigo del cliente
-        private Cliente? BuscarCliente(string codigoCliente) => Cliente.ObtenerClientePorCodigo(codigoCliente);
-
-        private void GuardarCliente(Cliente cliente)
+        private Cliente? BuscarCliente(string codigoCliente)
         {
             try
             {
-                using (SqlConnection conexion = ConexionDB.ObtenerConexion())
-                {
-                    string consulta = "INSERT INTO SFTCLIE0 (CODCLI, NOMCLI, APECLI, DIRCLI, SECCLI, CIUCLI, TELCLI, NUMFAX, LIMCRE, BALCLI, OBSCLI) " +
-                                        "VALUES (@CODCLI, @NOMCLI, @APECLI, @DIRCLI, @SECCLI, @CIUCLI, @TELCLI, @NUMFAX, @LIMCRE, @BALCLI, @OBSCLI)";
-                    using (SqlCommand comando = new SqlCommand(consulta, conexion))
-                    {
-                        comando.Parameters.AddWithValue("@CODCLI", cliente.CodigoCliente);
-                        comando.Parameters.AddWithValue("@NOMCLI", cliente.NombreCliente);
-                        comando.Parameters.AddWithValue("@APECLI", cliente.ApellidoCliente);
-                        comando.Parameters.AddWithValue("@DIRCLI", cliente.DireccionCliente);
-                        comando.Parameters.AddWithValue("@SECCLI", cliente.SectorCliente);
-                        comando.Parameters.AddWithValue("@CIUCLI", cliente.CiudadCliente);
-                        comando.Parameters.AddWithValue("@TELCLI", cliente.TelefonoCliente);
-                        comando.Parameters.AddWithValue("@NUMFAX", cliente.FaxCliente);
-                        comando.Parameters.AddWithValue("@LIMCRE", cliente.LimiteCreditoCliente);
-                        comando.Parameters.AddWithValue("@BALCLI", cliente.BalanceActualCliente);
-                        comando.Parameters.AddWithValue("@OBSCLI", cliente.ObservacionesCliente);
-
-                        int filasAfectadas = comando.ExecuteNonQuery();
-                        if (filasAfectadas > 0)
-                        {
-                            MessageBox.Show("Cliente guardado exitosamente.", "Éxito",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            CargarClientes(); // Recarga la lista de clientes después de guardar uno nuevo
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se pudo guardar el cliente.", "Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                }
+                return Cliente.ObtenerClientePorCodigo(codigoCliente);
             }
-
-            catch (Exception ex)
+            catch (ArgumentNullException ex)
             {
-                MessageBox.Show("Error al guardar el cliente: " + ex.Message, "Error",
+                MessageBox.Show("Error al buscar el cliente: " + ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
+        }
 
-
-
+        private void GuardarCliente(Cliente cliente)
+        {
+            Cliente.InsertarCliente(cliente);
+            CargarClientes(); // Recarga la lista de clientes después de agregar uno
         }
 
         private void EliminarCliente(Cliente cliente)
@@ -250,7 +220,7 @@ namespace SistemaVentas
 
         private void btnModificarCli_Click(object sender, EventArgs e)
         {
-            Cliente? cliente = BuscarCliente(inpCodCliente.Text); 
+            Cliente? cliente = BuscarCliente(inpCodCliente.Text);
             if (cliente == null) return;
             ModificarClientes(cliente);
         }
