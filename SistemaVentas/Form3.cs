@@ -212,10 +212,11 @@ namespace SistemaVentas
             }
         }
 
-        private void btnVolverMenuPrincipal_Click_1(object sender, EventArgs e)
+        private void btnVolverMenuPrincipal_Click(object sender, EventArgs e)
         {
             formMenuPrincipal.Show();
             this.Close();
+
         }
     }
 }

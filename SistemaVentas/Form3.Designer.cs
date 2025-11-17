@@ -249,7 +249,7 @@
             btnVolverMenuPrincipal.TabIndex = 22;
             btnVolverMenuPrincipal.Text = "Volver al menú principal";
             btnVolverMenuPrincipal.UseVisualStyleBackColor = true;
-            btnVolverMenuPrincipal.Click += btnVolverMenuPrincipal_Click_1;
+            btnVolverMenuPrincipal.Click += btnVolverMenuPrincipal_Click;
             // 
             // Form3
             // 
