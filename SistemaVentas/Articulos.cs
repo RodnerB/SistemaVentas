@@ -1,4 +1,7 @@
 ﻿
+using SistemaVentas.Utilidades;
+using System.Data;
+
 namespace SistemaVentas
 {
     class Articulos
@@ -21,9 +24,9 @@ namespace SistemaVentas
             {"PREART", "Precio Artículo" },
             {"COSART", "Costo Artículo" }
         };
-        public string? CodigoArticulo { get; set; } = "";
+        public string? CodigoArticulo { get; set; }
         public string? DescripcionArticulo { get; set; } = "";
-        public string? CodigoUnidad { get; set; } = "";
+        public string? CodigoUnidad { get; set; }
         public int? ExistenciaMinima { get; set; }
         public int? ExistenciaMaxima { get; set; }
         public int? ExistenciaActual { get; set; }
@@ -31,8 +34,9 @@ namespace SistemaVentas
         public decimal? CostoArticulo { get; set; }
         public static void ObtenerArticulos(DataGridView dataGrid)
         {
+            DataTable tabla = UtilidadesBD.ObtenerTodosLosRegistros(getArticulosQuery);
             Utilidades.UtilidadesUI.CargarDatosEnGrid(
-                getArticulosQuery,
+                tabla,
                 dataGrid,
                 articulosHeaders
                 );

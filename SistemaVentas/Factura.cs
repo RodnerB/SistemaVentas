@@ -1,4 +1,7 @@
-﻿namespace SistemaVentas
+﻿using SistemaVentas.Utilidades;
+using System.Data;
+
+namespace SistemaVentas
 {
     internal class Factura
     {
@@ -37,8 +40,9 @@
 
         public static void ObtenerFacturas(DataGridView dataGrid)
         {
+            DataTable tabla = UtilidadesBD.ObtenerTodosLosRegistros(getFacturasQuery);
             Utilidades.UtilidadesUI.CargarDatosEnGrid(
-                getFacturasQuery,
+                tabla,
                 dataGrid,
                 facturasHeaders
             );
@@ -75,8 +79,7 @@
         {
             Utilidades.UtilidadesBD.GuardarRegistro(
                 insertarFacturaQuery,
-                ObtenerParametrosFactura(factura),
-                "Factura"
+                ObtenerParametrosFactura(factura)
             );
         }
 

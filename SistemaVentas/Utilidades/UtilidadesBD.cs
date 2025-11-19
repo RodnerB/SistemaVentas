@@ -62,7 +62,7 @@ namespace SistemaVentas.Utilidades
             }
         }
 
-        public static void GuardarRegistro(string consulta, Dictionary<string, object> parametros, string tipoRegistro)
+        public static void GuardarRegistro(string consulta, Dictionary<string, object> parametros)
         {
             try
             {
@@ -76,12 +76,12 @@ namespace SistemaVentas.Utilidades
                     int filasAfectadas = comando.ExecuteNonQuery();
                     if (filasAfectadas > 0)
                     {
-                        MessageBox.Show( tipoRegistro + " guardado exitosamente.", "Éxito",
+                        MessageBox.Show("Registro guardado exitosamente.", "Éxito",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        MessageBox.Show("No se pudo guardar el cliente.", "Error",
+                        MessageBox.Show("No se pudo guardar el registro.", "Error",
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
@@ -92,6 +92,34 @@ namespace SistemaVentas.Utilidades
                                                      "Error de base de datos",
                                                      System.Windows.Forms.MessageBoxButtons.OK,
                                                      System.Windows.Forms.MessageBoxIcon.Error);
+            }
+        }
+
+        public void EliminarRegistro(string consulta, string codigo)
+        {
+            try
+            {
+                using (SqlConnection conexion = ConexionDB.ObtenerConexion())
+                using (SqlCommand comando = new SqlCommand(consulta, conexion))
+                {
+                    comando.Parameters.AddWithValue("@codigo", codigo);
+                    int filasAfectadas = comando.ExecuteNonQuery();
+                    if(filasAfectadas > 0)
+                    {
+                        MessageBox.Show("Registro eliminado exitosamente", "Exito",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    } else
+                    {
+                        MessageBox.Show("No se pudo eliminar registro", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar el registro" + ex.Message,
+                    "Error de base de datos",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error); 
             }
         }
     }

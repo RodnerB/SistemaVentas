@@ -1,9 +1,10 @@
 ﻿using System.Data;
 using Microsoft.Data.SqlClient;
+using SistemaVentas.Utilidades;
 
 namespace SistemaVentas
 {
-    class detalles
+    class Detalles
     {
         private const string getDetallesQuery = "SELECT * FROM SFTDETFAC";
         private const string getDetallesPorCodigoQuery = "SELECT * FROM SFTDETFAC WHERE NUMFAC = @codigo";
@@ -19,25 +20,26 @@ namespace SistemaVentas
             {"CANTVEN", "Cantidad Vendida"},
             {"PRECVEN", "Precio de Venta"}
         };
-        public string? NumeroFactura { get; set; } = "";
-        public string? CodigoArticulo { get; set; } = "";
+        public string? NumeroFactura { get; set; }
+        public string? CodigoArticulo { get; set; }
         public int CantidadVendida { get; set; } = 0;
         public decimal PrecioVenta { get; set; } = 0.0m;
         public static void ObtenerDetalles(DataGridView dataGrid)
         {
+            DataTable tabla = UtilidadesBD.ObtenerTodosLosRegistros(getDetallesQuery);
             Utilidades.UtilidadesUI.CargarDatosEnGrid(
-                getDetallesQuery,
+                tabla,
                 dataGrid,
                 detallesHeaders
                 );
         }
-        public static detalles? ObtenerDetallesPorCodigo(string numeroFactura)
+        public static Detalles? ObtenerDetallesPorCodigo(string numeroFactura)
         {
             Dictionary<string, object> datos = Utilidades.UtilidadesBD.BuscarRegistro(
                 getDetallesPorCodigoQuery,
                 numeroFactura);
             if (datos == null) return null;
-            return new detalles()
+            return new Detalles()
             {
                 NumeroFactura = datos["NUMFAC"].ToString(),
                 CodigoArticulo = datos["CODART"].ToString(),

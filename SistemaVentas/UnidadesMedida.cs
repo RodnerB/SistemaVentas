@@ -1,5 +1,6 @@
-﻿using System.Data;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
+using SistemaVentas.Utilidades;
+using System.Data;
 
 namespace SistemaVentas
 {
@@ -22,8 +23,9 @@ namespace SistemaVentas
 
         public static void ObtenerUnidadesMedida(DataGridView dataGrid)
         {
+            DataTable tabla = UtilidadesBD.ObtenerTodosLosRegistros(getUnidadesMedidaQuery);
             Utilidades.UtilidadesUI.CargarDatosEnGrid(
-                getUnidadesMedidaQuery,
+                tabla,
                 dataGrid,
                 unidadesMedidaHeaders
                 );

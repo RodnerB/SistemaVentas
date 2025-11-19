@@ -1,4 +1,6 @@
-﻿using System.CodeDom;
+﻿using SistemaVentas.Utilidades;
+using System.CodeDom;
+using System.Data;
 
 namespace SistemaVentas
 {
@@ -50,8 +52,7 @@ namespace SistemaVentas
         {
             Utilidades.UtilidadesBD.GuardarRegistro(
                 insertarClienteQuery,
-                ObtenerParametrosCliente(cliente),
-                "Cliente"
+                ObtenerParametrosCliente(cliente)
             );
         }
 
@@ -70,8 +71,9 @@ namespace SistemaVentas
 
         public static void ObtenerClientes(DataGridView dataGrid)
         {
+            DataTable tabla = UtilidadesBD.ObtenerTodosLosRegistros(getClientesQuery);
             Utilidades.UtilidadesUI.CargarDatosEnGrid(
-                getClientesQuery,
+                tabla,
                 dataGrid,
                 clientesHeaders
                 );

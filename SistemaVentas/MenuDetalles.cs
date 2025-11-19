@@ -40,7 +40,7 @@ namespace SistemaVentas
         {
             try
             {
-                detalles.ObtenerDetalles(dgvDetFact);
+                Detalles.ObtenerDetalles(dgvDetFact);
             }
             catch (Exception ex)
             {
@@ -67,9 +67,9 @@ namespace SistemaVentas
             }
         }
 
-        private detalles ObtenerDetalle()
+        private Detalles ObtenerDetalle()
         {
-            return new detalles
+            return new Detalles
             {
                 NumeroFactura = txtNumFacdet?.Text ?? "",
                 CodigoArticulo = cmbArtDet?.SelectedValue?.ToString() ?? "",
@@ -83,12 +83,12 @@ namespace SistemaVentas
             var txt = txtNumFacdet?.Text;
             if (e.KeyCode == Keys.Enter && !string.IsNullOrEmpty(txt))
             {
-                detalles det = detalles.ObtenerDetallesPorCodigo(txtNumFacdet.Text);
+                Detalles det = Detalles.ObtenerDetallesPorCodigo(txtNumFacdet.Text);
                 if (det != null)
                 {
-                    txtNumFacdet.Text = det.NumeroFactura ?? "";
+                    txtNumFacdet.Text = det.NumeroFactura;
                     if (cmbArtDet != null)
-                        cmbArtDet.SelectedValue = det.CodigoArticulo ?? "";
+                        cmbArtDet.SelectedValue = det.CodigoArticulo;
                     txtCantDet.Text = det.CantidadVendida.ToString();
                     txtPrecVent.Text = det.PrecioVenta.ToString("0.##");
                 }
@@ -109,7 +109,7 @@ namespace SistemaVentas
             GuardarDetalles(ObtenerDetalle());
         }
 
-        private void GuardarDetalles(detalles det)
+        private void GuardarDetalles(Detalles det)
         {
             try
             {
