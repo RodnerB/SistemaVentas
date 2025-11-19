@@ -48,7 +48,7 @@ namespace SistemaVentas
         }
 
          private void GuardarUnidad(UnidadesMedida unidad)
-        {
+         {
             try
             {
                 using (var conexion = ConexionDB.ObtenerConexion())
@@ -76,7 +76,7 @@ namespace SistemaVentas
             {
                 MessageBox.Show("Error al guardar la unidad: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+         }
 
         private void ModificarUnidad(UnidadesMedida unidad)
         {

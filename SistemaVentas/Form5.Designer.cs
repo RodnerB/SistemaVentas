@@ -33,7 +33,7 @@
             lblNumFacDet = new Label();
             txtNumFacdet = new TextBox();
             lblCodArtDet = new Label();
-            cmbÇodArtDet = new ComboBox();
+            cmbArtDet = new ComboBox();
             lblCantDet = new Label();
             txtCantDet = new TextBox();
             lblPrecVen = new Label();
@@ -41,6 +41,7 @@
             btnAgregarDet = new Button();
             btnEliminarDet = new Button();
             btnVolverMenuPrincipal = new Button();
+            cmbArtDet = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dgvDetFact).BeginInit();
             SuspendLayout();
             // 
@@ -55,11 +56,13 @@
             // 
             // dgvDetFact
             // 
+            dgvDetFact.AllowUserToAddRows = false;
             dgvDetFact.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDetFact.Location = new Point(408, 12);
             dgvDetFact.Name = "dgvDetFact";
+            dgvDetFact.RowHeadersVisible = false;
             dgvDetFact.RowHeadersWidth = 51;
-            dgvDetFact.Size = new Size(212, 484);
+            dgvDetFact.Size = new Size(493, 484);
             dgvDetFact.TabIndex = 1;
             // 
             // lblNumFacDet
@@ -87,13 +90,13 @@
             lblCodArtDet.TabIndex = 4;
             lblCodArtDet.Text = "Artículo:";
             // 
-            // cmbÇodArtDet
+            // cmbCodArtDet
             // 
-            cmbÇodArtDet.FormattingEnabled = true;
-            cmbÇodArtDet.Location = new Point(82, 135);
-            cmbÇodArtDet.Name = "cmbÇodArtDet";
-            cmbÇodArtDet.Size = new Size(320, 28);
-            cmbÇodArtDet.TabIndex = 5;
+            cmbArtDet.FormattingEnabled = true;
+            cmbArtDet.Location = new Point(82, 135);
+            cmbArtDet.Name = "cmbCodArtDet";
+            cmbArtDet.Size = new Size(320, 28);
+            cmbArtDet.TabIndex = 5;
             // 
             // lblCantDet
             // 
@@ -135,6 +138,7 @@
             btnAgregarDet.TabIndex = 10;
             btnAgregarDet.Text = " Agregar detalle";
             btnAgregarDet.UseVisualStyleBackColor = true;
+            btnAgregarDet.Click += btnAgregarDet_Click;
             // 
             // btnEliminarDet
             // 
@@ -144,6 +148,7 @@
             btnEliminarDet.TabIndex = 11;
             btnEliminarDet.Text = "Eliminar detalle";
             btnEliminarDet.UseVisualStyleBackColor = true;
+            btnEliminarDet.Click += btnEliminarDet_Click;
             // 
             // btnVolverMenuPrincipal
             // 
@@ -155,11 +160,20 @@
             btnVolverMenuPrincipal.UseVisualStyleBackColor = true;
             btnVolverMenuPrincipal.Click += btnVolverMenuPrincipal_Click;
             // 
+            // cmbArtDet
+            // 
+            cmbArtDet.FormattingEnabled = true;
+            cmbArtDet.Location = new Point(82, 135);
+            cmbArtDet.Name = "cmbArtDet";
+            cmbArtDet.Size = new Size(320, 28);
+            cmbArtDet.TabIndex = 13;
+            // 
             // Form5
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(632, 508);
+            ClientSize = new Size(919, 508);
+            Controls.Add(cmbArtDet);
             Controls.Add(btnVolverMenuPrincipal);
             Controls.Add(btnEliminarDet);
             Controls.Add(btnAgregarDet);
@@ -167,7 +181,6 @@
             Controls.Add(lblPrecVen);
             Controls.Add(txtCantDet);
             Controls.Add(lblCantDet);
-            Controls.Add(cmbÇodArtDet);
             Controls.Add(lblCodArtDet);
             Controls.Add(txtNumFacdet);
             Controls.Add(lblNumFacDet);
@@ -197,5 +210,6 @@
         private Button btnAgregarDet;
         private Button btnEliminarDet;
         private Button btnVolverMenuPrincipal;
+        private ComboBox cmbArtDet;
     }
 }
