@@ -30,18 +30,18 @@
         {
             lblConfiguracion = new Label();
             lblEmpresa = new Label();
-            txtEmpresa = new TextBox();
+            inpEmpresa = new TextBox();
             lblDireccion = new Label();
-            txtDireccion = new TextBox();
+            inpDireccion = new TextBox();
             lblTelefono = new Label();
-            txtTelefono = new TextBox();
+            inpTelefono = new TextBox();
             lblFax = new Label();
             lblEmail = new Label();
-            txtEmail = new TextBox();
+            inpEmail = new TextBox();
             btnGuardar = new Button();
             btnCancelar = new Button();
             btnVolverMenuPrincipal = new Button();
-            txtFax = new TextBox();
+            inpFax = new TextBox();
             SuspendLayout();
             // 
             // lblConfiguracion
@@ -62,12 +62,12 @@
             lblEmpresa.TabIndex = 1;
             lblEmpresa.Text = "Empresa:";
             // 
-            // txtEmpresa
+            // inpEmpresa
             // 
-            txtEmpresa.Location = new Point(196, 115);
-            txtEmpresa.Name = "txtEmpresa";
-            txtEmpresa.Size = new Size(322, 27);
-            txtEmpresa.TabIndex = 2;
+            inpEmpresa.Location = new Point(196, 115);
+            inpEmpresa.Name = "inpEmpresa";
+            inpEmpresa.Size = new Size(322, 27);
+            inpEmpresa.TabIndex = 2;
             // 
             // lblDireccion
             // 
@@ -78,12 +78,12 @@
             lblDireccion.TabIndex = 3;
             lblDireccion.Text = "Dirección:";
             // 
-            // txtDireccion
+            // inpDireccion
             // 
-            txtDireccion.Location = new Point(202, 148);
-            txtDireccion.Name = "txtDireccion";
-            txtDireccion.Size = new Size(316, 27);
-            txtDireccion.TabIndex = 4;
+            inpDireccion.Location = new Point(202, 148);
+            inpDireccion.Name = "inpDireccion";
+            inpDireccion.Size = new Size(316, 27);
+            inpDireccion.TabIndex = 4;
             // 
             // lblTelefono
             // 
@@ -94,12 +94,12 @@
             lblTelefono.TabIndex = 5;
             lblTelefono.Text = "Teléfono:";
             // 
-            // txtTelefono
+            // inpTelefono
             // 
-            txtTelefono.Location = new Point(202, 181);
-            txtTelefono.Name = "txtTelefono";
-            txtTelefono.Size = new Size(316, 27);
-            txtTelefono.TabIndex = 6;
+            inpTelefono.Location = new Point(202, 181);
+            inpTelefono.Name = "inpTelefono";
+            inpTelefono.Size = new Size(316, 27);
+            inpTelefono.TabIndex = 6;
             // 
             // lblFax
             // 
@@ -119,12 +119,12 @@
             lblEmail.TabIndex = 8;
             lblEmail.Text = "Correo electrónico:";
             // 
-            // txtEmail
+            // inpEmail
             // 
-            txtEmail.Location = new Point(262, 247);
-            txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(256, 27);
-            txtEmail.TabIndex = 9;
+            inpEmail.Location = new Point(262, 247);
+            inpEmail.Name = "inpEmail";
+            inpEmail.Size = new Size(256, 27);
+            inpEmail.TabIndex = 9;
             // 
             // btnGuardar
             // 
@@ -134,6 +134,7 @@
             btnGuardar.TabIndex = 10;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = true;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // btnCancelar
             // 
@@ -154,30 +155,30 @@
             btnVolverMenuPrincipal.UseVisualStyleBackColor = true;
             btnVolverMenuPrincipal.Click += btnVolverMenuPrincipal_Click;
             // 
-            // txtFax
+            // inpFax
             // 
-            txtFax.Location = new Point(160, 214);
-            txtFax.Name = "txtFax";
-            txtFax.Size = new Size(358, 27);
-            txtFax.TabIndex = 13;
+            inpFax.Location = new Point(160, 214);
+            inpFax.Name = "inpFax";
+            inpFax.Size = new Size(358, 27);
+            inpFax.TabIndex = 13;
             // 
             // Form7
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(632, 508);
-            Controls.Add(txtFax);
+            Controls.Add(inpFax);
             Controls.Add(btnVolverMenuPrincipal);
             Controls.Add(btnCancelar);
             Controls.Add(btnGuardar);
-            Controls.Add(txtEmail);
+            Controls.Add(inpEmail);
             Controls.Add(lblEmail);
             Controls.Add(lblFax);
-            Controls.Add(txtTelefono);
+            Controls.Add(inpTelefono);
             Controls.Add(lblTelefono);
-            Controls.Add(txtDireccion);
+            Controls.Add(inpDireccion);
             Controls.Add(lblDireccion);
-            Controls.Add(txtEmpresa);
+            Controls.Add(inpEmpresa);
             Controls.Add(lblEmpresa);
             Controls.Add(lblConfiguracion);
             MaximizeBox = false;
@@ -192,17 +193,17 @@
 
         private Label lblConfiguracion;
         private Label lblEmpresa;
-        private TextBox txtEmpresa;
+        private TextBox inpEmpresa;
         private Label lblDireccion;
-        private TextBox txtDireccion;
+        private TextBox inpDireccion;
         private Label lblTelefono;
-        private TextBox txtTelefono;
+        private TextBox inpTelefono;
         private Label lblFax;
         private Label lblEmail;
-        private TextBox txtEmail;
+        private TextBox inpEmail;
         private Button btnGuardar;
         private Button btnCancelar;
         private Button btnVolverMenuPrincipal;
-        private TextBox txtFax;
+        private TextBox inpFax;
     }
 }
