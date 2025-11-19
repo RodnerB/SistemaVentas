@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace SistemaVentas
 {
-    public partial class Form7 : Form
+    public partial class MenuConfiguracion : Form
     {
-        Form1 formMenuPrincipal; // variable de referencia al formulario principal
-        public Form7()
+        MenuPrincipal formMenuPrincipal; // variable de referencia al formulario principal
+        public MenuConfiguracion()
         {
             InitializeComponent();
         }
 
         // Constructor que recibe una referencia al formulario principal
-        public Form7(Form1 MenuPrincipal)
+        public MenuConfiguracion(MenuPrincipal MenuPrincipal)
         {
             InitializeComponent(); // Inicializa los componentes gráficos del formulario
             this.formMenuPrincipal = MenuPrincipal; // Guarda la referencia del formulario principal que abrió este formulario

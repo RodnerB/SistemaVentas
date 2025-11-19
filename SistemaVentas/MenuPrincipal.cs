@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SistemaVentas
 {
-    public partial class Form1 : Form
+    public partial class MenuPrincipal : Form
     {
-        public Form1()
+        public MenuPrincipal()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -23,7 +23,7 @@ namespace SistemaVentas
         private void btnClientes_Click(object sender, EventArgs e)
         {
             // Abrir el formulario de clientes
-            Form2 clientes = new Form2(this);
+            MenuClientes clientes = new MenuClientes(this);
             clientes.Show(); //Mostrar el formulario de clientes
             this.Hide(); //Ocultar el formulario principal
         }
@@ -31,7 +31,7 @@ namespace SistemaVentas
         private void btnArticulos_Click(object sender, EventArgs e)
         {
             // Abrir el formulario de articulos
-            Form3 articulos = new Form3(this);
+            MenuArticulos articulos = new MenuArticulos(this);
             articulos.Show(); //Mostrar el formulario de articulos
             this.Hide(); //Ocultar el formulario principal 
         }
@@ -39,7 +39,7 @@ namespace SistemaVentas
         private void btnFacturacion_Click(object sender, EventArgs e)
         {
             // Abrir el formulario de facturacion
-            Form4 facturacion = new Form4(this);
+            MenuFacturas facturacion = new MenuFacturas(this);
             facturacion.Show(); // Mostrar el formulario de facturacion 
             this.Hide(); // Ocultar el formulario principal
         }
@@ -47,7 +47,7 @@ namespace SistemaVentas
         private void btnDetalles_Click(object sender, EventArgs e)
         {
             // Abrir el formulario de detalles
-            Form5 detalles = new Form5(this);
+            MenuDetalles detalles = new MenuDetalles(this);
             detalles.Show(); // Mostrar el formulario de detalles
             this.Hide(); // Ocultar el formulario principal
         }
@@ -55,7 +55,7 @@ namespace SistemaVentas
         private void btnUnidadesDeMedida_Click(object sender, EventArgs e)
         {
             // Abrir el formulario de unidades de medida
-            Form6 unidadesdemedida = new Form6(this);
+            MenuUnidadesMedidas unidadesdemedida = new MenuUnidadesMedidas(this);
             unidadesdemedida.Show(); // Mostrar el formulario de unidades de medida
             this.Hide(); // Ocultar el formulario principal
         }
@@ -63,7 +63,7 @@ namespace SistemaVentas
         private void btnConfiguracion_Click(object sender, EventArgs e)
         {
             // Abrir el formulario de configuracion
-            Form7 configuracion = new Form7(this);
+            MenuConfiguracion configuracion = new MenuConfiguracion(this);
             configuracion.Show(); // Mostrar el formulario de configuracion
             this.Hide(); // Ocultar el formulario principal
         }

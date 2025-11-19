@@ -14,12 +14,12 @@ using SistemaVentas;
 
 namespace SistemaVentas
 {
-    public partial class Form3 : Form
+    public partial class MenuArticulos : Form
     {
-        Form1 formMenuPrincipal; // referencia al formulario principal
+        MenuPrincipal formMenuPrincipal; // referencia al formulario principal
 
         // Constructor con referencia al formulario principal
-        public Form3(Form1 MenuPrincipal)
+        public MenuArticulos(MenuPrincipal MenuPrincipal)
         {
             InitializeComponent();
             formMenuPrincipal = MenuPrincipal;

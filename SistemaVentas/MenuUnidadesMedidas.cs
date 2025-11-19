@@ -11,10 +11,10 @@ using Microsoft.Data.SqlClient;
 
 namespace SistemaVentas
 {
-    public partial class Form6 : Form
+    public partial class MenuUnidadesMedidas : Form
     {
-        Form1 formMenuPrincipal; // variable de referencia al formulario principal
-        public Form6()
+        MenuPrincipal formMenuPrincipal; // variable de referencia al formulario principal
+        public MenuUnidadesMedidas()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -23,7 +23,7 @@ namespace SistemaVentas
 
 
         // Constructor que recibe una referencia al formulario principal
-        public Form6(Form1 formMenuPrincipal)
+        public MenuUnidadesMedidas(MenuPrincipal formMenuPrincipal)
         {
             InitializeComponent(); // Inicializa los componentes gráficos del formulario
             this.formMenuPrincipal = formMenuPrincipal; // Guarda la referencia del formulario principal que abrió este formulario
