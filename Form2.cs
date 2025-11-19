@@ -1,4 +1,4 @@
-Ôªøusing System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,19 +20,17 @@ namespace SistemaVentas
         //  Constructor que recibe una referencia al formulario principal
         public Form2(Form1 MenuPrincipal)
         {
-            InitializeComponent(); // Inicializa los componentes gr√°ficos del formulario
-            formMenuPrincipal = MenuPrincipal; // Guarda la referencia del formulario principal que abri√≥ este formulario
+            InitializeComponent(); // Inicializa los componentes gr·ficos del formulario
+            formMenuPrincipal = MenuPrincipal; // Guarda la referencia del formulario principal que abriÛ este formulario
             CargarClientes();
-            this.StartPosition = FormStartPosition.CenterScreen;
-
 
             foreach (Control c in this.Controls)
             {
                 if (c is TextBox)
                 {
-#pragma warning disable CS8622 // La nulabilidad de los tipos de referencia del tipo de par√°metro no coincide con el delegado de destino (posiblemente debido a los atributos de nulabilidad).
+#pragma warning disable CS8622 // La nulabilidad de los tipos de referencia del tipo de par·metro no coincide con el delegado de destino (posiblemente debido a los atributos de nulabilidad).
                     c.KeyDown += EventoMoverConEnter;
-#pragma warning restore CS8622 // La nulabilidad de los tipos de referencia del tipo de par√°metro no coincide con el delegado de destino (posiblemente debido a los atributos de nulabilidad).
+#pragma warning restore CS8622 // La nulabilidad de los tipos de referencia del tipo de par·metro no coincide con el delegado de destino (posiblemente debido a los atributos de nulabilidad).
                 }
             }
 
@@ -85,9 +83,9 @@ namespace SistemaVentas
                         int filasAfectadas = comando.ExecuteNonQuery();
                         if (filasAfectadas > 0)
                         {
-                            MessageBox.Show("Cliente modificado exitosamente.", "√âxito",
+                            MessageBox.Show("Cliente modificado exitosamente.", "…xito",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            CargarClientes(); // Recarga la lista de clientes despu√©s de modificar uno
+                            CargarClientes(); // Recarga la lista de clientes despuÈs de modificar uno
                         }
                         else
                         {
@@ -122,7 +120,7 @@ namespace SistemaVentas
         private void GuardarCliente(Cliente cliente)
         {
             Cliente.InsertarCliente(cliente);
-            CargarClientes(); // Recarga la lista de clientes despu√©s de agregar uno
+            CargarClientes(); // Recarga la lista de clientes despuÈs de agregar uno
         }
 
         private void EliminarCliente(Cliente cliente)
@@ -140,9 +138,9 @@ namespace SistemaVentas
                         int filasAfectadas = comando.ExecuteNonQuery();
                         if (filasAfectadas > 0)
                         {
-                            MessageBox.Show("Cliente eliminado exitosamente.", "√âxito",
+                            MessageBox.Show("Cliente eliminado exitosamente.", "…xito",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            CargarClientes(); // Recarga la lista de clientes despu√©s de eliminar uno
+                            CargarClientes(); // Recarga la lista de clientes despuÈs de eliminar uno
                         }
                         else
                         {
@@ -159,7 +157,7 @@ namespace SistemaVentas
             }
         }
 
-        // Evento del bot√≥n para volver al men√∫ principal
+        // Evento del botÛn para volver al men˙ principal
         private void btnVolverMenuPrincipal_Click(object sender, EventArgs e)
         {
             formMenuPrincipal.Show(); // Muestra el formulario principal nuevamente
@@ -170,7 +168,7 @@ namespace SistemaVentas
         {
             if (e.KeyCode == Keys.Enter && inpCodCliente.Text.Length > 0)
             {
-                // si el cliente es encontrado, rellena autom√°ticamente los campos
+                // si el cliente es encontrado, rellena autom·ticamente los campos
                 Cliente? cliente = BuscarCliente(inpCodCliente.Text);
                 if (cliente != null)
                 {
@@ -192,7 +190,7 @@ namespace SistemaVentas
         {
             if (e.KeyCode == Keys.Enter)
             {
-                e.SuppressKeyPress = true; // evita sonido y salto de l√≠nea
+                e.SuppressKeyPress = true; // evita sonido y salto de lÌnea
 
                 this.SelectNextControl((Control)sender, true, true, true, true);
             }

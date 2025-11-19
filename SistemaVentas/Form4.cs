@@ -14,6 +14,7 @@ namespace SistemaVentas
             CargarFacturas(); // Carga las facturas en el DataGridView al iniciar el formulario
             cmbCondicion.SelectedIndex = 0;
             ObtenerClientesComboBox();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void CargarFacturas() => Factura.ObtenerFacturas(dgvFacturas);
