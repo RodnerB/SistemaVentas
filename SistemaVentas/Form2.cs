@@ -33,6 +33,15 @@ namespace SistemaVentas
 #pragma warning restore CS8622 // La nulabilidad de los tipos de referencia del tipo de parámetro no coincide con el delegado de destino (posiblemente debido a los atributos de nulabilidad).
                 }
             }
+
+            // Cuando el formulario se muestre, establecer el foco en la primera casilla de texto
+            this.Shown += Form2_Shown;
+        }
+
+        private void Form2_Shown(object? sender, EventArgs e)
+        {
+            // Ajustar el nombre del control si la primera caja no es `inpCodCliente`
+            inpCodCliente?.Focus();
         }
 
         private void CargarClientes()

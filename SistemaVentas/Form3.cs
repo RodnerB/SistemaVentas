@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System.Data;
 using Microsoft.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Linq.Expressions;
-using System.Runtime.CompilerServices;
-using SistemaVentas; 
 
 namespace SistemaVentas
 {
@@ -25,8 +14,29 @@ namespace SistemaVentas
             formMenuPrincipal = MenuPrincipal;
             CargarArticulos();
             this.StartPosition = FormStartPosition.CenterScreen;
+            ObtenerArticuloComboBox();
+
+            // Asegurar que el primer cuadro de texto reciba el foco cuando el formulario se muestre
+            this.Shown += Form3_Shown;
+
+            foreach (Control c in this.Controls)
+            {
+                if (c is TextBox)
+                {
+                                
+                    c.KeyDown += EventoMoverConEnter;
+
+                }
+            }
 
         }
+
+        private void Form3_Shown(object? sender, EventArgs e)
+        {
+            // Ajustar el nombre del control si el primer textbox tiene otro nombre
+            txtCodArt?.Focus();
+        }
+
         // Método para cargar los artículos en el DataGridView
         private void CargarArticulos()
         {
@@ -51,7 +61,7 @@ namespace SistemaVentas
                     string consulta = @"
                         INSERT INTO SFTARTI0 (CODART, DESART, CODUNI, EXIMIN, EXIMAX, EXIACT, PREART, COSART)
                         VALUES (@CODART, @DESART, @CODUNI, @EXIMIN, @EXIMAX, @EXIACT, @PREART, @COSART)";
-                    using (var comando = new Microsoft.Data.SqlClient.SqlCommand(consulta, conexion)) // Crear el comando SQL
+                    using (var comando = new SqlCommand(consulta, conexion)) // Crear el comando SQL
                     {
                         // Agregar los parámetros al comando
                         comando.Parameters.AddWithValue("@CODART", articulo.CodigoArticulo ?? "");// Asegurarse de no pasar null
@@ -169,7 +179,7 @@ namespace SistemaVentas
             {
                 CodigoArticulo = txtCodArt.Text,
                 DescripcionArticulo = txtDesArt.Text,
-                CodigoUnidad = cmbCodUni.Text,
+                CodigoUnidad = cmbCodUni.SelectedValue.ToString(),
                 ExistenciaMinima = int.TryParse(txtExiMin.Text, out int exMin) ? exMin : 0,
                 ExistenciaMaxima = int.TryParse(txtExiMax.Text, out int exMax) ? exMax : 0,
                 ExistenciaActual = int.TryParse(txtExiAct.Text, out int exAct) ? exAct : 0,
@@ -218,5 +228,24 @@ namespace SistemaVentas
             this.Close();
 
         }
+        private void ObtenerArticuloComboBox()
+        {
+            // Lógica para obtener y cargar los clientes en el ComboBox
+            DataTable tablaClientes = Utilidades.UtilidadesBD.ObtenerTodosLosRegistros("SELECT CODUNI, DESUNI FROM SFTUNID0");
+            cmbCodUni.DataSource = tablaClientes;
+            cmbCodUni.DisplayMember = "DESUNI"; // Muestra el nombre del cliente
+            cmbCodUni.ValueMember = "CODUNI"; // Usa el código del cliente como valor
+        }
+
+        private void EventoMoverConEnter(object? sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.SelectNextControl((Control)sender, true, true, true, true);
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
     }
 }
