@@ -5,11 +5,16 @@ using Microsoft.Data.SqlClient;
 
 namespace SistemaVentas
 {
-    public partial class Form5 : Form
+    public partial class MenuDetalles : Form
     {
-        Form1 formMenuPrincipal;
+        MenuPrincipal formMenuPrincipal; // variable de referencia al formulario principal
+        public MenuDetalles()
+        {
+            InitializeComponent();
+        }
 
-        public Form5(Form1 formMenuPrincipal)
+        // Constructor que recibe una referencia al formulario principal
+        public MenuDetalles(MenuPrincipal formMenuPrincipal)
         {
             InitializeComponent();
             this.formMenuPrincipal = formMenuPrincipal;

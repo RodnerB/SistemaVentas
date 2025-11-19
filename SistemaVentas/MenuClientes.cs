@@ -13,12 +13,12 @@ using System.Runtime.CompilerServices;
 
 namespace SistemaVentas
 {
-    public partial class Form2 : Form
+    public partial class MenuClientes : Form
     {
-        Form1 formMenuPrincipal; // variable de referencia al formulario principal
+        MenuPrincipal formMenuPrincipal; // variable de referencia al formulario principal
 
         //  Constructor que recibe una referencia al formulario principal
-        public Form2(Form1 MenuPrincipal)
+        public MenuClientes(MenuPrincipal MenuPrincipal)
         {
             InitializeComponent(); // Inicializa los componentes gráficos del formulario
             formMenuPrincipal = MenuPrincipal; // Guarda la referencia del formulario principal que abrió este formulario

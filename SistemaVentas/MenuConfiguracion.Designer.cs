@@ -1,6 +1,6 @@
 ﻿namespace SistemaVentas
 {
-    partial class Form7
+    partial class MenuConfiguracion
     {
         /// <summary>
         /// Required designer variable.
