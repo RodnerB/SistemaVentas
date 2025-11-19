@@ -56,9 +56,13 @@
             // 
             // dgvArticulos
             // 
+            dgvArticulos.AllowUserToAddRows = false;
+            dgvArticulos.AllowUserToDeleteRows = false;
+            dgvArticulos.AllowUserToResizeRows = false;
             dgvArticulos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvArticulos.Location = new Point(408, 12);
             dgvArticulos.Name = "dgvArticulos";
+            dgvArticulos.RowHeadersVisible = false;
             dgvArticulos.RowHeadersWidth = 51;
             dgvArticulos.Size = new Size(924, 484);
             dgvArticulos.TabIndex = 0;

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dgvUnidades = new DataGridView();
             lblUnidadesMedida = new Label();
             lblCodUni = new Label();
             txtCodUni = new TextBox();
@@ -39,17 +38,9 @@
             btnEliminarUni = new Button();
             btnBuscarUni = new Button();
             btnVolverMenuPrincipal = new Button();
-            ((System.ComponentModel.ISupportInitialize)dgvUnidades).BeginInit();
+            dgvUnidad = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dgvUnidad).BeginInit();
             SuspendLayout();
-            // 
-            // dgvUnidades
-            // 
-            dgvUnidades.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvUnidades.Location = new Point(408, 12);
-            dgvUnidades.Name = "dgvUnidades";
-            dgvUnidades.RowHeadersWidth = 51;
-            dgvUnidades.Size = new Size(212, 484);
-            dgvUnidades.TabIndex = 0;
             // 
             // lblUnidadesMedida
             // 
@@ -100,6 +91,7 @@
             btnAgregarUni.TabIndex = 6;
             btnAgregarUni.Text = "Agregar unidad";
             btnAgregarUni.UseVisualStyleBackColor = true;
+            btnAgregarUni.Click += btnAgregarUni_Click;
             // 
             // btnModificarUni
             // 
@@ -109,6 +101,7 @@
             btnModificarUni.TabIndex = 7;
             btnModificarUni.Text = "Modificar unidad";
             btnModificarUni.UseVisualStyleBackColor = true;
+            btnModificarUni.Click += btnModificarUni_Click;
             // 
             // btnEliminarUni
             // 
@@ -118,6 +111,7 @@
             btnEliminarUni.TabIndex = 8;
             btnEliminarUni.Text = "Eliminar unidad";
             btnEliminarUni.UseVisualStyleBackColor = true;
+            btnEliminarUni.Click += btnEliminarUni_Click;
             // 
             // btnBuscarUni
             // 
@@ -127,6 +121,7 @@
             btnBuscarUni.TabIndex = 9;
             btnBuscarUni.Text = "Buscar unidad";
             btnBuscarUni.UseVisualStyleBackColor = true;
+            btnBuscarUni.Click += btnBuscarUni_Click;
             // 
             // btnVolverMenuPrincipal
             // 
@@ -138,11 +133,23 @@
             btnVolverMenuPrincipal.UseVisualStyleBackColor = true;
             btnVolverMenuPrincipal.Click += btnVolverMenuPrincipal_Click;
             // 
+            // dgvUnidad
+            // 
+            dgvUnidad.AllowUserToAddRows = false;
+            dgvUnidad.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvUnidad.Location = new Point(408, 12);
+            dgvUnidad.Name = "dgvUnidad";
+            dgvUnidad.RowHeadersVisible = false;
+            dgvUnidad.RowHeadersWidth = 51;
+            dgvUnidad.Size = new Size(252, 485);
+            dgvUnidad.TabIndex = 11;
+            // 
             // Form6
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(632, 508);
+            ClientSize = new Size(676, 508);
+            Controls.Add(dgvUnidad);
             Controls.Add(btnVolverMenuPrincipal);
             Controls.Add(btnBuscarUni);
             Controls.Add(btnEliminarUni);
@@ -153,19 +160,16 @@
             Controls.Add(txtCodUni);
             Controls.Add(lblCodUni);
             Controls.Add(lblUnidadesMedida);
-            Controls.Add(dgvUnidades);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Form6";
             Text = "Unidades de medidas";
-            ((System.ComponentModel.ISupportInitialize)dgvUnidades).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvUnidad).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private DataGridView dgvUnidades;
         private Label lblUnidadesMedida;
         private Label lblCodUni;
         private TextBox txtCodUni;
@@ -176,5 +180,6 @@
         private Button btnEliminarUni;
         private Button btnBuscarUni;
         private Button btnVolverMenuPrincipal;
+        private DataGridView dgvUnidad;
     }
 }
