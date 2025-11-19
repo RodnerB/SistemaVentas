@@ -33,7 +33,7 @@ namespace SistemaVentas
             return new Dictionary<string, object>()
             {
                 {"@CodigoCliente", cliente.CodigoCliente},
-                {"@NombreCliente", cliente.NombreCliente ?? ""},
+                {"@NombreCliente", cliente.NombreCliente},
                 {"@ApellidoCliente", cliente.ApellidoCliente ?? ""},
                 {"@DireccionCliente", cliente.DireccionCliente ?? ""},
                 {"@SectorCliente", cliente.SectorCliente ?? ""},
