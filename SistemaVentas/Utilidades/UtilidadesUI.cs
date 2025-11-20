@@ -8,11 +8,10 @@ namespace SistemaVentas.Utilidades
     internal class UtilidadesUI
     {
         public static void CargarDatosEnGrid(
-            string consulta,
+            DataTable tabla,
             DataGridView gridView,
             Dictionary<string, string> encabezados)
         {
-            DataTable tabla = UtilidadesBD.ObtenerTodosLosRegistros(consulta);
             gridView.DataSource = tabla;
             foreach(var encabezado in encabezados)
             {

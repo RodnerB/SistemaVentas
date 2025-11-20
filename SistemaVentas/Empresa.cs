@@ -44,8 +44,7 @@ namespace SistemaVentas
         {
             Utilidades.UtilidadesBD.GuardarRegistro(
                 insertarEmpresaQuery,
-                ObtenerParametrosEmpresa(empresa),
-                "Empresa"
+                ObtenerParametrosEmpresa(empresa)
             );
         }
 
