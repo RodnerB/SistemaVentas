@@ -118,7 +118,7 @@ namespace SistemaVentas
                 }
                 return cliente;
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Error en la base de datos: " + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -128,8 +128,16 @@ namespace SistemaVentas
 
         private void GuardarCliente(Cliente cliente)
         {
-            Cliente.InsertarCliente(cliente);
-            CargarClientes(); // Recarga la lista de clientes después de agregar uno
+            if (Cliente.InsertarCliente(cliente))
+            {
+                MessageBox.Show("Cliente guardado exitosamente", "Exito",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CargarClientes(); // Recarga la lista de clientes después de agregar uno
+            } else
+            {
+                MessageBox.Show("Error al guardar el cliente", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void EliminarCliente(Cliente cliente)
