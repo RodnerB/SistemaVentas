@@ -20,10 +20,10 @@ namespace SistemaVentas.Utilidades
             
             catch (SqlException ex)
             {
-                System.Windows.Forms.MessageBox.Show("Error al obtener los registros: " + ex.Message,
+                MessageBox.Show("Error al obtener los registros: " + ex.Message,
                                                      "Error de base de datos",
-                                                     System.Windows.Forms.MessageBoxButtons.OK,
-                                                     System.Windows.Forms.MessageBoxIcon.Error);
+                                                     MessageBoxButtons.OK,
+                                                     MessageBoxIcon.Error);
                 return null;
             }
 
@@ -31,28 +31,35 @@ namespace SistemaVentas.Utilidades
         }
         public static Dictionary<string, object>? BuscarRegistro(string consulta, string codigo)
         {
-            using(SqlConnection conexion = ConexionDB.ObtenerConexion())
-            using(SqlCommand comando = new SqlCommand(consulta, conexion))
+            try
             {
-                comando.Parameters.AddWithValue("@codigo", codigo);
-                using (SqlDataReader lector = comando.ExecuteReader())
+                using(SqlConnection conexion = ConexionDB.ObtenerConexion())
+                using(SqlCommand comando = new SqlCommand(consulta, conexion))
                 {
-
-                    if (!lector.Read()) return null;
-                
-                    Dictionary<string, object> registro = new();
-                
-                    for(int i = 0; i < lector.FieldCount; i++)
+                    comando.Parameters.AddWithValue("@codigo", codigo);
+                    using (SqlDataReader lector = comando.ExecuteReader())
                     {
-                        registro[lector.GetName(i)] = lector.GetValue(i);
+
+                        if (!lector.Read()) return null;
+                
+                        Dictionary<string, object> registro = new();
+                
+                        for(int i = 0; i < lector.FieldCount; i++)
+                        {
+                            registro[lector.GetName(i)] = lector.GetValue(i);
+                        }
+                        return registro;
                     }
-                    return registro;
                 }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Error al buscar el registro: " + ex.Message);
             }
 
         }
 
-        public static void GuardarRegistro(string consulta, Dictionary<string, object> parametros)
+        public static int GuardarRegistro(string consulta, Dictionary<string, object> parametros)
         {
             try
             {
@@ -64,24 +71,12 @@ namespace SistemaVentas.Utilidades
                         comando.Parameters.AddWithValue(parametro.Key, parametro.Value);
                     }
                     int filasAfectadas = comando.ExecuteNonQuery();
-                    if (filasAfectadas > 0)
-                    {
-                        MessageBox.Show("Registro guardado exitosamente.", "Éxito",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se pudo guardar el registro.", "Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    return filasAfectadas;
                 }
             }
             catch (SqlException ex)
             {
-                System.Windows.Forms.MessageBox.Show("Error al guardar el registro: " + ex.Message,
-                                                     "Error de base de datos",
-                                                     System.Windows.Forms.MessageBoxButtons.OK,
-                                                     System.Windows.Forms.MessageBoxIcon.Error);
+                throw new Exception("Error al guardar el registro: " + ex.Message);
             }
         }
 

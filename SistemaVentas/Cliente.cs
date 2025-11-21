@@ -48,17 +48,17 @@ namespace SistemaVentas
             };
         }
 
-        public static void InsertarCliente(Cliente cliente)
+        public static bool InsertarCliente(Cliente cliente)
         {
-            Utilidades.UtilidadesBD.GuardarRegistro(
+            return (Utilidades.UtilidadesBD.GuardarRegistro(
                 insertarClienteQuery,
                 ObtenerParametrosCliente(cliente)
-            );
+            ) > 0);
         }
 
 
-        public string? CodigoCliente { get; set; }
-        public string? NombreCliente { get; set; }
+        public string CodigoCliente { get; set; }
+        public string NombreCliente { get; set; }
         public string? ApellidoCliente { get; set; }
         public string? DireccionCliente { get; set; }
         public string? SectorCliente { get; set; }
