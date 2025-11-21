@@ -108,7 +108,6 @@
             inpCodCliente.Name = "inpCodCliente";
             inpCodCliente.Size = new Size(323, 27);
             inpCodCliente.TabIndex = 3;
-            inpCodCliente.KeyDown += DetectarClienteEvento;
             // 
             // lblNomCli
             // 
@@ -272,6 +271,7 @@
             // 
             // btnAgregarCliente
             // 
+            btnAgregarCliente.Enabled = false;
             btnAgregarCliente.Location = new Point(11, 432);
             btnAgregarCliente.Name = "btnAgregarCliente";
             btnAgregarCliente.Size = new Size(125, 29);
@@ -282,6 +282,7 @@
             // 
             // btnModificarCli
             // 
+            btnModificarCli.Enabled = false;
             btnModificarCli.Location = new Point(143, 432);
             btnModificarCli.Name = "btnModificarCli";
             btnModificarCli.Size = new Size(131, 29);
@@ -292,6 +293,7 @@
             // 
             // btnEliminarCli
             // 
+            btnEliminarCli.Enabled = false;
             btnEliminarCli.Location = new Point(280, 432);
             btnEliminarCli.Name = "btnEliminarCli";
             btnEliminarCli.Size = new Size(122, 29);
@@ -308,6 +310,7 @@
             btnBuscarCli.TabIndex = 27;
             btnBuscarCli.Text = "Buscar cliente";
             btnBuscarCli.UseVisualStyleBackColor = true;
+            btnBuscarCli.Click += btnBuscarCli_Click;
             // 
             // btnVolverMenuPrincipal
             // 
@@ -319,7 +322,7 @@
             btnVolverMenuPrincipal.UseVisualStyleBackColor = true;
             btnVolverMenuPrincipal.Click += btnVolverMenuPrincipal_Click;
             // 
-            // Form2
+            // MenuClientes
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -355,7 +358,7 @@
             Controls.Add(dgvClientes);
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "Form2";
+            Name = "MenuClientes";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Clientes";
             ((System.ComponentModel.ISupportInitialize)dgvClientes).EndInit();
