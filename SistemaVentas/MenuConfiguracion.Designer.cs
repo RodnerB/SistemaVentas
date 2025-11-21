@@ -162,7 +162,7 @@
             inpFax.Size = new Size(358, 27);
             inpFax.TabIndex = 13;
             // 
-            // Form7
+            // MenuConfiguracion
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -183,7 +183,8 @@
             Controls.Add(lblConfiguracion);
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "Form7";
+            Name = "MenuConfiguracion";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Configuración";
             ResumeLayout(false);
             PerformLayout();

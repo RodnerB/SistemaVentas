@@ -31,35 +31,25 @@ namespace SistemaVentas.Utilidades
         }
         public static Dictionary<string, object>? BuscarRegistro(string consulta, string codigo)
         {
-            try
+            using(SqlConnection conexion = ConexionDB.ObtenerConexion())
+            using(SqlCommand comando = new SqlCommand(consulta, conexion))
             {
-                using(SqlConnection conexion = ConexionDB.ObtenerConexion())
-                using(SqlCommand comando = new SqlCommand(consulta, conexion))
+                comando.Parameters.AddWithValue("@codigo", codigo);
+                using (SqlDataReader lector = comando.ExecuteReader())
                 {
-                    comando.Parameters.AddWithValue("@codigo", codigo);
-                    using (SqlDataReader lector = comando.ExecuteReader())
+
+                    if (!lector.Read()) return null;
+                
+                    Dictionary<string, object> registro = new();
+                
+                    for(int i = 0; i < lector.FieldCount; i++)
                     {
-                        if (!lector.Read()) return null;
-
-                        Dictionary<string, object> registro = new();
-                        for(int i = 0; i < lector.FieldCount; i++)
-                        {
-                            registro[lector.GetName(i)] = lector.GetValue(i);
-                        }
-
-                        return registro;
+                        registro[lector.GetName(i)] = lector.GetValue(i);
                     }
+                    return registro;
                 }
             }
 
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Error al buscar el registro: " + ex.Message,
-                                                     "Error de base de datos",
-                                                     MessageBoxButtons.OK,
-                                                     MessageBoxIcon.Error);
-                return null;
-            }
         }
 
         public static void GuardarRegistro(string consulta, Dictionary<string, object> parametros)

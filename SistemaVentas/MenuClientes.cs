@@ -15,6 +15,7 @@ namespace SistemaVentas
 {
     public partial class MenuClientes : Form
     {
+        bool existeElCliente = false;
         MenuPrincipal formMenuPrincipal; // variable de referencia al formulario principal
 
         //  Constructor que recibe una referencia al formulario principal
@@ -109,12 +110,18 @@ namespace SistemaVentas
         {
             try
             {
-                return Cliente.ObtenerClientePorCodigo(codigoCliente);
+                Cliente? cliente = Cliente.ObtenerClientePorCodigo(codigoCliente);
+                if (cliente == null)
+                {
+                    MessageBox.Show("El cliente no existe.", "No Encontrado",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                return cliente;
             }
-            catch (ArgumentNullException ex)
+            catch (SqlException ex)
             {
-                MessageBox.Show("Error al buscar el cliente: " + ex.Message, "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error en la base de datos: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
         }
@@ -165,29 +172,6 @@ namespace SistemaVentas
             formMenuPrincipal.Show(); // Muestra el formulario principal nuevamente
             this.Close(); //Cierra el formulario actual de clientes
         }
-
-        private void DetectarClienteEvento(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter && inpCodCliente.Text.Length > 0)
-            {
-                // si el cliente es encontrado, rellena automáticamente los campos
-                Cliente? cliente = BuscarCliente(inpCodCliente.Text);
-                if (cliente != null)
-                {
-                    inpNomCliente.Text = cliente.NombreCliente;
-                    inpApeCliente.Text = cliente.ApellidoCliente;
-                    inpDirCliente.Text = cliente.DireccionCliente;
-                    inpSecCliente.Text = cliente.SectorCliente;
-                    inpCiuCliente.Text = cliente.CiudadCliente;
-                    inpTelCliente.Text = cliente.TelefonoCliente;
-                    inpFaxCliente.Text = cliente.FaxCliente;
-                    inpCredCliente.Text = cliente.LimiteCreditoCliente.ToString();
-                    inpBalCliente.Text = cliente.BalanceActualCliente.ToString();
-                    inpObsCliente.Text = cliente.ObservacionesCliente;
-
-                }
-            }
-        }
         private void EventoMoverConEnter(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -234,6 +218,29 @@ namespace SistemaVentas
             Cliente? cliente = BuscarCliente(inpCodCliente.Text);
             if (cliente == null) return;
             ModificarClientes(cliente);
+        }
+
+        private void btnBuscarCli_Click(object sender, EventArgs e)
+        {
+
+            Cliente cliente = BuscarCliente(inpCodCliente.Text);
+            if (cliente != null)
+            {
+                inpNomCliente.Text = cliente.NombreCliente;
+                inpApeCliente.Text = cliente.ApellidoCliente;
+                inpDirCliente.Text = cliente.DireccionCliente;
+                inpSecCliente.Text = cliente.SectorCliente;
+                inpCiuCliente.Text = cliente.CiudadCliente;
+                inpTelCliente.Text = cliente.TelefonoCliente;
+                inpFaxCliente.Text = cliente.FaxCliente;
+                inpCredCliente.Text = cliente.LimiteCreditoCliente.ToString();
+                inpBalCliente.Text = cliente.BalanceActualCliente.ToString();
+                inpObsCliente.Text = cliente.ObservacionesCliente;
+                existeElCliente = true;
+            }
+            btnModificarCli.Enabled = existeElCliente;
+            btnEliminarCli.Enabled = existeElCliente;
+            btnAgregarCliente.Enabled = true; 
         }
     }
 }

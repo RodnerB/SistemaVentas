@@ -57,7 +57,7 @@ namespace SistemaVentas
         }
 
 
-        public string? CodigoCliente { get; set; } = "";
+        public string? CodigoCliente { get; set; }
         public string? NombreCliente { get; set; }
         public string? ApellidoCliente { get; set; }
         public string? DireccionCliente { get; set; }
@@ -68,6 +68,21 @@ namespace SistemaVentas
         public decimal? LimiteCreditoCliente { get; set; }
         public decimal? BalanceActualCliente { get; set; }
         public string? ObservacionesCliente { get; set; }
+
+        //public Cliente(string? codigoCliente, string? nombreCliente, string? apellidoCliente, string? direccionCliente, string? sectorCliente, string? ciudadCliente, string? telefonoCliente, string? faxCliente, decimal? limiteCreditoCliente, decimal? balanceActualCliente, string? observacionesCliente)
+        //{
+        //    CodigoCliente = codigoCliente;
+        //    NombreCliente = nombreCliente;
+        //    ApellidoCliente = apellidoCliente;
+        //    DireccionCliente = direccionCliente;
+        //    SectorCliente = sectorCliente;
+        //    CiudadCliente = ciudadCliente;
+        //    TelefonoCliente = telefonoCliente;
+        //    FaxCliente = faxCliente;
+        //    LimiteCreditoCliente = limiteCreditoCliente;
+        //    BalanceActualCliente = balanceActualCliente;
+        //    ObservacionesCliente = observacionesCliente;
+        //}
 
         public static void ObtenerClientes(DataGridView dataGrid)
         {
@@ -85,7 +100,7 @@ namespace SistemaVentas
                 getClientePorCodigoQuery,
                 codigoCliente);
 
-            if (datos == null) throw new ArgumentNullException("Cliente no encontrado");
+            if (datos == null) return null;
 
             return new Cliente()
             {
