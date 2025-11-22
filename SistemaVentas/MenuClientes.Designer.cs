@@ -320,7 +320,7 @@
             btnVolverMenuPrincipal.TabIndex = 28;
             btnVolverMenuPrincipal.Text = "Volver al menú principal";
             btnVolverMenuPrincipal.UseVisualStyleBackColor = true;
-            btnVolverMenuPrincipal.Click += btnVolverMenuPrincipal_Click;
+            btnVolverMenuPrincipal.Click += BtnVolverMenuPrincipal_Click;
             // 
             // MenuClientes
             // 

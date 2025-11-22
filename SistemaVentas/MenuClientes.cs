@@ -15,6 +15,7 @@ namespace SistemaVentas
 {
     public partial class MenuClientes : Form
     {
+        Cliente? cliente = new Cliente();
         bool existeElCliente = false;
         MenuPrincipal formMenuPrincipal; // variable de referencia al formulario principal
 
@@ -49,53 +50,31 @@ namespace SistemaVentas
 
         private void CargarClientes()
         {
-            Cliente.ObtenerClientes(dgvClientes);
+            try
+            {
+                Cliente.ObtenerClientes(dgvClientes);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los clientes: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ModificarClientes(Cliente cliente)
         {
             try
             {
-                using (SqlConnection conexion = ConexionDB.ObtenerConexion())
+                if (Cliente.ActualizarCliente(cliente))
                 {
-                    string consulta = @"UPDATE SFTCLIE0 SET
-                                        NOMCLI = @NOMCLI,
-                                        APECLI = @APECLI,
-                                        DIRCLI = @DIRCLI,
-                                        SECCLI = @SECCLI,
-                                        CIUCLI = @CIUCLI,
-                                        TELCLI = @TELCLI,
-                                        NUMFAX = @NUMFAX,
-                                        LIMCRE = @LIMCRE,
-                                        BALCLI = @BALCLI,
-                                        OBSCLI = @OBSCLI
-                                    WHERE CODCLI = @CODCLI";
-                    using (SqlCommand comando = new SqlCommand(consulta, conexion))
-                    {
-                        comando.Parameters.AddWithValue("@CODCLI", cliente.CodigoCliente);
-                        comando.Parameters.AddWithValue("@NOMCLI", cliente.NombreCliente);
-                        comando.Parameters.AddWithValue("@APECLI", cliente.ApellidoCliente);
-                        comando.Parameters.AddWithValue("@DIRCLI", cliente.DireccionCliente);
-                        comando.Parameters.AddWithValue("@SECCLI", cliente.SectorCliente);
-                        comando.Parameters.AddWithValue("@CIUCLI", cliente.CiudadCliente);
-                        comando.Parameters.AddWithValue("@TELCLI", cliente.TelefonoCliente);
-                        comando.Parameters.AddWithValue("@NUMFAX", cliente.FaxCliente);
-                        comando.Parameters.AddWithValue("@LIMCRE", cliente.LimiteCreditoCliente);
-                        comando.Parameters.AddWithValue("@BALCLI", cliente.BalanceActualCliente);
-                        comando.Parameters.AddWithValue("@OBSCLI", cliente.ObservacionesCliente);
-                        int filasAfectadas = comando.ExecuteNonQuery();
-                        if (filasAfectadas > 0)
-                        {
-                            MessageBox.Show("Cliente modificado exitosamente.", "Éxito",
+                    MessageBox.Show("Cliente modificado exitosamente.", "Éxito",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            CargarClientes(); // Recarga la lista de clientes después de modificar uno
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se pudo modificar el cliente.", "Error",
+                    CargarClientes(); // Recarga la lista de clientes después de modificar uno
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo modificar el cliente.", "Error",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
                 }
             }
             catch (Exception ex)
@@ -103,6 +82,11 @@ namespace SistemaVentas
                 MessageBox.Show("Error al modificar el cliente: " + ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            existeElCliente = false;
+            btnAgregarCliente.Enabled = false;
+            btnModificarCli.Enabled = false;
+            btnEliminarCli.Enabled = false;
         }
 
         // Busca clientes mediante el codigo del cliente
@@ -113,69 +97,82 @@ namespace SistemaVentas
                 Cliente? cliente = Cliente.ObtenerClientePorCodigo(codigoCliente);
                 if (cliente == null)
                 {
+                    existeElCliente = false;
                     MessageBox.Show("El cliente no existe.", "No Encontrado",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                existeElCliente = true;
                 return cliente;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error en la base de datos: " + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                existeElCliente = false;
                 return null;
             }
         }
 
         private void GuardarCliente(Cliente cliente)
         {
-            if (Cliente.InsertarCliente(cliente))
+            try
             {
-                MessageBox.Show("Cliente guardado exitosamente", "Exito",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                CargarClientes(); // Recarga la lista de clientes después de agregar uno
-            } else
-            {
-                MessageBox.Show("Error al guardar el cliente", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (existeElCliente)
+                {
+                    ModificarClientes(cliente);
+                    CargarClientes();
+                }
+                else if(Cliente.InsertarCliente(cliente))
+                {
+                    MessageBox.Show("Cliente guardado exitosamente", "Exito",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CargarClientes(); // Recarga la lista de clientes después de agregar uno
+                }
+
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la base de datos: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            existeElCliente = false;
+            btnAgregarCliente.Enabled = false;
+            btnModificarCli.Enabled = false;
+            btnEliminarCli.Enabled = false;
+
         }
 
         private void EliminarCliente(Cliente cliente)
         {
-            if (cliente.CodigoCliente == null) return;
-            string codigoCliente = cliente.CodigoCliente;
             try
             {
-                using (SqlConnection conexion = ConexionDB.ObtenerConexion())
+                string codigoCliente = cliente.CodigoCliente;
+                if (Cliente.eliminarCliente(codigoCliente))
                 {
-                    string consulta = "DELETE FROM SFTCLIE0 WHERE CODCLI = @CodigoCliente";
-                    using (SqlCommand comando = new SqlCommand(consulta, conexion))
-                    {
-                        comando.Parameters.AddWithValue("@CodigoCliente", codigoCliente);
-                        int filasAfectadas = comando.ExecuteNonQuery();
-                        if (filasAfectadas > 0)
-                        {
-                            MessageBox.Show("Cliente eliminado exitosamente.", "Éxito",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            CargarClientes(); // Recarga la lista de clientes después de eliminar uno
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se pudo eliminar el cliente.", "Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
+                    MessageBox.Show("Cliente eliminado exitosamente.", "Éxito",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CargarClientes(); // Recarga la lista de clientes después de eliminar uno
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo eliminar el cliente.", "Error",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al eliminar el cliente: " + ex.Message, "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error en la base de datos: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            existeElCliente = false;
+            btnAgregarCliente.Enabled = false;
+            btnModificarCli.Enabled = false;
+            btnEliminarCli.Enabled = false;
         }
 
         // Evento del botón para volver al menú principal
-        private void btnVolverMenuPrincipal_Click(object sender, EventArgs e)
+        private void BtnVolverMenuPrincipal_Click(object sender, EventArgs e)
         {
             formMenuPrincipal.Show(); // Muestra el formulario principal nuevamente
             this.Close(); //Cierra el formulario actual de clientes
@@ -192,18 +189,17 @@ namespace SistemaVentas
 
         private Cliente ObtenerClienteEnInputs()
         {
-            return new Cliente
+            return new Cliente(inpCodCliente.Text, inpNomCliente.Text, inpDirCliente.Text, inpCiuCliente.Text, inpTelCliente.Text)
             {
-                CodigoCliente = inpCodCliente.Text,
-                NombreCliente = inpNomCliente.Text,
                 ApellidoCliente = inpApeCliente.Text,
-                DireccionCliente = inpDirCliente.Text,
                 SectorCliente = inpSecCliente.Text,
-                CiudadCliente = inpCiuCliente.Text,
-                TelefonoCliente = inpTelCliente.Text,
                 FaxCliente = inpFaxCliente.Text,
-                LimiteCreditoCliente = Convert.ToDecimal(inpCredCliente.Text == "" ? 0 : inpCredCliente.Text),
-                BalanceActualCliente = Convert.ToDecimal(inpBalCliente.Text == "" ? 0 : inpBalCliente.Text),
+                LimiteCreditoCliente = string.IsNullOrWhiteSpace(inpCredCliente.Text)
+                    ? 0
+                    : Convert.ToSingle(inpCredCliente.Text),
+                BalanceActualCliente = string.IsNullOrWhiteSpace(inpBalCliente.Text)
+                    ? 0
+                    : Convert.ToSingle(inpBalCliente.Text),
                 ObservacionesCliente = inpObsCliente.Text
             };
         }
@@ -211,27 +207,25 @@ namespace SistemaVentas
 
         private void btnAgregarCliente_Click(object sender, EventArgs e)
         {
-            GuardarCliente(ObtenerClienteEnInputs());
+                cliente = ObtenerClienteEnInputs();
+                GuardarCliente(cliente);
         }
 
         private void btnEliminarCli_Click(object sender, EventArgs e)
         {
-            Cliente? cliente = BuscarCliente(inpCodCliente.Text);
             if (cliente == null) return;
             EliminarCliente(cliente);
         }
 
         private void btnModificarCli_Click(object sender, EventArgs e)
         {
-            Cliente? cliente = BuscarCliente(inpCodCliente.Text);
             if (cliente == null) return;
             ModificarClientes(cliente);
         }
-
         private void btnBuscarCli_Click(object sender, EventArgs e)
         {
 
-            Cliente cliente = BuscarCliente(inpCodCliente.Text);
+            cliente = BuscarCliente(inpCodCliente.Text);
             if (cliente != null)
             {
                 inpNomCliente.Text = cliente.NombreCliente;
@@ -246,9 +240,13 @@ namespace SistemaVentas
                 inpObsCliente.Text = cliente.ObservacionesCliente;
                 existeElCliente = true;
             }
+            else
+            {
+                existeElCliente = false;
+            }
             btnModificarCli.Enabled = existeElCliente;
             btnEliminarCli.Enabled = existeElCliente;
-            btnAgregarCliente.Enabled = true; 
+            btnAgregarCliente.Enabled = true;
         }
     }
 }
