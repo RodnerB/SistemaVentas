@@ -32,7 +32,7 @@ namespace SistemaVentas
         }
         public static UnidadesMedida? ObtenerUnidadMedidaPorCodigo(string codigoUnidad)
         {
-            Dictionary<string, object> datos = Utilidades.UtilidadesBD.BuscarRegistro(
+            Dictionary<string, object>? datos = Utilidades.UtilidadesBD.BuscarRegistro(
                 getUnidadMedidaPorCodigoQuery,
                 codigoUnidad);
             if (datos == null) return null;

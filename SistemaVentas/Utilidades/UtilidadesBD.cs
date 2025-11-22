@@ -14,20 +14,17 @@ namespace SistemaVentas.Utilidades
                 {
                     SqlDataAdapter adaptador = new SqlDataAdapter(consulta, conexion);
                     adaptador.Fill(tabla);
+                    return tabla;
                 }
             }
 
             
             catch (SqlException ex)
             {
-                MessageBox.Show("Error al obtener los registros: " + ex.Message,
-                                                     "Error de base de datos",
-                                                     MessageBoxButtons.OK,
-                                                     MessageBoxIcon.Error);
-                return null;
+                throw new Exception("Error al obtener los registro: " + ex.Message);
             }
 
-            return tabla;
+            
         }
         public static Dictionary<string, object>? BuscarRegistro(string consulta, string codigo)
         {
@@ -80,7 +77,7 @@ namespace SistemaVentas.Utilidades
             }
         }
 
-        public void EliminarRegistro(string consulta, string codigo)
+        public static int EliminarRegistro(string consulta, string codigo)
         {
             try
             {
@@ -88,23 +85,12 @@ namespace SistemaVentas.Utilidades
                 using (SqlCommand comando = new SqlCommand(consulta, conexion))
                 {
                     comando.Parameters.AddWithValue("@codigo", codigo);
-                    int filasAfectadas = comando.ExecuteNonQuery();
-                    if(filasAfectadas > 0)
-                    {
-                        MessageBox.Show("Registro eliminado exitosamente", "Exito",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    } else
-                    {
-                        MessageBox.Show("No se pudo eliminar registro", "Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    return comando.ExecuteNonQuery();
+
                 }
-            } catch (Exception ex)
+            } catch (SqlException ex)
             {
-                MessageBox.Show("Error al eliminar el registro" + ex.Message,
-                    "Error de base de datos",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error); 
+                throw new Exception("Error al eliminar el registro: " + ex.Message);
             }
         }
     }
