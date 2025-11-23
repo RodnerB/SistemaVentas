@@ -35,6 +35,7 @@
             btnUnidadesDeMedida = new Button();
             btnConfiguracion = new Button();
             lblSistemaDeFacturacion = new Label();
+            btnSalir = new Button();
             SuspendLayout();
             // 
             // btnClientes
@@ -105,13 +106,23 @@
             lblSistemaDeFacturacion.Size = new Size(192, 20);
             lblSistemaDeFacturacion.TabIndex = 6;
             lblSistemaDeFacturacion.Text = "SISTEMA DE FACTURACIÓN";
-
             // 
-            // Form1
+            // btnSalir
+            // 
+            btnSalir.Location = new Point(216, 356);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(198, 29);
+            btnSalir.TabIndex = 7;
+            btnSalir.Text = "Salir";
+            btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
+            // 
+            // MenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(632, 508);
+            Controls.Add(btnSalir);
             Controls.Add(lblSistemaDeFacturacion);
             Controls.Add(btnConfiguracion);
             Controls.Add(btnUnidadesDeMedida);
@@ -121,7 +132,7 @@
             Controls.Add(btnClientes);
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "Form1";
+            Name = "MenuPrincipal";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -135,6 +146,6 @@
         private Button btnUnidadesDeMedida;
         private Button btnConfiguracion;
         private Label lblSistemaDeFacturacion;
-
+        private Button btnSalir;
     }
 }
