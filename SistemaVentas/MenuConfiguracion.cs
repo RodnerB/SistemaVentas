@@ -12,7 +12,8 @@ namespace SistemaVentas
 {
     public partial class MenuConfiguracion : Form
     {
-        MenuPrincipal formMenuPrincipal; // variable de referencia al formulario principal
+        private MenuPrincipal? formMenuPrincipal; // Permite valores null
+
         public MenuConfiguracion()
         {
             InitializeComponent();
@@ -29,7 +30,10 @@ namespace SistemaVentas
         // Evento del botón para volver al menú principal
         private void btnVolverMenuPrincipal_Click(object sender, EventArgs e)
         {
-            this.formMenuPrincipal.Show();// Muestra el formulario principal nuevamente
+            if (this.formMenuPrincipal != null)
+            {
+                this.formMenuPrincipal.Show(); // Muestra el formulario principal nuevamente
+            }
             this.Close(); //Cierra el formulario actual de clientes
         }
 
@@ -53,7 +57,8 @@ namespace SistemaVentas
         }
 
         private void CargarEmpresa()
-        {   try
+        {
+            try
             {
                 Empresa empresa = Empresa.ObtenerEmpresa();
                 inpEmpresa.Text = empresa.empresa;
@@ -62,8 +67,7 @@ namespace SistemaVentas
                 inpFax.Text = empresa.fax;
                 inpEmail.Text = empresa.email;
             }
-
-            catch(Exception ex)
+            catch(Exception)
             {
                 return;
             }

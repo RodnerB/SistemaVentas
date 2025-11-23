@@ -31,6 +31,9 @@ namespace SistemaVentas
             btnBuscarArt.Enabled = true;
             btnVolverMenuPrincipal.Enabled = true;
 
+            // Permitir que Enter active el botón de agregar cuando esté habilitado
+            this.AcceptButton = btnAgregarArt;
+
             formMenuPrincipal = MenuPrincipal;
             CargarArticulos();
             CargarUnidades();
@@ -120,7 +123,7 @@ namespace SistemaVentas
                 MessageBox.Show("Error en la base de datos: " + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 existeElArticulo = false;
-                return null;
+                return default;
             }
         }
 
@@ -185,9 +188,21 @@ namespace SistemaVentas
         {
             if (e.KeyCode == Keys.Enter)
             {
+                // Evitar pitido y manejar envío si estamos en el último textbox (txtCosArt)
                 e.SuppressKeyPress = true;
 
-                this.SelectNextControl((Control)sender, true, true, true, true);
+                Control origen = (Control)sender;
+
+                // Si el botón Agregar está habilitado y el foco está en el último campo,
+                // simular el clic en el botón Agregar (esto mostrará el MessageBox).
+                if (btnAgregarArt.Enabled && origen == txtCosArt)
+                {
+                    btnAgregarArt.PerformClick();
+                    return;
+                }
+
+                // En el resto de casos, mover el foco al siguiente control
+                this.SelectNextControl(origen, true, true, true, true);
             }
         }
 
@@ -224,15 +239,39 @@ namespace SistemaVentas
             };
         }
 
-        private void btnAgregarArt_Click(object sender, EventArgs e)
+        private bool AdvertenciaDesArt()
+        {
+            if (string.IsNullOrWhiteSpace(txtDesArt.Text))
+            {
+                MessageBox.Show("Debe introducir una descripción.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
+        }
+
+        private bool AdvertenciacmbCodUni()
         {
             if (string.IsNullOrWhiteSpace(cmbCodUni.SelectedValue?.ToString()))
             {
-                MessageBox.Show("Debe seleccionar una unidad de medida.", "Advertencia",
+                MessageBox.Show("Debe de seleccionar una unidad de medida.", "Advertencia",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                return false;
             }
+            return true;
+        }
+
+        private void btnAgregarArt_Click(object sender, EventArgs e)
+        {
+            if (!AdvertenciaDesArt()) return;
+
+            if (!AdvertenciacmbCodUni()) return;
+
             articulo = ObtenerArticuloEnText();
+
+            if (articulo == null)
+                return;
+
             GuardarArticulo(articulo);
 
         }
@@ -245,13 +284,15 @@ namespace SistemaVentas
 
         private void btnModificarArt_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(cmbCodUni.SelectedValue?.ToString()))
-            {
-                MessageBox.Show("Debe seleccionar una unidad de medida.", "Advertencia",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            if (!AdvertenciaDesArt()) return;
+
+            if (!AdvertenciacmbCodUni()) return;
+
             articulo = ObtenerArticuloEnText();
+
+            if (articulo == null)
+                return;
+
             ModificarArticulo(articulo);
         }
 
