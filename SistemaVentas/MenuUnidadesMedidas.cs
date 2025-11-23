@@ -13,7 +13,8 @@ namespace SistemaVentas
 {
     public partial class MenuUnidadesMedidas : Form
     {
-        MenuPrincipal formMenuPrincipal; // variable de referencia al formulario principal
+        private MenuPrincipal? formMenuPrincipal; 
+
         public MenuUnidadesMedidas()
         {
             InitializeComponent();
@@ -150,7 +151,7 @@ namespace SistemaVentas
             return UnidadesMedida.ObtenerUnidadMedidaPorCodigo(codigoUnidad);
         }
 
-        private void DetectarunidadMedidaEvento(object sender, KeyEventArgs e)
+        private void DetectarunidadMedidaEvento(object? sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter && txtCodUni.Text.Length > 0)
             {
@@ -175,7 +176,10 @@ namespace SistemaVentas
         // Evento del botón para volver al menú principal
         private void btnVolverMenuPrincipal_Click(object sender, EventArgs e)
         {
-            this.formMenuPrincipal.Show(); // Muestra el formulario principal nuevamente
+            if (this.formMenuPrincipal != null)
+            {
+                this.formMenuPrincipal.Show(); // Muestra el formulario principal nuevamente
+            }
             this.Close(); //Cierra el formulario actual de clientes
         }
 
@@ -212,9 +216,12 @@ namespace SistemaVentas
         {
             if (e.KeyCode == Keys.Enter)
             {
-                this.SelectNextControl((Control)sender, true, true, true, true);
-                e.Handled = true;
-                e.SuppressKeyPress = true;
+                if (sender is Control control)
+                {
+                    this.SelectNextControl(control, true, true, true, true);
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                }
             }
         }
     }

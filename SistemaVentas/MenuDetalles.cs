@@ -8,10 +8,7 @@ namespace SistemaVentas
     public partial class MenuDetalles : Form
     {
         MenuPrincipal formMenuPrincipal; // variable de referencia al formulario principal
-        public MenuDetalles()
-        {
-            InitializeComponent();
-        }
+     
 
         // Constructor que recibe una referencia al formulario principal
         public MenuDetalles(MenuPrincipal formMenuPrincipal)
@@ -83,19 +80,25 @@ namespace SistemaVentas
             var txt = txtNumFacdet?.Text;
             if (e.KeyCode == Keys.Enter && !string.IsNullOrEmpty(txt))
             {
-                Detalles det = Detalles.ObtenerDetallesPorCodigo(txtNumFacdet.Text);
-                if (det != null)
+                
+                var numFac = txtNumFacdet?.Text;
+                if (!string.IsNullOrEmpty(numFac))
                 {
-                    txtNumFacdet.Text = det.NumeroFactura;
-                    if (cmbArtDet != null)
-                        cmbArtDet.SelectedValue = det.CodigoArticulo;
-                    txtCantDet.Text = det.CantidadVendida.ToString();
-                    txtPrecVent.Text = det.PrecioVenta.ToString("0.##");
+                    Detalles? det = Detalles.ObtenerDetallesPorCodigo(numFac);
+                    if (det != null)
+                    {
+                        if (txtNumFacdet != null)
+                            txtNumFacdet.Text = det.NumeroFactura;
+                        if (cmbArtDet != null)
+                            cmbArtDet.SelectedValue = det.CodigoArticulo;
+                        txtCantDet.Text = det.CantidadVendida.ToString();
+                        txtPrecVent.Text = det.PrecioVenta.ToString("0.##");
+                    }
                 }
             }
         }
 
-        private void EventoMoverConEnter(object sender, KeyEventArgs e)
+        private void EventoMoverConEnter(object? sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter && sender is Control control)
             {
@@ -178,8 +181,14 @@ namespace SistemaVentas
             }
 
             // Obtener claves compuestas
-            string numFac = dgvDetFact.CurrentRow.Cells["NUMFAC"].Value.ToString();
-            string codArt = dgvDetFact.CurrentRow.Cells["CODART"].Value.ToString();
+            string? numFac = dgvDetFact.CurrentRow.Cells["NUMFAC"].Value?.ToString();
+            string? codArt = dgvDetFact.CurrentRow.Cells["CODART"].Value?.ToString();
+
+            if (string.IsNullOrEmpty(numFac) || string.IsNullOrEmpty(codArt))
+            {
+                MessageBox.Show("No se pudo obtener los datos necesarios para eliminar el detalle.", "Advertencia");
+                return;
+            }
 
             EliminarDetalle(numFac, codArt);
         }

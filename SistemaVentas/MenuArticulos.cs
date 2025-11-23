@@ -69,6 +69,7 @@ namespace SistemaVentas
                 MessageBox.Show("Error al cargar artículos: " + ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
         }
 
         private void ModificarArticulo(Articulo articulo)
@@ -149,6 +150,7 @@ namespace SistemaVentas
             btnAgregarArt.Enabled = false;
             btnModificarArt.Enabled = false;
             btnEliminarArt.Enabled = false;
+            cmbCodUni.SelectedIndex = 0;
         }
 
         private void EliminarArticulo(Articulo articulo)
@@ -189,6 +191,24 @@ namespace SistemaVentas
             }
         }
 
+
+        private void CargarUnidades()
+        {
+            DataTable tabla = UnidadesMedida.ObtenerTodasUnidades();
+
+            DataRow fila = tabla.NewRow();
+            fila["CODUNI"] = "";
+            fila["DESUNI"] = "Seleccione una unidad";
+            tabla.Rows.InsertAt(fila, 0);
+
+            // Cargar la tabla en el combo
+            cmbCodUni.DataSource = tabla;
+            cmbCodUni.DisplayMember = "DESUNI";
+            cmbCodUni.ValueMember = "CODUNI";
+
+            cmbCodUni.SelectedIndex = 0; // Se asegura de que empiece en "Seleccione una unidad"
+        }
+
         private Articulo ObtenerArticuloEnText()
         {
             return new Articulo()
@@ -196,38 +216,42 @@ namespace SistemaVentas
                 CodigoArticulo = txtCodArt.Text,
                 DescripcionArticulo = txtDesArt.Text,
                 CodigoUnidad = cmbCodUni.SelectedValue?.ToString() ?? "",
-                ExistenciaMinima = Convert.ToDouble(txtExiMin.Text),
-                ExistenciaMaxima = Convert.ToDouble(txtExiMax.Text),
-                ExistenciaActual = Convert.ToDouble(txtExiAct.Text),
-                PrecioArticulo = Convert.ToDouble(txtPreArt.Text),
-                CostoArticulo = Convert.ToDouble(txtCosArt.Text)
+                ExistenciaMinima = string.IsNullOrWhiteSpace(txtExiMin.Text) ? 0 : Convert.ToSingle(txtExiMin.Text),
+                ExistenciaMaxima = string.IsNullOrWhiteSpace(txtExiMax.Text) ? 0 : Convert.ToSingle(txtExiMax.Text),
+                ExistenciaActual = string.IsNullOrWhiteSpace(txtExiAct.Text) ? 0 : Convert.ToSingle(txtExiAct.Text),
+                PrecioArticulo = string.IsNullOrWhiteSpace(txtPreArt.Text) ? 0 : Convert.ToSingle(txtPreArt.Text),
+                CostoArticulo = string.IsNullOrWhiteSpace(txtCosArt.Text) ? 0 : Convert.ToSingle(txtCosArt.Text)
             };
-        }
-
-        private void CargarUnidades()
-        {
-            DataTable tabla = UnidadesMedida.ObtenerTodasUnidades();
-
-            cmbCodUni.DataSource = tabla;
-            cmbCodUni.DisplayMember = "DESUNI";  
-            cmbCodUni.ValueMember = "CODUNI";    
         }
 
         private void btnAgregarArt_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(cmbCodUni.SelectedValue?.ToString()))
+            {
+                MessageBox.Show("Debe seleccionar una unidad de medida.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             articulo = ObtenerArticuloEnText();
             GuardarArticulo(articulo);
+
         }
 
         private void btnEliminarArt_Click(object sender, EventArgs e)
         {
-            if (articulo == null) return;
+            articulo = ObtenerArticuloEnText();
             EliminarArticulo(articulo);
         }
 
         private void btnModificarArt_Click(object sender, EventArgs e)
         {
-            if (articulo == null) return;
+            if (string.IsNullOrWhiteSpace(cmbCodUni.SelectedValue?.ToString()))
+            {
+                MessageBox.Show("Debe seleccionar una unidad de medida.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            articulo = ObtenerArticuloEnText();
             ModificarArticulo(articulo);
         }
 
@@ -252,7 +276,7 @@ namespace SistemaVentas
             else
             {
                 existeElArticulo = false;
-                // Si el artículo no existe, limpiar campos opcionalmente
+            
                 txtDesArt.Clear();
                 txtExiMin.Clear();
                 txtExiMax.Clear();
@@ -261,7 +285,7 @@ namespace SistemaVentas
                 txtCosArt.Clear();
             }
 
-            // Después de usar Buscar: habilitar acciones. Agregar siempre; Modificar/Eliminar solo si existe.
+            
             btnAgregarArt.Enabled = true;
             btnModificarArt.Enabled = existeElArticulo;
             btnEliminarArt.Enabled = existeElArticulo;

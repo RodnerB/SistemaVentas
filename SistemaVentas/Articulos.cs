@@ -9,11 +9,11 @@ namespace SistemaVentas
         public string CodigoArticulo { get; set; } = string.Empty;
         public string DescripcionArticulo { get; set; } = string.Empty;
         public string CodigoUnidad { get; set; } = string.Empty;
-        public double ExistenciaMinima { get; set; } = 0;
-        public double ExistenciaMaxima { get; set; } = 0;
-        public double ExistenciaActual { get; set; } = 0;
-        public double PrecioArticulo { get; set; } = 0.0;
-        public double CostoArticulo { get; set; } = 0.0;
+        public float ExistenciaMinima { get; set; } = 0;
+        public float ExistenciaMaxima { get; set; } = 0;
+        public float ExistenciaActual { get; set; } = 0;
+        public float PrecioArticulo { get; set; } = 0;
+        public float CostoArticulo { get; set; } = 0;
 
         private const string getArticulosQuery = "SELECT * FROM SFTARTI0 ";
         private const string getArticuloPorCodigoQuery = "SELECT * FROM SFTARTI0 WHERE CODART = @codigo";
@@ -60,7 +60,7 @@ namespace SistemaVentas
         {
             return new Dictionary<string, object>()
             {
-                { "@CodigoArticulo", articulo.CodigoArticulo  },
+                {"@CodigoArticulo", articulo.CodigoArticulo},
                 {"@DescripcionArticulo", articulo.DescripcionArticulo },
                 {"@CodigoUnidad", articulo.CodigoUnidad },
                 {"@ExistenciaMinima", articulo.ExistenciaMinima },
@@ -102,20 +102,32 @@ namespace SistemaVentas
                 getArticuloPorCodigoQuery,
                 codigoArticulo);
 
-            if (datos == null) return null;
+            if (datos == null || datos.Count == 0) return null;
 
             return new Articulo()
             {
-                CodigoArticulo = (string)datos["CODART"] as string ?? string.Empty,
-                DescripcionArticulo = (string)datos["DESART"] as string ?? string.Empty,
-                CodigoUnidad = (string)datos["CODUNI"] as string ?? string.Empty,
-                ExistenciaMinima = datos["EXIMIN"] is DBNull ? 0 : Convert.ToDouble(datos["EXIMIN"]),
-                ExistenciaMaxima = datos["EXIMAX"] is DBNull ? 0 : Convert.ToDouble(datos["EXIMAX"]),
-                ExistenciaActual = datos["EXIACT"] is DBNull ? 0 : Convert.ToDouble(datos["EXIACT"]),
-                PrecioArticulo = datos["PREART"] is DBNull ? 0.0 : Convert.ToDouble(datos["PREART"]),
-                CostoArticulo = datos["COSART"] is DBNull ? 0.0 : Convert.ToDouble(datos["COSART"])
+                CodigoArticulo = datos.ContainsKey("CODART") ? datos["CODART"]?.ToString() ?? "" : "",
+                DescripcionArticulo = datos.ContainsKey("DESART") ? datos["DESART"]?.ToString() ?? "" : "",
+                CodigoUnidad = datos.ContainsKey("CODUNI") ? datos["CODUNI"]?.ToString() ?? "" : "",
+
+                ExistenciaMinima = datos.ContainsKey("EXIMIN") && datos["EXIMIN"] != DBNull.Value
+                    ? Convert.ToSingle(datos["EXIMIN"]) : 0,
+
+                ExistenciaMaxima = datos.ContainsKey("EXIMAX") && datos["EXIMAX"] != DBNull.Value
+                    ? Convert.ToSingle(datos["EXIMAX"]) : 0,
+
+                ExistenciaActual = datos.ContainsKey("EXIACT") && datos["EXIACT"] != DBNull.Value
+                    ? Convert.ToSingle(datos["EXIACT"]) : 0,
+
+                PrecioArticulo = datos.ContainsKey("PREART") && datos["PREART"] != DBNull.Value
+                    ? Convert.ToSingle(datos["PREART"]) : 0,
+
+                CostoArticulo = datos.ContainsKey("COSART") && datos["COSART"] != DBNull.Value
+                    ? Convert.ToSingle(datos["COSART"]) : 0
             };
         }
+
+        
 
         
         public static bool EliminarArticulo(string codigoArticulo)
