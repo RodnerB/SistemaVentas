@@ -1,19 +1,42 @@
-﻿
-using SistemaVentas.Utilidades;
+﻿using SistemaVentas.Utilidades;
+using System.CodeDom;
 using System.Data;
 
 namespace SistemaVentas
 {
-    class Articulos
+    class Articulo
     {
+        public string CodigoArticulo { get; set; } = string.Empty;
+        public string DescripcionArticulo { get; set; } = string.Empty;
+        public string CodigoUnidad { get; set; } = string.Empty;
+        public float ExistenciaMinima { get; set; } = 0;
+        public float ExistenciaMaxima { get; set; } = 0;
+        public float ExistenciaActual { get; set; } = 0;
+        public float PrecioArticulo { get; set; } = 0;
+        public float CostoArticulo { get; set; } = 0;
+
         private const string getArticulosQuery = "SELECT * FROM SFTARTI0 ";
         private const string getArticuloPorCodigoQuery = "SELECT * FROM SFTARTI0 WHERE CODART = @codigo";
-        private const string insertArticuloQuery = @"
+        private const string insertarArticuloQuery = @"
             INSERT INTO SFTARTI0 
             (CODART, DESART, CODUNI, EXIMIN, EXIMAX, EXIACT, PREART, COSART) 
             VALUES 
-            (@CODART, @DESART, @CODUNI, @EXIMIN, @EXIMAX, @EXIACT, @PREART, @COSART)";
-        static Dictionary<string, string> articulosHeaders = new Dictionary<string, string>()
+            (@CodigoArticulo, @DescripcionArticulo, @CodigoUnidad, @ExistenciaMinima, @ExistenciaMaxima, @ExistenciaActual, @PrecioArticulo, @CostoArticulo)";
+
+        private const string actualizarArticuloQuery = @"
+            UPDATE SFTARTI0 SET
+                DESART = @DescripcionArticulo,
+                CODUNI = @CodigoUnidad,
+                EXIMIN = @ExistenciaMinima,
+                EXIMAX = @ExistenciaMaxima,
+                EXIACT = @ExistenciaActual,
+                PREART = @PrecioArticulo,
+                COSART = @CostoArticulo
+            WHERE CODART = @CodigoArticulo";
+
+        private const string EliminarArticuloQuery = "DELETE FROM SFTARTI0 WHERE CODART = @codigo";
+
+        private static Dictionary<string, string> articulosHeaders = new()
         {
             {"CODART", "Código Artículo" },
             {"DESART", "Descripción Artículo" },
@@ -24,16 +47,47 @@ namespace SistemaVentas
             {"PREART", "Precio Artículo" },
             {"COSART", "Costo Artículo" }
         };
-        public string? CodigoArticulo { get; set; }
-        public string? DescripcionArticulo { get; set; } = "";
-        public string? CodigoUnidad { get; set; }
-        public int? ExistenciaMinima { get; set; }
-        public int? ExistenciaMaxima { get; set; }
-        public int? ExistenciaActual { get; set; }
-        public decimal? PrecioArticulo { get; set; }
-        public decimal? CostoArticulo { get; set; }
-        public static void ObtenerArticulos(DataGridView dataGrid)
+        
+        public Articulo() { }
+
+        public Articulo (string codigoArticulo, string descripcionArticulo)
         {
+            CodigoArticulo = codigoArticulo;
+            DescripcionArticulo = descripcionArticulo;
+        }
+      
+        private static Dictionary<string, object> ObtenerParametrosArticulo(Articulo articulo)
+        {
+            return new Dictionary<string, object>()
+            {
+                {"@CodigoArticulo", articulo.CodigoArticulo},
+                {"@DescripcionArticulo", articulo.DescripcionArticulo },
+                {"@CodigoUnidad", articulo.CodigoUnidad },
+                {"@ExistenciaMinima", articulo.ExistenciaMinima },
+                {"@ExistenciaMaxima", articulo.ExistenciaMaxima },
+                {"@ExistenciaActual", articulo.ExistenciaActual },
+                {"@PrecioArticulo", articulo.PrecioArticulo },
+                {"@CostoArticulo", articulo.CostoArticulo }
+            };
+        }
+        public static bool InsertarArticulo(Articulo articulo)
+        {
+            return (UtilidadesBD.GuardarRegistro(
+                insertarArticuloQuery,
+                ObtenerParametrosArticulo(articulo)
+                ) > 0);
+        }
+
+        public bool ActualizarArticulo(Articulo articulo)
+        {
+            return (UtilidadesBD.GuardarRegistro(
+                actualizarArticuloQuery,
+                ObtenerParametrosArticulo(articulo)
+                ) > 0);
+        }
+
+        public static void ObtenerArticulos(DataGridView dataGrid) 
+        { 
             DataTable tabla = UtilidadesBD.ObtenerTodosLosRegistros(getArticulosQuery);
             Utilidades.UtilidadesUI.CargarDatosEnGrid(
                 tabla,
@@ -41,23 +95,53 @@ namespace SistemaVentas
                 articulosHeaders
                 );
         }
-        public static Articulos? ObtenerArticuloPorCodigo(string codigoArticulo)
+
+        public static Articulo? ObtenerArticuloPorCodigo(string codigoArticulo)
         {
-            Dictionary<string, object>? datos = Utilidades.UtilidadesBD.BuscarRegistro(
+            Dictionary<string, object>? datos = UtilidadesBD.BuscarRegistro(
                 getArticuloPorCodigoQuery,
                 codigoArticulo);
-            if (datos == null) return null;
-            return new Articulos()
+
+            if (datos == null || datos.Count == 0) return null;
+
+            return new Articulo()
             {
-                CodigoArticulo = datos["CODART"].ToString(),
-                DescripcionArticulo = datos["DESART"].ToString(),
-                CodigoUnidad = datos["CODUNI"].ToString(),
-                ExistenciaMinima = Convert.ToInt32(datos["EXIMIN"]),
-                ExistenciaMaxima = Convert.ToInt32(datos["EXIMAX"]),
-                ExistenciaActual = Convert.ToInt32(datos["EXIACT"]),
-                PrecioArticulo = Convert.ToDecimal(datos["PREART"]),
-                CostoArticulo = Convert.ToDecimal(datos["COSART"])
+                CodigoArticulo = datos.ContainsKey("CODART") ? datos["CODART"]?.ToString() ?? "" : "",
+                DescripcionArticulo = datos.ContainsKey("DESART") ? datos["DESART"]?.ToString() ?? "" : "",
+                CodigoUnidad = datos.ContainsKey("CODUNI") ? datos["CODUNI"]?.ToString() ?? "" : "",
+
+                ExistenciaMinima = datos.ContainsKey("EXIMIN") && datos["EXIMIN"] != DBNull.Value
+                    ? Convert.ToSingle(datos["EXIMIN"]) : 0,
+
+                ExistenciaMaxima = datos.ContainsKey("EXIMAX") && datos["EXIMAX"] != DBNull.Value
+                    ? Convert.ToSingle(datos["EXIMAX"]) : 0,
+
+                ExistenciaActual = datos.ContainsKey("EXIACT") && datos["EXIACT"] != DBNull.Value
+                    ? Convert.ToSingle(datos["EXIACT"]) : 0,
+
+                PrecioArticulo = datos.ContainsKey("PREART") && datos["PREART"] != DBNull.Value
+                    ? Convert.ToSingle(datos["PREART"]) : 0,
+
+                CostoArticulo = datos.ContainsKey("COSART") && datos["COSART"] != DBNull.Value
+                    ? Convert.ToSingle(datos["COSART"]) : 0
             };
         }
+
+        
+
+        
+        public static bool EliminarArticulo(string codigoArticulo)
+        {
+            return (UtilidadesBD.EliminarRegistro(EliminarArticuloQuery, codigoArticulo) > 0);
+        }
+
+        public static DataTable ObtenerUnidades()
+        {
+            string query = "SELECT CODUNI, DESUNI FROM SFTUNI0";
+            return UtilidadesBD.ObtenerTodosLosRegistros(query);
+        }
+
     }
 }
+
+

@@ -1,20 +1,40 @@
-﻿using System.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using Microsoft.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 
 namespace SistemaVentas
 {
     public partial class MenuArticulos : Form
     {
+        Articulo? articulo = new Articulo();
+        bool existeElArticulo = false;
         MenuPrincipal formMenuPrincipal; // referencia al formulario principal
 
         // Constructor con referencia al formulario principal
         public MenuArticulos(MenuPrincipal MenuPrincipal)
         {
             InitializeComponent();
+
+            // Inicializar estados de los botones: solo Buscar y Volver habilitados
+            btnAgregarArt.Enabled = false;
+            btnModificarArt.Enabled = false;
+            btnEliminarArt.Enabled = false;
+            btnBuscarArt.Enabled = true;
+            btnVolverMenuPrincipal.Enabled = true;
+
             formMenuPrincipal = MenuPrincipal;
             CargarArticulos();
+            CargarUnidades();
             this.StartPosition = FormStartPosition.CenterScreen;
-            ObtenerArticuloComboBox();
 
             // Asegurar que el primer cuadro de texto reciba el foco cuando el formulario se muestre
             this.Shown += Form3_Shown;
@@ -23,12 +43,12 @@ namespace SistemaVentas
             {
                 if (c is TextBox)
                 {
-                                
+#pragma warning disable CS8622
                     c.KeyDown += EventoMoverConEnter;
-
+#pragma warning restore CS8622
                 }
             }
-
+            this.Shown += Form3_Shown;
         }
 
         private void Form3_Shown(object? sender, EventArgs e)
@@ -42,210 +62,239 @@ namespace SistemaVentas
         {
             try
             {
-                Articulos.ObtenerArticulos(dgvArticulos); // Llama al método estático para cargar los artículos
+                Articulo.ObtenerArticulos(dgvArticulos); // Llama al método estático para cargar los artículos
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar artículos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al cargar artículos: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
         }
-        // Método para guardar un nuevo artículo
-        private void GuardarArticulo(Articulos articulo)
+
+        private void ModificarArticulo(Articulo articulo)
         {
             try
             {
-                //  Conexión a la base de datos
-                using (var conexion = ConexionDB.ObtenerConexion())
-                {
-                    // Consulta SQL para insertar un nuevo artículo
-                    string consulta = @"
-                        INSERT INTO SFTARTI0 (CODART, DESART, CODUNI, EXIMIN, EXIMAX, EXIACT, PREART, COSART)
-                        VALUES (@CODART, @DESART, @CODUNI, @EXIMIN, @EXIMAX, @EXIACT, @PREART, @COSART)";
-                    using (var comando = new SqlCommand(consulta, conexion)) // Crear el comando SQL
-                    {
-                        // Agregar los parámetros al comando
-                        comando.Parameters.AddWithValue("@CODART", articulo.CodigoArticulo ?? "");// Asegurarse de no pasar null
-                        comando.Parameters.AddWithValue("@DESART", articulo.DescripcionArticulo ?? "");// Asegurarse de no pasar null
-                        comando.Parameters.AddWithValue("@CODUNI", articulo.CodigoUnidad ?? "");// Asegurarse de no pasar null
-                        comando.Parameters.AddWithValue("@EXIMIN", articulo.ExistenciaMinima ?? 0);// Usar 0 si es null
-                        comando.Parameters.AddWithValue("@EXIMAX", articulo.ExistenciaMaxima ?? 0);// Usar 0 si es null
-                        comando.Parameters.AddWithValue("@EXIACT", articulo.ExistenciaActual ?? 0);// Usar 0 si es null
-                        comando.Parameters.AddWithValue("@PREART", articulo.PrecioArticulo ?? 0);// Usar 0 si es null
-                        comando.Parameters.AddWithValue("@COSART", articulo.CostoArticulo ?? 0);// Usar 0 si es null
 
-                        int filasAfectadas = comando.ExecuteNonQuery(); // Ejecutar el comando
-                        if (filasAfectadas > 0) // Verificar si se insertó correctamente
-                        {
-                            MessageBox.Show("Artículo guardado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            CargarArticulos();
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se pudo guardar el artículo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
+                if (articulo.ActualizarArticulo(articulo))
+                {
+                    MessageBox.Show("Artículo modificado exitosamente.", "Éxito",
+                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CargarArticulos();
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo modificar el artículo.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al guardar el artículo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al modificar el artículo: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            existeElArticulo = false;
+            btnAgregarArt.Enabled = false;
+            btnModificarArt.Enabled = false;
+            btnEliminarArt.Enabled = false;
         }
-        // Método para modificar un artículo existente
-        private void ModificarArticulo(Articulos articulo)
+
+        private Articulo? BuscarArticulo(string codigoArticulo)
         {
             try
             {
-                using (var conexion = ConexionDB.ObtenerConexion())
+                Articulo? articulo = Articulo.ObtenerArticuloPorCodigo(codigoArticulo);
+                if (articulo == null)
                 {
-                    string consulta = @"
-                        UPDATE SFTARTI0 SET 
-                            DESART = @DESART,
-                            CODUNI = @CODUNI,
-                            EXIMIN = @EXIMIN,
-                            EXIMAX = @EXIMAX,
-                            EXIACT = @EXIACT,
-                            PREART = @PREART,
-                            COSART = @COSART
-                        WHERE CODART = @CODART";
+                    existeElArticulo = false;
+                    MessageBox.Show("El artículo no existe.", "No encontrado",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                // Nota: no modificamos aquí 'existeElArticulo' si el método solamente retorna el artículo.
+                return articulo;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la base de datos: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                existeElArticulo = false;
+                return null;
+            }
+        }
 
-                    using (SqlCommand comando = new SqlCommand(consulta, conexion))
-                    {
-                        comando.Parameters.AddWithValue("@CODART", articulo.CodigoArticulo ?? "");
-                        comando.Parameters.AddWithValue("@DESART", articulo.DescripcionArticulo ?? ""); // Asegurarse de no pasar null
-                        comando.Parameters.AddWithValue("@CODUNI", articulo.CodigoUnidad ?? "");
-                        comando.Parameters.AddWithValue("@EXIMIN", articulo.ExistenciaMinima ?? 0); // Usar 0 si es null
-                        comando.Parameters.AddWithValue("@EXIMAX", articulo.ExistenciaMaxima ?? 0); // Usar 0 si es null
-                        comando.Parameters.AddWithValue("@EXIACT", articulo.ExistenciaActual ?? 0); // Usar 0 si es null
-                        comando.Parameters.AddWithValue("@PREART", articulo.PrecioArticulo ?? 0); // Usar 0 si es null
-                        comando.Parameters.AddWithValue("@COSART", articulo.CostoArticulo ?? 0); // Usar 0 si es null
-
-                        int filasAfectadas = comando.ExecuteNonQuery();
-                        if (filasAfectadas > 0)
-                        {
-                            MessageBox.Show("Artículo modificado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            CargarArticulos();
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se pudo modificar el artículo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
+        private void GuardarArticulo(Articulo articulo)
+        {
+            try
+            {
+                if (existeElArticulo)
+                {
+                    ModificarArticulo(articulo);
+                    CargarArticulos();
+                }
+                else if (Articulo.InsertarArticulo(articulo))
+                {
+                    MessageBox.Show("Artículo guardado existosamente", "Exito",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CargarArticulos();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al modificar el artículo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error en la base de datos: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
+            existeElArticulo = false;
+            btnAgregarArt.Enabled = false;
+            btnModificarArt.Enabled = false;
+            btnEliminarArt.Enabled = false;
+            cmbCodUni.SelectedIndex = 0;
         }
-        // Método para eliminar un artículo
-        private void EliminarArticulo(string codigoArticulo)
+
+        private void EliminarArticulo(Articulo articulo)
         {
             try
             {
-                using (var conexion = ConexionDB.ObtenerConexion())
+                string codigoArticulo = articulo.CodigoArticulo;
+                if (Articulo.EliminarArticulo(codigoArticulo)) 
                 {
-                    string consulta = "DELETE FROM SFTARTI0 WHERE CODART = @CODART";
-                    using (var comando = new SqlCommand(consulta, conexion))
-                    {
-                        comando.Parameters.AddWithValue("@CODART", codigoArticulo);
-                        int filasAfectadas = comando.ExecuteNonQuery();
-                        if (filasAfectadas > 0)
-                        {
-                            MessageBox.Show("Artículo eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            CargarArticulos();
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se pudo eliminar el artículo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
+                    MessageBox.Show("Artículo eliminado exitosamente.", "Éxito",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CargarArticulos();
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo eliminar el artículo.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al eliminar el artículo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error en la base de datos: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            existeElArticulo = false;
+            btnAgregarArt.Enabled = false;
+            btnModificarArt.Enabled = false;
+            btnEliminarArt.Enabled = false;
+        }
+
+        private void EventoMoverConEnter(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+
+                this.SelectNextControl((Control)sender, true, true, true, true);
             }
         }
 
-        private Articulos? BuscarArticulo(string codigoArticulo)
+
+        private void CargarUnidades()
         {
-            return Articulos.ObtenerArticuloPorCodigo(codigoArticulo);
+            DataTable tabla = UnidadesMedida.ObtenerTodasUnidades();
+
+            DataRow fila = tabla.NewRow();
+            fila["CODUNI"] = "";
+            fila["DESUNI"] = "Seleccione una unidad";
+            tabla.Rows.InsertAt(fila, 0);
+
+            // Cargar la tabla en el combo
+            cmbCodUni.DataSource = tabla;
+            cmbCodUni.DisplayMember = "DESUNI";
+            cmbCodUni.ValueMember = "CODUNI";
+
+            cmbCodUni.SelectedIndex = 0; // Se asegura de que empiece en "Seleccione una unidad"
         }
 
-        private Articulos ObtenerArticulo()
+        private Articulo ObtenerArticuloEnText()
         {
-            return new Articulos()
+            return new Articulo()
             {
                 CodigoArticulo = txtCodArt.Text,
                 DescripcionArticulo = txtDesArt.Text,
-                CodigoUnidad = cmbCodUni.SelectedValue.ToString(),
-                ExistenciaMinima = int.TryParse(txtExiMin.Text, out int exMin) ? exMin : 0,
-                ExistenciaMaxima = int.TryParse(txtExiMax.Text, out int exMax) ? exMax : 0,
-                ExistenciaActual = int.TryParse(txtExiAct.Text, out int exAct) ? exAct : 0,
-                PrecioArticulo = decimal.TryParse(txtPreArt.Text, out decimal pre) ? pre : 0,
-                CostoArticulo = decimal.TryParse(txtCosArt.Text, out decimal cos) ? cos : 0
+                CodigoUnidad = cmbCodUni.SelectedValue?.ToString() ?? "",
+                ExistenciaMinima = string.IsNullOrWhiteSpace(txtExiMin.Text) ? 0 : Convert.ToSingle(txtExiMin.Text),
+                ExistenciaMaxima = string.IsNullOrWhiteSpace(txtExiMax.Text) ? 0 : Convert.ToSingle(txtExiMax.Text),
+                ExistenciaActual = string.IsNullOrWhiteSpace(txtExiAct.Text) ? 0 : Convert.ToSingle(txtExiAct.Text),
+                PrecioArticulo = string.IsNullOrWhiteSpace(txtPreArt.Text) ? 0 : Convert.ToSingle(txtPreArt.Text),
+                CostoArticulo = string.IsNullOrWhiteSpace(txtCosArt.Text) ? 0 : Convert.ToSingle(txtCosArt.Text)
             };
         }
 
-        // Eventos de botones
-        private void btnAgregarArt_Click(object sender, EventArgs e) => GuardarArticulo(ObtenerArticulo()); // Llama al método para guardar un nuevo artículo
-        private void btnModificarArt_Click(object sender, EventArgs e) => ModificarArticulo(ObtenerArticulo()); // Llama al método para modificar un artículo existente
-        private void btnEliminarArt_Click(object sender, EventArgs e) // Llama al método para eliminar un artículo
+        private void btnAgregarArt_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtCodArt.Text))
+            if (string.IsNullOrWhiteSpace(cmbCodUni.SelectedValue?.ToString()))
             {
-                MessageBox.Show("Debe escribir el código del artículo a eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe seleccionar una unidad de medida.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            EliminarArticulo(txtCodArt.Text);
+            articulo = ObtenerArticuloEnText();
+            GuardarArticulo(articulo);
+
         }
-        // Evento para buscar un artículo por su código
+
+        private void btnEliminarArt_Click(object sender, EventArgs e)
+        {
+            articulo = ObtenerArticuloEnText();
+            EliminarArticulo(articulo);
+        }
+
+        private void btnModificarArt_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(cmbCodUni.SelectedValue?.ToString()))
+            {
+                MessageBox.Show("Debe seleccionar una unidad de medida.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            articulo = ObtenerArticuloEnText();
+            ModificarArticulo(articulo);
+        }
+
         private void btnBuscarArt_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtCodArt.Text)) return;
 
-            Articulos? articulo = BuscarArticulo(txtCodArt.Text);
+            articulo = BuscarArticulo(txtCodArt.Text);
             if (articulo != null)
             {
+                // Rellenar los controles de la interfaz con los datos del artículo
                 txtDesArt.Text = articulo.DescripcionArticulo;
-                cmbCodUni.Text = articulo.CodigoUnidad;
-                txtExiMin.Text = articulo.ExistenciaMinima?.ToString() ?? "";
-                txtExiMax.Text = articulo.ExistenciaMaxima?.ToString() ?? "";
-                txtExiAct.Text = articulo.ExistenciaActual?.ToString() ?? "";
-                txtPreArt.Text = articulo.PrecioArticulo?.ToString() ?? "";
-                txtCosArt.Text = articulo.CostoArticulo?.ToString() ?? "";
+                cmbCodUni.SelectedValue = articulo.CodigoUnidad;
+                txtExiMin.Text = articulo.ExistenciaMinima.ToString();
+                txtExiMax.Text = articulo.ExistenciaMaxima.ToString();
+                txtExiAct.Text = articulo.ExistenciaActual.ToString();
+                txtPreArt.Text = articulo.PrecioArticulo.ToString("0.##");
+                txtCosArt.Text = articulo.CostoArticulo.ToString("0.##");
+
+                existeElArticulo = true;
             }
             else
             {
-                MessageBox.Show("Artículo no encontrado.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                existeElArticulo = false;
+            
+                txtDesArt.Clear();
+                txtExiMin.Clear();
+                txtExiMax.Clear();
+                txtExiAct.Clear();
+                txtPreArt.Clear();
+                txtCosArt.Clear();
             }
+
+            
+            btnAgregarArt.Enabled = true;
+            btnModificarArt.Enabled = existeElArticulo;
+            btnEliminarArt.Enabled = existeElArticulo;
         }
 
-        private void btnVolverMenuPrincipal_Click(object sender, EventArgs e)
+        private void btnVolverMenuPrincipal_Click_1(object sender, EventArgs e)
         {
             formMenuPrincipal.Show();
             this.Close();
-
-        }
-        private void ObtenerArticuloComboBox()
-        {
-            // Lógica para obtener y cargar los clientes en el ComboBox
-            DataTable tablaClientes = Utilidades.UtilidadesBD.ObtenerTodosLosRegistros("SELECT CODUNI, DESUNI FROM SFTUNID0");
-            cmbCodUni.DataSource = tablaClientes;
-            cmbCodUni.DisplayMember = "DESUNI"; // Muestra el nombre del cliente
-            cmbCodUni.ValueMember = "CODUNI"; // Usa el código del cliente como valor
-        }
-
-        private void EventoMoverConEnter(object? sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                this.SelectNextControl((Control)sender, true, true, true, true);
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-            }
-        }
-
+        } 
     }
 }

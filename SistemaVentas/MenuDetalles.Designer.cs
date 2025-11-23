@@ -41,7 +41,6 @@
             btnAgregarDet = new Button();
             btnEliminarDet = new Button();
             btnVolverMenuPrincipal = new Button();
-            cmbArtDet = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dgvDetFact).BeginInit();
             SuspendLayout();
             // 
@@ -202,7 +201,6 @@
         private Label lblNumFacDet;
         private TextBox txtNumFacdet;
         private Label lblCodArtDet;
-        private ComboBox cmbÇodArtDet;
         private Label lblCantDet;
         private TextBox txtCantDet;
         private Label lblPrecVen;

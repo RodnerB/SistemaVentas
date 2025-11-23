@@ -18,7 +18,7 @@ namespace SistemaVentas
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
-        
+
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
@@ -67,5 +67,20 @@ namespace SistemaVentas
             configuracion.Show(); // Mostrar el formulario de configuracion
             this.Hide(); // Ocultar el formulario principal
         }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("¿Seguro que deseas salir?",
+                                         "Confirmar",
+                                         MessageBoxButtons.YesNo,
+                                         MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
     }
 }
+

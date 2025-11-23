@@ -253,9 +253,9 @@
             btnVolverMenuPrincipal.TabIndex = 22;
             btnVolverMenuPrincipal.Text = "Volver al menú principal";
             btnVolverMenuPrincipal.UseVisualStyleBackColor = true;
-            btnVolverMenuPrincipal.Click += btnVolverMenuPrincipal_Click;
+            btnVolverMenuPrincipal.Click += btnVolverMenuPrincipal_Click_1;
             // 
-            // Form3
+            // MenuArticulos
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -285,7 +285,7 @@
             Controls.Add(dgvArticulos);
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "Form3";
+            Name = "MenuArticulos";
             Text = "Artículos";
             ((System.ComponentModel.ISupportInitialize)dgvArticulos).EndInit();
             ResumeLayout(false);
