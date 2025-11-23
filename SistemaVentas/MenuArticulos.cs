@@ -120,7 +120,7 @@ namespace SistemaVentas
                 MessageBox.Show("Error en la base de datos: " + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 existeElArticulo = false;
-                return null;
+                return default;
             }
         }
 
@@ -226,6 +226,12 @@ namespace SistemaVentas
 
         private void btnAgregarArt_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtDesArt.Text))
+            {
+                MessageBox.Show("Debe introducir una descripción.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             if (string.IsNullOrWhiteSpace(cmbCodUni.SelectedValue?.ToString()))
             {
                 MessageBox.Show("Debe seleccionar una unidad de medida.", "Advertencia",
@@ -233,6 +239,10 @@ namespace SistemaVentas
                 return;
             }
             articulo = ObtenerArticuloEnText();
+
+            if (articulo == null)
+                return;
+
             GuardarArticulo(articulo);
 
         }
@@ -245,6 +255,12 @@ namespace SistemaVentas
 
         private void btnModificarArt_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtDesArt.Text))
+            {
+                MessageBox.Show("Debe introducir una descripción.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             if (string.IsNullOrWhiteSpace(cmbCodUni.SelectedValue?.ToString()))
             {
                 MessageBox.Show("Debe seleccionar una unidad de medida.", "Advertencia",
@@ -252,6 +268,10 @@ namespace SistemaVentas
                 return;
             }
             articulo = ObtenerArticuloEnText();
+
+            if (articulo == null)
+                return;
+
             ModificarArticulo(articulo);
         }
 
