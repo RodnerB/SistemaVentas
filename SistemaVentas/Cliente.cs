@@ -1,5 +1,4 @@
 ﻿using SistemaVentas.Utilidades;
-using System.CodeDom;
 using System.Data;
 
 namespace SistemaVentas
@@ -8,19 +7,28 @@ namespace SistemaVentas
     {
         /* Parametros obligatorios */
         // inicializado para evitar nullables en el constructor vacio, estos seran llenados obligatoriamente
-        public string CodigoCliente { get; set; } = string.Empty; 
+        [Requerido]
+        public string CodigoCliente { get; set; } = string.Empty;
+        [Requerido]
         public string NombreCliente { get; set; } = string.Empty;
+        [Requerido]
         public string DireccionCliente { get; set; } = string.Empty;
+        [Requerido]
         public string CiudadCliente { get; set; } = string.Empty;
+        [Requerido]
         public string TelefonoCliente { get; set; } = string.Empty;
 
         /* Parametros opcionales */
         public string ApellidoCliente { get; set; } = string.Empty;
         public string SectorCliente { get; set; } = string.Empty;
         public string FaxCliente { get; set; } = string.Empty;
-        public float LimiteCreditoCliente { get; set; } = 0f;
-        public float BalanceActualCliente { get; set; } = 0f;
+        [Requerido]
         public string ObservacionesCliente { get; set; } = string.Empty;
+        // Aun parametros opcionales, pero se valida que estos no contengan
+        // un valor negativo
+        public float LimiteCreditoCliente { get; set; } = 0f;
+        [Requerido]
+        public float BalanceActualCliente { get; set; } = 0f;
 
         // Querys generales
         private const string getClientesQuery = "SELECT * FROM SFTCLIE0";
@@ -80,19 +88,21 @@ namespace SistemaVentas
             };
         }
 
-        public static bool InsertarCliente(Cliente cliente)
+        public bool InsertarCliente()
         {
+            Validador.Requerido(this);
             return (UtilidadesBD.GuardarRegistro(
                 insertarClienteQuery,
-                ObtenerParametrosCliente(cliente)
+                ObtenerParametrosCliente(this)
             ) > 0);
         }
 
-        public static bool ActualizarCliente(Cliente cliente)
+        public bool ActualizarCliente()
         {
+            Validador.Requerido(this);
             return (UtilidadesBD.GuardarRegistro(
                 actualizarClienteQuery,
-                ObtenerParametrosCliente(cliente)
+                ObtenerParametrosCliente(this)
                 ) > 0);
         }
         

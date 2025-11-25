@@ -1,17 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using Microsoft.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Linq.Expressions;
-using System.Runtime.CompilerServices;
-
-namespace SistemaVentas
+﻿namespace SistemaVentas
 {
     public partial class MenuClientes : Form
     {
@@ -65,7 +52,7 @@ namespace SistemaVentas
         {
             try
             {
-                if (Cliente.ActualizarCliente(cliente))
+                if (cliente.ActualizarCliente())
                 {
                     MessageBox.Show("Cliente modificado exitosamente.", "Éxito",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -122,7 +109,7 @@ namespace SistemaVentas
                     ModificarClientes(cliente);
                     CargarClientes();
                 }
-                else if(Cliente.InsertarCliente(cliente))
+                else if(cliente.InsertarCliente())
                 {
                     MessageBox.Show("Cliente guardado exitosamente", "Exito",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
