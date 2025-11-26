@@ -2,169 +2,190 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using Microsoft.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Data.SqlClient;
 
 namespace SistemaVentas
 {
     public partial class MenuUnidadesMedidas : Form
     {
-        private MenuPrincipal? formMenuPrincipal; 
+        UnidadesMedida? unidadesMedida = new UnidadesMedida();
+        bool existeUnidad = false;
+        private MenuPrincipal? formMenuPrincipal; // referencia al formulario principal
 
+        // Constructor sin parámetros (necesario para el diseñador)
         public MenuUnidadesMedidas()
         {
             InitializeComponent();
-            this.StartPosition = FormStartPosition.CenterScreen;
 
-        }
+            // Inicializar estados de los botones: solo Buscar habilitado
+            InicializarEstadoBotones();
 
+            this.AcceptButton = btnAgregarUni;
 
-        // Constructor que recibe una referencia al formulario principal
-        public MenuUnidadesMedidas(MenuPrincipal formMenuPrincipal)
-        {
-            InitializeComponent(); // Inicializa los componentes gráficos del formulario
-            this.formMenuPrincipal = formMenuPrincipal; // Guarda la referencia del formulario principal que abrió este formulario
-            this.StartPosition = FormStartPosition.CenterScreen;
-
+            formMenuPrincipal = null;
             CargarUnidades();
-            txtCodUni.KeyDown += DetectarunidadMedidaEvento;
-            
+            this.StartPosition = FormStartPosition.CenterScreen;
+
+            // Asegurar que el primer cuadro de texto reciba el foco al mostrarse
+            this.Shown += MenuUnidadesMedidas_Shown;
+
+            // Asignar comportamiento de Enter a los TextBox
             foreach (Control c in this.Controls)
             {
                 if (c is TextBox)
                 {
+#pragma warning disable CS8622
                     c.KeyDown += EventoMoverConEnter;
+#pragma warning restore CS8622
                 }
             }
         }
 
+        // Constructor con referencia al formulario principal
+        public MenuUnidadesMedidas(MenuPrincipal menuPrincipal) : this()
+        {
+            this.formMenuPrincipal = menuPrincipal;
+        }
+
+        private void InicializarEstadoBotones()
+        {
+            // Al iniciar: solo buscar habilitado
+            btnBuscarUni.Enabled = true;
+            btnAgregarUni.Enabled = false;
+            btnModificarUni.Enabled = false;
+            btnEliminarUni.Enabled = false;
+            this.AcceptButton = btnBuscarUni;
+        }
+
+        // Método para cargar las unidades en el DataGridView
         private void CargarUnidades()
         {
             try
             {
-                UnidadesMedida.ObtenerUnidadesMedida(dgvUnidad);
+                UnidadesMedida.ObtenerUnidades(dgvUnidad);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar las unidades de medida: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al cargar las unidades de medida: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-         private void GuardarUnidad(UnidadesMedida unidad)
-         {
+        private UnidadesMedida? BuscarUnidad(string codigoUnidad)
+        {
             try
             {
-                using (var conexion = ConexionDB.ObtenerConexion())
+                UnidadesMedida? unidad = UnidadesMedida.ObtenerUnidadPorCodigo(codigoUnidad);
+                if (unidad == null)
                 {
-                    string consulta = "INSERT INTO SFTUNID0 (CODUNI, DESUNI) VALUES (@CODUNI, @DESUNI)";
-                    using (var comando = new SqlCommand(consulta, conexion))
-                    {
-                        comando.Parameters.AddWithValue("@CODUNI", unidad.CodigoUnidad ?? "");
-                        comando.Parameters.AddWithValue("@DESUNI", unidad.DescripcionUnidad ?? "");
+                    existeUnidad = false;
+                    MessageBox.Show("Unidad de medida no encontrada.", "No encontrado",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                return unidad;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la base de datos: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                existeUnidad = false;
+                return null;
+            }
+        }
 
-                        int filasAfectadas = comando.ExecuteNonQuery();
-                        if (filasAfectadas > 0)
-                        {
-                            MessageBox.Show("Unidad guardada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            CargarUnidades();
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se pudo guardar la unidad.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+        private void GuardarUnidad(UnidadesMedida unidad)
+        {
+            try
+            {
+                if (existeUnidad)
+                {
+                    ModificarUnidad(unidad);
+                    CargarUnidades();
+                }
+                else if (UnidadesMedida.InsertarUnidad(unidad))
+                {
+                    MessageBox.Show("Unidad guardada exitosamente", "Éxito",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CargarUnidades();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la base de datos: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // Después de guardar, volver al estado inicial (buscar)
+            existeUnidad = false;
+            InicializarEstadoBotones();
+        }
+
+        private void EliminarUnidad(UnidadesMedida unidad)
+        {
+            try
+            {
+                if (unidad != null && unidad.CodigoUnidad != null)
+                {
+                    // Corregido: crear una instancia y pasarla al método
+                    if (unidad.EliminarUnidad(unidad))
+                    {
+                        MessageBox.Show("Unidad eliminada exitosamente.", "Éxito",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CargarUnidades();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo eliminar la unidad.", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al guardar la unidad: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error en la base de datos: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-         }
 
-        private void ModificarUnidad(UnidadesMedida unidad)
+            existeUnidad = false;
+            InicializarEstadoBotones();
+        }
+
+        // Manejo de Enter para mover foco y para ejecutar Agregar si corresponde
+        private void EventoMoverConEnter(object sender, KeyEventArgs e)
         {
-            try
+            if (e.KeyCode == Keys.Enter)
             {
-                using (var conexion = ConexionDB.ObtenerConexion())
+                e.SuppressKeyPress = true;
+
+                Control origen = (Control)sender;
+
+                // Si el botón Agregar está habilitado y el foco está en el último campo (txtDesUni),
+                // simular el clic en Agregar.
+                if (btnAgregarUni.Enabled && origen == txtDesUni)
                 {
-                    string consulta = "UPDATE SFTUNID0 SET DESUNI = @DESUNI WHERE CODUNI = @CODUNI";
-                    using (var comando = new SqlCommand(consulta, conexion))
-                    {
-                        comando.Parameters.AddWithValue("@CODUNI", unidad.CodigoUnidad ?? "");
-                        comando.Parameters.AddWithValue("@DESUNI", unidad.DescripcionUnidad ?? "");
-
-                        int filasAfectadas = comando.ExecuteNonQuery();
-                        if (filasAfectadas > 0)
-                        {
-                            MessageBox.Show("Unidad modificada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            CargarUnidades();
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se pudo modificar la unidad.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
+                    btnAgregarUni.PerformClick();
+                    return;
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al modificar la unidad: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
-        private void eliminarUnidad(string codigoUnidad)
-        {
-            try
-            {
-                using (var conexion = ConexionDB.ObtenerConexion())
+                // Si se presiona Enter en el primer campo, ir explícitamente al segundo
+                if (origen == txtCodUni)
                 {
-                    string consulta = "DELETE FROM SFTUNID0 WHERE CODUNI = @CODUNI";
-                    using (var comando = new SqlCommand(consulta, conexion))
-                    {
-                        comando.Parameters.AddWithValue("@CODUNI", codigoUnidad ?? "");
-
-                        int filasAfectadas = comando.ExecuteNonQuery();
-                        if (filasAfectadas > 0)
-                        {
-                            MessageBox.Show("Unidad eliminada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            CargarUnidades();
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se pudo eliminar la unidad.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
+                    txtDesUni?.Focus();
+                    return;
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al eliminar la unidad: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
-        private UnidadesMedida? BuscarUnidadesMedida(string codigoUnidad)
-        {
-            return UnidadesMedida.ObtenerUnidadMedidaPorCodigo(codigoUnidad);
-        }
-
-        private void DetectarunidadMedidaEvento(object? sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter && txtCodUni.Text.Length > 0)
-            {
-                // si la unidad es encontrada, rellena automáticamente los campos
-                UnidadesMedida? unidad = BuscarUnidadesMedida(txtCodUni.Text);
-                if (unidad != null)
-                {
-                    txtDesUni.Text = unidad.DescripcionUnidad;
-                }
+                // En el resto de casos, mover el foco al siguiente control
+                this.SelectNextControl(origen, true, true, true, true);
             }
         }
 
-        private UnidadesMedida ObtenerUnidad()
+        private UnidadesMedida ObtenerUnidadesEnText()
         {
             return new UnidadesMedida()
             {
@@ -173,55 +194,126 @@ namespace SistemaVentas
             };
         }
 
-        // Evento del botón para volver al menú principal
-        private void btnVolverMenuPrincipal_Click(object sender, EventArgs e)
+        private bool AdvertenciaDesUni()
         {
-            if (this.formMenuPrincipal != null)
+            if (string.IsNullOrWhiteSpace(txtDesUni.Text))
             {
-                this.formMenuPrincipal.Show(); // Muestra el formulario principal nuevamente
+                MessageBox.Show("Debe introducir una descripción.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
             }
-            this.Close(); //Cierra el formulario actual de clientes
+            return true;
         }
 
-        private void btnAgregarUni_Click(object sender, EventArgs e) => GuardarUnidad(ObtenerUnidad());
+        private void btnAgregarUni_Click(object sender, EventArgs e)
+        {
+            if (!AdvertenciaDesUni()) return;
 
-        private void btnModificarUni_Click(object sender, EventArgs e) => ModificarUnidad(ObtenerUnidad());
+            unidadesMedida = ObtenerUnidadesEnText();
+
+            if (unidadesMedida == null)
+                return;
+
+            GuardarUnidad(unidadesMedida);
+
+            // Limpiar casillas después de agregar
+            txtCodUni?.Clear();
+            txtDesUni?.Clear();
+            txtCodUni?.Focus();
+        }
+
+        private void btnModificarUni_Click(object sender, EventArgs e)
+        {
+            if (!AdvertenciaDesUni()) return;
+
+            unidadesMedida = ObtenerUnidadesEnText();
+
+            if (unidadesMedida == null)
+                return;
+
+            ModificarUnidad(unidadesMedida);
+            CargarUnidades();
+
+            // Mantener habilitados modificar/eliminar si la unidad existe
+            btnAgregarUni.Enabled = false;
+            btnModificarUni.Enabled = true;
+            btnEliminarUni.Enabled = true;
+            this.AcceptButton = btnModificarUni;
+        }
 
         private void btnEliminarUni_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtCodUni.Text))
-            {
-                MessageBox.Show("Debe escribir el código de la unidad a eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            eliminarUnidad(txtCodUni.Text);
+            var confirm = MessageBox.Show("¿Confirma que desea eliminar esta unidad?", "Confirmar eliminación",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm != DialogResult.Yes) return;
+
+            unidadesMedida = ObtenerUnidadesEnText();
+            EliminarUnidad(unidadesMedida);
         }
 
         private void btnBuscarUni_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtCodUni.Text)) return;
 
-            UnidadesMedida? unidadMedia = UnidadesMedida.ObtenerUnidadMedidaPorCodigo(txtCodUni.Text);
-            if (unidadMedia != null)
+            unidadesMedida = BuscarUnidad(txtCodUni.Text);
+            if (unidadesMedida != null)
             {
-                txtDesUni.Text = unidadMedia.DescripcionUnidad;
+                txtDesUni.Text = unidadesMedida.DescripcionUnidad;
+                existeUnidad = true;
             }
             else
             {
-                MessageBox.Show("Unidad de medida no encontrada.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                existeUnidad = false;
+                txtDesUni.Clear();
             }
+
+            // Después de buscar: permitir agregar; permitir modificar/eliminar si existe
+            btnAgregarUni.Enabled = true;
+            btnModificarUni.Enabled = existeUnidad;
+            btnEliminarUni.Enabled = existeUnidad;
+            this.AcceptButton = btnAgregarUni;
+
+            // Mover el cursor automáticamente a la segunda casilla (descripción)
+            txtDesUni?.Focus();
         }
 
-        private void EventoMoverConEnter(object? sender, KeyEventArgs e)
+        private void btnVolverMenuPrincipal_Click(object sender, EventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if (formMenuPrincipal != null)
             {
-                if (sender is Control control)
+                formMenuPrincipal.Show();
+            }
+            this.Close();
+        }
+
+        private void MenuUnidadesMedidas_Shown(object? sender, EventArgs e)
+        {
+            txtCodUni?.Focus();
+        }
+
+        private void ModificarUnidad(UnidadesMedida unidad)
+        {
+            try
+            {
+                if (unidad != null && unidad.CodigoUnidad != null)
                 {
-                    this.SelectNextControl(control, true, true, true, true);
-                    e.Handled = true;
-                    e.SuppressKeyPress = true;
+                    // Corregido: llamar al método de instancia en vez de estático
+                    if (unidad.ActualizarUnidad(unidad))
+                    {
+                        MessageBox.Show("Unidad modificada exitosamente.", "Éxito",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo modificar la unidad.", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la base de datos: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

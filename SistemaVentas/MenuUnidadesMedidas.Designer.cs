@@ -105,7 +105,7 @@
             // 
             // btnEliminarUni
             // 
-            btnEliminarUni.Location = new Point(12, 433);
+            btnEliminarUni.Location = new Point(208, 433);
             btnEliminarUni.Name = "btnEliminarUni";
             btnEliminarUni.Size = new Size(190, 29);
             btnEliminarUni.TabIndex = 8;
@@ -115,7 +115,7 @@
             // 
             // btnBuscarUni
             // 
-            btnBuscarUni.Location = new Point(208, 433);
+            btnBuscarUni.Location = new Point(8, 433);
             btnBuscarUni.Name = "btnBuscarUni";
             btnBuscarUni.Size = new Size(194, 29);
             btnBuscarUni.TabIndex = 9;
@@ -144,7 +144,7 @@
             dgvUnidad.Size = new Size(252, 485);
             dgvUnidad.TabIndex = 11;
             // 
-            // Form6
+            // MenuUnidadesMedidas
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -162,7 +162,7 @@
             Controls.Add(lblUnidadesMedida);
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "Form6";
+            Name = "MenuUnidadesMedidas";
             Text = "Unidades de medidas";
             ((System.ComponentModel.ISupportInitialize)dgvUnidad).EndInit();
             ResumeLayout(false);
