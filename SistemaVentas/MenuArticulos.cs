@@ -36,7 +36,8 @@ namespace SistemaVentas
 
             formMenuPrincipal = MenuPrincipal;
             CargarArticulos();
-            CargarUnidades();
+            CargarUnidades(); // <-- Asegurar que el combo se llene al crear el formulario
+  
             this.StartPosition = FormStartPosition.CenterScreen;
 
             // Asegurar que el primer cuadro de texto reciba el foco cuando el formulario se muestre
@@ -51,7 +52,6 @@ namespace SistemaVentas
 #pragma warning restore CS8622
                 }
             }
-            this.Shown += Form3_Shown;
         }
 
         private void Form3_Shown(object? sender, EventArgs e)
@@ -115,7 +115,6 @@ namespace SistemaVentas
                     MessageBox.Show("El artículo no existe.", "No encontrado",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                // Nota: no modificamos aquí 'existeElArticulo' si el método solamente retorna el artículo.
                 return articulo;
             }
             catch (Exception ex)
@@ -123,7 +122,7 @@ namespace SistemaVentas
                 MessageBox.Show("Error en la base de datos: " + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 existeElArticulo = false;
-                return default;
+                return null;
             }
         }
 
@@ -138,7 +137,7 @@ namespace SistemaVentas
                 }
                 else if (Articulo.InsertarArticulo(articulo))
                 {
-                    MessageBox.Show("Artículo guardado existosamente", "Exito",
+                    MessageBox.Show("Artículo guardado existosamente", "Éxito",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarArticulos();
                 }
@@ -209,7 +208,7 @@ namespace SistemaVentas
 
         private void CargarUnidades()
         {
-            DataTable tabla = UnidadesMedida.ObtenerTodasUnidades();
+            DataTable tabla = UnidadesMedida.ObtenerListadoCodigos();
 
             DataRow fila = tabla.NewRow();
             fila["CODUNI"] = "";
@@ -274,6 +273,21 @@ namespace SistemaVentas
 
             GuardarArticulo(articulo);
 
+            // Limpiar casillas después de agregar y restablecer combo
+            txtCodArt?.Clear();
+            txtDesArt?.Clear();
+            txtExiMin?.Clear();
+            txtExiMax?.Clear();
+            txtExiAct?.Clear();
+            txtPreArt?.Clear();
+            txtCosArt?.Clear();
+            if (cmbCodUni?.Items.Count > 0)
+            {
+                cmbCodUni.SelectedIndex = 0;
+            }
+
+            // Poner foco en la primera casilla
+            txtCodArt?.Focus();
         }
 
         private void btnEliminarArt_Click(object sender, EventArgs e)
@@ -326,10 +340,12 @@ namespace SistemaVentas
                 txtCosArt.Clear();
             }
 
-            
             btnAgregarArt.Enabled = true;
             btnModificarArt.Enabled = existeElArticulo;
             btnEliminarArt.Enabled = existeElArticulo;
+
+            // Mover el cursor automáticamente a la segunda casilla (descripción)
+            txtDesArt?.Focus();
         }
 
         private void btnVolverMenuPrincipal_Click_1(object sender, EventArgs e)

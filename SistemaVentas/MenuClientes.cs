@@ -207,8 +207,24 @@ namespace SistemaVentas
 
         private void btnAgregarCliente_Click(object sender, EventArgs e)
         {
-                cliente = ObtenerClienteEnInputs();
-                GuardarCliente(cliente);
+            cliente = ObtenerClienteEnInputs();
+            GuardarCliente(cliente);
+
+            // Limpiar casillas después de agregar
+            inpCodCliente?.Clear();
+            inpNomCliente?.Clear();
+            inpApeCliente?.Clear();
+            inpDirCliente?.Clear();
+            inpSecCliente?.Clear();
+            inpCiuCliente?.Clear();
+            inpTelCliente?.Clear();
+            inpFaxCliente?.Clear();
+            inpCredCliente?.Clear();
+            inpBalCliente?.Clear();
+            inpObsCliente?.Clear();
+
+            // Poner foco en la primera casilla
+            inpCodCliente?.Focus();
         }
 
         private void btnEliminarCli_Click(object sender, EventArgs e)
@@ -244,9 +260,13 @@ namespace SistemaVentas
             {
                 existeElCliente = false;
             }
+
             btnModificarCli.Enabled = existeElCliente;
             btnEliminarCli.Enabled = existeElCliente;
             btnAgregarCliente.Enabled = true;
+
+            // Mover el cursor automáticamente a la segunda casilla (nombre)
+            inpNomCliente?.Focus();
         }
     }
 }

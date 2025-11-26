@@ -5,53 +5,107 @@ using System.Data;
 namespace SistemaVentas
 {
      class UnidadesMedida
-    {
-        private const string getUnidadesMedidaQuery = "SELECT * FROM  SFTUNID0";
-        private const string getUnidadMedidaPorCodigoQuery = "SELECT * FROM SFTUNID0 WHERE CODUNI = @codigo";
-        private const string insertUnidadMedidaQuery = @"
-            INSERT INTO SFTUNID0 
-            (CODUNI, DESUNI) 
-            VALUES 
-            (@CODUNI, @DESUNI)";
-        static Dictionary<string, string> unidadesMedidaHeaders = new Dictionary<string, string>()
-        {
-            {"CODUNI", "Código Unidad de Medida" },
-            {"DESUNI", "Descripción Unidad de Medida"}
-        };
+     {
         public string? CodigoUnidad { get; set; } = "";
         public string? DescripcionUnidad { get; set; } = "";
 
-        public static void ObtenerUnidadesMedida(DataGridView dataGrid)
+        private const string getUnidadesMedidaQuery = "SELECT * FROM  SFTUNID0";
+
+        private const string getUnidadMedidaPorCodigoQuery = "SELECT * FROM SFTUNID0 WHERE CODUNI = @codigo";
+
+        private const string insertarUnidadQuery = @"
+            INSERT INTO SFTUNID0 
+            (CODUNI, DESUNI) 
+            VALUES 
+            (@CodigoUnidad, @DescripcionUnidad)";
+
+        private const string actualizarUnidadQuery = @"
+            UPDATE SFTUNID0 SET
+                DESUNI = @DescripcionUnidad
+            WHERE CODUNI = @CodigoUnidad";
+
+        private const string eliminarUnidadQuery = @"
+            DELETE FROM SFTUNID0 WHERE CODUNI = @codigo";
+
+        static Dictionary<string, string> unidadesMedidaHeaders = new Dictionary<string, string>()
         {
-            DataTable tabla = UtilidadesBD.ObtenerTodosLosRegistros(getUnidadesMedidaQuery);
-            Utilidades.UtilidadesUI.CargarDatosEnGrid(
-                tabla,
-                dataGrid,
-                unidadesMedidaHeaders
-                );
+            {"CODUNI", "Código Unidad" },
+            {"DESUNI", "Descripción Unidad" }
+        };
+       
+        public UnidadesMedida() { }
+
+        public UnidadesMedida (string? codigoUnidad, string? descripcionUnidad)
+        {
+            CodigoUnidad = codigoUnidad;
+            DescripcionUnidad = descripcionUnidad;
         }
-        public static UnidadesMedida? ObtenerUnidadMedidaPorCodigo(string codigoUnidad)
+
+        private static Dictionary<string, object> ObtenerParametrosUnidad(UnidadesMedida unidad)
         {
-            Dictionary<string, object>? datos = Utilidades.UtilidadesBD.BuscarRegistro(
-                getUnidadMedidaPorCodigoQuery,
-                codigoUnidad);
-            if (datos == null) return null;
-            return new UnidadesMedida()
+            return new Dictionary<string, object>
             {
-                CodigoUnidad = datos["CODUNI"].ToString(),
-                DescripcionUnidad = datos["DESUNI"].ToString(),
+                {"@CodigoUnidad", unidad.CodigoUnidad ?? string.Empty},
+                {"@DescripcionUnidad", unidad.DescripcionUnidad ?? string.Empty}
             };
         }
 
-        public static DataTable ObtenerTodasUnidades()
+        public static bool InsertarUnidad(UnidadesMedida unidad)
         {
-            var dt = new DataTable();
-            using var conexion = ConexionDB.ObtenerConexion();
-            string consulta = "SELECT CODUNI, DESUNI FROM SFTUNID0";
-            using var comando = new SqlCommand(consulta, conexion);
-            using var adaptador = new SqlDataAdapter(comando);
-            adaptador.Fill(dt);
-            return dt;
+            return (UtilidadesBD.GuardarRegistro(
+                insertarUnidadQuery,
+                ObtenerParametrosUnidad(unidad)
+                ) > 0);
+        }
+
+        public bool ActualizarUnidad(UnidadesMedida unidad)
+        {
+            return (UtilidadesBD.GuardarRegistro(
+                actualizarUnidadQuery,
+                ObtenerParametrosUnidad(unidad)
+                ) > 0);
+        }
+
+        public bool EliminarUnidad(UnidadesMedida unidad)
+        {
+            if (string.IsNullOrEmpty(unidad.CodigoUnidad))
+                throw new ArgumentNullException(nameof(unidad.CodigoUnidad), "El código de unidad no puede ser nulo ni vacío.");
+
+            return (UtilidadesBD.EliminarRegistro(
+                eliminarUnidadQuery,
+                unidad.CodigoUnidad
+                ) > 0);
+        }
+
+        public static void ObtenerUnidades(DataGridView dataGrid)
+        {
+            DataTable tabla = UtilidadesBD.ObtenerTodosLosRegistros(getUnidadesMedidaQuery);
+
+            UtilidadesUI.CargarDatosEnGrid(
+                tabla,
+                dataGrid,
+                unidadesMedidaHeaders
+            );
+        }
+
+        public static UnidadesMedida? ObtenerUnidadPorCodigo(string codigoUnidad)
+        {
+            Dictionary<string, object>? datos =
+                UtilidadesBD.BuscarRegistro(getUnidadMedidaPorCodigoQuery, codigoUnidad);
+
+            if (datos == null || datos.Count == 0) return null;
+
+            return new UnidadesMedida()
+            {
+                CodigoUnidad = datos.ContainsKey("CODUNI") ? datos["CODUNI"]?.ToString() : "",
+                DescripcionUnidad = datos.ContainsKey("DESUNI") ? datos["DESUNI"]?.ToString() : "",
+            };
+        }
+
+        public static DataTable ObtenerListadoCodigos()
+        {
+            string query = "SELECT CODUNI, DESUNI FROM SFTUNID0";
+            return UtilidadesBD.ObtenerTodosLosRegistros(query);
         }
     }
 }
