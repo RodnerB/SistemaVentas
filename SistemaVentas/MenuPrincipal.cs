@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Helpers;
 
 namespace SistemaVentas
 {
@@ -16,9 +17,17 @@ namespace SistemaVentas
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+            this.Load += MenuPrincipal_Load;
         }
 
+        private void MenuPrincipal_Load(object? sender, EventArgs e)
+        {
+            // Redondear todos los paneles existentes en el formulario
+            RoundedControlHelper.RedondearTodosLosPaneles(this, 20);
 
+            btnSalir.TabStop = false;
+            btnSalir.FlatAppearance.BorderSize = 0;
+        }
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
@@ -68,7 +77,7 @@ namespace SistemaVentas
             this.Hide(); // Ocultar el formulario principal
         }
 
-        private void btnSalir_Click(object sender, EventArgs e)
+        private void btnSalir_Click_1(object sender, EventArgs e)
         {
             var result = MessageBox.Show("¿Seguro que deseas salir?",
                                          "Confirmar",
@@ -80,7 +89,6 @@ namespace SistemaVentas
                 Application.Exit();
             }
         }
-
     }
 }
 
