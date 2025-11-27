@@ -50,12 +50,13 @@ namespace SistemaVentas
             try
             {
                 DataTable tablaDetalles = Utilidades.UtilidadesBD.ObtenerTodosLosRegistros(
-                    "SELECT CODART FROM SFTARTI0"
+                    "SELECT CODART, DESART FROM SFTARTI0"
                 );
                 if (cmbArtDet != null)
                 {
                     cmbArtDet.DataSource = tablaDetalles;
                     cmbArtDet.ValueMember = "CODART";
+                    cmbArtDet.DisplayMember = "DESART";
                 }
             }
             catch (Exception ex)
@@ -68,8 +69,8 @@ namespace SistemaVentas
         {
             return new Detalles
             {
-                NumeroFactura = txtNumFacdet?.Text ?? "",
-                CodigoArticulo = cmbArtDet?.SelectedValue?.ToString() ?? "",
+                NumeroFactura = txtNumFacdet?.Text,
+                CodigoArticulo = cmbArtDet?.SelectedValue?.ToString(),
                 CantidadVendida = int.TryParse(txtCantDet?.Text, out int cant) ? cant : 0,
                 PrecioVenta = decimal.TryParse(txtPrecVent?.Text, out decimal precio) ? precio : 0
             };
