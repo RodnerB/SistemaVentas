@@ -22,10 +22,10 @@ namespace SistemaVentas
         public string ApellidoCliente { get; set; } = string.Empty;
         public string SectorCliente { get; set; } = string.Empty;
         public string FaxCliente { get; set; } = string.Empty;
-        [Requerido]
         public string ObservacionesCliente { get; set; } = string.Empty;
         // Aun parametros opcionales, pero se valida que estos no contengan
         // un valor negativo
+        [Requerido]
         public float LimiteCreditoCliente { get; set; } = 0f;
         [Requerido]
         public float BalanceActualCliente { get; set; } = 0f;
