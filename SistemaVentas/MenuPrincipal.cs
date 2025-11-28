@@ -18,8 +18,6 @@ namespace SistemaVentas
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Load += MenuPrincipal_Load;
-
-
         }
 
         private void MenuPrincipal_Load(object? sender, EventArgs e)
@@ -84,8 +82,7 @@ namespace SistemaVentas
             var result = MessageBox.Show("¿Seguro que deseas salir?",
                                          "Confirmar",
                                          MessageBoxButtons.YesNo,
-                                         MessageBoxIcon.Question,
-                                         MessageBoxDefaultButton.Button2);
+                                         MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {

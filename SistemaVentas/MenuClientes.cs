@@ -1,6 +1,4 @@
-﻿using Helpers;
-
-namespace SistemaVentas
+﻿namespace SistemaVentas
 {
     public partial class MenuClientes : Form
     {
@@ -13,56 +11,27 @@ namespace SistemaVentas
         {
             InitializeComponent(); // Inicializa los componentes gráficos del formulario
             formMenuPrincipal = MenuPrincipal; // Guarda la referencia del formulario principal que abrió este formulario
-
-            // Estados iniciales (como en MenuArticulos)
-            btnAgregarCli.Enabled = false;
-            btnEliminarCli.Enabled = false;
-            btnBuscarCli.Enabled = true;
-            btnVolverAlMenuPrincipal.Enabled = true;
-
-            // Permitir que Enter active el botón Agregar cuando esté habilitado
-            this.AcceptButton = btnAgregarCli;
-
             CargarClientes();
             this.StartPosition = FormStartPosition.CenterScreen;
 
-            // Asegurar que el evento Load esté suscrito
-            this.Load += Clientes_Load;
 
-            // Suscribir eventos (usar nombres reales del diseñador)
-            if (btnAgregarCli != null) btnAgregarCli.Click += btnAgregarCli_Click;
-            if (btnEliminarCli != null) btnEliminarCli.Click += btnEliminarCli_Click;
-            if (btnBuscarCli != null) btnBuscarCli.Click += btnBuscarCli_Click;
-            if (btnVolverAlMenuPrincipal != null) btnVolverAlMenuPrincipal.Click += btnVolverMenuPrincipal_Click;
-
-            // Suscribir KeyDown recursivamente (paneles contienen controles)
-            AddKeyDownRecursively(this);
+            foreach (Control c in this.Controls)
+            {
+                if (c is TextBox)
+                {
+#pragma warning disable CS8622 // La nulabilidad de los tipos de referencia del tipo de parámetro no coincide con el delegado de destino (posiblemente debido a los atributos de nulabilidad).
+                    c.KeyDown += EventoMoverConEnter;
+#pragma warning restore CS8622 // La nulabilidad de los tipos de referencia del tipo de parámetro no coincide con el delegado de destino (posiblemente debido a los atributos de nulabilidad).
+                }
+            }
 
             // Cuando el formulario se muestre, establecer el foco en la primera casilla de texto
             this.Shown += Form2_Shown;
         }
 
-        private void AddKeyDownRecursively(Control parent)
-        {
-            foreach (Control c in parent.Controls)
-            {
-                if (c is TextBox tb)
-                {
-#pragma warning disable CS8622
-                    tb.KeyDown += EventoMoverConEnter;
-#pragma warning restore CS8622
-                }
-                if (c.HasChildren) AddKeyDownRecursively(c);
-            }
-        }
-
-        private void Clientes_Load(object? sender, EventArgs e)
-        {
-            RoundedControlHelper.RedondearTodosLosPaneles(this, 20);
-        }
-
         private void Form2_Shown(object? sender, EventArgs e)
         {
+            // Ajustar el nombre del control si la primera caja no es `inpCodCliente`
             inpCodCliente?.Focus();
         }
 
@@ -87,7 +56,7 @@ namespace SistemaVentas
                 {
                     MessageBox.Show("Cliente modificado exitosamente.", "Éxito",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CargarClientes();
+                    CargarClientes(); // Recarga la lista de clientes después de modificar uno
                 }
                 else
                 {
@@ -102,10 +71,12 @@ namespace SistemaVentas
             }
 
             existeElCliente = false;
-            btnAgregarCli.Enabled = false;
+            btnAgregarCliente.Enabled = false;
+            btnModificarCli.Enabled = false;
             btnEliminarCli.Enabled = false;
         }
 
+        // Busca clientes mediante el codigo del cliente
         private Cliente? BuscarCliente(string codigoCliente)
         {
             try
@@ -117,6 +88,7 @@ namespace SistemaVentas
                     MessageBox.Show("El cliente no existe.", "No Encontrado",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                existeElCliente = true;
                 return cliente;
             }
             catch (Exception ex)
@@ -137,12 +109,13 @@ namespace SistemaVentas
                     ModificarClientes(cliente);
                     CargarClientes();
                 }
-                else if (cliente.InsertarCliente())
+                else if(cliente.InsertarCliente())
                 {
                     MessageBox.Show("Cliente guardado exitosamente", "Exito",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CargarClientes();
+                    CargarClientes(); // Recarga la lista de clientes después de agregar uno
                 }
+
             }
             catch (Exception ex)
             {
@@ -150,10 +123,11 @@ namespace SistemaVentas
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-
             existeElCliente = false;
-            btnAgregarCli.Enabled = false;
+            btnAgregarCliente.Enabled = false;
+            btnModificarCli.Enabled = false;
             btnEliminarCli.Enabled = false;
+
         }
 
         private void EliminarCliente(Cliente cliente)
@@ -165,7 +139,7 @@ namespace SistemaVentas
                 {
                     MessageBox.Show("Cliente eliminado exitosamente.", "Éxito",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CargarClientes();
+                    CargarClientes(); // Recarga la lista de clientes después de eliminar uno
                 }
                 else
                 {
@@ -178,34 +152,25 @@ namespace SistemaVentas
                 MessageBox.Show("Error en la base de datos: " + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
             existeElCliente = false;
-            btnAgregarCli.Enabled = false;
+            btnAgregarCliente.Enabled = false;
+            btnModificarCli.Enabled = false;
             btnEliminarCli.Enabled = false;
         }
 
-        private void btnVolverMenuPrincipal_Click(object? sender, EventArgs e)
+        // Evento del botón para volver al menú principal
+        private void BtnVolverMenuPrincipal_Click(object sender, EventArgs e)
         {
-            formMenuPrincipal.Show();
-            this.Close();
+            formMenuPrincipal.Show(); // Muestra el formulario principal nuevamente
+            this.Close(); //Cierra el formulario actual de clientes
         }
-
-        private void EventoMoverConEnter(object? sender, KeyEventArgs e)
+        private void EventoMoverConEnter(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                e.SuppressKeyPress = true;
+                e.SuppressKeyPress = true; // evita sonido y salto de línea
 
-                Control? origen = sender as Control;
-
-                // Si el botón Agregar está habilitado y foco está en la última caja, activar Agregar
-                if (btnAgregarCli.Enabled && origen == inpObsCliente)
-                {
-                    btnAgregarCli.PerformClick();
-                    return;
-                }
-
-                this.SelectNextControl(origen, true, true, true, true);
+                this.SelectNextControl((Control)sender, true, true, true, true);
             }
         }
 
@@ -216,13 +181,18 @@ namespace SistemaVentas
                 ApellidoCliente = inpApeCliente.Text,
                 SectorCliente = inpSecCliente.Text,
                 FaxCliente = inpFaxCliente.Text,
-                LimiteCreditoCliente = string.IsNullOrWhiteSpace(inpCredCliente.Text) ? 0 : Convert.ToSingle(inpCredCliente.Text),
-                BalanceActualCliente = string.IsNullOrWhiteSpace(inpBalCliente.Text) ? 0 : Convert.ToSingle(inpBalCliente.Text),
+                LimiteCreditoCliente = string.IsNullOrWhiteSpace(inpCredCliente.Text)
+                    ? 0
+                    : Convert.ToSingle(inpCredCliente.Text),
+                BalanceActualCliente = string.IsNullOrWhiteSpace(inpBalCliente.Text)
+                    ? 0
+                    : Convert.ToSingle(inpBalCliente.Text),
                 ObservacionesCliente = inpObsCliente.Text
             };
         }
 
-        private void btnAgregarCli_Click(object? sender, EventArgs e)
+
+        private void btnAgregarCliente_Click(object sender, EventArgs e)
         {
             cliente = ObtenerClienteEnInputs();
             GuardarCliente(cliente);
@@ -240,31 +210,23 @@ namespace SistemaVentas
             inpBalCliente?.Clear();
             inpObsCliente?.Clear();
 
+            // Poner foco en la primera casilla
             inpCodCliente?.Focus();
         }
 
-        // Delegadores (si el diseñador enlaza los métodos con sufijo "_1")
-        private void btnAgregarCli_Click_1(object sender, EventArgs e) => btnAgregarCli_Click(sender, e);
-
-        private void btnEliminarCli_Click(object? sender, EventArgs e)
+        private void btnEliminarCli_Click(object sender, EventArgs e)
         {
-            // Obtener cliente desde inputs si no se buscó antes
-            cliente = ObtenerClienteEnInputs();
+            if (cliente == null) return;
             EliminarCliente(cliente);
         }
 
-        private void btnEliminarCli_Click_1(object sender, EventArgs e) => btnEliminarCli_Click(sender, e);
-
-        private void btnModificarCliente_Click(object? sender, EventArgs e)
+        private void btnModificarCli_Click(object sender, EventArgs e)
         {
-            // Obtener datos actuales y modificar
-            cliente = ObtenerClienteEnInputs();
+            if (cliente == null) return;
             ModificarClientes(cliente);
         }
-
-        private void btnBuscarCli_Click(object? sender, EventArgs e)
+        private void btnBuscarCli_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(inpCodCliente.Text)) return;
 
             cliente = BuscarCliente(inpCodCliente.Text);
             if (cliente != null)
@@ -284,23 +246,13 @@ namespace SistemaVentas
             else
             {
                 existeElCliente = false;
-
-                // Limpiar campos si no existe
-                inpNomCliente.Clear();
-                inpApeCliente.Clear();
-                inpDirCliente.Clear();
-                inpSecCliente.Clear();
-                inpCiuCliente.Clear();
-                inpTelCliente.Clear();
-                inpFaxCliente.Clear();
-                inpCredCliente.Clear();
-                inpBalCliente.Clear();
-                inpObsCliente.Clear();
             }
 
-            btnAgregarCli.Enabled = true;
+            btnModificarCli.Enabled = existeElCliente;
             btnEliminarCli.Enabled = existeElCliente;
+            btnAgregarCliente.Enabled = true;
 
+            // Mover el cursor automáticamente a la segunda casilla (nombre)
             inpNomCliente?.Focus();
         }
     }
