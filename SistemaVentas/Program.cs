@@ -1,3 +1,5 @@
+using System.Windows.Forms;
+
 namespace SistemaVentas
 {
     internal static class Program
@@ -11,6 +13,7 @@ namespace SistemaVentas
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
+            Application.SetHighDpiMode(HighDpiMode.DpiUnaware);
             Application.Run(new MenuPrincipal());
         }
     }
