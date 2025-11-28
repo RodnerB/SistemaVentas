@@ -1,0 +1,4 @@
+<!-- Asegúrese de que el .resx esté incluido en el proyecto -->
+<ItemGroup>
+  <EmbeddedResource Include="Properties\Resources.resx" />
+</ItemGroup>
