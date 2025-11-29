@@ -34,7 +34,7 @@ namespace SistemaVentas
         {
             
             RoundedControlHelper.RedondearTodosLosPaneles(this, 20);
-            RoundedControlHelper.RedondearBordes(btnSalir, 15);
+            RoundedControlHelper.RedondearBordes(btnSalir, 9);
 
             btnSalir.TabStop = false;
             btnSalir.FlatAppearance.BorderSize = 0;
