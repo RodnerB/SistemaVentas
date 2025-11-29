@@ -1,16 +1,26 @@
+using System;
+using System.Windows.Forms;
+
 namespace SistemaVentas
 {
     internal static class Program
     {
         /// <summary>
-        ///  The main entry point for the application.
+        ///  Punto de entrada principal de la aplicación.
         /// </summary>
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
+            // Configuración para que la app se vea bien en pantallas con DPI distinto de 100%
+            Application.SetHighDpiMode(HighDpiMode.SystemAware);
+
+            // Activar estilos visuales modernos para los controles
+            Application.EnableVisualStyles();
+
+            // Configuración de compatibilidad para renderizado de texto
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            // Ejecutar el formulario principal
             Application.Run(new MenuPrincipal());
         }
     }
