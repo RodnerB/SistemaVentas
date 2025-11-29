@@ -35,81 +35,79 @@
             panelFacturación = new Panel();
             tableLayoutPanel8 = new TableLayoutPanel();
             tableLayoutPanel9 = new TableLayoutPanel();
-            pictureBox1 = new PictureBox();
+            picFacturacion = new PictureBox();
             tableLayoutPanel10 = new TableLayoutPanel();
             lblFacturacionTitulo = new Label();
             lblFacturaciónSub = new Label();
             panel4 = new Panel();
             tableLayoutPanel17 = new TableLayoutPanel();
             tableLayoutPanel18 = new TableLayoutPanel();
-            pictureBox4 = new PictureBox();
+            picConfiguracion = new PictureBox();
             tableLayoutPanel19 = new TableLayoutPanel();
             label3 = new Label();
             lblConfiguraciónTitulo = new Label();
             pictureBox6 = new PictureBox();
             lblClientesTitulo = new Label();
             tableLayoutPanel1 = new TableLayoutPanel();
-            panelArtículos = new Panel();
-            tableLayoutPanel2 = new TableLayoutPanel();
-            tableLayoutPanel3 = new TableLayoutPanel();
-            tableLayoutPanel4 = new TableLayoutPanel();
-            lblArticulosTitulo = new Label();
-            lblArticulosSub = new Label();
-            picArtículos = new PictureBox();
+            picLogo = new PictureBox();
+            btnSalir = new Button();
             panelDetalles = new Panel();
             tableLayoutPanel11 = new TableLayoutPanel();
             tableLayoutPanel12 = new TableLayoutPanel();
-            pictureBox2 = new PictureBox();
+            picDetalles = new PictureBox();
             tableLayoutPanel13 = new TableLayoutPanel();
             lblDetallesSub = new Label();
             lblDetallesTitulo = new Label();
             panel3 = new Panel();
             tableLayoutPanel5 = new TableLayoutPanel();
             tableLayoutPanel6 = new TableLayoutPanel();
-            pictureBox3 = new PictureBox();
+            picUnidadMedida = new PictureBox();
             tableLayoutPanel7 = new TableLayoutPanel();
             lblUnidadesMedidaTitulo = new Label();
             lblUnidadesDeMedidasSub = new Label();
             panelClientes = new Panel();
-            tableLayoutPanel14 = new TableLayoutPanel();
             tableLayoutPanel15 = new TableLayoutPanel();
-            pictureBox5 = new PictureBox();
+            picClientes = new PictureBox();
             tableLayoutPanel16 = new TableLayoutPanel();
             lblClienteSub = new Label();
             lblClienteTitulo = new Label();
-            btnSalir = new Button();
+            panel1 = new Panel();
+            tableLayoutPanel3 = new TableLayoutPanel();
+            tableLayoutPanel4 = new TableLayoutPanel();
+            lblArticulosTitulo = new Label();
+            lblArticulosSub = new Label();
+            picArtículos = new PictureBox();
             panelFacturación.SuspendLayout();
             tableLayoutPanel8.SuspendLayout();
             tableLayoutPanel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picFacturacion).BeginInit();
             tableLayoutPanel10.SuspendLayout();
             panel4.SuspendLayout();
             tableLayoutPanel17.SuspendLayout();
             tableLayoutPanel18.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picConfiguracion).BeginInit();
             tableLayoutPanel19.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             tableLayoutPanel1.SuspendLayout();
-            panelArtículos.SuspendLayout();
-            tableLayoutPanel2.SuspendLayout();
-            tableLayoutPanel3.SuspendLayout();
-            tableLayoutPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picArtículos).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             panelDetalles.SuspendLayout();
             tableLayoutPanel11.SuspendLayout();
             tableLayoutPanel12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picDetalles).BeginInit();
             tableLayoutPanel13.SuspendLayout();
             panel3.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
             tableLayoutPanel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picUnidadMedida).BeginInit();
             tableLayoutPanel7.SuspendLayout();
             panelClientes.SuspendLayout();
-            tableLayoutPanel14.SuspendLayout();
             tableLayoutPanel15.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picClientes).BeginInit();
             tableLayoutPanel16.SuspendLayout();
+            panel1.SuspendLayout();
+            tableLayoutPanel3.SuspendLayout();
+            tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picArtículos).BeginInit();
             SuspendLayout();
             // 
             // lblSistemaDeFacturacion
@@ -118,7 +116,7 @@
             lblSistemaDeFacturacion.AutoSize = true;
             lblSistemaDeFacturacion.Font = new Font("Segoe UI", 28.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblSistemaDeFacturacion.ForeColor = Color.MediumBlue;
-            lblSistemaDeFacturacion.Location = new Point(567, 36);
+            lblSistemaDeFacturacion.Location = new Point(567, 141);
             lblSistemaDeFacturacion.Name = "lblSistemaDeFacturacion";
             lblSistemaDeFacturacion.Size = new Size(532, 62);
             lblSistemaDeFacturacion.TabIndex = 6;
@@ -130,7 +128,7 @@
             lblSubtitulo.AutoSize = true;
             lblSubtitulo.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblSubtitulo.ForeColor = SystemColors.ControlDark;
-            lblSubtitulo.Location = new Point(622, 98);
+            lblSubtitulo.Location = new Point(622, 203);
             lblSubtitulo.Name = "lblSubtitulo";
             lblSubtitulo.Size = new Size(422, 25);
             lblSubtitulo.TabIndex = 8;
@@ -142,7 +140,7 @@
             panelFacturación.BackColor = SystemColors.ButtonHighlight;
             panelFacturación.Controls.Add(tableLayoutPanel8);
             panelFacturación.Cursor = Cursors.Hand;
-            panelFacturación.Location = new Point(1111, 262);
+            panelFacturación.Location = new Point(1111, 312);
             panelFacturación.Margin = new Padding(0, 10, 0, 10);
             panelFacturación.Name = "panelFacturación";
             panelFacturación.Padding = new Padding(10);
@@ -170,7 +168,7 @@
             tableLayoutPanel9.ColumnCount = 2;
             tableLayoutPanel9.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel9.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 66.6666641F));
-            tableLayoutPanel9.Controls.Add(pictureBox1, 0, 0);
+            tableLayoutPanel9.Controls.Add(picFacturacion, 0, 0);
             tableLayoutPanel9.Controls.Add(tableLayoutPanel10, 1, 0);
             tableLayoutPanel9.Location = new Point(19, 16);
             tableLayoutPanel9.Name = "tableLayoutPanel9";
@@ -180,18 +178,18 @@
             tableLayoutPanel9.TabIndex = 0;
             tableLayoutPanel9.Click += btnFacturacion_Click;
             // 
-            // pictureBox1
+            // picFacturacion
             // 
-            pictureBox1.Anchor = AnchorStyles.Right;
-            pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.BackgroundImage = Properties.Resources.billing_machine_payment_device_point_of_sale_transaction_terminal_digital_billing_icon_260865;
-            pictureBox1.Location = new Point(75, 56);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(71, 60);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 4;
-            pictureBox1.TabStop = false;
-            pictureBox1.Click += btnFacturacion_Click;
+            picFacturacion.Anchor = AnchorStyles.Right;
+            picFacturacion.BackColor = Color.LimeGreen;
+            picFacturacion.BackgroundImage = Properties.Resources._1492617381_9_sheet_data_spreadsheets_file_google_suit_service_83434;
+            picFacturacion.Location = new Point(81, 54);
+            picFacturacion.Name = "picFacturacion";
+            picFacturacion.Size = new Size(65, 64);
+            picFacturacion.SizeMode = PictureBoxSizeMode.Zoom;
+            picFacturacion.TabIndex = 4;
+            picFacturacion.TabStop = false;
+            picFacturacion.Click += btnFacturacion_Click;
             // 
             // tableLayoutPanel10
             // 
@@ -239,7 +237,7 @@
             panel4.BackColor = SystemColors.ButtonHighlight;
             panel4.Controls.Add(tableLayoutPanel17);
             panel4.Cursor = Cursors.Hand;
-            panel4.Location = new Point(1111, 488);
+            panel4.Location = new Point(1111, 538);
             panel4.Margin = new Padding(0, 10, 0, 10);
             panel4.Name = "panel4";
             panel4.Padding = new Padding(10);
@@ -267,7 +265,7 @@
             tableLayoutPanel18.ColumnCount = 2;
             tableLayoutPanel18.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel18.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 66.6666641F));
-            tableLayoutPanel18.Controls.Add(pictureBox4, 0, 0);
+            tableLayoutPanel18.Controls.Add(picConfiguracion, 0, 0);
             tableLayoutPanel18.Controls.Add(tableLayoutPanel19, 1, 0);
             tableLayoutPanel18.Location = new Point(19, 11);
             tableLayoutPanel18.Name = "tableLayoutPanel18";
@@ -277,18 +275,18 @@
             tableLayoutPanel18.TabIndex = 0;
             tableLayoutPanel18.Click += btnConfiguracion_Click;
             // 
-            // pictureBox4
+            // picConfiguracion
             // 
-            pictureBox4.Anchor = AnchorStyles.Right;
-            pictureBox4.BackColor = Color.Transparent;
-            pictureBox4.BackgroundImage = Properties.Resources.settingscog_87317;
-            pictureBox4.Location = new Point(85, 57);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(61, 59);
-            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox4.TabIndex = 7;
-            pictureBox4.TabStop = false;
-            pictureBox4.Click += btnConfiguracion_Click;
+            picConfiguracion.Anchor = AnchorStyles.Right;
+            picConfiguracion.BackColor = Color.DimGray;
+            picConfiguracion.BackgroundImage = Properties.Resources.settingscog_87317;
+            picConfiguracion.Location = new Point(81, 54);
+            picConfiguracion.Name = "picConfiguracion";
+            picConfiguracion.Size = new Size(65, 64);
+            picConfiguracion.SizeMode = PictureBoxSizeMode.Zoom;
+            picConfiguracion.TabIndex = 7;
+            picConfiguracion.TabStop = false;
+            picConfiguracion.Click += btnConfiguracion_Click;
             // 
             // tableLayoutPanel19
             // 
@@ -355,128 +353,62 @@
             // 
             // tableLayoutPanel1
             // 
+            tableLayoutPanel1.Anchor = AnchorStyles.None;
+            tableLayoutPanel1.BackColor = Color.AliceBlue;
             tableLayoutPanel1.ColumnCount = 3;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33333F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333359F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333359F));
-            tableLayoutPanel1.Controls.Add(panelFacturación, 2, 2);
-            tableLayoutPanel1.Controls.Add(panel4, 2, 3);
-            tableLayoutPanel1.Controls.Add(lblSubtitulo, 1, 1);
-            tableLayoutPanel1.Controls.Add(lblSistemaDeFacturacion, 1, 0);
-            tableLayoutPanel1.Controls.Add(panelArtículos, 0, 2);
-            tableLayoutPanel1.Controls.Add(panelDetalles, 0, 3);
-            tableLayoutPanel1.Controls.Add(panel3, 1, 3);
-            tableLayoutPanel1.Controls.Add(panelClientes, 1, 2);
-            tableLayoutPanel1.Controls.Add(btnSalir, 2, 4);
-            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Controls.Add(picLogo, 1, 0);
+            tableLayoutPanel1.Controls.Add(btnSalir, 2, 5);
+            tableLayoutPanel1.Controls.Add(panel4, 2, 4);
+            tableLayoutPanel1.Controls.Add(panelFacturación, 2, 3);
+            tableLayoutPanel1.Controls.Add(panelDetalles, 0, 4);
+            tableLayoutPanel1.Controls.Add(panel3, 1, 4);
+            tableLayoutPanel1.Controls.Add(panelClientes, 0, 3);
+            tableLayoutPanel1.Controls.Add(panel1, 1, 3);
+            tableLayoutPanel1.Controls.Add(lblSubtitulo, 1, 2);
+            tableLayoutPanel1.Controls.Add(lblSistemaDeFacturacion, 1, 1);
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 5;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 11.4647255F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 5.44574F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 38.99608F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 38.99608F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 5.097373F));
+            tableLayoutPanel1.RowCount = 6;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.5005989F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 7.26717424F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 7.270915F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 30.7724915F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 30.7724915F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 7.41633368F));
             tableLayoutPanel1.Size = new Size(1668, 857);
-            tableLayoutPanel1.TabIndex = 15;
+            tableLayoutPanel1.TabIndex = 0;
             // 
-            // panelArtículos
+            // picLogo
             // 
-            panelArtículos.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            panelArtículos.BackColor = SystemColors.ButtonHighlight;
-            panelArtículos.Controls.Add(tableLayoutPanel2);
-            panelArtículos.Cursor = Cursors.Hand;
-            panelArtículos.Location = new Point(69, 262);
-            panelArtículos.Margin = new Padding(0, 10, 0, 10);
-            panelArtículos.Name = "panelArtículos";
-            panelArtículos.Padding = new Padding(10);
-            panelArtículos.Size = new Size(486, 206);
-            panelArtículos.TabIndex = 10;
-            panelArtículos.Click += btnArticulos_Click;
+            picLogo.Anchor = AnchorStyles.None;
+            picLogo.BackColor = Color.Transparent;
+            picLogo.BackgroundImage = Properties.Resources.cloud_money_system_icon_175829;
+            picLogo.Location = new Point(802, 40);
+            picLogo.Name = "picLogo";
+            picLogo.Size = new Size(61, 60);
+            picLogo.SizeMode = PictureBoxSizeMode.Zoom;
+            picLogo.TabIndex = 4;
+            picLogo.TabStop = false;
             // 
-            // tableLayoutPanel2
+            // btnSalir
             // 
-            tableLayoutPanel2.BackColor = Color.Transparent;
-            tableLayoutPanel2.ColumnCount = 1;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Controls.Add(tableLayoutPanel3, 0, 0);
-            tableLayoutPanel2.Location = new Point(0, 0);
-            tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 1;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Size = new Size(486, 206);
-            tableLayoutPanel2.TabIndex = 4;
-            tableLayoutPanel2.Click += btnArticulos_Click;
-            // 
-            // tableLayoutPanel3
-            // 
-            tableLayoutPanel3.Anchor = AnchorStyles.None;
-            tableLayoutPanel3.ColumnCount = 2;
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 66.6666641F));
-            tableLayoutPanel3.Controls.Add(tableLayoutPanel4, 1, 0);
-            tableLayoutPanel3.Controls.Add(picArtículos, 0, 0);
-            tableLayoutPanel3.Location = new Point(18, 16);
-            tableLayoutPanel3.Name = "tableLayoutPanel3";
-            tableLayoutPanel3.RowCount = 1;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel3.Size = new Size(450, 173);
-            tableLayoutPanel3.TabIndex = 0;
-            tableLayoutPanel3.Click += btnArticulos_Click;
-            // 
-            // tableLayoutPanel4
-            // 
-            tableLayoutPanel4.ColumnCount = 1;
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel4.Controls.Add(lblArticulosTitulo, 0, 0);
-            tableLayoutPanel4.Controls.Add(lblArticulosSub, 0, 1);
-            tableLayoutPanel4.Dock = DockStyle.Left;
-            tableLayoutPanel4.Location = new Point(152, 3);
-            tableLayoutPanel4.Name = "tableLayoutPanel4";
-            tableLayoutPanel4.RowCount = 2;
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel4.Size = new Size(281, 167);
-            tableLayoutPanel4.TabIndex = 0;
-            tableLayoutPanel4.Click += btnArticulos_Click;
-            // 
-            // lblArticulosTitulo
-            // 
-            lblArticulosTitulo.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            lblArticulosTitulo.AutoSize = true;
-            lblArticulosTitulo.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblArticulosTitulo.ForeColor = Color.Black;
-            lblArticulosTitulo.Location = new Point(3, 37);
-            lblArticulosTitulo.Name = "lblArticulosTitulo";
-            lblArticulosTitulo.Size = new Size(165, 46);
-            lblArticulosTitulo.TabIndex = 0;
-            lblArticulosTitulo.Text = "Artículos";
-            lblArticulosTitulo.Click += btnArticulos_Click;
-            // 
-            // lblArticulosSub
-            // 
-            lblArticulosSub.AutoSize = true;
-            lblArticulosSub.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblArticulosSub.ForeColor = Color.Gray;
-            lblArticulosSub.Location = new Point(3, 83);
-            lblArticulosSub.Name = "lblArticulosSub";
-            lblArticulosSub.Size = new Size(181, 23);
-            lblArticulosSub.TabIndex = 1;
-            lblArticulosSub.Text = "Gestión de inventario";
-            lblArticulosSub.Click += btnArticulos_Click;
-            // 
-            // picArtículos
-            // 
-            picArtículos.Anchor = AnchorStyles.Right;
-            picArtículos.BackColor = Color.Transparent;
-            picArtículos.BackgroundImage = Properties.Resources.box_5124;
-            picArtículos.Location = new Point(78, 54);
-            picArtículos.Name = "picArtículos";
-            picArtículos.Size = new Size(68, 64);
-            picArtículos.SizeMode = PictureBoxSizeMode.Zoom;
-            picArtículos.TabIndex = 3;
-            picArtículos.TabStop = false;
-            picArtículos.Click += btnArticulos_Click;
+            btnSalir.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            btnSalir.Cursor = Cursors.Hand;
+            btnSalir.FlatAppearance.BorderSize = 0;
+            btnSalir.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnSalir.FlatAppearance.MouseOverBackColor = Color.Silver;
+            btnSalir.FlatStyle = FlatStyle.Flat;
+            btnSalir.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSalir.Location = new Point(1571, 794);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(94, 60);
+            btnSalir.TabIndex = 15;
+            btnSalir.Text = "Salir";
+            btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click_1;
             // 
             // panelDetalles
             // 
@@ -484,7 +416,7 @@
             panelDetalles.BackColor = SystemColors.ButtonHighlight;
             panelDetalles.Controls.Add(tableLayoutPanel11);
             panelDetalles.Cursor = Cursors.Hand;
-            panelDetalles.Location = new Point(69, 488);
+            panelDetalles.Location = new Point(69, 538);
             panelDetalles.Margin = new Padding(0, 10, 0, 10);
             panelDetalles.Name = "panelDetalles";
             panelDetalles.Padding = new Padding(10);
@@ -513,7 +445,7 @@
             tableLayoutPanel12.ColumnCount = 2;
             tableLayoutPanel12.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35.48387F));
             tableLayoutPanel12.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 64.51613F));
-            tableLayoutPanel12.Controls.Add(pictureBox2, 0, 0);
+            tableLayoutPanel12.Controls.Add(picDetalles, 0, 0);
             tableLayoutPanel12.Controls.Add(tableLayoutPanel13, 1, 0);
             tableLayoutPanel12.Location = new Point(18, 11);
             tableLayoutPanel12.Name = "tableLayoutPanel12";
@@ -523,18 +455,18 @@
             tableLayoutPanel12.TabIndex = 0;
             tableLayoutPanel12.Click += btnDetalles_Click;
             // 
-            // pictureBox2
+            // picDetalles
             // 
-            pictureBox2.Anchor = AnchorStyles.Right;
-            pictureBox2.BackColor = Color.Transparent;
-            pictureBox2.BackgroundImage = Properties.Resources.viewdetails_vista_3354;
-            pictureBox2.Location = new Point(91, 57);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(65, 59);
-            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox2.TabIndex = 5;
-            pictureBox2.TabStop = false;
-            pictureBox2.Click += btnDetalles_Click;
+            picDetalles.Anchor = AnchorStyles.Right;
+            picDetalles.BackColor = Color.Orange;
+            picDetalles.BackgroundImage = Properties.Resources.viewdetails_vista_3354;
+            picDetalles.Location = new Point(91, 54);
+            picDetalles.Name = "picDetalles";
+            picDetalles.Size = new Size(65, 64);
+            picDetalles.SizeMode = PictureBoxSizeMode.Zoom;
+            picDetalles.TabIndex = 5;
+            picDetalles.TabStop = false;
+            picDetalles.Click += btnDetalles_Click;
             // 
             // tableLayoutPanel13
             // 
@@ -583,7 +515,7 @@
             panel3.BackColor = SystemColors.ButtonHighlight;
             panel3.Controls.Add(tableLayoutPanel5);
             panel3.Cursor = Cursors.Hand;
-            panel3.Location = new Point(590, 488);
+            panel3.Location = new Point(590, 538);
             panel3.Margin = new Padding(0, 10, 0, 10);
             panel3.Name = "panel3";
             panel3.Padding = new Padding(10);
@@ -612,28 +544,28 @@
             tableLayoutPanel6.ColumnCount = 2;
             tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 66.6666641F));
-            tableLayoutPanel6.Controls.Add(pictureBox3, 0, 0);
+            tableLayoutPanel6.Controls.Add(picUnidadMedida, 0, 0);
             tableLayoutPanel6.Controls.Add(tableLayoutPanel7, 1, 0);
-            tableLayoutPanel6.Location = new Point(18, 11);
+            tableLayoutPanel6.Location = new Point(18, 45);
             tableLayoutPanel6.Name = "tableLayoutPanel6";
             tableLayoutPanel6.RowCount = 1;
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel6.Size = new Size(450, 173);
+            tableLayoutPanel6.Size = new Size(450, 105);
             tableLayoutPanel6.TabIndex = 0;
             tableLayoutPanel6.Click += btnUnidadesDeMedida_Click;
             // 
-            // pictureBox3
+            // picUnidadMedida
             // 
-            pictureBox3.Anchor = AnchorStyles.Right;
-            pictureBox3.BackColor = Color.Transparent;
-            pictureBox3.BackgroundImage = Properties.Resources.hard_drives_icon_173095;
-            pictureBox3.Location = new Point(75, 53);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(71, 66);
-            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox3.TabIndex = 6;
-            pictureBox3.TabStop = false;
-            pictureBox3.Click += btnUnidadesDeMedida_Click;
+            picUnidadMedida.Anchor = AnchorStyles.Right;
+            picUnidadMedida.BackColor = Color.DarkTurquoise;
+            picUnidadMedida.BackgroundImage = Properties.Resources.hard_drives_icon_173095;
+            picUnidadMedida.Location = new Point(81, 20);
+            picUnidadMedida.Name = "picUnidadMedida";
+            picUnidadMedida.Size = new Size(65, 64);
+            picUnidadMedida.SizeMode = PictureBoxSizeMode.Zoom;
+            picUnidadMedida.TabIndex = 6;
+            picUnidadMedida.TabStop = false;
+            picUnidadMedida.Click += btnUnidadesDeMedida_Click;
             // 
             // tableLayoutPanel7
             // 
@@ -647,7 +579,7 @@
             tableLayoutPanel7.RowCount = 2;
             tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel7.Size = new Size(295, 167);
+            tableLayoutPanel7.Size = new Size(295, 99);
             tableLayoutPanel7.TabIndex = 0;
             tableLayoutPanel7.Click += btnUnidadesDeMedida_Click;
             // 
@@ -657,7 +589,7 @@
             lblUnidadesMedidaTitulo.AutoSize = true;
             lblUnidadesMedidaTitulo.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblUnidadesMedidaTitulo.ForeColor = Color.Black;
-            lblUnidadesMedidaTitulo.Location = new Point(3, 45);
+            lblUnidadesMedidaTitulo.Location = new Point(3, 11);
             lblUnidadesMedidaTitulo.Name = "lblUnidadesMedidaTitulo";
             lblUnidadesMedidaTitulo.Size = new Size(258, 38);
             lblUnidadesMedidaTitulo.TabIndex = 0;
@@ -669,7 +601,7 @@
             lblUnidadesDeMedidasSub.AutoSize = true;
             lblUnidadesDeMedidasSub.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblUnidadesDeMedidasSub.ForeColor = Color.Gray;
-            lblUnidadesDeMedidasSub.Location = new Point(3, 83);
+            lblUnidadesDeMedidasSub.Location = new Point(3, 49);
             lblUnidadesDeMedidasSub.Name = "lblUnidadesDeMedidasSub";
             lblUnidadesDeMedidasSub.Size = new Size(172, 23);
             lblUnidadesDeMedidasSub.TabIndex = 2;
@@ -678,11 +610,11 @@
             // 
             // panelClientes
             // 
-            panelClientes.Anchor = AnchorStyles.Bottom;
+            panelClientes.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             panelClientes.BackColor = SystemColors.ButtonHighlight;
-            panelClientes.Controls.Add(tableLayoutPanel14);
+            panelClientes.Controls.Add(tableLayoutPanel15);
             panelClientes.Cursor = Cursors.Hand;
-            panelClientes.Location = new Point(590, 262);
+            panelClientes.Location = new Point(69, 312);
             panelClientes.Margin = new Padding(0, 10, 0, 10);
             panelClientes.Name = "panelClientes";
             panelClientes.Padding = new Padding(10);
@@ -690,48 +622,34 @@
             panelClientes.TabIndex = 14;
             panelClientes.Click += btnClientes_Click;
             // 
-            // tableLayoutPanel14
-            // 
-            tableLayoutPanel14.Anchor = AnchorStyles.None;
-            tableLayoutPanel14.ColumnCount = 1;
-            tableLayoutPanel14.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel14.Controls.Add(tableLayoutPanel15, 0, 0);
-            tableLayoutPanel14.Location = new Point(0, 0);
-            tableLayoutPanel14.Name = "tableLayoutPanel14";
-            tableLayoutPanel14.RowCount = 1;
-            tableLayoutPanel14.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel14.Size = new Size(486, 206);
-            tableLayoutPanel14.TabIndex = 6;
-            tableLayoutPanel14.Click += btnClientes_Click;
-            // 
             // tableLayoutPanel15
             // 
             tableLayoutPanel15.Anchor = AnchorStyles.None;
             tableLayoutPanel15.ColumnCount = 2;
             tableLayoutPanel15.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35.48387F));
             tableLayoutPanel15.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 64.51613F));
-            tableLayoutPanel15.Controls.Add(pictureBox5, 0, 0);
+            tableLayoutPanel15.Controls.Add(picClientes, 0, 0);
             tableLayoutPanel15.Controls.Add(tableLayoutPanel16, 1, 0);
-            tableLayoutPanel15.Location = new Point(18, 16);
+            tableLayoutPanel15.Location = new Point(0, 0);
             tableLayoutPanel15.Name = "tableLayoutPanel15";
             tableLayoutPanel15.RowCount = 1;
             tableLayoutPanel15.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel15.Size = new Size(450, 173);
+            tableLayoutPanel15.Size = new Size(486, 206);
             tableLayoutPanel15.TabIndex = 0;
             tableLayoutPanel15.Click += btnClientes_Click;
             // 
-            // pictureBox5
+            // picClientes
             // 
-            pictureBox5.Anchor = AnchorStyles.Right;
-            pictureBox5.BackColor = Color.Transparent;
-            pictureBox5.BackgroundImage = Properties.Resources.users_people_workers_customers_icon_124243;
-            pictureBox5.Location = new Point(94, 54);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(62, 64);
-            pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox5.TabIndex = 4;
-            pictureBox5.TabStop = false;
-            pictureBox5.Click += btnClientes_Click;
+            picClientes.Anchor = AnchorStyles.Right;
+            picClientes.BackColor = SystemColors.HotTrack;
+            picClientes.BackgroundImage = Properties.Resources.users_people_workers_customers_icon_124243;
+            picClientes.Location = new Point(104, 71);
+            picClientes.Name = "picClientes";
+            picClientes.Size = new Size(65, 64);
+            picClientes.SizeMode = PictureBoxSizeMode.Zoom;
+            picClientes.TabIndex = 4;
+            picClientes.TabStop = false;
+            picClientes.Click += btnClientes_Click;
             // 
             // tableLayoutPanel16
             // 
@@ -740,12 +658,12 @@
             tableLayoutPanel16.Controls.Add(lblClienteSub, 0, 1);
             tableLayoutPanel16.Controls.Add(lblClienteTitulo, 0, 0);
             tableLayoutPanel16.Dock = DockStyle.Fill;
-            tableLayoutPanel16.Location = new Point(162, 3);
+            tableLayoutPanel16.Location = new Point(175, 3);
             tableLayoutPanel16.Name = "tableLayoutPanel16";
             tableLayoutPanel16.RowCount = 2;
             tableLayoutPanel16.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel16.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel16.Size = new Size(285, 167);
+            tableLayoutPanel16.Size = new Size(308, 200);
             tableLayoutPanel16.TabIndex = 0;
             tableLayoutPanel16.Click += btnClientes_Click;
             // 
@@ -754,7 +672,7 @@
             lblClienteSub.AutoSize = true;
             lblClienteSub.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblClienteSub.ForeColor = Color.Gray;
-            lblClienteSub.Location = new Point(3, 83);
+            lblClienteSub.Location = new Point(3, 100);
             lblClienteSub.Name = "lblClienteSub";
             lblClienteSub.Size = new Size(160, 23);
             lblClienteSub.TabIndex = 2;
@@ -767,29 +685,94 @@
             lblClienteTitulo.AutoSize = true;
             lblClienteTitulo.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblClienteTitulo.ForeColor = Color.Black;
-            lblClienteTitulo.Location = new Point(3, 37);
+            lblClienteTitulo.Location = new Point(3, 54);
             lblClienteTitulo.Name = "lblClienteTitulo";
             lblClienteTitulo.Size = new Size(146, 46);
             lblClienteTitulo.TabIndex = 0;
             lblClienteTitulo.Text = "Clientes";
             lblClienteTitulo.Click += btnClientes_Click;
             // 
-            // btnSalir
+            // panel1
             // 
-            btnSalir.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
-            btnSalir.Cursor = Cursors.Hand;
-            btnSalir.FlatAppearance.BorderSize = 0;
-            btnSalir.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            btnSalir.FlatAppearance.MouseOverBackColor = Color.Silver;
-            btnSalir.FlatStyle = FlatStyle.Flat;
-            btnSalir.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSalir.Location = new Point(1571, 815);
-            btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(94, 39);
-            btnSalir.TabIndex = 15;
-            btnSalir.Text = "Salir";
-            btnSalir.UseVisualStyleBackColor = true;
-            btnSalir.Click += btnSalir_Click_1;
+            panel1.Anchor = AnchorStyles.Bottom;
+            panel1.BackColor = SystemColors.ButtonHighlight;
+            panel1.Controls.Add(tableLayoutPanel3);
+            panel1.Cursor = Cursors.Hand;
+            panel1.Location = new Point(590, 312);
+            panel1.Margin = new Padding(0, 10, 0, 10);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(486, 206);
+            panel1.TabIndex = 16;
+            // 
+            // tableLayoutPanel3
+            // 
+            tableLayoutPanel3.Anchor = AnchorStyles.None;
+            tableLayoutPanel3.ColumnCount = 2;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 66.6666641F));
+            tableLayoutPanel3.Controls.Add(tableLayoutPanel4, 1, 0);
+            tableLayoutPanel3.Controls.Add(picArtículos, 0, 0);
+            tableLayoutPanel3.Location = new Point(0, 0);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.RowCount = 1;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel3.Size = new Size(489, 206);
+            tableLayoutPanel3.TabIndex = 0;
+            tableLayoutPanel3.Click += btnArticulos_Click;
+            // 
+            // tableLayoutPanel4
+            // 
+            tableLayoutPanel4.ColumnCount = 1;
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel4.Controls.Add(lblArticulosTitulo, 0, 0);
+            tableLayoutPanel4.Controls.Add(lblArticulosSub, 0, 1);
+            tableLayoutPanel4.Dock = DockStyle.Left;
+            tableLayoutPanel4.Location = new Point(165, 3);
+            tableLayoutPanel4.Name = "tableLayoutPanel4";
+            tableLayoutPanel4.RowCount = 2;
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel4.Size = new Size(281, 200);
+            tableLayoutPanel4.TabIndex = 0;
+            tableLayoutPanel4.Click += btnArticulos_Click;
+            // 
+            // lblArticulosTitulo
+            // 
+            lblArticulosTitulo.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            lblArticulosTitulo.AutoSize = true;
+            lblArticulosTitulo.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblArticulosTitulo.ForeColor = Color.Black;
+            lblArticulosTitulo.Location = new Point(3, 54);
+            lblArticulosTitulo.Name = "lblArticulosTitulo";
+            lblArticulosTitulo.Size = new Size(165, 46);
+            lblArticulosTitulo.TabIndex = 0;
+            lblArticulosTitulo.Text = "Artículos";
+            lblArticulosTitulo.Click += btnArticulos_Click;
+            // 
+            // lblArticulosSub
+            // 
+            lblArticulosSub.AutoSize = true;
+            lblArticulosSub.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblArticulosSub.ForeColor = Color.Gray;
+            lblArticulosSub.Location = new Point(3, 100);
+            lblArticulosSub.Name = "lblArticulosSub";
+            lblArticulosSub.Size = new Size(181, 23);
+            lblArticulosSub.TabIndex = 1;
+            lblArticulosSub.Text = "Gestión de inventario";
+            lblArticulosSub.Click += btnArticulos_Click;
+            // 
+            // picArtículos
+            // 
+            picArtículos.Anchor = AnchorStyles.Right;
+            picArtículos.BackColor = Color.BlueViolet;
+            picArtículos.BackgroundImage = Properties.Resources.box_5124;
+            picArtículos.Location = new Point(94, 71);
+            picArtículos.Name = "picArtículos";
+            picArtículos.Size = new Size(65, 64);
+            picArtículos.SizeMode = PictureBoxSizeMode.Zoom;
+            picArtículos.TabIndex = 3;
+            picArtículos.TabStop = false;
+            picArtículos.Click += btnArticulos_Click;
             // 
             // MenuPrincipal
             // 
@@ -804,42 +787,41 @@
             panelFacturación.ResumeLayout(false);
             tableLayoutPanel8.ResumeLayout(false);
             tableLayoutPanel9.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picFacturacion).EndInit();
             tableLayoutPanel10.ResumeLayout(false);
             tableLayoutPanel10.PerformLayout();
             panel4.ResumeLayout(false);
             tableLayoutPanel17.ResumeLayout(false);
             tableLayoutPanel18.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picConfiguracion).EndInit();
             tableLayoutPanel19.ResumeLayout(false);
             tableLayoutPanel19.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
-            panelArtículos.ResumeLayout(false);
-            tableLayoutPanel2.ResumeLayout(false);
-            tableLayoutPanel3.ResumeLayout(false);
-            tableLayoutPanel4.ResumeLayout(false);
-            tableLayoutPanel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picArtículos).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
             panelDetalles.ResumeLayout(false);
             tableLayoutPanel11.ResumeLayout(false);
             tableLayoutPanel12.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picDetalles).EndInit();
             tableLayoutPanel13.ResumeLayout(false);
             tableLayoutPanel13.PerformLayout();
             panel3.ResumeLayout(false);
             tableLayoutPanel5.ResumeLayout(false);
             tableLayoutPanel6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picUnidadMedida).EndInit();
             tableLayoutPanel7.ResumeLayout(false);
             tableLayoutPanel7.PerformLayout();
             panelClientes.ResumeLayout(false);
-            tableLayoutPanel14.ResumeLayout(false);
             tableLayoutPanel15.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picClientes).EndInit();
             tableLayoutPanel16.ResumeLayout(false);
             tableLayoutPanel16.PerformLayout();
+            panel1.ResumeLayout(false);
+            tableLayoutPanel3.ResumeLayout(false);
+            tableLayoutPanel4.ResumeLayout(false);
+            tableLayoutPanel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picArtículos).EndInit();
             ResumeLayout(false);
         }
 
@@ -850,32 +832,28 @@
         private Panel panel4;
         private Label lblConfiguraciónTitulo;
         private Label label3;
-        private PictureBox pictureBox1;
-        private PictureBox pictureBox4;
+        private PictureBox picConfiguracion;
         internal Panel panelFacturación;
         private PictureBox pictureBox6;
-        private Label label1;
         private Label lblClientesTitulo;
         private TableLayoutPanel tableLayoutPanel1;
         private Panel panel3;
-        private PictureBox pictureBox3;
+        private PictureBox picUnidadMedida;
         private Label lblUnidadesDeMedidasSub;
         private Label lblUnidadesMedidaTitulo;
         private Panel panelClientes;
         private Label lblClienteSub;
         private Label lblClienteTitulo;
         private Panel panelDetalles;
-        private PictureBox pictureBox2;
+        private PictureBox picDetalles;
         private Label lblDetallesSub;
         private Label lblDetallesTitulo;
-        private Panel panelArtículos;
         private PictureBox picArtículos;
         private Label lblArticulosSub;
         private Label lblArticulosTitulo;
         private TableLayoutPanel tableLayoutPanel5;
         private TableLayoutPanel tableLayoutPanel6;
         private TableLayoutPanel tableLayoutPanel7;
-        private TableLayoutPanel tableLayoutPanel2;
         private TableLayoutPanel tableLayoutPanel3;
         private TableLayoutPanel tableLayoutPanel4;
         private TableLayoutPanel tableLayoutPanel8;
@@ -887,10 +865,12 @@
         private TableLayoutPanel tableLayoutPanel17;
         private TableLayoutPanel tableLayoutPanel18;
         private TableLayoutPanel tableLayoutPanel19;
-        private TableLayoutPanel tableLayoutPanel14;
         private TableLayoutPanel tableLayoutPanel15;
-        private PictureBox pictureBox5;
+        private PictureBox picClientes;
         private TableLayoutPanel tableLayoutPanel16;
         private Button btnSalir;
+        private PictureBox picFacturacion;
+        private Panel panel1;
+        private PictureBox picLogo;
     }
 }

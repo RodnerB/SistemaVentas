@@ -32,9 +32,16 @@ namespace SistemaVentas
 
         private void MenuPrincipal_Load(object? sender, EventArgs e)
         {
-            
+
             RoundedControlHelper.RedondearTodosLosPaneles(this, 20);
             RoundedControlHelper.RedondearBordes(btnSalir, 9);
+            RoundedControlHelper.RedondearBordes(picArtículos, 40);
+            RoundedControlHelper.RedondearBordes(picClientes, 40);
+            RoundedControlHelper.RedondearBordes(picFacturacion, 40);
+            RoundedControlHelper.RedondearBordes(picDetalles, 40);
+            RoundedControlHelper.RedondearBordes(picUnidadMedida, 40);
+            RoundedControlHelper.RedondearBordes(picConfiguracion, 40);
+            RoundedControlHelper.RedondearBordes(picLogo, 15);
 
             btnSalir.TabStop = false;
             btnSalir.FlatAppearance.BorderSize = 0;

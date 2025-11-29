@@ -23,17 +23,6 @@ namespace SistemaVentas
             VALUES 
             (@CodigoArticulo, @DescripcionArticulo, @CodigoUnidad, @ExistenciaMinima, @ExistenciaMaxima, @ExistenciaActual, @PrecioArticulo, @CostoArticulo)";
 
-        private const string actualizarArticuloQuery = @"
-            UPDATE SFTARTI0 SET
-                DESART = @DescripcionArticulo,
-                CODUNI = @CodigoUnidad,
-                EXIMIN = @ExistenciaMinima,
-                EXIMAX = @ExistenciaMaxima,
-                EXIACT = @ExistenciaActual,
-                PREART = @PrecioArticulo,
-                COSART = @CostoArticulo
-            WHERE CODART = @CodigoArticulo";
-
         private const string EliminarArticuloQuery = "DELETE FROM SFTARTI0 WHERE CODART = @codigo";
 
         private static Dictionary<string, string> articulosHeaders = new()
@@ -74,14 +63,6 @@ namespace SistemaVentas
         {
             return (UtilidadesBD.GuardarRegistro(
                 insertarArticuloQuery,
-                ObtenerParametrosArticulo(articulo)
-                ) > 0);
-        }
-
-        public bool ActualizarArticulo(Articulo articulo)
-        {
-            return (UtilidadesBD.GuardarRegistro(
-                actualizarArticuloQuery,
                 ObtenerParametrosArticulo(articulo)
                 ) > 0);
         }
@@ -127,9 +108,6 @@ namespace SistemaVentas
             };
         }
 
-        
-
-        
         public static bool EliminarArticulo(string codigoArticulo)
         {
             return (UtilidadesBD.EliminarRegistro(EliminarArticuloQuery, codigoArticulo) > 0);

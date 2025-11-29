@@ -14,7 +14,6 @@
             CargarClientes();
             this.StartPosition = FormStartPosition.CenterScreen;
 
-
             foreach (Control c in this.Controls)
             {
                 if (c is TextBox)
@@ -48,34 +47,6 @@
             }
         }
 
-        private void ModificarClientes(Cliente cliente)
-        {
-            try
-            {
-                if (cliente.ActualizarCliente())
-                {
-                    MessageBox.Show("Cliente modificado exitosamente.", "Éxito",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CargarClientes(); // Recarga la lista de clientes después de modificar uno
-                }
-                else
-                {
-                    MessageBox.Show("No se pudo modificar el cliente.", "Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al modificar el cliente: " + ex.Message, "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            existeElCliente = false;
-            btnAgregarCliente.Enabled = false;
-            btnModificarCli.Enabled = false;
-            btnEliminarCli.Enabled = false;
-        }
-
         // Busca clientes mediante el codigo del cliente
         private Cliente? BuscarCliente(string codigoCliente)
         {
@@ -87,6 +58,7 @@
                     existeElCliente = false;
                     MessageBox.Show("El cliente no existe.", "No Encontrado",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return null;
                 }
                 existeElCliente = true;
                 return cliente;
@@ -106,8 +78,10 @@
             {
                 if (existeElCliente)
                 {
-                    ModificarClientes(cliente);
-                    CargarClientes();
+                    // La modificación ha sido eliminada; informar al usuario
+                    MessageBox.Show("El cliente ya existe. La modificación ha sido deshabilitada.", "Información",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
                 else if(cliente.InsertarCliente())
                 {
@@ -125,7 +99,6 @@
             }
             existeElCliente = false;
             btnAgregarCliente.Enabled = false;
-            btnModificarCli.Enabled = false;
             btnEliminarCli.Enabled = false;
 
         }
@@ -154,7 +127,6 @@
             }
             existeElCliente = false;
             btnAgregarCliente.Enabled = false;
-            btnModificarCli.Enabled = false;
             btnEliminarCli.Enabled = false;
         }
 
@@ -220,11 +192,13 @@
             EliminarCliente(cliente);
         }
 
+        // Mantener un handler mínimo por si el diseñador sigue enlazando el evento
         private void btnModificarCli_Click(object sender, EventArgs e)
         {
-            if (cliente == null) return;
-            ModificarClientes(cliente);
+            MessageBox.Show("La funcionalidad de modificar clientes ha sido eliminada.", "Información",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
         private void btnBuscarCli_Click(object sender, EventArgs e)
         {
 
@@ -248,7 +222,7 @@
                 existeElCliente = false;
             }
 
-            btnModificarCli.Enabled = existeElCliente;
+
             btnEliminarCli.Enabled = existeElCliente;
             btnAgregarCliente.Enabled = true;
 

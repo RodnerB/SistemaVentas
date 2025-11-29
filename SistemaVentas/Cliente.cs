@@ -38,8 +38,6 @@ namespace SistemaVentas
             (CODCLI, NOMCLI, APECLI, DIRCLI, SECCLI, CIUCLI, TELCLI, NUMFAX, LIMCRE, BALCLI, OBSCLI) 
             VALUES 
             (@CodigoCliente, @NombreCliente, @ApellidoCliente, @DireccionCliente, @SectorCliente, @CiudadCliente, @TelefonoCliente, @FaxCliente, @LimiteCreditoCliente, @BalanceActualCliente, @ObservacionesCliente)";
-        private const string actualizarClienteQuery = @"
-            UPDATE SFTCLIE0 SET CODCLI = @CodigoCliente, NOMCLI = @NombreCliente, APECLI = @ApellidoCliente, DIRCLI = @DireccionCliente, SECCLI = @SectorCliente, CIUCLI = @CiudadCliente, TELCLI = @TelefonoCliente, NUMFAX = @FaxCliente, LIMCRE = @LimiteCreditoCliente, BALCLI = @BalanceActualCliente, OBSCLI = @ObservacionesCliente WHERE CODCLI = @CodigoCliente";
         private const string eliminarClienteQuery = "DELETE FROM SFTCLIE0 WHERE CODCLI = @codigo";
 
         // Headers para renombrar columnas 
@@ -96,16 +94,6 @@ namespace SistemaVentas
                 ObtenerParametrosCliente(this)
             ) > 0);
         }
-
-        public bool ActualizarCliente()
-        {
-            Validador.Requerido(this);
-            return (UtilidadesBD.GuardarRegistro(
-                actualizarClienteQuery,
-                ObtenerParametrosCliente(this)
-                ) > 0);
-        }
-        
 
         public static void ObtenerClientes(DataGridView dataGrid)
         {
