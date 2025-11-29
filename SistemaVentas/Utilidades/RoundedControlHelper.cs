@@ -2,7 +2,7 @@
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-namespace Helpers
+namespace SistemaVentas.Utilidades
 {
     public static class RoundedControlHelper
     {
