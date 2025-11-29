@@ -82,13 +82,16 @@ namespace SistemaVentas
             var result = MessageBox.Show("¿Seguro que deseas salir?",
                                          "Confirmar",
                                          MessageBoxButtons.YesNo,
-                                         MessageBoxIcon.Question);
+                                         MessageBoxIcon.Question,
+                                         MessageBoxDefaultButton.Button2);
 
             if (result == DialogResult.Yes)
             {
                 Application.Exit();
             }
         }
+
+       
     }
 }
 
