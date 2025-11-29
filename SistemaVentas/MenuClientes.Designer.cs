@@ -54,11 +54,16 @@
             lblObsCli = new Label();
             inpObsCliente = new TextBox();
             btnAgregarCliente = new Button();
-            btnModificarCli = new Button();
             btnEliminarCli = new Button();
             btnBuscarCli = new Button();
             btnVolverMenuPrincipal = new Button();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            panel1 = new Panel();
+            panel2 = new Panel();
             ((System.ComponentModel.ISupportInitialize)dgvClientes).BeginInit();
+            tableLayoutPanel1.SuspendLayout();
+            panel1.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // dgvClientes
@@ -77,17 +82,17 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
             dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvClientes.Location = new Point(423, 12);
+            dgvClientes.Location = new Point(465, 40);
             dgvClientes.Name = "dgvClientes";
             dgvClientes.RowHeadersVisible = false;
             dgvClientes.RowHeadersWidth = 51;
-            dgvClientes.Size = new Size(1413, 484);
+            dgvClientes.Size = new Size(1380, 484);
             dgvClientes.TabIndex = 0;
             // 
             // lblClientes
             // 
             lblClientes.AutoSize = true;
-            lblClientes.Location = new Point(11, 12);
+            lblClientes.Location = new Point(205, 6);
             lblClientes.Name = "lblClientes";
             lblClientes.Size = new Size(72, 20);
             lblClientes.TabIndex = 1;
@@ -264,7 +269,8 @@
             // 
             // inpObsCliente
             // 
-            inpObsCliente.Location = new Point(130, 363);
+            inpObsCliente.Anchor = AnchorStyles.None;
+            inpObsCliente.Location = new Point(89, 413);
             inpObsCliente.Name = "inpObsCliente";
             inpObsCliente.Size = new Size(271, 27);
             inpObsCliente.TabIndex = 23;
@@ -272,7 +278,7 @@
             // btnAgregarCliente
             // 
             btnAgregarCliente.Enabled = false;
-            btnAgregarCliente.Location = new Point(11, 432);
+            btnAgregarCliente.Location = new Point(142, 481);
             btnAgregarCliente.Name = "btnAgregarCliente";
             btnAgregarCliente.Size = new Size(125, 29);
             btnAgregarCliente.TabIndex = 24;
@@ -280,21 +286,10 @@
             btnAgregarCliente.UseVisualStyleBackColor = true;
             btnAgregarCliente.Click += btnAgregarCliente_Click;
             // 
-            // btnModificarCli
-            // 
-            btnModificarCli.Enabled = false;
-            btnModificarCli.Location = new Point(143, 432);
-            btnModificarCli.Name = "btnModificarCli";
-            btnModificarCli.Size = new Size(131, 29);
-            btnModificarCli.TabIndex = 25;
-            btnModificarCli.Text = "Modificar cliente";
-            btnModificarCli.UseVisualStyleBackColor = true;
-            btnModificarCli.Click += btnModificarCli_Click;
-            // 
             // btnEliminarCli
             // 
             btnEliminarCli.Enabled = false;
-            btnEliminarCli.Location = new Point(280, 432);
+            btnEliminarCli.Location = new Point(142, 678);
             btnEliminarCli.Name = "btnEliminarCli";
             btnEliminarCli.Size = new Size(122, 29);
             btnEliminarCli.TabIndex = 26;
@@ -304,7 +299,7 @@
             // 
             // btnBuscarCli
             // 
-            btnBuscarCli.Location = new Point(11, 467);
+            btnBuscarCli.Location = new Point(142, 455);
             btnBuscarCli.Name = "btnBuscarCli";
             btnBuscarCli.Size = new Size(125, 29);
             btnBuscarCli.TabIndex = 27;
@@ -314,7 +309,8 @@
             // 
             // btnVolverMenuPrincipal
             // 
-            btnVolverMenuPrincipal.Location = new Point(143, 467);
+            btnVolverMenuPrincipal.Anchor = AnchorStyles.None;
+            btnVolverMenuPrincipal.Location = new Point(-3, 0);
             btnVolverMenuPrincipal.Name = "btnVolverMenuPrincipal";
             btnVolverMenuPrincipal.Size = new Size(259, 29);
             btnVolverMenuPrincipal.TabIndex = 28;
@@ -322,17 +318,49 @@
             btnVolverMenuPrincipal.UseVisualStyleBackColor = true;
             btnVolverMenuPrincipal.Click += BtnVolverMenuPrincipal_Click;
             // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 75F));
+            tableLayoutPanel1.Controls.Add(panel1, 0, 0);
+            tableLayoutPanel1.Controls.Add(dgvClientes, 1, 1);
+            tableLayoutPanel1.Controls.Add(panel2, 0, 1);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 95F));
+            tableLayoutPanel1.Size = new Size(1848, 759);
+            tableLayoutPanel1.TabIndex = 29;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(lblClientes);
+            panel1.Controls.Add(btnVolverMenuPrincipal);
+            panel1.Location = new Point(3, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(438, 31);
+            panel1.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            panel2.Anchor = AnchorStyles.Bottom;
+            panel2.Controls.Add(inpObsCliente);
+            panel2.Controls.Add(btnEliminarCli);
+            panel2.Controls.Add(btnBuscarCli);
+            panel2.Controls.Add(btnAgregarCliente);
+            panel2.Location = new Point(13, 40);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(436, 716);
+            panel2.TabIndex = 2;
+            // 
             // MenuClientes
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1848, 508);
-            Controls.Add(btnVolverMenuPrincipal);
-            Controls.Add(btnBuscarCli);
-            Controls.Add(btnEliminarCli);
-            Controls.Add(btnModificarCli);
-            Controls.Add(btnAgregarCliente);
-            Controls.Add(inpObsCliente);
+            ClientSize = new Size(1848, 759);
             Controls.Add(lblObsCli);
             Controls.Add(inpBalCliente);
             Controls.Add(lblBalCli);
@@ -350,18 +378,22 @@
             Controls.Add(lblDirCli);
             Controls.Add(inpApeCliente);
             Controls.Add(lblApeCli);
-            Controls.Add(inpNomCliente);
             Controls.Add(lblNomCli);
             Controls.Add(inpCodCliente);
             Controls.Add(lblCodCli);
-            Controls.Add(lblClientes);
-            Controls.Add(dgvClientes);
+            Controls.Add(inpNomCliente);
+            Controls.Add(tableLayoutPanel1);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "MenuClientes";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Clientes";
             ((System.ComponentModel.ISupportInitialize)dgvClientes).EndInit();
+            tableLayoutPanel1.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -393,9 +425,11 @@
         private Label lblObsCli;
         private TextBox inpObsCliente;
         private Button btnAgregarCliente;
-        private Button btnModificarCli;
         private Button btnEliminarCli;
         private Button btnBuscarCli;
         private Button btnVolverMenuPrincipal;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Panel panel1;
+        private Panel panel2;
     }
 }

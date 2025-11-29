@@ -13,17 +13,35 @@ namespace SistemaVentas
 {
     public partial class MenuPrincipal : Form
     {
+        private Resizer resizer = new Resizer();
+
         public MenuPrincipal()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Load += MenuPrincipal_Load;
+            resizer.CaptureOriginalSizes(this);
+            this.Resize += MenuPrincipal_Resize;
+
+        }
+
+        private void MenuPrincipal_Resize(object sender, EventArgs e)
+        {
+            resizer.ResizeControls(this);
         }
 
         private void MenuPrincipal_Load(object? sender, EventArgs e)
         {
-            // Redondear todos los paneles existentes en el formulario
+
             RoundedControlHelper.RedondearTodosLosPaneles(this, 20);
+            RoundedControlHelper.RedondearBordes(btnSalir, 9);
+            RoundedControlHelper.RedondearBordes(picArtículos, 40);
+            RoundedControlHelper.RedondearBordes(picClientes, 40);
+            RoundedControlHelper.RedondearBordes(picFacturacion, 40);
+            RoundedControlHelper.RedondearBordes(picDetalles, 40);
+            RoundedControlHelper.RedondearBordes(picUnidadMedida, 40);
+            RoundedControlHelper.RedondearBordes(picConfiguracion, 40);
+            RoundedControlHelper.RedondearBordes(picLogo, 15);
 
             btnSalir.TabStop = false;
             btnSalir.FlatAppearance.BorderSize = 0;

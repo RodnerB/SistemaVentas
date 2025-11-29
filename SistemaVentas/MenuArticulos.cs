@@ -18,15 +18,19 @@ namespace SistemaVentas
         Articulo? articulo = new Articulo();
         bool existeElArticulo = false;
         MenuPrincipal formMenuPrincipal; // referencia al formulario principal
+        private Resizer resizer = new Resizer();
 
         // Constructor con referencia al formulario principal
         public MenuArticulos(MenuPrincipal MenuPrincipal)
         {
             InitializeComponent();
 
+            // Inicializar resizer antes de cualquier cambio de tamaño
+            resizer.CaptureOriginalSizes(this);
+            this.Resize += MenuArticulos_Resize;
+
             // Inicializar estados de los botones: solo Buscar y Volver habilitados
             btnAgregarArt.Enabled = false;
-            btnModificarArt.Enabled = false;
             btnEliminarArt.Enabled = false;
             btnBuscarArt.Enabled = true;
             btnVolverMenuPrincipal.Enabled = true;
@@ -37,7 +41,7 @@ namespace SistemaVentas
             formMenuPrincipal = MenuPrincipal;
             CargarArticulos();
             CargarUnidades(); // <-- Asegurar que el combo se llene al crear el formulario
-  
+
             this.StartPosition = FormStartPosition.CenterScreen;
 
             // Asegurar que el primer cuadro de texto reciba el foco cuando el formulario se muestre
@@ -52,6 +56,11 @@ namespace SistemaVentas
 #pragma warning restore CS8622
                 }
             }
+        }
+
+        private void MenuArticulos_Resize(object? sender, EventArgs e)
+        {
+            resizer.ResizeControls(this);
         }
 
         private void Form3_Shown(object? sender, EventArgs e)
@@ -72,36 +81,7 @@ namespace SistemaVentas
                 MessageBox.Show("Error al cargar artículos: " + ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
-        }
 
-        private void ModificarArticulo(Articulo articulo)
-        {
-            try
-            {
-
-                if (articulo.ActualizarArticulo(articulo))
-                {
-                    MessageBox.Show("Artículo modificado exitosamente.", "Éxito",
-                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CargarArticulos();
-                }
-                else
-                {
-                    MessageBox.Show("No se pudo modificar el artículo.", "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al modificar el artículo: " + ex.Message, "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            existeElArticulo = false;
-            btnAgregarArt.Enabled = false;
-            btnModificarArt.Enabled = false;
-            btnEliminarArt.Enabled = false;
         }
 
         private Articulo? BuscarArticulo(string codigoArticulo)
@@ -132,8 +112,10 @@ namespace SistemaVentas
             {
                 if (existeElArticulo)
                 {
-                    ModificarArticulo(articulo);
-                    CargarArticulos();
+                    // Ya no se permite modificar; informar al usuario y salir
+                    MessageBox.Show("El artículo ya existe. La modificación ha sido deshabilitada.", "Información",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
                 else if (Articulo.InsertarArticulo(articulo))
                 {
@@ -150,7 +132,6 @@ namespace SistemaVentas
             }
             existeElArticulo = false;
             btnAgregarArt.Enabled = false;
-            btnModificarArt.Enabled = false;
             btnEliminarArt.Enabled = false;
             cmbCodUni.SelectedIndex = 0;
         }
@@ -160,7 +141,7 @@ namespace SistemaVentas
             try
             {
                 string codigoArticulo = articulo.CodigoArticulo;
-                if (Articulo.EliminarArticulo(codigoArticulo)) 
+                if (Articulo.EliminarArticulo(codigoArticulo))
                 {
                     MessageBox.Show("Artículo eliminado exitosamente.", "Éxito",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -179,7 +160,6 @@ namespace SistemaVentas
             }
             existeElArticulo = false;
             btnAgregarArt.Enabled = false;
-            btnModificarArt.Enabled = false;
             btnEliminarArt.Enabled = false;
         }
 
@@ -296,18 +276,11 @@ namespace SistemaVentas
             EliminarArticulo(articulo);
         }
 
+        // Mantener un handler vacío/informativo por si el diseñador sigue enlazando el evento
         private void btnModificarArt_Click(object sender, EventArgs e)
         {
-            if (!AdvertenciaDesArt()) return;
-
-            if (!AdvertenciacmbCodUni()) return;
-
-            articulo = ObtenerArticuloEnText();
-
-            if (articulo == null)
-                return;
-
-            ModificarArticulo(articulo);
+            MessageBox.Show("La funcionalidad de modificar artículos ha sido eliminada.", "Información",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnBuscarArt_Click(object sender, EventArgs e)
@@ -331,7 +304,7 @@ namespace SistemaVentas
             else
             {
                 existeElArticulo = false;
-            
+
                 txtDesArt.Clear();
                 txtExiMin.Clear();
                 txtExiMax.Clear();
@@ -341,7 +314,6 @@ namespace SistemaVentas
             }
 
             btnAgregarArt.Enabled = true;
-            btnModificarArt.Enabled = existeElArticulo;
             btnEliminarArt.Enabled = existeElArticulo;
 
             // Mover el cursor automáticamente a la segunda casilla (descripción)
@@ -352,6 +324,8 @@ namespace SistemaVentas
         {
             formMenuPrincipal.Show();
             this.Close();
-        } 
+        }
+
+      
     }
 }
