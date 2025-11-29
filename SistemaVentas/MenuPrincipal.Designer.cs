@@ -48,7 +48,6 @@
             lblConfiguraciónTitulo = new Label();
             pictureBox6 = new PictureBox();
             lblClientesTitulo = new Label();
-            btnSalir = new Button();
             tableLayoutPanel1 = new TableLayoutPanel();
             panelArtículos = new Panel();
             tableLayoutPanel2 = new TableLayoutPanel();
@@ -78,7 +77,7 @@
             tableLayoutPanel16 = new TableLayoutPanel();
             lblClienteSub = new Label();
             lblClienteTitulo = new Label();
-            panel1 = new Panel();
+            btnSalir = new Button();
             panelFacturación.SuspendLayout();
             tableLayoutPanel8.SuspendLayout();
             tableLayoutPanel9.SuspendLayout();
@@ -111,7 +110,6 @@
             tableLayoutPanel15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             tableLayoutPanel16.SuspendLayout();
-            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // lblSistemaDeFacturacion
@@ -315,9 +313,9 @@
             label3.ForeColor = Color.Gray;
             label3.Location = new Point(3, 83);
             label3.Name = "label3";
-            label3.Size = new Size(172, 23);
+            label3.Size = new Size(221, 23);
             label3.TabIndex = 3;
-            label3.Text = "Gestión de unidades";
+            label3.Text = "Configuración de empresa";
             label3.Click += btnConfiguracion_Click;
             // 
             // lblConfiguraciónTitulo
@@ -355,24 +353,6 @@
             lblClientesTitulo.TabIndex = 0;
             lblClientesTitulo.Text = "Clientes";
             // 
-            // btnSalir
-            // 
-            btnSalir.Anchor = AnchorStyles.Right;
-            btnSalir.Cursor = Cursors.Hand;
-            btnSalir.FlatAppearance.BorderColor = Color.DarkGray;
-            btnSalir.FlatAppearance.BorderSize = 10;
-            btnSalir.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            btnSalir.FlatAppearance.MouseOverBackColor = Color.LightGray;
-            btnSalir.FlatStyle = FlatStyle.Flat;
-            btnSalir.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSalir.Location = new Point(44, -9);
-            btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(130, 59);
-            btnSalir.TabIndex = 6;
-            btnSalir.Text = "Salir";
-            btnSalir.UseVisualStyleBackColor = true;
-            btnSalir.Click += btnSalir_Click_1;
-            // 
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.ColumnCount = 3;
@@ -387,7 +367,7 @@
             tableLayoutPanel1.Controls.Add(panelDetalles, 0, 3);
             tableLayoutPanel1.Controls.Add(panel3, 1, 3);
             tableLayoutPanel1.Controls.Add(panelClientes, 1, 2);
-            tableLayoutPanel1.Controls.Add(panel1, 2, 4);
+            tableLayoutPanel1.Controls.Add(btnSalir, 2, 4);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -794,14 +774,22 @@
             lblClienteTitulo.Text = "Clientes";
             lblClienteTitulo.Click += btnClientes_Click;
             // 
-            // panel1
+            // btnSalir
             // 
-            panel1.Anchor = AnchorStyles.Right;
-            panel1.Controls.Add(btnSalir);
-            panel1.Location = new Point(1491, 815);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(174, 39);
-            panel1.TabIndex = 15;
+            btnSalir.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            btnSalir.Cursor = Cursors.Hand;
+            btnSalir.FlatAppearance.BorderSize = 0;
+            btnSalir.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnSalir.FlatAppearance.MouseOverBackColor = Color.Silver;
+            btnSalir.FlatStyle = FlatStyle.Flat;
+            btnSalir.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSalir.Location = new Point(1571, 815);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(94, 39);
+            btnSalir.TabIndex = 15;
+            btnSalir.Text = "Salir";
+            btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click_1;
             // 
             // MenuPrincipal
             // 
@@ -852,7 +840,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             tableLayoutPanel16.ResumeLayout(false);
             tableLayoutPanel16.PerformLayout();
-            panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -866,11 +853,9 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox4;
         internal Panel panelFacturación;
-        private Panel panel1;
         private PictureBox pictureBox6;
         private Label label1;
         private Label lblClientesTitulo;
-        private Button btnSalir;
         private TableLayoutPanel tableLayoutPanel1;
         private Panel panel3;
         private PictureBox pictureBox3;
@@ -906,5 +891,6 @@
         private TableLayoutPanel tableLayoutPanel15;
         private PictureBox pictureBox5;
         private TableLayoutPanel tableLayoutPanel16;
+        private Button btnSalir;
     }
 }

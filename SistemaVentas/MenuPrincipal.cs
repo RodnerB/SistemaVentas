@@ -32,8 +32,9 @@ namespace SistemaVentas
 
         private void MenuPrincipal_Load(object? sender, EventArgs e)
         {
-            // Redondear todos los paneles existentes en el formulario
+            
             RoundedControlHelper.RedondearTodosLosPaneles(this, 20);
+            RoundedControlHelper.RedondearBordes(btnSalir, 15);
 
             btnSalir.TabStop = false;
             btnSalir.FlatAppearance.BorderSize = 0;
