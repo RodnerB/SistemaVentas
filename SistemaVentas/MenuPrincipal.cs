@@ -13,11 +13,21 @@ namespace SistemaVentas
 {
     public partial class MenuPrincipal : Form
     {
+        private Resizer resizer = new Resizer();
+
         public MenuPrincipal()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Load += MenuPrincipal_Load;
+            resizer.CaptureOriginalSizes(this);
+            this.Resize += MenuPrincipal_Resize;
+
+        }
+
+        private void MenuPrincipal_Resize(object sender, EventArgs e)
+        {
+            resizer.ResizeControls(this);
         }
 
         private void MenuPrincipal_Load(object? sender, EventArgs e)

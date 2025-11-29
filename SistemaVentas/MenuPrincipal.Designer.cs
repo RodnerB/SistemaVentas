@@ -53,10 +53,10 @@
             panelArtículos = new Panel();
             tableLayoutPanel2 = new TableLayoutPanel();
             tableLayoutPanel3 = new TableLayoutPanel();
-            picArtículos = new PictureBox();
             tableLayoutPanel4 = new TableLayoutPanel();
             lblArticulosTitulo = new Label();
             lblArticulosSub = new Label();
+            picArtículos = new PictureBox();
             panelDetalles = new Panel();
             tableLayoutPanel11 = new TableLayoutPanel();
             tableLayoutPanel12 = new TableLayoutPanel();
@@ -79,7 +79,6 @@
             lblClienteSub = new Label();
             lblClienteTitulo = new Label();
             panel1 = new Panel();
-            button1 = new Button();
             panelFacturación.SuspendLayout();
             tableLayoutPanel8.SuspendLayout();
             tableLayoutPanel9.SuspendLayout();
@@ -95,8 +94,8 @@
             panelArtículos.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picArtículos).BeginInit();
             tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picArtículos).BeginInit();
             panelDetalles.SuspendLayout();
             tableLayoutPanel11.SuspendLayout();
             tableLayoutPanel12.SuspendLayout();
@@ -121,7 +120,7 @@
             lblSistemaDeFacturacion.AutoSize = true;
             lblSistemaDeFacturacion.Font = new Font("Segoe UI", 28.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblSistemaDeFacturacion.ForeColor = Color.MediumBlue;
-            lblSistemaDeFacturacion.Location = new Point(567, 35);
+            lblSistemaDeFacturacion.Location = new Point(567, 36);
             lblSistemaDeFacturacion.Name = "lblSistemaDeFacturacion";
             lblSistemaDeFacturacion.Size = new Size(532, 62);
             lblSistemaDeFacturacion.TabIndex = 6;
@@ -133,7 +132,7 @@
             lblSubtitulo.AutoSize = true;
             lblSubtitulo.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblSubtitulo.ForeColor = SystemColors.ControlDark;
-            lblSubtitulo.Location = new Point(622, 97);
+            lblSubtitulo.Location = new Point(622, 98);
             lblSubtitulo.Name = "lblSubtitulo";
             lblSubtitulo.Size = new Size(422, 25);
             lblSubtitulo.TabIndex = 8;
@@ -145,7 +144,7 @@
             panelFacturación.BackColor = SystemColors.ButtonHighlight;
             panelFacturación.Controls.Add(tableLayoutPanel8);
             panelFacturación.Cursor = Cursors.Hand;
-            panelFacturación.Location = new Point(1111, 259);
+            panelFacturación.Location = new Point(1111, 262);
             panelFacturación.Margin = new Padding(0, 10, 0, 10);
             panelFacturación.Name = "panelFacturación";
             panelFacturación.Padding = new Padding(10);
@@ -188,9 +187,9 @@
             pictureBox1.Anchor = AnchorStyles.Right;
             pictureBox1.BackColor = Color.Transparent;
             pictureBox1.BackgroundImage = Properties.Resources.billing_machine_payment_device_point_of_sale_transaction_terminal_digital_billing_icon_260865;
-            pictureBox1.Location = new Point(75, 49);
+            pictureBox1.Location = new Point(75, 56);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(71, 74);
+            pictureBox1.Size = new Size(71, 60);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 4;
             pictureBox1.TabStop = false;
@@ -242,7 +241,7 @@
             panel4.BackColor = SystemColors.ButtonHighlight;
             panel4.Controls.Add(tableLayoutPanel17);
             panel4.Cursor = Cursors.Hand;
-            panel4.Location = new Point(1111, 485);
+            panel4.Location = new Point(1111, 488);
             panel4.Margin = new Padding(0, 10, 0, 10);
             panel4.Name = "panel4";
             panel4.Padding = new Padding(10);
@@ -285,9 +284,9 @@
             pictureBox4.Anchor = AnchorStyles.Right;
             pictureBox4.BackColor = Color.Transparent;
             pictureBox4.BackgroundImage = Properties.Resources.settingscog_87317;
-            pictureBox4.Location = new Point(73, 50);
+            pictureBox4.Location = new Point(85, 57);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(73, 73);
+            pictureBox4.Size = new Size(61, 59);
             pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox4.TabIndex = 7;
             pictureBox4.TabStop = false;
@@ -365,9 +364,10 @@
             btnSalir.FlatAppearance.MouseDownBackColor = Color.Transparent;
             btnSalir.FlatAppearance.MouseOverBackColor = Color.LightGray;
             btnSalir.FlatStyle = FlatStyle.Flat;
-            btnSalir.Location = new Point(44, 2);
+            btnSalir.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSalir.Location = new Point(44, -9);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(130, 39);
+            btnSalir.Size = new Size(130, 59);
             btnSalir.TabIndex = 6;
             btnSalir.Text = "Salir";
             btnSalir.UseVisualStyleBackColor = true;
@@ -392,11 +392,11 @@
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 5;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 11.39176F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 5.41108465F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 38.7479134F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 38.7479134F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 5.701325F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 11.4647255F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 5.44574F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 38.99608F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 38.99608F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 5.097373F));
             tableLayoutPanel1.Size = new Size(1668, 857);
             tableLayoutPanel1.TabIndex = 15;
             // 
@@ -406,7 +406,7 @@
             panelArtículos.BackColor = SystemColors.ButtonHighlight;
             panelArtículos.Controls.Add(tableLayoutPanel2);
             panelArtículos.Cursor = Cursors.Hand;
-            panelArtículos.Location = new Point(69, 259);
+            panelArtículos.Location = new Point(69, 262);
             panelArtículos.Margin = new Padding(0, 10, 0, 10);
             panelArtículos.Name = "panelArtículos";
             panelArtículos.Padding = new Padding(10);
@@ -434,8 +434,8 @@
             tableLayoutPanel3.ColumnCount = 2;
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 66.6666641F));
-            tableLayoutPanel3.Controls.Add(picArtículos, 0, 0);
             tableLayoutPanel3.Controls.Add(tableLayoutPanel4, 1, 0);
+            tableLayoutPanel3.Controls.Add(picArtículos, 0, 0);
             tableLayoutPanel3.Location = new Point(18, 16);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
@@ -443,19 +443,6 @@
             tableLayoutPanel3.Size = new Size(450, 173);
             tableLayoutPanel3.TabIndex = 0;
             tableLayoutPanel3.Click += btnArticulos_Click;
-            // 
-            // picArtículos
-            // 
-            picArtículos.Anchor = AnchorStyles.Right;
-            picArtículos.BackColor = Color.Transparent;
-            picArtículos.BackgroundImage = Properties.Resources.box_5124__1_;
-            picArtículos.Location = new Point(75, 46);
-            picArtículos.Name = "picArtículos";
-            picArtículos.Size = new Size(71, 80);
-            picArtículos.SizeMode = PictureBoxSizeMode.Zoom;
-            picArtículos.TabIndex = 3;
-            picArtículos.TabStop = false;
-            picArtículos.Click += btnArticulos_Click;
             // 
             // tableLayoutPanel4
             // 
@@ -498,13 +485,26 @@
             lblArticulosSub.Text = "Gestión de inventario";
             lblArticulosSub.Click += btnArticulos_Click;
             // 
+            // picArtículos
+            // 
+            picArtículos.Anchor = AnchorStyles.Right;
+            picArtículos.BackColor = Color.Transparent;
+            picArtículos.BackgroundImage = Properties.Resources.box_5124;
+            picArtículos.Location = new Point(78, 54);
+            picArtículos.Name = "picArtículos";
+            picArtículos.Size = new Size(68, 64);
+            picArtículos.SizeMode = PictureBoxSizeMode.Zoom;
+            picArtículos.TabIndex = 3;
+            picArtículos.TabStop = false;
+            picArtículos.Click += btnArticulos_Click;
+            // 
             // panelDetalles
             // 
             panelDetalles.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             panelDetalles.BackColor = SystemColors.ButtonHighlight;
             panelDetalles.Controls.Add(tableLayoutPanel11);
             panelDetalles.Cursor = Cursors.Hand;
-            panelDetalles.Location = new Point(69, 485);
+            panelDetalles.Location = new Point(69, 488);
             panelDetalles.Margin = new Padding(0, 10, 0, 10);
             panelDetalles.Name = "panelDetalles";
             panelDetalles.Padding = new Padding(10);
@@ -548,9 +548,9 @@
             pictureBox2.Anchor = AnchorStyles.Right;
             pictureBox2.BackColor = Color.Transparent;
             pictureBox2.BackgroundImage = Properties.Resources.viewdetails_vista_3354;
-            pictureBox2.Location = new Point(85, 50);
+            pictureBox2.Location = new Point(91, 57);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(71, 73);
+            pictureBox2.Size = new Size(65, 59);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 5;
             pictureBox2.TabStop = false;
@@ -603,7 +603,7 @@
             panel3.BackColor = SystemColors.ButtonHighlight;
             panel3.Controls.Add(tableLayoutPanel5);
             panel3.Cursor = Cursors.Hand;
-            panel3.Location = new Point(590, 485);
+            panel3.Location = new Point(590, 488);
             panel3.Margin = new Padding(0, 10, 0, 10);
             panel3.Name = "panel3";
             panel3.Padding = new Padding(10);
@@ -647,9 +647,9 @@
             pictureBox3.Anchor = AnchorStyles.Right;
             pictureBox3.BackColor = Color.Transparent;
             pictureBox3.BackgroundImage = Properties.Resources.hard_drives_icon_173095;
-            pictureBox3.Location = new Point(75, 50);
+            pictureBox3.Location = new Point(75, 53);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(71, 73);
+            pictureBox3.Size = new Size(71, 66);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 6;
             pictureBox3.TabStop = false;
@@ -702,7 +702,7 @@
             panelClientes.BackColor = SystemColors.ButtonHighlight;
             panelClientes.Controls.Add(tableLayoutPanel14);
             panelClientes.Cursor = Cursors.Hand;
-            panelClientes.Location = new Point(590, 259);
+            panelClientes.Location = new Point(590, 262);
             panelClientes.Margin = new Padding(0, 10, 0, 10);
             panelClientes.Name = "panelClientes";
             panelClientes.Padding = new Padding(10);
@@ -745,9 +745,9 @@
             pictureBox5.Anchor = AnchorStyles.Right;
             pictureBox5.BackColor = Color.Transparent;
             pictureBox5.BackgroundImage = Properties.Resources.users_people_workers_customers_icon_124243;
-            pictureBox5.Location = new Point(85, 46);
+            pictureBox5.Location = new Point(94, 54);
             pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(71, 80);
+            pictureBox5.Size = new Size(62, 64);
             pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox5.TabIndex = 4;
             pictureBox5.TabStop = false;
@@ -797,33 +797,15 @@
             // panel1
             // 
             panel1.Anchor = AnchorStyles.Right;
-            panel1.Controls.Add(button1);
             panel1.Controls.Add(btnSalir);
-            panel1.Location = new Point(1491, 810);
+            panel1.Location = new Point(1491, 815);
             panel1.Name = "panel1";
-            panel1.Size = new Size(174, 44);
+            panel1.Size = new Size(174, 39);
             panel1.TabIndex = 15;
-            // 
-            // button1
-            // 
-            button1.BackgroundImage = Properties.Resources.exit_icon_143788;
-            button1.Cursor = Cursors.Hand;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            button1.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.ForeColor = SystemColors.ControlLight;
-            button1.Location = new Point(10, 5);
-            button1.Name = "button1";
-            button1.Size = new Size(32, 32);
-            button1.TabIndex = 7;
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += btnSalir_Click_1;
             // 
             // MenuPrincipal
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = SystemColors.MenuBar;
             ClientSize = new Size(1668, 857);
             Controls.Add(tableLayoutPanel1);
@@ -849,9 +831,9 @@
             panelArtículos.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)picArtículos).EndInit();
             tableLayoutPanel4.ResumeLayout(false);
             tableLayoutPanel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picArtículos).EndInit();
             panelDetalles.ResumeLayout(false);
             tableLayoutPanel11.ResumeLayout(false);
             tableLayoutPanel12.ResumeLayout(false);
@@ -924,6 +906,5 @@
         private TableLayoutPanel tableLayoutPanel15;
         private PictureBox pictureBox5;
         private TableLayoutPanel tableLayoutPanel16;
-        private Button button1;
     }
 }

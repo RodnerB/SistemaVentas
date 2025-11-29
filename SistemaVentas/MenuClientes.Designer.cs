@@ -58,7 +58,10 @@
             btnEliminarCli = new Button();
             btnBuscarCli = new Button();
             btnVolverMenuPrincipal = new Button();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)dgvClientes).BeginInit();
+            tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // dgvClientes
@@ -77,11 +80,11 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
             dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvClientes.Location = new Point(423, 12);
+            dgvClientes.Location = new Point(465, 40);
             dgvClientes.Name = "dgvClientes";
             dgvClientes.RowHeadersVisible = false;
             dgvClientes.RowHeadersWidth = 51;
-            dgvClientes.Size = new Size(1413, 484);
+            dgvClientes.Size = new Size(1380, 484);
             dgvClientes.TabIndex = 0;
             // 
             // lblClientes
@@ -322,11 +325,35 @@
             btnVolverMenuPrincipal.UseVisualStyleBackColor = true;
             btnVolverMenuPrincipal.Click += BtnVolverMenuPrincipal_Click;
             // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 75F));
+            tableLayoutPanel1.Controls.Add(panel1, 0, 0);
+            tableLayoutPanel1.Controls.Add(dgvClientes, 1, 1);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 95F));
+            tableLayoutPanel1.Size = new Size(1848, 759);
+            tableLayoutPanel1.TabIndex = 29;
+            // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.None;
+            panel1.Location = new Point(12, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(438, 31);
+            panel1.TabIndex = 1;
+            // 
             // MenuClientes
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1848, 508);
+            ClientSize = new Size(1848, 759);
             Controls.Add(btnVolverMenuPrincipal);
             Controls.Add(btnBuscarCli);
             Controls.Add(btnEliminarCli);
@@ -350,18 +377,19 @@
             Controls.Add(lblDirCli);
             Controls.Add(inpApeCliente);
             Controls.Add(lblApeCli);
-            Controls.Add(inpNomCliente);
             Controls.Add(lblNomCli);
             Controls.Add(inpCodCliente);
             Controls.Add(lblCodCli);
             Controls.Add(lblClientes);
-            Controls.Add(dgvClientes);
+            Controls.Add(tableLayoutPanel1);
+            Controls.Add(inpNomCliente);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "MenuClientes";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Clientes";
             ((System.ComponentModel.ISupportInitialize)dgvClientes).EndInit();
+            tableLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -397,5 +425,7 @@
         private Button btnEliminarCli;
         private Button btnBuscarCli;
         private Button btnVolverMenuPrincipal;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Panel panel1;
     }
 }
