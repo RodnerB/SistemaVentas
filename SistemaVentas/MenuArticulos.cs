@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
-using Helpers; 
+using SistemaVentas.Utilidades;
 
 namespace SistemaVentas
 {
@@ -89,7 +89,7 @@ namespace SistemaVentas
                 if (c is not TextBox)
                 {
                     // Asegúrate de que RoundedControlHelper esté accesible
-                    Helpers.RoundedControlHelper.RedondearBordes(c, radius);
+                    RoundedControlHelper.RedondearBordes(c, radius);
                 }
 
                 if (c.HasChildren)
