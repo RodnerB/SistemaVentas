@@ -1,7 +1,7 @@
 ﻿using Helpers;
 using System;
 using System.Windows.Forms;
-using SistemaVentas.Utilidades; 
+using SistemaVentas.Utilidades;
 
 namespace SistemaVentas
 {
@@ -17,15 +17,14 @@ namespace SistemaVentas
         {
             InitializeComponent(); // Inicializa los componentes gráficos del formulario
 
-            // Aplicar botones y pasar el handler que gestiona Editar/Eliminar
-            GridHelper.AplicarBotonesEditarEliminar(dgvClientes, DgvClientes_ButtonClick);
+         
 
             // Inicializar resizer antes de cualquier cambio de tamaño y suscribir el evento Resize
             resizer.CaptureOriginalSizes(this);
             this.Resize += MenuClientes_Resize;
 
             formMenuPrincipal = MenuPrincipal; // Guarda la referencia del formulario principal que abrió este formulario
-            CargarClientes();
+            // CargarClientes se realiza en Shown para garantizar que los controles estén creados
             this.StartPosition = FormStartPosition.CenterScreen;
 
             // Aplicar redondeo a todos los controles excepto los TextBox
@@ -50,7 +49,7 @@ namespace SistemaVentas
 
             foreach (Control c in parent.Controls)
             {
-                if (c is TextBox) 
+                if (c is TextBox)
                 {
                     // No redondear TextBox
                 }
@@ -92,12 +91,24 @@ namespace SistemaVentas
         {
             // Ajustar el nombre del control si la primera caja no es `inpCodCliente`
             inpCodCliente?.Focus();
+
+            // Cargar clientes aquí para asegurar que dgvClientes esté inicializado y su handle creado
+            CargarClientes();
         }
 
         private void CargarClientes()
         {
             try
             {
+                // Protección contra paso de null al método que espera un DataGridView no nulo
+                if (dgvClientes == null)
+                {
+                    MessageBox.Show("El control de lista de clientes no está inicializado.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Llamada segura al método que carga datos en el DataGridView
                 Cliente.ObtenerClientes(dgvClientes);
             }
             catch (Exception ex)
@@ -167,7 +178,13 @@ namespace SistemaVentas
         {
             try
             {
-                string codigoCliente = cliente.CodigoCliente;
+                string? codigoCliente = cliente.CodigoCliente;
+                if (string.IsNullOrWhiteSpace(codigoCliente))
+                {
+                    MessageBox.Show("El código del cliente no puede estar vacío.", "Error",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 if (Cliente.eliminarCliente(codigoCliente))
                 {
                     MessageBox.Show("Cliente eliminado exitosamente.", "Éxito",
@@ -354,86 +371,5 @@ namespace SistemaVentas
             // Mover el cursor automáticamente a la segunda casilla (nombre)
             inpNomCliente?.Focus();
         }
-
-        // Handler que conecta los botones del grid con la lógica del formulario
-        private void DgvClientes_ButtonClick(DataGridView grid, DataGridViewCellEventArgs e)
-        {
-            string? accion = GridHelper.DetectarBoton(grid, e, 24, 8, 4);
-            if (accion == null) return;
-
-            // Obtener la fila seleccionada
-            if (e.RowIndex < 0) return;
-            var fila = grid.Rows[e.RowIndex];
-
-            // Intentar leer el código desde la columna CODCLI u otra columna visible
-            string codigo = string.Empty;
-            if (fila.Cells["CODCLI"] != null && fila.Cells["CODCLI"].Value != null)
-                codigo = fila.Cells["CODCLI"].Value.ToString() ?? string.Empty;
-            else
-            {
-                // fallback: primera columna con valor no nulo
-                foreach (DataGridViewCell c in fila.Cells)
-                {
-                    if (c.Value != null)
-                    {
-                        codigo = c.Value.ToString() ?? string.Empty;
-                        break;
-                    }
-                }
-            }
-
-            if (string.IsNullOrWhiteSpace(codigo))
-                return;
-
-            if (accion == "Editar")
-            {
-                // Cargar desde BD para mantener la lógica de validación y tipos
-                Cliente? encontrado = Cliente.ObtenerClientePorCodigo(codigo);
-                if (encontrado == null)
-                {
-                    MessageBox.Show("No se pudo cargar el cliente seleccionado.", "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                cliente = encontrado;
-                existeElCliente = true;
-
-                inpCodCliente.Text = encontrado.CodigoCliente;
-                inpNomCliente.Text = encontrado.NombreCliente;
-                inpApeCliente.Text = encontrado.ApellidoCliente;
-                inpDirCliente.Text = encontrado.DireccionCliente;
-                inpSecCliente.Text = encontrado.SectorCliente;
-                inpCiuCliente.Text = encontrado.CiudadCliente;
-                inpTelCliente.Text = encontrado.TelefonoCliente;
-                inpFaxCliente.Text = encontrado.FaxCliente;
-                inpCredCliente.Text = encontrado.LimiteCreditoCliente.ToString();
-                inpBalCliente.Text = encontrado.BalanceActualCliente.ToString();
-                inpObsCliente.Text = encontrado.ObservacionesCliente;
-
-                btnEliminarCli.Enabled = true;
-                btnAgregarCliente.Enabled = true;
-
-                inpNomCliente?.Focus();
-            }
-            else if (accion == "Eliminar")
-            {
-                var confirm = MessageBox.Show("¿Desea eliminar el cliente seleccionado?", "Confirmar eliminación",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (confirm != DialogResult.Yes) return;
-
-                bool eliminado = Cliente.eliminarCliente(codigo);
-                if (eliminado)
-                {
-                    MessageBox.Show("Cliente eliminado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CargarClientes();
-                }
-                else
-                {
-                    MessageBox.Show("No se pudo eliminar el cliente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
     }
 }
