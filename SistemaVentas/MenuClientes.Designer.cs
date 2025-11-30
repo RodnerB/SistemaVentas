@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
             dgvClientes = new DataGridView();
             lblClientes = new Label();
             btnVolverMenuPrincipal = new Button();
@@ -67,11 +67,11 @@
             inpObsCliente = new TextBox();
             lblCodCli = new Label();
             tableLayoutPanel6 = new TableLayoutPanel();
+            btnAgregarCliente = new Button();
             label3 = new Label();
             panel3 = new Panel();
             tableLayoutPanel4 = new TableLayoutPanel();
             label4 = new Label();
-            btnAgregarCliente = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvClientes).BeginInit();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
@@ -99,37 +99,37 @@
             dgvClientes.BorderStyle = BorderStyle.None;
             dgvClientes.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dgvClientes.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = SystemColors.Control;
+            dataGridViewCellStyle13.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle13.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle13.SelectionForeColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.False;
+            dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.ButtonHighlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvClientes.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = SystemColors.Window;
+            dataGridViewCellStyle14.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle14.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = SystemColors.ButtonHighlight;
+            dataGridViewCellStyle14.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.False;
+            dgvClientes.DefaultCellStyle = dataGridViewCellStyle14;
             dgvClientes.Dock = DockStyle.Fill;
             dgvClientes.EnableHeadersVisualStyles = false;
             dgvClientes.GridColor = SystemColors.HighlightText;
             dgvClientes.Location = new Point(3, 74);
             dgvClientes.Name = "dgvClientes";
             dgvClientes.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvClientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = SystemColors.Control;
+            dataGridViewCellStyle15.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle15.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle15.SelectionForeColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.True;
+            dgvClientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
             dgvClientes.RowHeadersVisible = false;
             dgvClientes.RowHeadersWidth = 51;
             dgvClientes.Size = new Size(1392, 691);
@@ -538,16 +538,37 @@
             // 
             // tableLayoutPanel6
             // 
-            tableLayoutPanel6.Anchor = AnchorStyles.Top;
+            tableLayoutPanel6.Anchor = AnchorStyles.None;
             tableLayoutPanel6.ColumnCount = 1;
             tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel6.Controls.Add(btnAgregarCliente, 0, 0);
-            tableLayoutPanel6.Location = new Point(106, 662);
+            tableLayoutPanel6.Location = new Point(43, 662);
             tableLayoutPanel6.Name = "tableLayoutPanel6";
             tableLayoutPanel6.RowCount = 1;
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel6.Size = new Size(250, 103);
+            tableLayoutPanel6.Size = new Size(375, 103);
             tableLayoutPanel6.TabIndex = 30;
+            // 
+            // btnAgregarCliente
+            // 
+            btnAgregarCliente.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            btnAgregarCliente.BackColor = SystemColors.HotTrack;
+            btnAgregarCliente.Cursor = Cursors.Hand;
+            btnAgregarCliente.Enabled = false;
+            btnAgregarCliente.FlatAppearance.BorderColor = Color.White;
+            btnAgregarCliente.FlatAppearance.BorderSize = 0;
+            btnAgregarCliente.FlatAppearance.MouseDownBackColor = Color.Silver;
+            btnAgregarCliente.FlatAppearance.MouseOverBackColor = Color.Silver;
+            btnAgregarCliente.FlatStyle = FlatStyle.Flat;
+            btnAgregarCliente.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAgregarCliente.ForeColor = SystemColors.ButtonHighlight;
+            btnAgregarCliente.Location = new Point(3, 3);
+            btnAgregarCliente.Name = "btnAgregarCliente";
+            btnAgregarCliente.Size = new Size(369, 28);
+            btnAgregarCliente.TabIndex = 24;
+            btnAgregarCliente.Text = "+ Agregar ";
+            btnAgregarCliente.UseVisualStyleBackColor = false;
+            btnAgregarCliente.Click += btnAgregarCliente_Click;
             // 
             // label3
             // 
@@ -595,27 +616,6 @@
             label4.Size = new Size(285, 46);
             label4.TabIndex = 1;
             label4.Text = "Lista de Clientes ";
-            // 
-            // btnAgregarCliente
-            // 
-            btnAgregarCliente.Anchor = AnchorStyles.Top;
-            btnAgregarCliente.BackColor = Color.ForestGreen;
-            btnAgregarCliente.Cursor = Cursors.Hand;
-            btnAgregarCliente.Enabled = false;
-            btnAgregarCliente.FlatAppearance.BorderColor = Color.White;
-            btnAgregarCliente.FlatAppearance.BorderSize = 0;
-            btnAgregarCliente.FlatAppearance.MouseDownBackColor = Color.Silver;
-            btnAgregarCliente.FlatAppearance.MouseOverBackColor = Color.Silver;
-            btnAgregarCliente.FlatStyle = FlatStyle.Flat;
-            btnAgregarCliente.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnAgregarCliente.ForeColor = SystemColors.ButtonHighlight;
-            btnAgregarCliente.Location = new Point(3, 3);
-            btnAgregarCliente.Name = "btnAgregarCliente";
-            btnAgregarCliente.Size = new Size(244, 28);
-            btnAgregarCliente.TabIndex = 24;
-            btnAgregarCliente.Text = "Agregar cliente";
-            btnAgregarCliente.UseVisualStyleBackColor = false;
-            btnAgregarCliente.Click += btnAgregarCliente_Click;
             // 
             // MenuClientes
             // 
