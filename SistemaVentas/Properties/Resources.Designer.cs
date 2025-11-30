@@ -204,6 +204,26 @@ namespace SistemaVentas.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap return_up_back_icon_233992 {
+            get {
+                object obj = ResourceManager.GetObject("return_up_back_icon_233992", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap return_up_back_icon_233992__1_ {
+            get {
+                object obj = ResourceManager.GetObject("return_up_back_icon_233992 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap settingscog_87317 {
             get {
                 object obj = ResourceManager.GetObject("settingscog_87317", resourceCulture);
