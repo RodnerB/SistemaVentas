@@ -127,14 +127,14 @@
   <data name="billing_machine_payment_device_point_of_sale_transaction_terminal_digital_billing_icon_260865" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\billing_machine_payment_device_point_of_sale_transaction_terminal_digital_billing_icon_260865.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="cloud_money_system_icon_175829" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cloud_money_system_icon_175829.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="users_people_workers_customers_icon_124243" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\users_people_workers_customers_icon_124243.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="exitdoor_87195 (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\exitdoor_87195 (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="4115231-dashboard-stats_114039" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\4115231-dashboard-stats_114039.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="box" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\box.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,11 +148,14 @@
   <data name="exit_icon_143788" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\exit_icon_143788.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="settingscog_87317" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\settingscog_87317.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="4115231-dashboard-stats_114039" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\4115231-dashboard-stats_114039.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="viewdetails_vista_3354" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\viewdetails_vista_3354.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="settingscog_87317" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\settingscog_87317.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="hard_drives_icon_173095" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hard_drives_icon_173095.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -166,7 +169,7 @@
   <data name="packages (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\packages (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="cloud_money_system_icon_175829" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cloud_money_system_icon_175829.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="return_up_back_icon_233992 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\return_up_back_icon_233992 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
