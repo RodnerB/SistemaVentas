@@ -1,8 +1,8 @@
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-namespace Helpers
+namespace SistemaVentas.Utilidades
 {
     public static class RoundedControlHelper
     {
@@ -25,8 +25,14 @@ namespace Helpers
 
             ApplyRegion(control);
 
-            // Reaplicar cuando cambie el tama�o
-            control.Resize += (s, e) => ApplyRegion((Control)s);
+            // Reaplicar cuando cambie el tamaño
+            control.Resize += (s, e) =>
+            {
+                if (s is Control c && c != null)
+                {
+                    ApplyRegion(c);
+                }
+            };
         }
 
         public static void RedondearTodosLosPaneles(Control parent, int radius)
