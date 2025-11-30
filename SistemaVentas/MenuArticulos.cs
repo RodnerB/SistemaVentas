@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
+using Helpers; 
 
 namespace SistemaVentas
 {
@@ -17,44 +18,53 @@ namespace SistemaVentas
     {
         Articulo? articulo = new Articulo();
         bool existeElArticulo = false;
-        MenuPrincipal formMenuPrincipal; // referencia al formulario principal
+        MenuPrincipal? formMenuPrincipal; // ahora nullable para soportar diseñador
         private Resizer resizer = new Resizer();
 
-        // Constructor con referencia al formulario principal
-        public MenuArticulos(MenuPrincipal MenuPrincipal)
+        // Constructor con referencia al formulario principal (opcional para el diseñador)
+        public MenuArticulos(MenuPrincipal? MenuPrincipal = null)
         {
             InitializeComponent();
 
-            // Inicializar resizer antes de cualquier cambio de tamaño
-            resizer.CaptureOriginalSizes(this);
-            this.Resize += MenuArticulos_Resize;
-
-            // Inicializar estados de los botones: solo Buscar y Volver habilitados
-            btnAgregarArt.Enabled = false;
-            btnEliminarArt.Enabled = false;
-            btnBuscarArt.Enabled = true;
-            btnVolverMenuPrincipal.Enabled = true;
-
-            // Permitir que Enter active el botón de agregar cuando esté habilitado
-            this.AcceptButton = btnAgregarArt;
-
             formMenuPrincipal = MenuPrincipal;
-            CargarArticulos();
-            CargarUnidades(); // <-- Asegurar que el combo se llene al crear el formulario
-
             this.StartPosition = FormStartPosition.CenterScreen;
 
-            // Asegurar que el primer cuadro de texto reciba el foco cuando el formulario se muestre
-            this.Shown += Form3_Shown;
+            // Asegurar que el botón "volver" ejecute el handler (si existe en el diseñador)
+            if (btnVolverMenuPrincipal is not null)
+                btnVolverMenuPrincipal.Click += BtnVolverMenuPrincipal_Click;
 
-            foreach (Control c in this.Controls)
+            // Evitar ejecutar lógica que puede fallar en tiempo de diseño
+            if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
             {
-                if (c is TextBox)
-                {
-#pragma warning disable CS8622
-                    c.KeyDown += EventoMoverConEnter;
-#pragma warning restore CS8622
-                }
+                // Inicializar resizer antes de cualquier cambio de tamaño
+                resizer.CaptureOriginalSizes(this);
+                this.Resize += MenuArticulos_Resize;
+
+                // Inicializar estados de los botones: solo Buscar y Volver habilitados
+                btnAgregarArt.Enabled = false;
+                btnEliminarArt.Enabled = false;
+                btnBuscarArt.Enabled = true;
+                if (btnVolverMenuPrincipal is not null)
+                    btnVolverMenuPrincipal.Enabled = true;
+
+                // Permitir que Enter active el botón de agregar cuando esté habilitado
+                this.AcceptButton = btnAgregarArt;
+
+                CargarArticulos();
+                CargarUnidades(); // <-- Asegurar que el combo se llene al crear el formulario
+
+                // Asegurar que el primer cuadro de texto reciba el foco cuando el formulario se muestre
+                this.Shown += Form3_Shown;
+
+                // Aplicar redondeos y asignar KeyDown recursivamente
+                ApplyRoundedExceptTextBoxes(this, 12);
+                AttachKeyDownToTextBoxes(this);
+            }
+            else
+            {
+                // En modo diseño evitar acceso a recursos o datos; pero conservar estados básicos si es necesario
+                btnAgregarArt.Enabled = false;
+                btnEliminarArt.Enabled = false;
             }
         }
 
@@ -67,6 +77,54 @@ namespace SistemaVentas
         {
             // Ajustar el nombre del control si el primer textbox tiene otro nombre
             txtCodArt?.Focus();
+        }
+
+        // Recorre recursivamente el árbol de controles y aplica el helper salvo a los TextBox
+        private void ApplyRoundedExceptTextBoxes(Control parent, int radius)
+        {
+            if (parent == null) return;
+
+            foreach (Control c in parent.Controls)
+            {
+                if (c is not TextBox)
+                {
+                    // Asegúrate de que RoundedControlHelper esté accesible
+                    Helpers.RoundedControlHelper.RedondearBordes(c, radius);
+                }
+
+                if (c.HasChildren)
+                    ApplyRoundedExceptTextBoxes(c, radius);
+            }
+        }
+
+        // Asigna el evento KeyDown a todos los TextBox, incluso dentro de contenedores
+        private void AttachKeyDownToTextBoxes(Control parent)
+        {
+            if (parent == null) return;
+
+            foreach (Control c in parent.Controls)
+            {
+                if (c is TextBox txt)
+                {
+#pragma warning disable CS8622
+                    txt.KeyDown += EventoMoverConEnter;
+#pragma warning restore CS8622
+                }
+
+                if (c.HasChildren)
+                    AttachKeyDownToTextBoxes(c);
+            }
+        }
+
+        // Handler para volver al menú principal
+        private void BtnVolverMenuPrincipal_Click(object? sender, EventArgs e)
+        {
+            if (formMenuPrincipal is not null)
+            {
+                formMenuPrincipal.Show();
+                this.Hide();
+            }
+            // si es null (modo diseño o invocado sin referencia) no hace nada
         }
 
         // Método para cargar los artículos en el DataGridView
@@ -184,7 +242,6 @@ namespace SistemaVentas
                 this.SelectNextControl(origen, true, true, true, true);
             }
         }
-
 
         private void CargarUnidades()
         {
@@ -319,13 +376,5 @@ namespace SistemaVentas
             // Mover el cursor automáticamente a la segunda casilla (descripción)
             txtDesArt?.Focus();
         }
-
-        private void btnVolverMenuPrincipal_Click_1(object sender, EventArgs e)
-        {
-            formMenuPrincipal.Show();
-            this.Close();
-        }
-
-      
     }
 }
