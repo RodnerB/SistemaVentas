@@ -67,13 +67,11 @@
             inpObsCliente = new TextBox();
             lblCodCli = new Label();
             tableLayoutPanel6 = new TableLayoutPanel();
-            btnAgregarCliente = new Button();
-            btnEliminarCli = new Button();
-            btnBuscarCli = new Button();
             label3 = new Label();
             panel3 = new Panel();
             tableLayoutPanel4 = new TableLayoutPanel();
             label4 = new Label();
+            btnAgregarCliente = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvClientes).BeginInit();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
@@ -543,79 +541,13 @@
             tableLayoutPanel6.Anchor = AnchorStyles.Top;
             tableLayoutPanel6.ColumnCount = 1;
             tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel6.Controls.Add(btnAgregarCliente, 0, 1);
-            tableLayoutPanel6.Controls.Add(btnEliminarCli, 0, 2);
-            tableLayoutPanel6.Controls.Add(btnBuscarCli, 0, 0);
+            tableLayoutPanel6.Controls.Add(btnAgregarCliente, 0, 0);
             tableLayoutPanel6.Location = new Point(106, 662);
             tableLayoutPanel6.Name = "tableLayoutPanel6";
-            tableLayoutPanel6.RowCount = 3;
-            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel6.RowCount = 1;
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel6.Size = new Size(250, 103);
             tableLayoutPanel6.TabIndex = 30;
-            // 
-            // btnAgregarCliente
-            // 
-            btnAgregarCliente.Anchor = AnchorStyles.Top;
-            btnAgregarCliente.BackColor = Color.ForestGreen;
-            btnAgregarCliente.Cursor = Cursors.Hand;
-            btnAgregarCliente.Enabled = false;
-            btnAgregarCliente.FlatAppearance.BorderColor = Color.White;
-            btnAgregarCliente.FlatAppearance.BorderSize = 0;
-            btnAgregarCliente.FlatAppearance.MouseDownBackColor = Color.Silver;
-            btnAgregarCliente.FlatAppearance.MouseOverBackColor = Color.Silver;
-            btnAgregarCliente.FlatStyle = FlatStyle.Flat;
-            btnAgregarCliente.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnAgregarCliente.ForeColor = SystemColors.ButtonHighlight;
-            btnAgregarCliente.Location = new Point(3, 37);
-            btnAgregarCliente.Name = "btnAgregarCliente";
-            btnAgregarCliente.Size = new Size(244, 28);
-            btnAgregarCliente.TabIndex = 24;
-            btnAgregarCliente.Text = "Agregar cliente";
-            btnAgregarCliente.UseVisualStyleBackColor = false;
-            btnAgregarCliente.Click += btnAgregarCliente_Click;
-            // 
-            // btnEliminarCli
-            // 
-            btnEliminarCli.Anchor = AnchorStyles.Top;
-            btnEliminarCli.BackColor = Color.Red;
-            btnEliminarCli.Cursor = Cursors.Hand;
-            btnEliminarCli.Enabled = false;
-            btnEliminarCli.FlatAppearance.BorderColor = Color.White;
-            btnEliminarCli.FlatAppearance.BorderSize = 0;
-            btnEliminarCli.FlatAppearance.MouseDownBackColor = Color.Silver;
-            btnEliminarCli.FlatAppearance.MouseOverBackColor = Color.Silver;
-            btnEliminarCli.FlatStyle = FlatStyle.Flat;
-            btnEliminarCli.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnEliminarCli.ForeColor = SystemColors.ButtonHighlight;
-            btnEliminarCli.Location = new Point(3, 71);
-            btnEliminarCli.Name = "btnEliminarCli";
-            btnEliminarCli.Size = new Size(244, 28);
-            btnEliminarCli.TabIndex = 26;
-            btnEliminarCli.Text = "Eliminar cliente";
-            btnEliminarCli.UseVisualStyleBackColor = false;
-            btnEliminarCli.Click += btnEliminarCli_Click;
-            // 
-            // btnBuscarCli
-            // 
-            btnBuscarCli.Anchor = AnchorStyles.Top;
-            btnBuscarCli.BackColor = SystemColors.Highlight;
-            btnBuscarCli.Cursor = Cursors.Hand;
-            btnBuscarCli.FlatAppearance.BorderColor = Color.White;
-            btnBuscarCli.FlatAppearance.BorderSize = 0;
-            btnBuscarCli.FlatAppearance.MouseDownBackColor = Color.Silver;
-            btnBuscarCli.FlatAppearance.MouseOverBackColor = Color.Silver;
-            btnBuscarCli.FlatStyle = FlatStyle.Flat;
-            btnBuscarCli.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnBuscarCli.ForeColor = SystemColors.ButtonHighlight;
-            btnBuscarCli.Location = new Point(3, 3);
-            btnBuscarCli.Name = "btnBuscarCli";
-            btnBuscarCli.Size = new Size(244, 28);
-            btnBuscarCli.TabIndex = 27;
-            btnBuscarCli.Text = "Buscar cliente";
-            btnBuscarCli.UseVisualStyleBackColor = false;
-            btnBuscarCli.Click += btnBuscarCli_Click;
             // 
             // label3
             // 
@@ -663,6 +595,27 @@
             label4.Size = new Size(285, 46);
             label4.TabIndex = 1;
             label4.Text = "Lista de Clientes ";
+            // 
+            // btnAgregarCliente
+            // 
+            btnAgregarCliente.Anchor = AnchorStyles.Top;
+            btnAgregarCliente.BackColor = Color.ForestGreen;
+            btnAgregarCliente.Cursor = Cursors.Hand;
+            btnAgregarCliente.Enabled = false;
+            btnAgregarCliente.FlatAppearance.BorderColor = Color.White;
+            btnAgregarCliente.FlatAppearance.BorderSize = 0;
+            btnAgregarCliente.FlatAppearance.MouseDownBackColor = Color.Silver;
+            btnAgregarCliente.FlatAppearance.MouseOverBackColor = Color.Silver;
+            btnAgregarCliente.FlatStyle = FlatStyle.Flat;
+            btnAgregarCliente.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAgregarCliente.ForeColor = SystemColors.ButtonHighlight;
+            btnAgregarCliente.Location = new Point(3, 3);
+            btnAgregarCliente.Name = "btnAgregarCliente";
+            btnAgregarCliente.Size = new Size(244, 28);
+            btnAgregarCliente.TabIndex = 24;
+            btnAgregarCliente.Text = "Agregar cliente";
+            btnAgregarCliente.UseVisualStyleBackColor = false;
+            btnAgregarCliente.Click += btnAgregarCliente_Click;
             // 
             // MenuClientes
             // 
@@ -728,9 +681,6 @@
         private TableLayoutPanel tableLayoutPanel3;
         private Panel panel3;
         private TableLayoutPanel tableLayoutPanel4;
-        private Button btnBuscarCli;
-        private Button btnAgregarCliente;
-        private Button btnEliminarCli;
         private TableLayoutPanel tableLayoutPanel5;
         private TableLayoutPanel tableLayoutPanel6;
         private Label label3;
@@ -739,5 +689,6 @@
         private TableLayoutPanel tableLayoutPanel8;
         private PictureBox picClientes;
         private Label label5;
+        private Button btnAgregarCliente;
     }
 }

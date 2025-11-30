@@ -160,7 +160,6 @@ namespace SistemaVentas
             }
             existeElCliente = false;
             btnAgregarCliente.Enabled = false;
-            btnEliminarCli.Enabled = false;
 
         }
 
@@ -188,7 +187,6 @@ namespace SistemaVentas
             }
             existeElCliente = false;
             btnAgregarCliente.Enabled = false;
-            btnEliminarCli.Enabled = false;
         }
 
         // Evento del botón para volver al menú principal
@@ -237,7 +235,6 @@ namespace SistemaVentas
                     inpBalCliente.Text = encontrado.BalanceActualCliente.ToString();
                     inpObsCliente.Text = encontrado.ObservacionesCliente;
 
-                    btnEliminarCli.Enabled = true;
                     btnAgregarCliente.Enabled = true;
 
                     inpNomCliente?.Focus();
@@ -261,7 +258,6 @@ namespace SistemaVentas
 
                 existeElCliente = false;
                 btnAgregarCliente.Enabled = true;
-                btnEliminarCli.Enabled = false;
 
                 inpNomCliente?.Focus();
                 return;
@@ -349,7 +345,6 @@ namespace SistemaVentas
             }
 
 
-            btnEliminarCli.Enabled = existeElCliente;
             btnAgregarCliente.Enabled = true;
 
             // Mover el cursor automáticamente a la segunda casilla (nombre)
