@@ -13,13 +13,19 @@ namespace SistemaVentas
         bool existeElCliente = false;
         MenuPrincipal formMenuPrincipal; // variable de referencia al formulario principal
 
+        // Nuevo: guarda el último control que tuvo el foco (para restaurarlo tras un MessageBox)
+        private Control? ultimoControlConFoco;
+
         public MenuClientes(MenuPrincipal MenuPrincipal)
         {
             InitializeComponent(); // Inicializa los componentes gráficos del formulario
 
-        
-            
-
+            // Asegurar que el botón Buscar esté habilitado y que tenga su handler
+            if (btnBuscarCli is not null)
+            {
+                btnBuscarCli.Enabled = true;
+                btnBuscarCli.Click += btnBuscarCli_Click;
+            }
 
             // Inicializar resizer antes de cualquier cambio de tamaño y suscribir el evento Resize
             resizer.CaptureOriginalSizes(this);
@@ -69,6 +75,7 @@ namespace SistemaVentas
         }
 
         // Añadido: asigna el evento KeyDown a todos los TextBox, incluso dentro de contenedores
+        // también suscribe Enter para registrar el último control con foco
         private void AttachKeyDownToTextBoxes(Control parent)
         {
             if (parent == null) return;
@@ -80,6 +87,8 @@ namespace SistemaVentas
 #pragma warning disable CS8622
                     txt.KeyDown += EventoMoverConEnter;
 #pragma warning restore CS8622
+                    // Registrar el control cuando reciba foco
+                    txt.Enter += (s, e) => { ultimoControlConFoco = txt; };
                 }
 
                 if (c.HasChildren)
@@ -93,6 +102,23 @@ namespace SistemaVentas
         {
             // Ajustar el nombre del control si la primera caja no es `inpCodCliente`
             inpCodCliente?.Focus();
+            ultimoControlConFoco = inpCodCliente;
+        }
+
+        // Nuevo helper: mostrar advertencia por campo vacío sin borrar otros campos
+        // y restaurar el foco en el último control con foco (o en controlAFocar si se pasa)
+        private void MostrarAdvertenciaCampoVacio(string mensaje, Control? controlAFocar = null)
+        {
+            MessageBox.Show(mensaje, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            // Priorizar el control pasado; si es null, usar el último control que tuvo foco
+            Control? objetivo = controlAFocar ?? ultimoControlConFoco;
+
+            // Restaurar foco (usar BeginInvoke para asegurarnos de que ocurra después del MessageBox)
+            if (objetivo is not null)
+            {
+                this.BeginInvoke(() => objetivo.Focus());
+            }
         }
 
         private void CargarClientes()
@@ -133,34 +159,35 @@ namespace SistemaVentas
             }
         }
 
-        private void GuardarCliente(Cliente cliente)
+  
+        private bool GuardarCliente(Cliente cliente)
         {
             try
             {
-                if (existeElCliente)
-                {
-                    // La modificación ha sido eliminada; informar al usuario
-                    MessageBox.Show("El cliente ya existe. La modificación ha sido deshabilitada.", "Información",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-                else if (cliente.InsertarCliente())
+                
+
+                // Intentar insertar; InsertarCliente debe validar los campos y devolver false si faltan datos
+                if (cliente.InsertarCliente())
                 {
                     MessageBox.Show("Cliente guardado exitosamente", "Exito",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarClientes(); // Recarga la lista de clientes después de agregar uno
+
+                    // Estado post-inserción
+                    existeElCliente = false;
+                    btnAgregarCliente.Enabled = false;
+                    return true;
                 }
 
+                // Si InsertarCliente devolvió false, no hacer limpiezas; el método responsabiliza de mostrar mensajes
+                return false;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error en la base de datos: " + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                return false;
             }
-            existeElCliente = false;
-            btnAgregarCliente.Enabled = false;
-
         }
 
         private void EliminarCliente(Cliente cliente)
@@ -212,9 +239,8 @@ namespace SistemaVentas
                 // Requiere que haya texto para validar existencia
                 if (string.IsNullOrWhiteSpace(inpCodCliente?.Text))
                 {
-                    MessageBox.Show("Debe introducir el código del cliente antes de continuar.", "Advertencia",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    inpCodCliente?.Focus();
+                    // Usar helper: muestra advertencia y mantiene otros campos intactos
+                    MostrarAdvertenciaCampoVacio("Debe introducir el código del cliente antes de continuar.", inpCodCliente);
                     return; // NO avanzar si está vacío
                 }
 
@@ -240,10 +266,6 @@ namespace SistemaVentas
                     inpNomCliente?.Focus();
                     return;
                 }
-
-                // Si no existe, permitir crear uno nuevo: limpiar campos salvo el código, habilitar Agregar y avanzar
-                MessageBox.Show("Cliente no encontrado. Puede crear uno nuevo introduciendo los datos.", "Información",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 inpNomCliente?.Clear();
                 inpApeCliente?.Clear();
@@ -285,12 +307,21 @@ namespace SistemaVentas
         }
 
 
-        private void btnAgregarCliente_Click(object sender, EventArgs e)
+        private void btnAgregarCliente_Click(object? sender, EventArgs e)
         {
             cliente = ObtenerClienteEnInputs();
-            GuardarCliente(cliente);
 
-            // Limpiar casillas después de agregar
+            // Intentar guardar; sólo limpiar campos si la inserción fue exitosa
+            bool guardado = GuardarCliente(cliente);
+            if (!guardado)
+            {
+                // No borrar los campos — deja los datos para que el usuario corrija
+                // Asegurar que el foco vuelva al control donde estaba el cursor
+                MostrarAdvertenciaCampoVacio("Faltan datos o validación fallida. Corrija los campos marcados.", null);
+                return;
+            }
+
+            // Limpiar casillas después de agregar (solo si guardado con éxito)
             inpCodCliente?.Clear();
             inpNomCliente?.Clear();
             inpApeCliente?.Clear();
@@ -313,14 +344,13 @@ namespace SistemaVentas
             EliminarCliente(cliente);
         }
 
-        private void btnBuscarCli_Click(object sender, EventArgs e)
+        private void btnBuscarCli_Click(object? sender, EventArgs e)
         {
             // Validar que se ha introducido un código antes de buscar
             if (string.IsNullOrWhiteSpace(inpCodCliente?.Text))
             {
-                MessageBox.Show("Debe introducir el código del cliente a buscar.", "Advertencia",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                inpCodCliente?.Focus();
+                // Usar helper para aviso por campo vacío sin borrar otros campos
+                MostrarAdvertenciaCampoVacio("Debe introducir el código del cliente a buscar.", inpCodCliente);
                 return;
             }
 
@@ -344,11 +374,11 @@ namespace SistemaVentas
                 existeElCliente = false;
             }
 
-
             btnAgregarCliente.Enabled = true;
 
             // Mover el cursor automáticamente a la segunda casilla (nombre)
             inpNomCliente?.Focus();
+            ultimoControlConFoco = inpNomCliente;
         }
 
     }

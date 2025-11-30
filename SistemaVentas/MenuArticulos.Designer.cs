@@ -49,13 +49,15 @@
             btnAgregarArt = new Button();
             btnEliminarArt = new Button();
             btnBuscarArt = new Button();
-            btnVolverMenuPrincipal = new Button();
             tableLayoutPanel1 = new TableLayoutPanel();
             panel1 = new Panel();
+            btnVolverMenuPrincipal = new Button();
+            tableLayoutPanel2 = new TableLayoutPanel();
             panel2 = new Panel();
             ((System.ComponentModel.ISupportInitialize)dgvArticulos).BeginInit();
             tableLayoutPanel1.SuspendLayout();
-            panel2.SuspendLayout();
+            panel1.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
             SuspendLayout();
             // 
             // dgvArticulos
@@ -65,11 +67,12 @@
             dgvArticulos.AllowUserToResizeRows = false;
             dgvArticulos.BackgroundColor = SystemColors.ButtonHighlight;
             dgvArticulos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvArticulos.Location = new Point(0, 64);
+            dgvArticulos.Dock = DockStyle.Fill;
+            dgvArticulos.Location = new Point(3, 113);
             dgvArticulos.Name = "dgvArticulos";
             dgvArticulos.RowHeadersVisible = false;
             dgvArticulos.RowHeadersWidth = 51;
-            dgvArticulos.Size = new Size(771, 644);
+            dgvArticulos.Size = new Size(815, 592);
             dgvArticulos.TabIndex = 0;
             // 
             // lblArticulos
@@ -141,7 +144,7 @@
             // 
             // txtExiMin
             // 
-            txtExiMin.Location = new Point(150, 143);
+            txtExiMin.Location = new Point(299, 101);
             txtExiMin.Name = "txtExiMin";
             txtExiMin.Size = new Size(252, 27);
             txtExiMin.TabIndex = 9;
@@ -240,51 +243,67 @@
             btnBuscarArt.UseVisualStyleBackColor = true;
             btnBuscarArt.Click += btnBuscarArt_Click;
             // 
-            // btnVolverMenuPrincipal
-            // 
-            btnVolverMenuPrincipal.Location = new Point(3, 3);
-            btnVolverMenuPrincipal.Name = "btnVolverMenuPrincipal";
-            btnVolverMenuPrincipal.Size = new Size(55, 29);
-            btnVolverMenuPrincipal.TabIndex = 22;
-            btnVolverMenuPrincipal.Text = "Volver al menú principal";
-            btnVolverMenuPrincipal.UseVisualStyleBackColor = true;
-            btnVolverMenuPrincipal.Click += btnVolverMenuPrincipal_Click_1;
-            // 
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.BackColor = Color.AliceBlue;
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 500F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Controls.Add(btnVolverMenuPrincipal, 0, 0);
-            tableLayoutPanel1.Controls.Add(panel1, 0, 1);
-            tableLayoutPanel1.Controls.Add(panel2, 1, 1);
-            tableLayoutPanel1.Location = new Point(-127, 0);
+            tableLayoutPanel1.Controls.Add(panel1, 0, 0);
+            tableLayoutPanel1.Controls.Add(btnVolverMenuPrincipal, 1, 0);
+            tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 1, 1);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 3;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 90F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
-            tableLayoutPanel1.Size = new Size(1453, 794);
+            tableLayoutPanel1.Size = new Size(1327, 794);
             tableLayoutPanel1.TabIndex = 23;
             // 
             // panel1
             // 
             panel1.Anchor = AnchorStyles.None;
             panel1.BackColor = SystemColors.ButtonHighlight;
-            panel1.Location = new Point(3, 42);
+            panel1.Controls.Add(txtExiMin);
+            panel1.Location = new Point(148, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(494, 708);
+            panel1.Size = new Size(203, 33);
             panel1.TabIndex = 0;
+            // 
+            // btnVolverMenuPrincipal
+            // 
+            btnVolverMenuPrincipal.Location = new Point(503, 3);
+            btnVolverMenuPrincipal.Name = "btnVolverMenuPrincipal";
+            btnVolverMenuPrincipal.Size = new Size(160, 33);
+            btnVolverMenuPrincipal.TabIndex = 22;
+            btnVolverMenuPrincipal.Text = "Volver al menú principal";
+            btnVolverMenuPrincipal.UseVisualStyleBackColor = true;
+            btnVolverMenuPrincipal.Click += Form3_Shown;
+            // 
+            // tableLayoutPanel2
+            // 
+            tableLayoutPanel2.ColumnCount = 1;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel2.Controls.Add(dgvArticulos, 0, 1);
+            tableLayoutPanel2.Controls.Add(panel2, 0, 0);
+            tableLayoutPanel2.Dock = DockStyle.Fill;
+            tableLayoutPanel2.Location = new Point(503, 42);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 2;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 15.5975695F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 84.4024353F));
+            tableLayoutPanel2.Size = new Size(821, 708);
+            tableLayoutPanel2.TabIndex = 23;
             // 
             // panel2
             // 
-            panel2.Anchor = AnchorStyles.None;
             panel2.BackColor = SystemColors.ButtonHighlight;
-            panel2.Controls.Add(dgvArticulos);
-            panel2.Location = new Point(591, 42);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(3, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(771, 708);
+            panel2.Size = new Size(815, 104);
             panel2.TabIndex = 1;
             // 
             // MenuArticulos
@@ -303,7 +322,6 @@
             Controls.Add(lblExiAct);
             Controls.Add(txtExiMax);
             Controls.Add(lblExiMax);
-            Controls.Add(txtExiMin);
             Controls.Add(lblExiMin);
             Controls.Add(cmbCodUni);
             Controls.Add(lblCodUni);
@@ -318,7 +336,9 @@
             WindowState = FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)dgvArticulos).EndInit();
             tableLayoutPanel1.ResumeLayout(false);
-            panel2.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            tableLayoutPanel2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -346,9 +366,10 @@
         private Button btnAgregarArt;
         private Button btnEliminarArt;
         private Button btnBuscarArt;
-        private Button btnVolverMenuPrincipal;
         private TableLayoutPanel tableLayoutPanel1;
         private Panel panel2;
         private Panel panel1;
+        private Button btnVolverMenuPrincipal;
+        private TableLayoutPanel tableLayoutPanel2;
     }
 }
