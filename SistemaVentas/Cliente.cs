@@ -44,17 +44,17 @@ namespace SistemaVentas
 
         private static Dictionary<string, string> clientesHeaders = new()
         {
-            {"CODCLI", "Código Cliente" },
-            {"NOMCLI", "Nombre Cliente" },
-            {"APECLI", "Apellido Cliente" },
-            {"DIRCLI", "Dirección Cliente" },
-            {"SECCLI", "Sector Cliente" },
-            {"CIUCLI", "Ciudad Cliente" },
-            {"TELCLI", "Teléfono Cliente" },
-            {"NUMFAX", "Fax Cliente" },
-            {"LIMCRE", "Límite Créditicio Cliente" },
-            {"BALCLI", "Balance Actual Cliente" },
-            {"OBSCLI", "Observaciones Cliente" }
+            {"CODCLI", "Código" },
+            {"NOMCLI", "Nombre" },
+            {"APECLI", "Apellido" },
+            {"DIRCLI", "Dirección" },
+            {"SECCLI", "Sector" },
+            {"CIUCLI", "Ciudad" },
+            {"TELCLI", "Teléfono" },
+            {"NUMFAX", "Fax" },
+            {"LIMCRE", "Límite Créditicio" },
+            {"BALCLI", "Balance Actual" },
+            {"OBSCLI", "Observaciones" }
         };
 
         public Cliente() { }

@@ -13,9 +13,33 @@ namespace SistemaVentas.Utilidades
             Dictionary<string, string> encabezados)
         {
             gridView.DataSource = tabla;
-            foreach(var encabezado in encabezados)
+
+            gridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            gridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
+            DataGridViewColumn? obsCol = null;
+
+            if (gridView.Columns.Contains("OBSCLI"))
             {
-                if(gridView.Columns.Contains(encabezado.Key))
+                obsCol = gridView.Columns["OBSCLI"];
+            }
+            else
+            {
+                foreach (DataGridViewColumn col in gridView.Columns)
+                {
+                    if (string.Equals(col.HeaderText, "Observaciones",
+                        StringComparison.OrdinalIgnoreCase))
+                    {
+                        obsCol = col;
+                        break;
+                    }
+                }
+            }
+
+            foreach (var encabezado in encabezados)
+            {
+                if (gridView.Columns.Contains(encabezado.Key))
                 {
                     gridView.Columns[encabezado.Key].HeaderText = encabezado.Value;
                 }

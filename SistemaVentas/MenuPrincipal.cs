@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Helpers;
+using SistemaVentas.Utilidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Helpers;
 
 namespace SistemaVentas
 {
@@ -25,7 +26,7 @@ namespace SistemaVentas
 
         }
 
-        private void MenuPrincipal_Resize(object sender, EventArgs e)
+        private void MenuPrincipal_Resize(object? sender, EventArgs e)
         {
             resizer.ResizeControls(this);
         }

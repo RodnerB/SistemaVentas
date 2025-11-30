@@ -26,7 +26,9 @@ public class Resizer
             Control = control,
             OriginalLocation = control.Location,
             OriginalSize = control.Size,
-            OriginalFontSize = control.Font.Size
+            OriginalFontSize = control.Font.Size,
+            OriginalFontStyle = control.Font.Style,
+            OriginalFontFamily = control.Font.FontFamily
         });
 
         foreach (Control child in control.Controls)
@@ -48,18 +50,22 @@ public class Resizer
                 (int)(item.OriginalSize.Width * xRatio),
                 (int)(item.OriginalSize.Height * yRatio));
 
+            // Crear la nueva fuente conservando la familia y el estilo original
             item.Control.Font = new Font(
-                item.Control.Font.FontFamily,
-                item.OriginalFontSize * Math.Min(xRatio, yRatio)
+                item.OriginalFontFamily,
+                item.OriginalFontSize * Math.Min(xRatio, yRatio),
+                item.OriginalFontStyle
             );
         }
     }
 
     private class ControlOriginalData
     {
-        public Control Control;
-        public Point OriginalLocation;
-        public Size OriginalSize;
-        public float OriginalFontSize;
+        public required Control Control;
+        public required Point OriginalLocation;
+        public required Size OriginalSize;
+        public required float OriginalFontSize;
+        public required FontStyle OriginalFontStyle;
+        public required FontFamily OriginalFontFamily;
     }
 }
