@@ -590,7 +590,7 @@
             btnAgregarCliente.Name = "btnAgregarCliente";
             btnAgregarCliente.Size = new Size(369, 28);
             btnAgregarCliente.TabIndex = 24;
-            btnAgregarCliente.Text = "+ Agregar ";
+            btnAgregarCliente.Text = "Guardar cliente ";
             btnAgregarCliente.UseVisualStyleBackColor = false;
             btnAgregarCliente.Click += btnAgregarCliente_Click;
             // 
