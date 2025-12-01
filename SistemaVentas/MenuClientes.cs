@@ -57,7 +57,7 @@ namespace SistemaVentas
 
             foreach (Control c in parent.Controls)
             {
-                if (c is TextBox) 
+                if (c is TextBox)
                 {
                     // No redondear TextBox
                 }
@@ -159,12 +159,12 @@ namespace SistemaVentas
             }
         }
 
-  
+
         private bool GuardarCliente(Cliente cliente)
         {
             try
             {
-                
+
 
                 // Intentar insertar; InsertarCliente debe validar los campos y devolver false si faltan datos
                 if (cliente.InsertarCliente())
@@ -380,6 +380,5 @@ namespace SistemaVentas
             inpNomCliente?.Focus();
             ultimoControlConFoco = inpNomCliente;
         }
-
     }
 }

@@ -42,7 +42,6 @@ namespace SistemaVentas
 
                 // Inicializar estados de los botones: solo Buscar y Volver habilitados
                 btnAgregarArt.Enabled = false;
-                btnEliminarArt.Enabled = false;
                 btnBuscarArt.Enabled = true;
                 if (btnVolverMenuPrincipal is not null)
                     btnVolverMenuPrincipal.Enabled = true;
@@ -64,7 +63,6 @@ namespace SistemaVentas
             {
                 // En modo diseño evitar acceso a recursos o datos; pero conservar estados básicos si es necesario
                 btnAgregarArt.Enabled = false;
-                btnEliminarArt.Enabled = false;
             }
         }
 
@@ -84,11 +82,23 @@ namespace SistemaVentas
         {
             if (parent == null) return;
 
+            // Aplicar al propio control si no es TextBox (por ejemplo: GroupBox, Panel, Button, ComboBox, etc.)
+            if (parent is not TextBox)
+            {
+                try
+                {
+                    RoundedControlHelper.RedondearBordes(parent, radius);
+                }
+                catch
+                {
+                    // Si hay controles que el helper no puede procesar, ignorar para no romper el formulario
+                }
+            }
+
             foreach (Control c in parent.Controls)
             {
                 if (c is not TextBox)
                 {
-                    // Asegúrate de que RoundedControlHelper esté accesible
                     RoundedControlHelper.RedondearBordes(c, radius);
                 }
 
@@ -190,7 +200,6 @@ namespace SistemaVentas
             }
             existeElArticulo = false;
             btnAgregarArt.Enabled = false;
-            btnEliminarArt.Enabled = false;
             cmbCodUni.SelectedIndex = 0;
         }
 
@@ -218,7 +227,6 @@ namespace SistemaVentas
             }
             existeElArticulo = false;
             btnAgregarArt.Enabled = false;
-            btnEliminarArt.Enabled = false;
         }
 
         private void EventoMoverConEnter(object sender, KeyEventArgs e)
@@ -371,10 +379,10 @@ namespace SistemaVentas
             }
 
             btnAgregarArt.Enabled = true;
-            btnEliminarArt.Enabled = existeElArticulo;
 
             // Mover el cursor automáticamente a la segunda casilla (descripción)
             txtDesArt?.Focus();
         }
-    }
+
+    }   
 }

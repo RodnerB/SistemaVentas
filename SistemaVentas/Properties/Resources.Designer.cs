@@ -124,6 +124,16 @@ namespace SistemaVentas.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap box_51241 {
+            get {
+                object obj = ResourceManager.GetObject("box_51241", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cloud_money_system_icon_175829 {
             get {
                 object obj = ResourceManager.GetObject("cloud_money_system_icon_175829", resourceCulture);
@@ -237,6 +247,16 @@ namespace SistemaVentas.Properties {
         internal static System.Drawing.Bitmap users_people_workers_customers_icon_124243 {
             get {
                 object obj = ResourceManager.GetObject("users_people_workers_customers_icon_124243", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap users_people_workers_customers_icon_1242431 {
+            get {
+                object obj = ResourceManager.GetObject("users_people_workers_customers_icon_1242431", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
