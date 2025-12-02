@@ -35,10 +35,10 @@
             panelFacturación = new Panel();
             tableLayoutPanel8 = new TableLayoutPanel();
             tableLayoutPanel9 = new TableLayoutPanel();
-            picFacturacion = new PictureBox();
             tableLayoutPanel10 = new TableLayoutPanel();
             lblFacturacionTitulo = new Label();
             lblFacturaciónSub = new Label();
+            picFacturacion = new PictureBox();
             panel4 = new Panel();
             tableLayoutPanel17 = new TableLayoutPanel();
             tableLayoutPanel18 = new TableLayoutPanel();
@@ -80,8 +80,8 @@
             panelFacturación.SuspendLayout();
             tableLayoutPanel8.SuspendLayout();
             tableLayoutPanel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picFacturacion).BeginInit();
             tableLayoutPanel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picFacturacion).BeginInit();
             panel4.SuspendLayout();
             tableLayoutPanel17.SuspendLayout();
             tableLayoutPanel18.SuspendLayout();
@@ -168,8 +168,8 @@
             tableLayoutPanel9.ColumnCount = 2;
             tableLayoutPanel9.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel9.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 66.6666641F));
-            tableLayoutPanel9.Controls.Add(picFacturacion, 0, 0);
             tableLayoutPanel9.Controls.Add(tableLayoutPanel10, 1, 0);
+            tableLayoutPanel9.Controls.Add(picFacturacion, 0, 0);
             tableLayoutPanel9.Location = new Point(19, 16);
             tableLayoutPanel9.Name = "tableLayoutPanel9";
             tableLayoutPanel9.RowCount = 1;
@@ -177,19 +177,6 @@
             tableLayoutPanel9.Size = new Size(450, 173);
             tableLayoutPanel9.TabIndex = 0;
             tableLayoutPanel9.Click += btnFacturacion_Click;
-            // 
-            // picFacturacion
-            // 
-            picFacturacion.Anchor = AnchorStyles.Right;
-            picFacturacion.BackColor = Color.Transparent;
-            picFacturacion.BackgroundImage = Properties.Resources._1492617381_9_sheet_data_spreadsheets_file_google_suit_service_83434;
-            picFacturacion.Location = new Point(81, 54);
-            picFacturacion.Name = "picFacturacion";
-            picFacturacion.Size = new Size(65, 64);
-            picFacturacion.SizeMode = PictureBoxSizeMode.Zoom;
-            picFacturacion.TabIndex = 4;
-            picFacturacion.TabStop = false;
-            picFacturacion.Click += btnFacturacion_Click;
             // 
             // tableLayoutPanel10
             // 
@@ -205,7 +192,7 @@
             tableLayoutPanel10.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel10.Size = new Size(295, 167);
             tableLayoutPanel10.TabIndex = 0;
-            tableLayoutPanel10.Click += btnConfiguracion_Click;
+            tableLayoutPanel10.Click += btnFacturacion_Click;
             // 
             // lblFacturacionTitulo
             // 
@@ -231,6 +218,19 @@
             lblFacturaciónSub.TabIndex = 1;
             lblFacturaciónSub.Text = "Crear facturas ";
             lblFacturaciónSub.Click += btnFacturacion_Click;
+            // 
+            // picFacturacion
+            // 
+            picFacturacion.Anchor = AnchorStyles.Right;
+            picFacturacion.BackColor = Color.Transparent;
+            picFacturacion.BackgroundImage = Properties.Resources._1492617381_9_sheet_data_spreadsheets_file_google_suit_service_83434;
+            picFacturacion.Location = new Point(81, 54);
+            picFacturacion.Name = "picFacturacion";
+            picFacturacion.Size = new Size(65, 64);
+            picFacturacion.SizeMode = PictureBoxSizeMode.Zoom;
+            picFacturacion.TabIndex = 4;
+            picFacturacion.TabStop = false;
+            picFacturacion.Click += btnFacturacion_Click;
             // 
             // panel4
             // 
@@ -787,9 +787,9 @@
             panelFacturación.ResumeLayout(false);
             tableLayoutPanel8.ResumeLayout(false);
             tableLayoutPanel9.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)picFacturacion).EndInit();
             tableLayoutPanel10.ResumeLayout(false);
             tableLayoutPanel10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picFacturacion).EndInit();
             panel4.ResumeLayout(false);
             tableLayoutPanel17.ResumeLayout(false);
             tableLayoutPanel18.ResumeLayout(false);

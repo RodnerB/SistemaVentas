@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             dgvArticulos = new DataGridView();
             lblCosArt = new Label();
             lblPreArt = new Label();
@@ -102,23 +102,23 @@
             dgvArticulos.BorderStyle = BorderStyle.None;
             dgvArticulos.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dgvArticulos.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = SystemColors.Control;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle7.ForeColor = Color.Black;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.ButtonHighlight;
-            dataGridViewCellStyle7.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dgvArticulos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.ButtonHighlight;
+            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvArticulos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvArticulos.ColumnHeadersHeight = 20;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = SystemColors.ButtonHighlight;
-            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle8.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = SystemColors.ButtonHighlight;
-            dataGridViewCellStyle8.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
-            dgvArticulos.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.ButtonHighlight;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.ButtonHighlight;
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvArticulos.DefaultCellStyle = dataGridViewCellStyle2;
             dgvArticulos.EnableHeadersVisualStyles = false;
             dgvArticulos.GridColor = Color.White;
             dgvArticulos.Location = new Point(3, 75);
@@ -174,7 +174,7 @@
             btnBuscarArt.Cursor = Cursors.Hand;
             btnBuscarArt.FlatAppearance.BorderSize = 0;
             btnBuscarArt.FlatAppearance.MouseDownBackColor = Color.Silver;
-            btnBuscarArt.FlatAppearance.MouseOverBackColor = Color.FromArgb(224, 224, 224);
+            btnBuscarArt.FlatAppearance.MouseOverBackColor = Color.Silver;
             btnBuscarArt.FlatStyle = FlatStyle.Flat;
             btnBuscarArt.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnBuscarArt.ForeColor = SystemColors.ButtonHighlight;
@@ -626,11 +626,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1872, 864);
             Controls.Add(tableLayoutPanel1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "MenuArticulos";
             StartPosition = FormStartPosition.CenterScreen;
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            MaximizeBox = true;
-            MinimizeBox = true;
             Text = "Artículos";
             WindowState = FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)dgvArticulos).EndInit();

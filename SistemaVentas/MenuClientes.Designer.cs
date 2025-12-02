@@ -277,9 +277,9 @@
             tableLayoutPanel5.Location = new Point(0, 0);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 3;
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 9.563578F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 76.43229F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 14.0625F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 9.558F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 76.3877F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 14.0542974F));
             tableLayoutPanel5.Size = new Size(436, 768);
             tableLayoutPanel5.TabIndex = 0;
             // 
@@ -352,9 +352,9 @@
             // inpBalCliente
             // 
             inpBalCliente.Anchor = AnchorStyles.None;
-            inpBalCliente.Location = new Point(77, 500);
+            inpBalCliente.Location = new Point(34, 500);
             inpBalCliente.Name = "inpBalCliente";
-            inpBalCliente.Size = new Size(276, 27);
+            inpBalCliente.Size = new Size(362, 27);
             inpBalCliente.TabIndex = 21;
             // 
             // lblBalCli
@@ -370,9 +370,9 @@
             // inpCredCliente
             // 
             inpCredCliente.Anchor = AnchorStyles.None;
-            inpCredCliente.Location = new Point(77, 447);
+            inpCredCliente.Location = new Point(34, 447);
             inpCredCliente.Name = "inpCredCliente";
-            inpCredCliente.Size = new Size(276, 27);
+            inpCredCliente.Size = new Size(362, 27);
             inpCredCliente.TabIndex = 19;
             // 
             // lblNumCre
@@ -388,9 +388,9 @@
             // inpFaxCliente
             // 
             inpFaxCliente.Anchor = AnchorStyles.None;
-            inpFaxCliente.Location = new Point(77, 394);
+            inpFaxCliente.Location = new Point(34, 394);
             inpFaxCliente.Name = "inpFaxCliente";
-            inpFaxCliente.Size = new Size(276, 27);
+            inpFaxCliente.Size = new Size(362, 27);
             inpFaxCliente.TabIndex = 17;
             // 
             // lblFax
@@ -406,9 +406,9 @@
             // inpTelCliente
             // 
             inpTelCliente.Anchor = AnchorStyles.None;
-            inpTelCliente.Location = new Point(77, 341);
+            inpTelCliente.Location = new Point(34, 341);
             inpTelCliente.Name = "inpTelCliente";
-            inpTelCliente.Size = new Size(276, 27);
+            inpTelCliente.Size = new Size(362, 27);
             inpTelCliente.TabIndex = 15;
             // 
             // lblTelCli
@@ -424,9 +424,9 @@
             // inpCiuCliente
             // 
             inpCiuCliente.Anchor = AnchorStyles.None;
-            inpCiuCliente.Location = new Point(77, 288);
+            inpCiuCliente.Location = new Point(34, 288);
             inpCiuCliente.Name = "inpCiuCliente";
-            inpCiuCliente.Size = new Size(276, 27);
+            inpCiuCliente.Size = new Size(362, 27);
             inpCiuCliente.TabIndex = 13;
             // 
             // lblCiuCli
@@ -442,9 +442,9 @@
             // inpSecCliente
             // 
             inpSecCliente.Anchor = AnchorStyles.None;
-            inpSecCliente.Location = new Point(77, 235);
+            inpSecCliente.Location = new Point(34, 235);
             inpSecCliente.Name = "inpSecCliente";
-            inpSecCliente.Size = new Size(276, 27);
+            inpSecCliente.Size = new Size(362, 27);
             inpSecCliente.TabIndex = 11;
             // 
             // lblSecCli
@@ -460,9 +460,9 @@
             // inpDirCliente
             // 
             inpDirCliente.Anchor = AnchorStyles.None;
-            inpDirCliente.Location = new Point(77, 182);
+            inpDirCliente.Location = new Point(34, 182);
             inpDirCliente.Name = "inpDirCliente";
-            inpDirCliente.Size = new Size(276, 27);
+            inpDirCliente.Size = new Size(362, 27);
             inpDirCliente.TabIndex = 9;
             // 
             // lblDirCli
@@ -478,9 +478,9 @@
             // inpApeCliente
             // 
             inpApeCliente.Anchor = AnchorStyles.None;
-            inpApeCliente.Location = new Point(77, 129);
+            inpApeCliente.Location = new Point(34, 129);
             inpApeCliente.Name = "inpApeCliente";
-            inpApeCliente.Size = new Size(276, 27);
+            inpApeCliente.Size = new Size(362, 27);
             inpApeCliente.TabIndex = 7;
             // 
             // lblApeCli
@@ -496,9 +496,9 @@
             // inpNomCliente
             // 
             inpNomCliente.Anchor = AnchorStyles.None;
-            inpNomCliente.Location = new Point(77, 76);
+            inpNomCliente.Location = new Point(34, 76);
             inpNomCliente.Name = "inpNomCliente";
-            inpNomCliente.Size = new Size(276, 27);
+            inpNomCliente.Size = new Size(362, 27);
             inpNomCliente.TabIndex = 5;
             // 
             // lblNomCli
@@ -514,17 +514,17 @@
             // inpCodCliente
             // 
             inpCodCliente.Anchor = AnchorStyles.None;
-            inpCodCliente.Location = new Point(77, 23);
+            inpCodCliente.Location = new Point(34, 23);
             inpCodCliente.Name = "inpCodCliente";
-            inpCodCliente.Size = new Size(276, 27);
+            inpCodCliente.Size = new Size(362, 27);
             inpCodCliente.TabIndex = 3;
             // 
             // inpObsCliente
             // 
             inpObsCliente.Anchor = AnchorStyles.Top;
-            inpObsCliente.Location = new Point(77, 553);
+            inpObsCliente.Location = new Point(34, 553);
             inpObsCliente.Name = "inpObsCliente";
-            inpObsCliente.Size = new Size(276, 27);
+            inpObsCliente.Size = new Size(362, 27);
             inpObsCliente.TabIndex = 23;
             // 
             // lblCodCli
@@ -651,6 +651,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Clientes";
             WindowState = FormWindowState.Maximized;
+            Load += MenuClientes_Load;
             ((System.ComponentModel.ISupportInitialize)dgvClientes).EndInit();
             tableLayoutPanel1.ResumeLayout(false);
             panel1.ResumeLayout(false);

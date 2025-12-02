@@ -380,5 +380,10 @@ namespace SistemaVentas
             inpNomCliente?.Focus();
             ultimoControlConFoco = inpNomCliente;
         }
+
+        private void MenuClientes_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

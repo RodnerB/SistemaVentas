@@ -73,6 +73,26 @@ namespace SistemaVentas.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _1492617381_9_sheet_data_spreadsheets_file_google_suit_service_83434__1_ {
+            get {
+                object obj = ResourceManager.GetObject("1492617381-9-sheet-data-spreadsheets-file-google-suit-service_83434 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _1492617381_9_sheet_data_spreadsheets_file_google_suit_service_83434__2_ {
+            get {
+                object obj = ResourceManager.GetObject("1492617381-9-sheet-data-spreadsheets-file-google-suit-service_83434 (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _4115231_dashboard_stats_114039 {
             get {
                 object obj = ResourceManager.GetObject("4115231-dashboard-stats_114039", resourceCulture);
@@ -187,6 +207,56 @@ namespace SistemaVentas.Properties {
         internal static System.Drawing.Bitmap hard_drives_icon_173095 {
             get {
                 object obj = ResourceManager.GetObject("hard_drives_icon_173095", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap invoice_icon_213786 {
+            get {
+                object obj = ResourceManager.GetObject("invoice_icon_213786", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap invoice_icon_213786__1_ {
+            get {
+                object obj = ResourceManager.GetObject("invoice_icon_213786 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap invoice_icon_213786__2_ {
+            get {
+                object obj = ResourceManager.GetObject("invoice_icon_213786 (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap invoice_icon_213786__3_ {
+            get {
+                object obj = ResourceManager.GetObject("invoice_icon_213786 (3)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap invoice_icon_213786__4_ {
+            get {
+                object obj = ResourceManager.GetObject("invoice_icon_213786 (4)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
