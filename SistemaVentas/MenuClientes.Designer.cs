@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             dgvClientes = new DataGridView();
             lblClientes = new Label();
             btnVolverMenuPrincipal = new Button();
@@ -100,37 +100,37 @@
             dgvClientes.BorderStyle = BorderStyle.None;
             dgvClientes.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dgvClientes.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Window;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.ButtonHighlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dgvClientes.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.ButtonHighlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvClientes.DefaultCellStyle = dataGridViewCellStyle2;
             dgvClientes.Dock = DockStyle.Fill;
             dgvClientes.EnableHeadersVisualStyles = false;
             dgvClientes.GridColor = SystemColors.HighlightText;
             dgvClientes.Location = new Point(3, 74);
             dgvClientes.Name = "dgvClientes";
             dgvClientes.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Control;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgvClientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvClientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvClientes.RowHeadersVisible = false;
             dgvClientes.RowHeadersWidth = 51;
             dgvClientes.Size = new Size(1392, 691);
@@ -202,17 +202,17 @@
             tableLayoutPanel8.Name = "tableLayoutPanel8";
             tableLayoutPanel8.RowCount = 1;
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel8.Size = new Size(76, 58);
+            tableLayoutPanel8.Size = new Size(52, 58);
             tableLayoutPanel8.TabIndex = 31;
             // 
             // picClientes
             // 
             picClientes.Anchor = AnchorStyles.Right;
-            picClientes.BackColor = SystemColors.HotTrack;
-            picClientes.BackgroundImage = Properties.Resources.users_people_workers_customers_icon_124243;
-            picClientes.Location = new Point(8, 3);
+            picClientes.BackColor = Color.Transparent;
+            picClientes.BackgroundImage = Properties.Resources.users_people_workers_customers_icon_1242431;
+            picClientes.Location = new Point(3, 7);
             picClientes.Name = "picClientes";
-            picClientes.Size = new Size(65, 52);
+            picClientes.Size = new Size(46, 44);
             picClientes.SizeMode = PictureBoxSizeMode.Zoom;
             picClientes.TabIndex = 5;
             picClientes.TabStop = false;
@@ -221,15 +221,15 @@
             // 
             tableLayoutPanel7.ColumnCount = 1;
             tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel7.Controls.Add(lblClientes, 0, 0);
             tableLayoutPanel7.Controls.Add(label5, 0, 1);
+            tableLayoutPanel7.Controls.Add(lblClientes, 0, 0);
             tableLayoutPanel7.Dock = DockStyle.Right;
-            tableLayoutPanel7.Location = new Point(129, 0);
+            tableLayoutPanel7.Location = new Point(105, 0);
             tableLayoutPanel7.Name = "tableLayoutPanel7";
             tableLayoutPanel7.RowCount = 2;
             tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel7.Size = new Size(333, 58);
+            tableLayoutPanel7.Size = new Size(357, 58);
             tableLayoutPanel7.TabIndex = 30;
             // 
             // label5
@@ -268,7 +268,7 @@
             // 
             // tableLayoutPanel5
             // 
-            tableLayoutPanel5.Anchor = AnchorStyles.None;
+            tableLayoutPanel5.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel5.ColumnCount = 1;
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel5.Controls.Add(tableLayoutPanel3, 0, 1);
@@ -334,8 +334,8 @@
             tableLayoutPanel3.RowStyles.Add(new RowStyle());
             tableLayoutPanel3.RowStyles.Add(new RowStyle());
             tableLayoutPanel3.RowStyles.Add(new RowStyle());
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle());
+            tableLayoutPanel3.RowStyles.Add(new RowStyle());
             tableLayoutPanel3.Size = new Size(430, 580);
             tableLayoutPanel3.TabIndex = 29;
             // 
@@ -352,9 +352,9 @@
             // inpBalCliente
             // 
             inpBalCliente.Anchor = AnchorStyles.None;
-            inpBalCliente.Location = new Point(27, 500);
+            inpBalCliente.Location = new Point(77, 500);
             inpBalCliente.Name = "inpBalCliente";
-            inpBalCliente.Size = new Size(376, 27);
+            inpBalCliente.Size = new Size(276, 27);
             inpBalCliente.TabIndex = 21;
             // 
             // lblBalCli
@@ -370,9 +370,9 @@
             // inpCredCliente
             // 
             inpCredCliente.Anchor = AnchorStyles.None;
-            inpCredCliente.Location = new Point(27, 447);
+            inpCredCliente.Location = new Point(77, 447);
             inpCredCliente.Name = "inpCredCliente";
-            inpCredCliente.Size = new Size(376, 27);
+            inpCredCliente.Size = new Size(276, 27);
             inpCredCliente.TabIndex = 19;
             // 
             // lblNumCre
@@ -388,9 +388,9 @@
             // inpFaxCliente
             // 
             inpFaxCliente.Anchor = AnchorStyles.None;
-            inpFaxCliente.Location = new Point(27, 394);
+            inpFaxCliente.Location = new Point(77, 394);
             inpFaxCliente.Name = "inpFaxCliente";
-            inpFaxCliente.Size = new Size(376, 27);
+            inpFaxCliente.Size = new Size(276, 27);
             inpFaxCliente.TabIndex = 17;
             // 
             // lblFax
@@ -406,9 +406,9 @@
             // inpTelCliente
             // 
             inpTelCliente.Anchor = AnchorStyles.None;
-            inpTelCliente.Location = new Point(27, 341);
+            inpTelCliente.Location = new Point(77, 341);
             inpTelCliente.Name = "inpTelCliente";
-            inpTelCliente.Size = new Size(376, 27);
+            inpTelCliente.Size = new Size(276, 27);
             inpTelCliente.TabIndex = 15;
             // 
             // lblTelCli
@@ -424,9 +424,9 @@
             // inpCiuCliente
             // 
             inpCiuCliente.Anchor = AnchorStyles.None;
-            inpCiuCliente.Location = new Point(27, 288);
+            inpCiuCliente.Location = new Point(77, 288);
             inpCiuCliente.Name = "inpCiuCliente";
-            inpCiuCliente.Size = new Size(376, 27);
+            inpCiuCliente.Size = new Size(276, 27);
             inpCiuCliente.TabIndex = 13;
             // 
             // lblCiuCli
@@ -442,9 +442,9 @@
             // inpSecCliente
             // 
             inpSecCliente.Anchor = AnchorStyles.None;
-            inpSecCliente.Location = new Point(27, 235);
+            inpSecCliente.Location = new Point(77, 235);
             inpSecCliente.Name = "inpSecCliente";
-            inpSecCliente.Size = new Size(376, 27);
+            inpSecCliente.Size = new Size(276, 27);
             inpSecCliente.TabIndex = 11;
             // 
             // lblSecCli
@@ -460,9 +460,9 @@
             // inpDirCliente
             // 
             inpDirCliente.Anchor = AnchorStyles.None;
-            inpDirCliente.Location = new Point(27, 182);
+            inpDirCliente.Location = new Point(77, 182);
             inpDirCliente.Name = "inpDirCliente";
-            inpDirCliente.Size = new Size(376, 27);
+            inpDirCliente.Size = new Size(276, 27);
             inpDirCliente.TabIndex = 9;
             // 
             // lblDirCli
@@ -478,9 +478,9 @@
             // inpApeCliente
             // 
             inpApeCliente.Anchor = AnchorStyles.None;
-            inpApeCliente.Location = new Point(27, 129);
+            inpApeCliente.Location = new Point(77, 129);
             inpApeCliente.Name = "inpApeCliente";
-            inpApeCliente.Size = new Size(376, 27);
+            inpApeCliente.Size = new Size(276, 27);
             inpApeCliente.TabIndex = 7;
             // 
             // lblApeCli
@@ -496,9 +496,9 @@
             // inpNomCliente
             // 
             inpNomCliente.Anchor = AnchorStyles.None;
-            inpNomCliente.Location = new Point(27, 76);
+            inpNomCliente.Location = new Point(77, 76);
             inpNomCliente.Name = "inpNomCliente";
-            inpNomCliente.Size = new Size(376, 27);
+            inpNomCliente.Size = new Size(276, 27);
             inpNomCliente.TabIndex = 5;
             // 
             // lblNomCli
@@ -514,17 +514,17 @@
             // inpCodCliente
             // 
             inpCodCliente.Anchor = AnchorStyles.None;
-            inpCodCliente.Location = new Point(27, 23);
+            inpCodCliente.Location = new Point(77, 23);
             inpCodCliente.Name = "inpCodCliente";
-            inpCodCliente.Size = new Size(376, 27);
+            inpCodCliente.Size = new Size(276, 27);
             inpCodCliente.TabIndex = 3;
             // 
             // inpObsCliente
             // 
             inpObsCliente.Anchor = AnchorStyles.Top;
-            inpObsCliente.Location = new Point(27, 553);
+            inpObsCliente.Location = new Point(77, 553);
             inpObsCliente.Name = "inpObsCliente";
-            inpObsCliente.Size = new Size(376, 27);
+            inpObsCliente.Size = new Size(276, 27);
             inpObsCliente.TabIndex = 23;
             // 
             // lblCodCli
@@ -544,12 +544,12 @@
             tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel6.Controls.Add(btnBuscarCli, 0, 0);
             tableLayoutPanel6.Controls.Add(btnAgregarCliente, 0, 1);
-            tableLayoutPanel6.Location = new Point(30, 662);
+            tableLayoutPanel6.Location = new Point(77, 662);
             tableLayoutPanel6.Name = "tableLayoutPanel6";
             tableLayoutPanel6.RowCount = 2;
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 50.0024948F));
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 49.9975052F));
-            tableLayoutPanel6.Size = new Size(375, 103);
+            tableLayoutPanel6.Size = new Size(282, 103);
             tableLayoutPanel6.TabIndex = 30;
             // 
             // btnBuscarCli
@@ -567,7 +567,7 @@
             btnBuscarCli.ForeColor = SystemColors.ButtonHighlight;
             btnBuscarCli.Location = new Point(3, 3);
             btnBuscarCli.Name = "btnBuscarCli";
-            btnBuscarCli.Size = new Size(369, 28);
+            btnBuscarCli.Size = new Size(276, 28);
             btnBuscarCli.TabIndex = 25;
             btnBuscarCli.Text = "Buscar cliente";
             btnBuscarCli.UseVisualStyleBackColor = false;
@@ -588,7 +588,7 @@
             btnAgregarCliente.ForeColor = SystemColors.ButtonHighlight;
             btnAgregarCliente.Location = new Point(3, 54);
             btnAgregarCliente.Name = "btnAgregarCliente";
-            btnAgregarCliente.Size = new Size(369, 28);
+            btnAgregarCliente.Size = new Size(276, 28);
             btnAgregarCliente.TabIndex = 24;
             btnAgregarCliente.Text = "Guardar cliente ";
             btnAgregarCliente.UseVisualStyleBackColor = false;
@@ -696,7 +696,6 @@
         private Label lblBalCli;
         private TextBox inpBalCliente;
         private Label lblObsCli;
-        private TextBox inpObsCliente;
         private Button btnVolverMenuPrincipal;
         private TableLayoutPanel tableLayoutPanel1;
         private Panel panel1;
@@ -707,13 +706,14 @@
         private TableLayoutPanel tableLayoutPanel4;
         private TableLayoutPanel tableLayoutPanel5;
         private TableLayoutPanel tableLayoutPanel6;
-        private Label label3;
         private Label label4;
         private TableLayoutPanel tableLayoutPanel7;
         private TableLayoutPanel tableLayoutPanel8;
-        private PictureBox picClientes;
         private Label label5;
         private Button btnAgregarCliente;
         private Button btnBuscarCli;
+        private TextBox inpObsCliente;
+        private PictureBox picClientes;
+        private Label label3;
     }
 }

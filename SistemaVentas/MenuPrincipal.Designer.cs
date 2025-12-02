@@ -181,7 +181,7 @@
             // picFacturacion
             // 
             picFacturacion.Anchor = AnchorStyles.Right;
-            picFacturacion.BackColor = Color.LimeGreen;
+            picFacturacion.BackColor = Color.Transparent;
             picFacturacion.BackgroundImage = Properties.Resources._1492617381_9_sheet_data_spreadsheets_file_google_suit_service_83434;
             picFacturacion.Location = new Point(81, 54);
             picFacturacion.Name = "picFacturacion";
@@ -278,11 +278,11 @@
             // picConfiguracion
             // 
             picConfiguracion.Anchor = AnchorStyles.Right;
-            picConfiguracion.BackColor = Color.DimGray;
+            picConfiguracion.BackColor = Color.Transparent;
             picConfiguracion.BackgroundImage = Properties.Resources.settingscog_87317;
-            picConfiguracion.Location = new Point(81, 54);
+            picConfiguracion.Location = new Point(84, 57);
             picConfiguracion.Name = "picConfiguracion";
-            picConfiguracion.Size = new Size(65, 64);
+            picConfiguracion.Size = new Size(62, 59);
             picConfiguracion.SizeMode = PictureBoxSizeMode.Zoom;
             picConfiguracion.TabIndex = 7;
             picConfiguracion.TabStop = false;
@@ -458,11 +458,11 @@
             // picDetalles
             // 
             picDetalles.Anchor = AnchorStyles.Right;
-            picDetalles.BackColor = Color.Orange;
+            picDetalles.BackColor = Color.Transparent;
             picDetalles.BackgroundImage = Properties.Resources.viewdetails_vista_3354;
-            picDetalles.Location = new Point(91, 54);
+            picDetalles.Location = new Point(91, 56);
             picDetalles.Name = "picDetalles";
-            picDetalles.Size = new Size(65, 64);
+            picDetalles.Size = new Size(65, 61);
             picDetalles.SizeMode = PictureBoxSizeMode.Zoom;
             picDetalles.TabIndex = 5;
             picDetalles.TabStop = false;
@@ -557,7 +557,7 @@
             // picUnidadMedida
             // 
             picUnidadMedida.Anchor = AnchorStyles.Right;
-            picUnidadMedida.BackColor = Color.DarkTurquoise;
+            picUnidadMedida.BackColor = Color.Transparent;
             picUnidadMedida.BackgroundImage = Properties.Resources.hard_drives_icon_173095;
             picUnidadMedida.Location = new Point(81, 20);
             picUnidadMedida.Name = "picUnidadMedida";
@@ -641,11 +641,11 @@
             // picClientes
             // 
             picClientes.Anchor = AnchorStyles.Right;
-            picClientes.BackColor = SystemColors.HotTrack;
+            picClientes.BackColor = Color.Transparent;
             picClientes.BackgroundImage = Properties.Resources.users_people_workers_customers_icon_124243;
-            picClientes.Location = new Point(104, 71);
+            picClientes.Location = new Point(106, 71);
             picClientes.Name = "picClientes";
-            picClientes.Size = new Size(65, 64);
+            picClientes.Size = new Size(63, 64);
             picClientes.SizeMode = PictureBoxSizeMode.Zoom;
             picClientes.TabIndex = 4;
             picClientes.TabStop = false;
@@ -764,7 +764,7 @@
             // picArtículos
             // 
             picArtículos.Anchor = AnchorStyles.Right;
-            picArtículos.BackColor = Color.BlueViolet;
+            picArtículos.BackColor = Color.Transparent;
             picArtículos.BackgroundImage = Properties.Resources.box_5124;
             picArtículos.Location = new Point(94, 71);
             picArtículos.Name = "picArtículos";

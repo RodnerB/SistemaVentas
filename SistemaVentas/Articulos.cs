@@ -27,14 +27,14 @@ namespace SistemaVentas
 
         private static Dictionary<string, string> articulosHeaders = new()
         {
-            {"CODART", "Código Artículo" },
-            {"DESART", "Descripción Artículo" },
-            {"CODUNI", "Código Unidad de Medida" },
+            {"CODART", "Código" },
+            {"DESART", "Descripción" },
+            {"CODUNI", "Código Unidad" },
             {"EXIMIN", "Existencia Mínima" },
             {"EXIMAX", "Existencia Máxima" },
             {"EXIACT", "Existencia Actual" },
-            {"PREART", "Precio Artículo" },
-            {"COSART", "Costo Artículo" }
+            {"PREART", "Precio compra" },
+            {"COSART", "Costo compra" }
         };
         
         public Articulo() { }
