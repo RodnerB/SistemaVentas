@@ -384,5 +384,5 @@ namespace SistemaVentas
             txtDesArt?.Focus();
         }
 
-    }   
+    }
 }
