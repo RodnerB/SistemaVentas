@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaVentas.Utilidades;
+using System;
 using System.Data;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
@@ -8,14 +9,19 @@ namespace SistemaVentas
     public partial class MenuDetalles : Form
     {
         MenuPrincipal formMenuPrincipal; // variable de referencia al formulario principal
-     
+        private readonly Resizer resizer = new Resizer();
 
         // Constructor que recibe una referencia al formulario principal
         public MenuDetalles(MenuPrincipal formMenuPrincipal)
         {
             InitializeComponent();
             this.formMenuPrincipal = formMenuPrincipal;
+            // Mantener comportamiento existente...
             this.StartPosition = FormStartPosition.CenterScreen;
+
+            // Integración Resizer (captura inicial y suscripción al Resize)
+            resizer.CaptureOriginalSizes(this);
+            this.Resize += MenuDetalles_Resize;
 
             CargarDetalles();
             ObtenerDetalleComboBox();
@@ -81,7 +87,7 @@ namespace SistemaVentas
             var txt = txtNumFacdet?.Text;
             if (e.KeyCode == Keys.Enter && !string.IsNullOrEmpty(txt))
             {
-                
+
                 var numFac = txtNumFacdet?.Text;
                 if (!string.IsNullOrEmpty(numFac))
                 {
@@ -223,6 +229,11 @@ namespace SistemaVentas
             {
                 MessageBox.Show("Error al eliminar el detalle: " + ex.Message);
             }
+        }
+
+        private void MenuDetalles_Resize(object? sender, EventArgs e)
+        {
+            resizer.ResizeControls(this);
         }
     }
 }

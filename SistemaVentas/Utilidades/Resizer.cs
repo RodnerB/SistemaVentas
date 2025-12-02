@@ -3,69 +3,88 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-public class Resizer
+namespace SistemaVentas.Utilidades
 {
-    private List<ControlOriginalData> _controlsData = new List<ControlOriginalData>();
-    private Size _formOriginalSize;
-
-    public void CaptureOriginalSizes(Form form)
+    internal class Resizer
     {
-        _formOriginalSize = form.Size;
-        _controlsData.Clear();
+        private readonly List<ControlOriginalData> _controlsData = new();
+        private Size _formOriginalSize;
 
-        foreach (Control control in form.Controls)
+        public void CaptureOriginalSizes(Form form)
         {
-            SaveControl(control);
+            if (form == null) return;
+            _formOriginalSize = form.ClientSize;
+            _controlsData.Clear();
+            SaveControl(form);
         }
-    }
 
-    private void SaveControl(Control control)
-    {
-        _controlsData.Add(new ControlOriginalData
+        private void SaveControl(Control control)
         {
-            Control = control,
-            OriginalLocation = control.Location,
-            OriginalSize = control.Size,
-            OriginalFontSize = control.Font.Size,
-            OriginalFontStyle = control.Font.Style,
-            OriginalFontFamily = control.Font.FontFamily
-        });
+            if (control == null) return;
 
-        foreach (Control child in control.Controls)
-            SaveControl(child);
-    }
+            try
+            {
+                _controlsData.Add(new ControlOriginalData
+                {
+                    Control = control,
+                    OriginalLocation = control.Location,
+                    OriginalSize = control.Size,
+                    OriginalFontSize = control.Font?.Size ?? SystemFonts.DefaultFont.Size,
+                    OriginalFontStyle = control.Font?.Style ?? FontStyle.Regular,
+                    OriginalFontFamily = control.Font?.FontFamily ?? SystemFonts.DefaultFont.FontFamily
+                });
+            }
+            catch
+            {
+                // Ignorar controles que no permitan lectura de propiedades
+            }
 
-    public void ResizeControls(Form form)
-    {
-        float xRatio = (float)form.Width / _formOriginalSize.Width;
-        float yRatio = (float)form.Height / _formOriginalSize.Height;
-
-        foreach (var item in _controlsData)
-        {
-            item.Control.Location = new Point(
-                (int)(item.OriginalLocation.X * xRatio),
-                (int)(item.OriginalLocation.Y * yRatio));
-
-            item.Control.Size = new Size(
-                (int)(item.OriginalSize.Width * xRatio),
-                (int)(item.OriginalSize.Height * yRatio));
-
-            // Crear la nueva fuente conservando la familia y el estilo original
-            item.Control.Font = new Font(
-                item.OriginalFontFamily,
-                item.OriginalFontSize * Math.Min(xRatio, yRatio),
-                item.OriginalFontStyle
-            );
+            foreach (Control child in control.Controls)
+                SaveControl(child);
         }
-    }
 
-    private class ControlOriginalData
-    {
-        public required Control Control;
-        public required Point OriginalLocation;
-        public required Size OriginalSize;
-        public required float OriginalFontSize;
-        public required FontStyle OriginalFontStyle;
-        public required FontFamily OriginalFontFamily;
+        public void ResizeControls(Form form)
+        {
+            if (form == null) return;
+            if (_formOriginalSize.Width == 0 || _formOriginalSize.Height == 0) return;
+
+            float xRatio = (float)form.ClientSize.Width / _formOriginalSize.Width;
+            float yRatio = (float)form.ClientSize.Height / _formOriginalSize.Height;
+            float scale = Math.Min(xRatio, yRatio);
+
+            foreach (var item in _controlsData)
+            {
+                var ctrl = item.Control;
+                if (ctrl == null || ctrl.IsDisposed) continue;
+
+                try
+                {
+                    ctrl.Location = new Point(
+                        (int)Math.Round(item.OriginalLocation.X * xRatio),
+                        (int)Math.Round(item.OriginalLocation.Y * yRatio));
+
+                    ctrl.Size = new Size(
+                        Math.Max(1, (int)Math.Round(item.OriginalSize.Width * xRatio)),
+                        Math.Max(1, (int)Math.Round(item.OriginalSize.Height * yRatio)));
+
+                    float newFontSize = Math.Max(6f, item.OriginalFontSize * scale);
+                    ctrl.Font = new Font(item.OriginalFontFamily, newFontSize, item.OriginalFontStyle);
+                }
+                catch
+                {
+                    // Ignorar errores individuales
+                }
+            }
+        }
+
+        private class ControlOriginalData
+        {
+            public Control Control { get; set; } = null!;
+            public Point OriginalLocation { get; set; }
+            public Size OriginalSize { get; set; }
+            public float OriginalFontSize { get; set; }
+            public FontStyle OriginalFontStyle { get; set; }
+            public FontFamily OriginalFontFamily { get; set; } = null!;
+        }
     }
 }

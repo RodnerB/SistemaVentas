@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Windows.Forms;
 using SistemaVentas.Utilidades; 
 
@@ -7,7 +6,7 @@ namespace SistemaVentas
 {
     public partial class MenuClientes : Form
     {
-        private Resizer resizer = new Resizer();
+        private readonly Resizer resizer = new Resizer();
 
         Cliente? cliente = new Cliente();
         bool existeElCliente = false;
@@ -27,7 +26,7 @@ namespace SistemaVentas
                 btnBuscarCli.Click += btnBuscarCli_Click;
             }
 
-            // Inicializar resizer antes de cualquier cambio de tamaño y suscribir el evento Resize
+            // Capturar tamaños originales y suscribir resize
             resizer.CaptureOriginalSizes(this);
             this.Resize += MenuClientes_Resize;
 

@@ -19,7 +19,7 @@ namespace SistemaVentas
         Articulo? articulo = new Articulo();
         bool existeElArticulo = false;
         MenuPrincipal? formMenuPrincipal; // ahora nullable para soportar diseñador
-        private Resizer resizer = new Resizer();
+        private readonly Resizer resizer = new Resizer();
 
         // Constructor con referencia al formulario principal (opcional para el diseñador)
         public MenuArticulos(MenuPrincipal? MenuPrincipal = null)

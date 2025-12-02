@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             dgvFacturas = new DataGridView();
             lblNumFac = new Label();
             inpNumFactura = new TextBox();
@@ -83,32 +83,32 @@
             dgvFacturas.AllowUserToDeleteRows = false;
             dgvFacturas.AllowUserToResizeColumns = false;
             dgvFacturas.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.SelectionBackColor = Color.White;
-            dgvFacturas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.SelectionBackColor = Color.White;
+            dgvFacturas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvFacturas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvFacturas.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvFacturas.BackgroundColor = SystemColors.ButtonHighlight;
             dgvFacturas.BorderStyle = BorderStyle.None;
             dgvFacturas.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dgvFacturas.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = SystemColors.Control;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.ButtonHighlight;
-            dataGridViewCellStyle6.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            dgvFacturas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.ButtonHighlight;
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvFacturas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvFacturas.ColumnHeadersHeight = 20;
             dgvFacturas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = SystemColors.ButtonHighlight;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle7.ForeColor = Color.Black;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.ButtonHighlight;
-            dataGridViewCellStyle7.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
-            dgvFacturas.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.ButtonHighlight;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.ButtonHighlight;
+            dataGridViewCellStyle3.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvFacturas.DefaultCellStyle = dataGridViewCellStyle3;
             dgvFacturas.Dock = DockStyle.Fill;
             dgvFacturas.EditMode = DataGridViewEditMode.EditProgrammatically;
             dgvFacturas.EnableHeadersVisualStyles = false;
@@ -117,8 +117,8 @@
             dgvFacturas.Name = "dgvFacturas";
             dgvFacturas.RowHeadersVisible = false;
             dgvFacturas.RowHeadersWidth = 51;
-            dataGridViewCellStyle8.SelectionBackColor = Color.White;
-            dgvFacturas.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.SelectionBackColor = Color.White;
+            dgvFacturas.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dgvFacturas.RowTemplate.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvFacturas.RowTemplate.DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 8.25F);
             dgvFacturas.RowTemplate.Height = 35;
@@ -470,11 +470,10 @@
             // 
             // label4
             // 
-            label4.Anchor = AnchorStyles.Left;
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Gray;
-            label4.Location = new Point(3, 30);
+            label4.Location = new Point(3, 28);
             label4.Name = "label4";
             label4.Size = new Size(249, 23);
             label4.TabIndex = 1;

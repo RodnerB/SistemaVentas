@@ -1,28 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SistemaVentas.Utilidades;
+using System;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SistemaVentas
 {
     public partial class MenuConfiguracion : Form
     {
+        private readonly Resizer resizer = new Resizer();
         private MenuPrincipal? formMenuPrincipal; // Permite valores null
 
         public MenuConfiguracion()
         {
             InitializeComponent();
+
+            // Evitar ejecutar en tiempo de diseño
+            if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
+            {
+                resizer.CaptureOriginalSizes(this);
+                this.Resize += MenuConfiguracion_Resize;
+            }
         }
 
         // Constructor que recibe una referencia al formulario principal
         public MenuConfiguracion(MenuPrincipal MenuPrincipal)
         {
-            InitializeComponent(); // Inicializa los componentes gráficos del formulario
+            InitializeComponent();
+
+            // Evitar ejecutar en tiempo de diseño
+            if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
+            {
+                resizer.CaptureOriginalSizes(this);
+                this.Resize += MenuConfiguracion_Resize;
+            }
+
             this.formMenuPrincipal = MenuPrincipal; // Guarda la referencia del formulario principal que abrió este formulario
             CargarEmpresa();
         }
@@ -73,5 +84,9 @@ namespace SistemaVentas
             }
         }
 
+        private void MenuConfiguracion_Resize(object? sender, EventArgs e)
+        {
+            resizer.ResizeControls(this);
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace SistemaVentas
 {
     public partial class MenuPrincipal : Form
     {
-        private Resizer resizer = new Resizer();
+        private readonly Resizer resizer = new Resizer();
 
         public MenuPrincipal()
         {
