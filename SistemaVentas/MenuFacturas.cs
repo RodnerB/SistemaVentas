@@ -263,11 +263,37 @@ namespace SistemaVentas
         }
 
         // Aplica RoundedControlHelper a todos los controles excepto TextBox
+        // CORRECCIÓN: nunca aplicar el helper al propio Form (evita modificar this.Region)
         private void ApplyRoundedExceptTextBoxes(Control parent, int radius)
         {
             if (parent == null) return;
 
-            // Aplicar al control actual si no es TextBox
+            // Si el control es el formulario raíz, NO aplicamos RedondearBordes sobre él.
+            // Solo procesamos sus hijos.
+            if (parent is Form)
+            {
+                foreach (Control c in parent.Controls)
+                {
+                    if (c is not TextBox)
+                    {
+                        try
+                        {
+                            RoundedControlHelper.RedondearBordes(c, radius);
+                        }
+                        catch
+                        {
+                            // Ignorar errores para no romper el formulario
+                        }
+                    }
+
+                    if (c.HasChildren)
+                        ApplyRoundedExceptTextBoxes(c, radius);
+                }
+
+                return;
+            }
+
+            // Para controles que no son el Form, aplicar normalmente (excepto TextBox)
             if (parent is not TextBox)
             {
                 try

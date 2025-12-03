@@ -243,11 +243,10 @@
             // 
             // label2
             // 
-            label2.Anchor = AnchorStyles.Left;
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Gray;
-            label2.Location = new Point(3, 30);
+            label2.Location = new Point(3, 28);
             label2.Name = "label2";
             label2.Size = new Size(283, 23);
             label2.TabIndex = 1;
@@ -626,7 +625,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1872, 864);
             Controls.Add(tableLayoutPanel1);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "MenuArticulos";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Artículos";
