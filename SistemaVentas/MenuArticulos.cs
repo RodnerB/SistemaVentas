@@ -55,7 +55,7 @@ namespace SistemaVentas
                 // Asegurar que el primer cuadro de texto reciba el foco cuando el formulario se muestre
                 this.Shown += Form3_Shown;
 
-                // Aplicar redondeos y asignar KeyDown recursivamente
+                // Aplicar redondeos pero NUNCA al formulario (NO modificar this.Region)
                 ApplyRoundedExceptTextBoxes(this, 12);
                 AttachKeyDownToTextBoxes(this);
             }
@@ -77,12 +77,40 @@ namespace SistemaVentas
             txtCodArt?.Focus();
         }
 
-        // Recorre recursivamente el árbol de controles y aplica el helper salvo a los TextBox
+        // Recorre recursivamente el árbol de controles y aplica el helper salvo a los TextBox.
+        // CORRECCIÓN: nunca aplicar el helper al propio Form (evita cambios en this.Region
+        // que afectan los botones minimizar/maximizar/cerrar).
         private void ApplyRoundedExceptTextBoxes(Control parent, int radius)
         {
             if (parent == null) return;
 
-            // Aplicar al propio control si no es TextBox (por ejemplo: GroupBox, Panel, Button, ComboBox, etc.)
+            // Si es el formulario raíz, NO aplicar RoundedControlHelper sobre él.
+            // Solo procesamos sus hijos.
+            if (parent is Form)
+            {
+                foreach (Control c in parent.Controls)
+                {
+                    // Aplicar el helper solo a controles que no sean TextBox
+                    if (c is not TextBox)
+                    {
+                        try
+                        {
+                            RoundedControlHelper.RedondearBordes(c, radius);
+                        }
+                        catch
+                        {
+                            // Ignorar errores del helper para no romper el formulario
+                        }
+                    }
+
+                    if (c.HasChildren)
+                        ApplyRoundedExceptTextBoxes(c, radius);
+                }
+
+                return;
+            }
+
+            // Para controles que no son el Form, aplicar normalmente (excepto TextBox)
             if (parent is not TextBox)
             {
                 try
@@ -91,7 +119,7 @@ namespace SistemaVentas
                 }
                 catch
                 {
-                    // Si hay controles que el helper no puede procesar, ignorar para no romper el formulario
+                    // Ignorar errores del helper para no romper el formulario
                 }
             }
 
@@ -99,7 +127,11 @@ namespace SistemaVentas
             {
                 if (c is not TextBox)
                 {
-                    RoundedControlHelper.RedondearBordes(c, radius);
+                    
+                   
+                        RoundedControlHelper.RedondearBordes(c, radius);
+                 
+                  
                 }
 
                 if (c.HasChildren)

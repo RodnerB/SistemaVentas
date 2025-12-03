@@ -625,7 +625,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1872, 864);
             Controls.Add(tableLayoutPanel1);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "MenuArticulos";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Artículos";
