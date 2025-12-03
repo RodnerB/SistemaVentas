@@ -13,6 +13,9 @@ namespace SistemaVentas
             (NUMFAC, CODART, CANTVEN, PRECVEN) 
             VALUES 
             (@NUMFAC, @CODART, @CANTVEN, @PRECVEN)";
+        private const string actualizarCantidadQuery = @"UPDATE SFTARTI0 
+                               SET EXIACT = EXIACT - @cantidad 
+                               WHERE CODART = @codigo";
         static Dictionary<string, string> detallesHeaders = new Dictionary<string, string>()
         {
             {"NUMFAC", "Número de Factura" },
@@ -20,14 +23,39 @@ namespace SistemaVentas
             {"CANTVEN", "Cantidad Vendida"},
             {"PRECVEN", "Precio de Venta"}
         };
-        public string? NumeroFactura { get; set; }
-        public string? CodigoArticulo { get; set; }
-        public int CantidadVendida { get; set; } = 0;
-        public decimal PrecioVenta { get; set; } = 0.0m;
-        public static void ObtenerDetalles(DataGridView dataGrid)
+        public int NumeroFactura { get; set; }
+        public string CodigoArticulo { get; set; }
+        public int CantidadVendida { get; set; }
+        public float PrecioVenta { get; set; }
+        public Detalles(int NumeroFactura, string CodigoArticulo, int CantidadVendida, float PrecioVenta)
         {
-            DataTable tabla = UtilidadesBD.ObtenerTodosLosRegistros(getDetallesQuery);
-            Utilidades.UtilidadesUI.CargarDatosEnGrid(
+            this.NumeroFactura = NumeroFactura;
+            this.CodigoArticulo = CodigoArticulo;
+            this.CantidadVendida = CantidadVendida;
+            this.PrecioVenta = PrecioVenta;
+        }
+        private static Dictionary<string, object> ObtenerParametrosDetalles(Detalles detalle)
+        {
+            return new Dictionary<string, object>()
+            {
+                {"@NUMFAC", detalle.NumeroFactura},
+                {"@CODART", detalle.CodigoArticulo },
+                {"@CANTVEN", detalle.CantidadVendida },
+                {"@PRECVEN", detalle.PrecioVenta }
+            };
+        }
+        public bool InsertarDetalle()
+        {
+            return (UtilidadesBD.GuardarRegistro(
+                insertDetallesQuery,
+                ObtenerParametrosDetalles(this)
+                ) > 0);
+        }
+        public static DataTable ObtenerDetalles() => UtilidadesBD.ObtenerTodosLosRegistros(getDetallesQuery);
+        public static void CargarDetallesEnGrid(DataGridView dataGrid)
+        {
+            DataTable tabla = ObtenerDetalles();
+            UtilidadesUI.CargarDatosEnGrid(
                 tabla,
                 dataGrid,
                 detallesHeaders
@@ -39,23 +67,23 @@ namespace SistemaVentas
                 getDetallesPorCodigoQuery,
                 numeroFactura);
             if (datos == null) return null;
-            return new Detalles()
-            {
-                NumeroFactura = datos["NUMFAC"].ToString(),
-                CodigoArticulo = datos["CODART"].ToString(),
-                CantidadVendida = Convert.ToInt32(datos["CANTVEN"]),
-                PrecioVenta = Convert.ToDecimal(datos["PRECVEN"]),
-            };
+
+            int NumeroFactura = Convert.ToInt32(datos["NUMFAC"]);
+            string CodigoArticulo = datos["CODART"].ToString()!;
+            int CantidadVendida = Convert.ToInt32(datos["CANTVEN"]);
+            float PrecioVenta = Convert.ToSingle(datos["PRECVEN"]);
+
+            return new Detalles(NumeroFactura, CodigoArticulo, CantidadVendida, PrecioVenta);
         }
-        public static DataTable ObtenerTodosDetalles()
+
+        public static void ActualizarExistenciaArticulo(string codigoArticulo, int cantidadVendida)
         {
-            var dt = new DataTable();
-            using var conexion = ConexionDB.ObtenerConexion();
-            string consulta = "SELECT NUMFAC, CODART, CANTVEN, PRECVEN FROM SFTDETFAC";
-            using var comando = new SqlCommand(consulta, conexion);
-            using var adaptador = new SqlDataAdapter(comando);
-            adaptador.Fill(dt);
-            return dt;
+            var parametros = new Dictionary<string, object>()
+            {
+                {"@codigo", codigoArticulo },
+                {"@cantidad", cantidadVendida }
+            };
+            UtilidadesBD.GuardarRegistro(actualizarCantidadQuery, parametros);
         }
 
     }

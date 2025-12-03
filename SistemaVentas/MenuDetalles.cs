@@ -43,7 +43,7 @@ namespace SistemaVentas
         {
             try
             {
-                Detalles.ObtenerDetalles(dgvDetFact);
+                Detalles.CargarDetallesEnGrid(dgvDetFact);
             }
             catch (Exception ex)
             {
@@ -73,13 +73,11 @@ namespace SistemaVentas
 
         private Detalles ObtenerDetalle()
         {
-            return new Detalles
-            {
-                NumeroFactura = txtNumFacdet?.Text,
-                CodigoArticulo = cmbArtDet?.SelectedValue?.ToString(),
-                CantidadVendida = int.TryParse(txtCantDet?.Text, out int cant) ? cant : 0,
-                PrecioVenta = decimal.TryParse(txtPrecVent?.Text, out decimal precio) ? precio : 0
-            };
+            int numeroFactura = Convert.ToInt32(txtNumFacdet);
+            string codigoArticulo = cmbArtDet?.SelectedValue?.ToString();
+            int cantidadVendida = int.TryParse(txtCantDet?.Text, out int cant) ? cant : 0;
+            float precioVenta = float.TryParse(txtPrecVent?.Text, out float precio) ? precio : 0;
+            return new Detalles(numeroFactura, codigoArticulo, cantidadVendida, precioVenta);
         }
 
         private void DetectarDetallesEvento(object? sender, KeyEventArgs e)
@@ -95,7 +93,7 @@ namespace SistemaVentas
                     if (det != null)
                     {
                         if (txtNumFacdet != null)
-                            txtNumFacdet.Text = det.NumeroFactura;
+                            txtNumFacdet.Text = det.NumeroFactura.ToString();
                         if (cmbArtDet != null)
                             cmbArtDet.SelectedValue = det.CodigoArticulo;
                         txtCantDet.Text = det.CantidadVendida.ToString();
@@ -123,28 +121,16 @@ namespace SistemaVentas
         {
             try
             {
-                using (var conexion = ConexionDB.ObtenerConexion())
-                {
-                    string consulta = "INSERT INTO SFTDETFAC (NUMFAC, CODART, CANTVEN, PRECVEN) VALUES (@NUMFAC, @CODART, @CANTVENT, @PRECVEN)";
-                    using (var comando = new SqlCommand(consulta, conexion))
-                    {
-                        comando.Parameters.AddWithValue("@NUMFAC", det.NumeroFactura ?? "");
-                        comando.Parameters.AddWithValue("@CODART", det.CodigoArticulo ?? "");
-                        comando.Parameters.AddWithValue("@CANTVENT", det.CantidadVendida);
-                        comando.Parameters.AddWithValue("@PRECVEN", det.PrecioVenta);
 
-                        int filas = comando.ExecuteNonQuery();
-                        if (filas > 0)
-                        {
-                            MessageBox.Show("Detalle guardado correctamente.");
-                            CargarDetalles();
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se pudo guardar el detalle.");
-                        }
+                if (det.InsertarDetalle())
+                {
+                    MessageBox.Show("Detalle guardado correctamente.");
+                    CargarDetalles();
                     }
-                }
+                    else
+                    {
+                        MessageBox.Show("No se pudo guardar el detalle.");
+                    }
             }
             catch (Exception ex)
             {

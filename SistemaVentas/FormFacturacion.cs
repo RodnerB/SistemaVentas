@@ -159,30 +159,19 @@ namespace SistemaVentas
         {
             try
             {
-                using (SqlConnection conexion = ConexionDB.ObtenerConexion())
+                foreach(DataGridViewRow fila in dgvProductos.Rows)
                 {
-                    foreach (DataGridViewRow row in dgvProductos.Rows)
-                    {
-                        string codigoArticulo = row.Cells["colCodigo"].Value?.ToString() ?? "";
-                        int cantidad = Convert.ToInt32(row.Cells["colCantidad"].Value ?? 0);
-                        decimal precioVenta = Convert.ToDecimal(row.Cells["colPrecioUnitario"].Value ?? 0);
+                    // Obtener datos de cada fila
+                    string codigoArticulo = fila.Cells["colCodigo"].Value.ToString()!;
+                    int cantidadVendida = Convert.ToInt32(fila.Cells["colCantidad"].Value);
+                    float precioVenta = Convert.ToSingle(fila.Cells["colPrecioUnitario"].Value ?? 0);
 
-                        string query = @"INSERT INTO SFTDETFAC (NUMFAC, CODART, CANTVEN, PRECVEN) 
-                                       VALUES (@NUMFAC, @CODART, @CANTVEN, @PRECVEN)";
+                    // crear el objeto para insertarlo en la base de datos
+                    Detalles detalles = new Detalles(numeroFactura, codigoArticulo, cantidadVendida, precioVenta);
+                    detalles.InsertarDetalle();
 
-                        using (SqlCommand comando = new SqlCommand(query, conexion))
-                        {
-                            comando.Parameters.AddWithValue("@NUMFAC", numeroFactura);
-                            comando.Parameters.AddWithValue("@CODART", codigoArticulo);
-                            comando.Parameters.AddWithValue("@CANTVEN", cantidad);
-                            comando.Parameters.AddWithValue("@PRECVEN", precioVenta);
+                    ActualizarExistenciaArticulo(codigoArticulo, cantidadVendida);
 
-                            comando.ExecuteNonQuery();
-                        }
-
-                        // Actualizar existencia del artículo
-                        ActualizarExistenciaArticulo(codigoArticulo, cantidad, conexion);
-                    }
                 }
             }
             catch (Exception ex)
@@ -191,20 +180,11 @@ namespace SistemaVentas
             }
         }
 
-        private void ActualizarExistenciaArticulo(string codigoArticulo, int cantidadVendida, SqlConnection conexion)
+        private void ActualizarExistenciaArticulo(string codigoArticulo, int cantidadVendida)
         {
             try
             {
-                string query = @"UPDATE SFTARTI0 
-                               SET EXIACT = EXIACT - @cantidad 
-                               WHERE CODART = @codigo";
-
-                using (SqlCommand comando = new SqlCommand(query, conexion))
-                {
-                    comando.Parameters.AddWithValue("@cantidad", cantidadVendida);
-                    comando.Parameters.AddWithValue("@codigo", codigoArticulo);
-                    comando.ExecuteNonQuery();
-                }
+                Detalles.ActualizarExistenciaArticulo(codigoArticulo, cantidadVendida);
             }
             catch (Exception ex)
             {
