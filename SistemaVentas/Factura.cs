@@ -12,6 +12,7 @@ namespace SistemaVentas
                 (NUMFAC, FECFAC, CODCLI, CONDICION, DESCUENTO, MONFAC) 
                 VALUES 
                 (@NumeroFactura, @FechaFactura, @CodigoCliente, @Condicion, @Descuento, @MontoFactura)";
+        private const string GetUltimoCodigoFacturaQuery = "SELECT ISNULL(MAX(NUMFAC), 0) + 1 FROM SFTFAC0";
         static Dictionary<string, string> facturasHeaders = new Dictionary<string, string>()
         {
             {"NUMFAC", "Número Factura" }, // Tipo integer
@@ -37,11 +38,20 @@ namespace SistemaVentas
             this.descuento = descuento;
             this.montoFactura = montoFactura;
         }
-
-        public static void ObtenerFacturas(DataGridView dataGrid)
+        public static DataTable ObtenerFacturas() => UtilidadesBD.ObtenerTodosLosRegistros(getFacturasQuery);
+        // Obbtiene el ultimo codigo de una factura y lo retorna sumandole 1 al valor
+        public static int ObtenerNuevoCodigoFactura()
         {
-            DataTable tabla = UtilidadesBD.ObtenerTodosLosRegistros(getFacturasQuery);
-            Utilidades.UtilidadesUI.CargarDatosEnGrid(
+            // recupera el datatable con el resultado de la consulta
+            DataTable tabla = UtilidadesBD.ObtenerTodosLosRegistros(GetUltimoCodigoFacturaQuery);
+            // devuelve el valor convertido a entero
+            return Convert.ToInt32(tabla.Rows[0][0]);
+        } 
+
+        public static void CargarFacturasEnGrid(DataGridView dataGrid)
+        {
+            DataTable tabla = ObtenerFacturas();
+            UtilidadesUI.CargarDatosEnGrid(
                 tabla,
                 dataGrid,
                 facturasHeaders
@@ -68,7 +78,7 @@ namespace SistemaVentas
             {
                 {"@NumeroFactura", factura.numeroFactura },
                 {"@FechaFactura", factura.fechaFactura },
-                {"@CodigoCliente", factura.codigoCliente ?? "" },
+                {"@CodigoCliente", factura.codigoCliente ?? (object)DBNull.Value },
                 {"@Condicion", factura.condicion },
                 {"@Descuento", factura.descuento },
                 {"@MontoFactura", factura.montoFactura }
@@ -77,7 +87,11 @@ namespace SistemaVentas
 
         public static void InsertarFactura(Factura factura)
         {
-            Utilidades.UtilidadesBD.GuardarRegistro(
+            if(string.IsNullOrWhiteSpace(factura.codigoCliente)) 
+            {
+                factura.codigoCliente = null;
+            }
+            UtilidadesBD.GuardarRegistro(
                 insertarFacturaQuery,
                 ObtenerParametrosFactura(factura)
             );

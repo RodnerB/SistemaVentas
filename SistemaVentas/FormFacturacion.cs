@@ -43,6 +43,7 @@ namespace SistemaVentas
         {
             try
             {
+                txtNumFactura.Text = Factura.ObtenerNuevoCodigoFactura().ToString();
                 using (SqlConnection conexion = ConexionDB.ObtenerConexion())
                 {
                     string query = "SELECT ISNULL(MAX(NUMFAC), 0) + 1 FROM SFTFAC0";
@@ -116,6 +117,11 @@ namespace SistemaVentas
 
         private void BtnGuardarFactura_Click(object? sender, EventArgs e)
         {
+            GuardarFactura();
+        }
+
+        private void GuardarFactura()
+        {
             if (!ValidarCampos())
                 return;
 
@@ -126,8 +132,8 @@ namespace SistemaVentas
                 DateTime fechaFactura = dtpFechaFactura.Value;
                 string codigoCliente = cmbCliente.SelectedValue?.ToString() ?? "";
                 string condicion = cmbCondicion.SelectedIndex == 0 ? "1" : "2";
-                float descuento = string.IsNullOrWhiteSpace(txtDescuento.Text) 
-                    ? 0 
+                float descuento = string.IsNullOrWhiteSpace(txtDescuento.Text)
+                    ? 0
                     : float.Parse(txtDescuento.Text);
 
                 Factura factura = new Factura(
@@ -202,7 +208,7 @@ namespace SistemaVentas
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(cmbCliente.SelectedValue?.ToString()))
+            if (string.IsNullOrWhiteSpace(cmbCliente.SelectedValue?.ToString()) && cmbCondicion.SelectedIndex != 0)
             {
                 MessageBox.Show("Debe seleccionar un cliente", "Advertencia",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);

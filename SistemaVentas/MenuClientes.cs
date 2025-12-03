@@ -20,11 +20,7 @@ namespace SistemaVentas
             InitializeComponent(); // Inicializa los componentes gráficos del formulario
 
             // Asegurar que el botón Buscar esté habilitado y que tenga su handler
-            if (btnBuscarCli is not null)
-            {
-                btnBuscarCli.Enabled = true;
-                btnBuscarCli.Click += btnBuscarCli_Click;
-            }
+            btnBuscarCli.Enabled = true;
 
             // Capturar tamaños originales y suscribir resize
             resizer.CaptureOriginalSizes(this);
@@ -56,12 +52,9 @@ namespace SistemaVentas
 
             foreach (Control c in parent.Controls)
             {
-                if (c is TextBox)
+                if (c is not TextBox)
                 {
                     // No redondear TextBox
-                }
-                else
-                {
                     // Aplicar el redondeo usando la clase existente
                     RoundedControlHelper.RedondearBordes(c, radius);
                 }
@@ -164,7 +157,6 @@ namespace SistemaVentas
             try
             {
 
-
                 // Intentar insertar; InsertarCliente debe validar los campos y devolver false si faltan datos
                 if (cliente.InsertarCliente())
                 {
@@ -179,6 +171,11 @@ namespace SistemaVentas
                 }
 
                 // Si InsertarCliente devolvió false, no hacer limpiezas; el método responsabiliza de mostrar mensajes
+                return false;
+            }
+            catch (ArgumentException ex)
+            {
+                MostrarAdvertenciaCampoVacio(ex.Message, null);
                 return false;
             }
             catch (Exception ex)
@@ -311,14 +308,8 @@ namespace SistemaVentas
             cliente = ObtenerClienteEnInputs();
 
             // Intentar guardar; sólo limpiar campos si la inserción fue exitosa
-            bool guardado = GuardarCliente(cliente);
-            if (!guardado)
+            if (GuardarCliente(cliente))
             {
-                // No borrar los campos — deja los datos para que el usuario corrija
-                // Asegurar que el foco vuelva al control donde estaba el cursor
-                MostrarAdvertenciaCampoVacio("Faltan datos o validación fallida. Corrija los campos marcados.", null);
-                return;
-            }
 
             // Limpiar casillas después de agregar (solo si guardado con éxito)
             inpCodCliente?.Clear();
@@ -335,6 +326,9 @@ namespace SistemaVentas
 
             // Poner foco en la primera casilla
             inpCodCliente?.Focus();
+            }
+
+
         }
 
         private void btnEliminarCli_Click(object sender, EventArgs e)
