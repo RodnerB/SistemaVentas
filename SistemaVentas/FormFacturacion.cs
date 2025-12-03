@@ -9,11 +9,11 @@ namespace SistemaVentas
     public partial class FormFacturacion : Form
     {
         private DataGridView dgvProductos;
-        private decimal montoTotal;
-        private decimal subtotal;
-        private decimal descuentoAplicado;
+        private float montoTotal;
+        private float subtotal;
+        private float descuentoAplicado;
 
-        public FormFacturacion(DataGridView productos, decimal total)
+        public FormFacturacion(DataGridView productos, float total)
         {
             InitializeComponent();
             
@@ -102,7 +102,7 @@ namespace SistemaVentas
                     txtDescuento.Text = "0";
                 }
 
-                descuentoAplicado = subtotal * (decimal)(descuentoPorcentaje / 100);
+                descuentoAplicado = subtotal * (float)(descuentoPorcentaje / 100);
                 montoTotal = subtotal - descuentoAplicado;
 
                 lblDescuentoValor.Text = $"-${descuentoAplicado:F2}";

@@ -15,7 +15,7 @@ namespace SistemaVentas
     {
         private MenuPrincipal? formMenuPrincipal;
         private List<Articulo> productosDisponibles;
-        private decimal totalVenta = 0;
+        private float totalVenta = 0f;
 
         public Form1(MenuPrincipal? menuPrincipal = null)
         {
@@ -58,16 +58,16 @@ namespace SistemaVentas
         {
             try
             {
-                DataTable tabla = UtilidadesBD.ObtenerTodosLosRegistros("SELECT * FROM SFTARTI0");
+                DataTable tabla = Articulo.ObtenerArticulos();
                 productosDisponibles.Clear();
                 
                 foreach (DataRow row in tabla.Rows)
                 {
                     productosDisponibles.Add(new Articulo
                     {
-                        CodigoArticulo = row["CODART"].ToString() ?? "",
-                        DescripcionArticulo = row["DESART"].ToString() ?? "",
-                        PrecioArticulo = row["PREART"] != DBNull.Value ? Convert.ToSingle(row["PREART"]) : 0,
+                        CodigoArticulo = row["CODART"].ToString()!,
+                        DescripcionArticulo = row["DESART"].ToString()!,
+                        PrecioArticulo = Convert.ToSingle(row["PREART"]),
                         ExistenciaActual = row["EXIACT"] != DBNull.Value ? Convert.ToSingle(row["EXIACT"]) : 0
                     });
                 }
@@ -97,9 +97,9 @@ namespace SistemaVentas
                 .Where(p => p.CodigoArticulo.ToLower().Contains(busqueda) || 
                            p.DescripcionArticulo.ToLower().Contains(busqueda))
                 .Take(10)
-                .ToList();
+                .ToList(); 
 
-            lstResultadosBusqueda.Items.Clear();
+            lstResultadosBusqueda.Items.Clear(); // Limpiar resultados anteriores
 
             if (coincidencias.Any())
             {
@@ -129,11 +129,7 @@ namespace SistemaVentas
                 lstResultadosBusqueda.SelectedIndex = 0;
                 e.Handled = true;
             }
-            else if (e.KeyCode == Keys.Enter && lstResultadosBusqueda.Visible && lstResultadosBusqueda.SelectedIndex >= 0)
-            {
-                AgregarProductoSeleccionado();
-                e.Handled = true;
-            }
+            
         }
 
         private void LstResultadosBusqueda_KeyDown(object? sender, KeyEventArgs e)
@@ -178,7 +174,7 @@ namespace SistemaVentas
             {
                 if (row.Cells["colCodigo"].Value?.ToString() == producto.CodigoArticulo)
                 {
-                    int cantidadActual = Convert.ToInt32(row.Cells["colCantidad"].Value ?? 1);
+                    int cantidadActual = Convert.ToInt32(row.Cells["colCantidad"].Value);
                     row.Cells["colCantidad"].Value = cantidadActual + 1;
                     
                     decimal precio = Convert.ToDecimal(row.Cells["colPrecioUnitario"].Value);
@@ -288,7 +284,7 @@ namespace SistemaVentas
             {
                 if (row.Cells["colSubtotal"].Value != null)
                 {
-                    totalVenta += Convert.ToDecimal(row.Cells["colSubtotal"].Value);
+                    totalVenta += Convert.ToSingle(row.Cells["colSubtotal"].Value);
                 }
             }
             lblTotalMonto.Text = $"${totalVenta:F2}";

@@ -35,7 +35,7 @@ namespace SistemaVentas
         }
         public static Detalles? ObtenerDetallesPorCodigo(string numeroFactura)
         {
-            Dictionary<string, object> datos = Utilidades.UtilidadesBD.BuscarRegistro(
+            Dictionary<string, object>? datos = UtilidadesBD.BuscarRegistro(
                 getDetallesPorCodigoQuery,
                 numeroFactura);
             if (datos == null) return null;

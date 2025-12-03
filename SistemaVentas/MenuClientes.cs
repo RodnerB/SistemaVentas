@@ -124,7 +124,7 @@ namespace SistemaVentas
         {
             try
             {
-                Cliente.ObtenerClientes(dgvClientes);
+                Cliente.CargarClientesEnGrid(dgvClientes);
             }
             catch (Exception ex)
             {

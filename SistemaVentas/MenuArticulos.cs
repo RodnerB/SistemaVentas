@@ -174,7 +174,7 @@ namespace SistemaVentas
         {
             try
             {
-                Articulo.ObtenerArticulos(dgvArticulos); // Llama al método estático para cargar los artículos
+                Articulo.CargarArticulosEnGrid(dgvArticulos); // Llama al método estático para cargar los artículos
             }
             catch (Exception ex)
             {

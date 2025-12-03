@@ -1,5 +1,6 @@
 ﻿using SistemaVentas.Utilidades;
 using System.Data;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SistemaVentas
 {
@@ -95,9 +96,11 @@ namespace SistemaVentas
             ) > 0);
         }
 
-        public static void ObtenerClientes(DataGridView dataGrid)
+        public static DataTable ObtenerClientes() => UtilidadesBD.ObtenerTodosLosRegistros(getClientesQuery);
+
+        public static void CargarClientesEnGrid(DataGridView dataGrid)
         {
-            DataTable tabla = UtilidadesBD.ObtenerTodosLosRegistros(getClientesQuery);
+            DataTable tabla = ObtenerClientes();
             UtilidadesUI.CargarDatosEnGrid(
                 tabla,
                 dataGrid,
