@@ -33,16 +33,16 @@
             txtBuscarProducto = new TextBox();
             lstResultadosBusqueda = new ListBox();
             dgvProductosSeleccionados = new DataGridView();
-            lblTotal = new Label();
-            lblTotalMonto = new Label();
-            btnFacturar = new Button();
-            btnVolverMenu = new Button();
             colCodigo = new DataGridViewTextBoxColumn();
             colDescripcion = new DataGridViewTextBoxColumn();
             colPrecioUnitario = new DataGridViewTextBoxColumn();
             colCantidad = new DataGridViewTextBoxColumn();
             colSubtotal = new DataGridViewTextBoxColumn();
             colEliminar = new DataGridViewButtonColumn();
+            lblTotal = new Label();
+            lblTotalMonto = new Label();
+            btnFacturar = new Button();
+            btnVolverMenu = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvProductosSeleccionados).BeginInit();
             SuspendLayout();
             // 
@@ -50,9 +50,9 @@
             // 
             lblTitulo.AutoSize = true;
             lblTitulo.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            lblTitulo.Location = new Point(30, 20);
+            lblTitulo.Location = new Point(34, 27);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(219, 32);
+            lblTitulo.Size = new Size(272, 41);
             lblTitulo.TabIndex = 0;
             lblTitulo.Text = "Sistema de Ventas";
             // 
@@ -60,28 +60,30 @@
             // 
             lblBuscarProducto.AutoSize = true;
             lblBuscarProducto.Font = new Font("Segoe UI", 11F);
-            lblBuscarProducto.Location = new Point(30, 80);
+            lblBuscarProducto.Location = new Point(34, 107);
             lblBuscarProducto.Name = "lblBuscarProducto";
-            lblBuscarProducto.Size = new Size(254, 20);
+            lblBuscarProducto.Size = new Size(322, 25);
             lblBuscarProducto.TabIndex = 1;
             lblBuscarProducto.Text = "Buscar Producto (Código o Nombre):";
             // 
             // txtBuscarProducto
             // 
             txtBuscarProducto.Font = new Font("Segoe UI", 11F);
-            txtBuscarProducto.Location = new Point(30, 110);
+            txtBuscarProducto.Location = new Point(34, 147);
+            txtBuscarProducto.Margin = new Padding(3, 4, 3, 4);
             txtBuscarProducto.Name = "txtBuscarProducto";
-            txtBuscarProducto.Size = new Size(400, 27);
+            txtBuscarProducto.Size = new Size(457, 32);
             txtBuscarProducto.TabIndex = 2;
             // 
             // lstResultadosBusqueda
             // 
             lstResultadosBusqueda.Font = new Font("Segoe UI", 10F);
             lstResultadosBusqueda.FormattingEnabled = true;
-            lstResultadosBusqueda.ItemHeight = 17;
-            lstResultadosBusqueda.Location = new Point(30, 145);
+            lstResultadosBusqueda.ItemHeight = 23;
+            lstResultadosBusqueda.Location = new Point(34, 193);
+            lstResultadosBusqueda.Margin = new Padding(3, 4, 3, 4);
             lstResultadosBusqueda.Name = "lstResultadosBusqueda";
-            lstResultadosBusqueda.Size = new Size(400, 140);
+            lstResultadosBusqueda.Size = new Size(457, 165);
             lstResultadosBusqueda.TabIndex = 3;
             lstResultadosBusqueda.Visible = false;
             // 
@@ -92,19 +94,63 @@
             dgvProductosSeleccionados.BackgroundColor = Color.White;
             dgvProductosSeleccionados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvProductosSeleccionados.Columns.AddRange(new DataGridViewColumn[] { colCodigo, colDescripcion, colPrecioUnitario, colCantidad, colSubtotal, colEliminar });
-            dgvProductosSeleccionados.Location = new Point(30, 320);
+            dgvProductosSeleccionados.Location = new Point(34, 427);
+            dgvProductosSeleccionados.Margin = new Padding(3, 4, 3, 4);
             dgvProductosSeleccionados.Name = "dgvProductosSeleccionados";
             dgvProductosSeleccionados.RowHeadersVisible = false;
-            dgvProductosSeleccionados.Size = new Size(1600, 400);
+            dgvProductosSeleccionados.RowHeadersWidth = 51;
+            dgvProductosSeleccionados.Size = new Size(1829, 533);
             dgvProductosSeleccionados.TabIndex = 4;
+            // 
+            // colCodigo
+            // 
+            colCodigo.HeaderText = "Código";
+            colCodigo.MinimumWidth = 6;
+            colCodigo.Name = "colCodigo";
+            colCodigo.ReadOnly = true;
+            // 
+            // colDescripcion
+            // 
+            colDescripcion.HeaderText = "Descripción";
+            colDescripcion.MinimumWidth = 6;
+            colDescripcion.Name = "colDescripcion";
+            colDescripcion.ReadOnly = true;
+            // 
+            // colPrecioUnitario
+            // 
+            colPrecioUnitario.HeaderText = "Precio Unitario";
+            colPrecioUnitario.MinimumWidth = 6;
+            colPrecioUnitario.Name = "colPrecioUnitario";
+            colPrecioUnitario.ReadOnly = true;
+            // 
+            // colCantidad
+            // 
+            colCantidad.HeaderText = "Cantidad";
+            colCantidad.MinimumWidth = 6;
+            colCantidad.Name = "colCantidad";
+            // 
+            // colSubtotal
+            // 
+            colSubtotal.HeaderText = "Subtotal";
+            colSubtotal.MinimumWidth = 6;
+            colSubtotal.Name = "colSubtotal";
+            colSubtotal.ReadOnly = true;
+            // 
+            // colEliminar
+            // 
+            colEliminar.HeaderText = "Accion";
+            colEliminar.MinimumWidth = 6;
+            colEliminar.Name = "colEliminar";
+            colEliminar.Text = "Eliminar";
+            colEliminar.UseColumnTextForButtonValue = true;
             // 
             // lblTotal
             // 
             lblTotal.AutoSize = true;
             lblTotal.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-            lblTotal.Location = new Point(1350, 740);
+            lblTotal.Location = new Point(1543, 987);
             lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(133, 25);
+            lblTotal.Size = new Size(170, 32);
             lblTotal.TabIndex = 5;
             lblTotal.Text = "Total a Pagar:";
             // 
@@ -113,9 +159,9 @@
             lblTotalMonto.AutoSize = true;
             lblTotalMonto.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             lblTotalMonto.ForeColor = Color.Green;
-            lblTotalMonto.Location = new Point(1485, 740);
+            lblTotalMonto.Location = new Point(1697, 987);
             lblTotalMonto.Name = "lblTotalMonto";
-            lblTotalMonto.Size = new Size(61, 25);
+            lblTotalMonto.Size = new Size(77, 32);
             lblTotalMonto.TabIndex = 6;
             lblTotalMonto.Text = "$0.00";
             // 
@@ -124,9 +170,10 @@
             btnFacturar.BackColor = Color.FromArgb(0, 192, 0);
             btnFacturar.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnFacturar.ForeColor = Color.White;
-            btnFacturar.Location = new Point(1350, 785);
+            btnFacturar.Location = new Point(1193, 970);
+            btnFacturar.Margin = new Padding(3, 4, 3, 4);
             btnFacturar.Name = "btnFacturar";
-            btnFacturar.Size = new Size(280, 50);
+            btnFacturar.Size = new Size(320, 67);
             btnFacturar.TabIndex = 7;
             btnFacturar.Text = "Facturar";
             btnFacturar.UseVisualStyleBackColor = false;
@@ -136,55 +183,20 @@
             btnVolverMenu.BackColor = Color.FromArgb(64, 64, 64);
             btnVolverMenu.Font = new Font("Segoe UI", 10F);
             btnVolverMenu.ForeColor = Color.White;
-            btnVolverMenu.Location = new Point(30, 785);
+            btnVolverMenu.Location = new Point(34, 975);
+            btnVolverMenu.Margin = new Padding(3, 4, 3, 4);
             btnVolverMenu.Name = "btnVolverMenu";
-            btnVolverMenu.Size = new Size(150, 50);
+            btnVolverMenu.Size = new Size(171, 67);
             btnVolverMenu.TabIndex = 8;
             btnVolverMenu.Text = "Volver al Menú";
             btnVolverMenu.UseVisualStyleBackColor = false;
             // 
-            // colCodigo
-            // 
-            colCodigo.HeaderText = "Código";
-            colCodigo.Name = "colCodigo";
-            colCodigo.ReadOnly = true;
-            // 
-            // colDescripcion
-            // 
-            colDescripcion.HeaderText = "Descripción";
-            colDescripcion.Name = "colDescripcion";
-            colDescripcion.ReadOnly = true;
-            // 
-            // colPrecioUnitario
-            // 
-            colPrecioUnitario.HeaderText = "Precio Unitario";
-            colPrecioUnitario.Name = "colPrecioUnitario";
-            colPrecioUnitario.ReadOnly = true;
-            // 
-            // colCantidad
-            // 
-            colCantidad.HeaderText = "Cantidad";
-            colCantidad.Name = "colCantidad";
-            // 
-            // colSubtotal
-            // 
-            colSubtotal.HeaderText = "Subtotal";
-            colSubtotal.Name = "colSubtotal";
-            colSubtotal.ReadOnly = true;
-            // 
-            // colEliminar
-            // 
-            colEliminar.HeaderText = "Accion";
-            colEliminar.Name = "colEliminar";
-            colEliminar.Text = "Eliminar";
-            colEliminar.UseColumnTextForButtonValue = true;
-            // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.AliceBlue;
-            ClientSize = new Size(1668, 857);
+            ClientSize = new Size(1906, 1055);
             Controls.Add(btnVolverMenu);
             Controls.Add(btnFacturar);
             Controls.Add(lblTotalMonto);
@@ -194,8 +206,10 @@
             Controls.Add(txtBuscarProducto);
             Controls.Add(lblBuscarProducto);
             Controls.Add(lblTitulo);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
             Text = "Sistema de Ventas";
+            WindowState = FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)dgvProductosSeleccionados).EndInit();
             ResumeLayout(false);
             PerformLayout();

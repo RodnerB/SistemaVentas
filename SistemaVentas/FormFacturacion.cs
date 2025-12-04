@@ -16,25 +16,25 @@ namespace SistemaVentas
         public FormFacturacion(DataGridView productos, float total)
         {
             InitializeComponent();
-            
+
             dgvProductos = productos;
             montoTotal = total;
             subtotal = total;
-            
+
             lblTotalValor.Text = $"${montoTotal:F2}";
             lblSubtotalValor.Text = $"${subtotal:F2}";
             lblDescuentoValor.Text = "$0.00";
             lblTotalFinalValor.Text = $"${montoTotal:F2}";
-            
+
             // Configurar eventos
             btnGuardarFactura.Click += BtnGuardarFactura_Click;
             btnCancelar.Click += BtnCancelar_Click;
             txtDescuento.TextChanged += TxtDescuento_TextChanged;
-            
+
             // Configurar valores predeterminados
             dtpFechaFactura.Value = DateTime.Now;
             cmbCondicion.SelectedIndex = 0;
-            
+
             CargarClientes();
             GenerarNumeroFactura();
         }
@@ -93,8 +93,8 @@ namespace SistemaVentas
         {
             try
             {
-                float descuentoPorcentaje = string.IsNullOrWhiteSpace(txtDescuento.Text) 
-                    ? 0 
+                float descuentoPorcentaje = string.IsNullOrWhiteSpace(txtDescuento.Text)
+                    ? 0
                     : float.Parse(txtDescuento.Text);
 
                 if (descuentoPorcentaje < 0 || descuentoPorcentaje > 100)
@@ -165,7 +165,7 @@ namespace SistemaVentas
         {
             try
             {
-                foreach(DataGridViewRow fila in dgvProductos.Rows)
+                foreach (DataGridViewRow fila in dgvProductos.Rows)
                 {
                     // Obtener datos de cada fila
                     string codigoArticulo = fila.Cells["colCodigo"].Value.ToString()!;

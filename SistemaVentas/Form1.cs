@@ -22,12 +22,12 @@ namespace SistemaVentas
             InitializeComponent();
             formMenuPrincipal = menuPrincipal;
             productosDisponibles = new List<Articulo>();
-            
+
             this.StartPosition = FormStartPosition.CenterScreen;
-            
+
             // Ocultar lista de resultados inicialmente
             lstResultadosBusqueda.Visible = false;
-            
+
             // Configurar eventos
             txtBuscarProducto.TextChanged += TxtBuscarProducto_TextChanged;
             txtBuscarProducto.KeyDown += TxtBuscarProducto_KeyDown;
@@ -38,7 +38,7 @@ namespace SistemaVentas
             dgvProductosSeleccionados.CellClick += DgvProductosSeleccionados_CellClick;
             btnFacturar.Click += BtnFacturar_Click;
             btnVolverMenu.Click += BtnVolverMenu_Click;
-            
+
             // Ocultar lista cuando se hace clic fuera
             this.Click += (s, e) => { lstResultadosBusqueda.Visible = false; };
             dgvProductosSeleccionados.Click += (s, e) => { lstResultadosBusqueda.Visible = false; };
@@ -46,7 +46,7 @@ namespace SistemaVentas
             // Cargar productos desde la base de datos
             CargarProductos();
             ActualizarTotal();
-            
+
             // Configurar modo de edición
             dgvProductosSeleccionados.EditMode = DataGridViewEditMode.EditOnEnter;
         }
@@ -60,7 +60,7 @@ namespace SistemaVentas
             {
                 DataTable tabla = Articulo.ObtenerArticulos();
                 productosDisponibles.Clear();
-                
+
                 foreach (DataRow row in tabla.Rows)
                 {
                     productosDisponibles.Add(new Articulo
@@ -85,7 +85,7 @@ namespace SistemaVentas
         private void TxtBuscarProducto_TextChanged(object? sender, EventArgs e)
         {
             string busqueda = txtBuscarProducto.Text.Trim().ToLower();
-            
+
             if (string.IsNullOrWhiteSpace(busqueda))
             {
                 lstResultadosBusqueda.Visible = false;
@@ -93,18 +93,20 @@ namespace SistemaVentas
             }
 
             // Filtrar productos que coincidan con código o descripción
+            // y cuya existencia actual (stock) sea mayor a 0
             var coincidencias = productosDisponibles
-                .Where(p => p.CodigoArticulo.ToLower().Contains(busqueda) || 
-                           p.DescripcionArticulo.ToLower().Contains(busqueda))
+                .Where(p => (p.CodigoArticulo.ToLower().Contains(busqueda) ||
+                           p.DescripcionArticulo.ToLower().Contains(busqueda)) &&
+                           p.ExistenciaActual > 0)
                 .Take(10)
-                .ToList(); 
+                .ToList();
 
             lstResultadosBusqueda.Items.Clear(); // Limpiar resultados anteriores
 
             if (coincidencias.Any())
             {
                 lstResultadosBusqueda.Visible = true;
-                
+
                 foreach (var producto in coincidencias)
                 {
                     lstResultadosBusqueda.Items.Add(
@@ -129,7 +131,7 @@ namespace SistemaVentas
                 lstResultadosBusqueda.SelectedIndex = 0;
                 e.Handled = true;
             }
-            
+
         }
 
         private void LstResultadosBusqueda_KeyDown(object? sender, KeyEventArgs e)
@@ -176,10 +178,10 @@ namespace SistemaVentas
                 {
                     int cantidadActual = Convert.ToInt32(row.Cells["colCantidad"].Value);
                     row.Cells["colCantidad"].Value = cantidadActual + 1;
-                    
+
                     decimal precio = Convert.ToDecimal(row.Cells["colPrecioUnitario"].Value);
                     row.Cells["colSubtotal"].Value = (cantidadActual + 1) * precio;
-                    
+
                     productoExiste = true;
                     break;
                 }
@@ -190,7 +192,7 @@ namespace SistemaVentas
             {
                 int rowIndex = dgvProductosSeleccionados.Rows.Add();
                 DataGridViewRow row = dgvProductosSeleccionados.Rows[rowIndex];
-                
+
                 row.Cells["colCodigo"].Value = producto.CodigoArticulo;
                 row.Cells["colDescripcion"].Value = producto.DescripcionArticulo;
                 row.Cells["colPrecioUnitario"].Value = producto.PrecioArticulo;
@@ -199,7 +201,7 @@ namespace SistemaVentas
             }
 
             ActualizarTotal();
-            
+
             // Limpiar búsqueda
             txtBuscarProducto.Clear();
             lstResultadosBusqueda.Visible = false;
@@ -217,7 +219,7 @@ namespace SistemaVentas
             if (e.ColumnIndex == dgvProductosSeleccionados.Columns["colCantidad"].Index)
             {
                 DataGridViewRow row = dgvProductosSeleccionados.Rows[e.RowIndex];
-                
+
                 try
                 {
                     int cantidad;
@@ -229,9 +231,20 @@ namespace SistemaVentas
                         cantidad = 1;
                     }
 
-                    decimal precio = Convert.ToDecimal(row.Cells["colPrecioUnitario"].Value);
+                    string codigoProducto = row.Cells["colCodigo"].Value?.ToString()!;
+                    Articulo producto = productosDisponibles.FirstOrDefault(p => p.CodigoArticulo == codigoProducto);
+
+                    if (producto == null) return;
+                    if (cantidad > producto.ExistenciaActual) {
+                        cantidad = (int)producto.ExistenciaActual;
+                        row.Cells["colCantidad"].Value = producto.ExistenciaActual;
+                    }
+
+                    float precio = Convert.ToSingle(row.Cells["colPrecioUnitario"].Value);
                     row.Cells["colSubtotal"].Value = cantidad * precio;
-                    
+
+                    dgvProductosSeleccionados.RefreshEdit();
+
                     ActualizarTotal();
                 }
                 catch
@@ -311,7 +324,7 @@ namespace SistemaVentas
                     dgvProductosSeleccionados.Rows.Clear();
                     ActualizarTotal();
                     txtBuscarProducto.Clear();
-                    
+
                     MessageBox.Show("Factura generada exitosamente", "Éxito",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
