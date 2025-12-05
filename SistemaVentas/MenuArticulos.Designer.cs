@@ -54,7 +54,7 @@
             tableLayoutPanel5 = new TableLayoutPanel();
             tableLayoutPanel6 = new TableLayoutPanel();
             lblCodArt = new Label();
-            txtCodArt = new TextBox();
+            inpCodArt = new TextBox();
             lblUniArt = new Label();
             lblDesArt = new Label();
             txtDesArt = new TextBox();
@@ -413,7 +413,7 @@
             tableLayoutPanel6.ColumnCount = 1;
             tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel6.Controls.Add(lblCodArt, 0, 0);
-            tableLayoutPanel6.Controls.Add(txtCodArt, 0, 1);
+            tableLayoutPanel6.Controls.Add(inpCodArt, 0, 1);
             tableLayoutPanel6.Controls.Add(lblUniArt, 0, 4);
             tableLayoutPanel6.Controls.Add(lblDesArt, 0, 2);
             tableLayoutPanel6.Controls.Add(txtDesArt, 0, 3);
@@ -442,13 +442,13 @@
             lblCodArt.TabIndex = 9;
             lblCodArt.Text = "Código";
             // 
-            // txtCodArt
+            // inpCodArt
             // 
-            txtCodArt.Anchor = AnchorStyles.Bottom;
-            txtCodArt.Location = new Point(3, 27);
-            txtCodArt.Name = "txtCodArt";
-            txtCodArt.Size = new Size(362, 27);
-            txtCodArt.TabIndex = 3;
+            inpCodArt.Anchor = AnchorStyles.Bottom;
+            inpCodArt.Location = new Point(3, 27);
+            inpCodArt.Name = "inpCodArt";
+            inpCodArt.Size = new Size(362, 27);
+            inpCodArt.TabIndex = 3;
             // 
             // lblUniArt
             // 
@@ -676,7 +676,7 @@
         private TextBox txtDesArt;
         private Label lblDesArt;
         private ComboBox cmbCodUni;
-        private TextBox txtCodArt;
+        private TextBox inpCodArt;
         private Label lblExiMax;
         private Label lblExiMin;
         private Label lblExiAct;

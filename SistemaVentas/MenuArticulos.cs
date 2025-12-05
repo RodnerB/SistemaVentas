@@ -74,7 +74,7 @@ namespace SistemaVentas
         private void Form3_Shown(object? sender, EventArgs e)
         {
             // Ajustar el nombre del control si el primer textbox tiene otro nombre
-            txtCodArt?.Focus();
+            inpCodArt?.Focus();
         }
 
         // Recorre recursivamente el árbol de controles y aplica el helper salvo a los TextBox.
@@ -304,7 +304,7 @@ namespace SistemaVentas
         {
             return new Articulo()
             {
-                CodigoArticulo = txtCodArt.Text,
+                CodigoArticulo = inpCodArt.Text,
                 DescripcionArticulo = txtDesArt.Text,
                 CodigoUnidad = cmbCodUni.SelectedValue?.ToString() ?? "",
                 ExistenciaMinima = string.IsNullOrWhiteSpace(txtExiMin.Text) ? 0 : Convert.ToSingle(txtExiMin.Text),
@@ -351,7 +351,7 @@ namespace SistemaVentas
             GuardarArticulo(articulo);
 
             // Limpiar casillas después de agregar y restablecer combo
-            txtCodArt?.Clear();
+            inpCodArt?.Clear();
             txtDesArt?.Clear();
             txtExiMin?.Clear();
             txtExiMax?.Clear();
@@ -364,7 +364,7 @@ namespace SistemaVentas
             }
 
             // Poner foco en la primera casilla
-            txtCodArt?.Focus();
+            inpCodArt?.Focus();
         }
 
         private void btnEliminarArt_Click(object sender, EventArgs e)
@@ -382,9 +382,9 @@ namespace SistemaVentas
 
         private void btnBuscarArt_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtCodArt.Text)) return;
+            if (string.IsNullOrWhiteSpace(inpCodArt.Text)) return;
 
-            articulo = BuscarArticulo(txtCodArt.Text);
+            articulo = BuscarArticulo(inpCodArt.Text);
             if (articulo != null)
             {
                 // Rellenar los controles de la interfaz con los datos del artículo
