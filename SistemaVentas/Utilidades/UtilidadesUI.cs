@@ -18,25 +18,6 @@ namespace SistemaVentas.Utilidades
 
             gridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
 
-            DataGridViewColumn? obsCol = null;
-
-            if (gridView.Columns.Contains("OBSCLI"))
-            {
-                obsCol = gridView.Columns["OBSCLI"];
-            }
-            else
-            {
-                foreach (DataGridViewColumn col in gridView.Columns)
-                {
-                    if (string.Equals(col.HeaderText, "Observaciones",
-                        StringComparison.OrdinalIgnoreCase))
-                    {
-                        obsCol = col;
-                        break;
-                    }
-                }
-            }
-
             foreach (var encabezado in encabezados)
             {
                 if (gridView.Columns.Contains(encabezado.Key))

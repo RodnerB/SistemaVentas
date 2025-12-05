@@ -74,7 +74,7 @@ namespace SistemaVentas
         private void btnDetalles_Click(object sender, EventArgs e)
         {
             // Abrir el formulario de detalles
-            MenuDetalles detalles = new MenuDetalles(this);
+            Form1 detalles = new Form1(this);
             detalles.Show(); // Mostrar el formulario de detalles
             this.Hide(); // Ocultar el formulario principal
         }

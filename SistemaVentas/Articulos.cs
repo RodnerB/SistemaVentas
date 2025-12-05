@@ -66,11 +66,11 @@ namespace SistemaVentas
                 ObtenerParametrosArticulo(articulo)
                 ) > 0);
         }
-
-        public static void ObtenerArticulos(DataGridView dataGrid) 
+        public static DataTable ObtenerArticulos() => UtilidadesBD.ObtenerTodosLosRegistros(getArticulosQuery);
+        public static void CargarArticulosEnGrid(DataGridView dataGrid) 
         { 
             DataTable tabla = UtilidadesBD.ObtenerTodosLosRegistros(getArticulosQuery);
-            Utilidades.UtilidadesUI.CargarDatosEnGrid(
+            UtilidadesUI.CargarDatosEnGrid(
                 tabla,
                 dataGrid,
                 articulosHeaders
