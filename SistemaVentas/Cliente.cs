@@ -43,19 +43,19 @@ namespace SistemaVentas
 
         // Headers para renombrar columnas 
 
-        private static Dictionary<string, string> clientesHeaders = new()
+        private static Dictionary<string, string> filasHeaders = new()
         {
-            {"CODCLI", "Código" },
-            {"NOMCLI", "Nombre" },
-            {"APECLI", "Apellido" },
-            {"DIRCLI", "Dirección" },
-            {"SECCLI", "Sector" },
-            {"CIUCLI", "Ciudad" },
-            {"TELCLI", "Teléfono" },
-            {"NUMFAX", "Fax" },
-            {"LIMCRE", "Límite Créditicio" },
-            {"BALCLI", "Balance Actual" },
-            {"OBSCLI", "Observaciones" }
+            {"colCodigo", "CODCLI" },
+            {"colNombre", "NOMCLI" },
+            {"colApellido", "APECLI" },
+            {"colDireccion", "DIRCLI" },
+            {"colSector", "SECCLI" },
+            {"colCiudad", "CIUCLI" },
+            {"colTelefono", "TELCLI" },
+            {"colFax", "NUMFAX" },
+            {"colLimite", "LIMCRE" },
+            {"colBalance", "BALCLI" },
+            {"colObservaciones", "OBSCLI" }
         };
 
         public Cliente() { }
@@ -100,14 +100,23 @@ namespace SistemaVentas
 
         public static void CargarClientesEnGrid(DataGridView dataGrid)
         {
+            
             DataTable tabla = ObtenerClientes();
             UtilidadesUI.CargarDatosEnGrid(
                 tabla,
                 dataGrid,
-                clientesHeaders
+                filasHeaders
                 );
         }
-
+        public static void CargarClientesGridConFilas(DataGridView dataGrid)
+        {
+            DataTable tabla = ObtenerClientes();
+            UtilidadesUI.CargarDatosEnGridConFilas(
+                tabla,
+                dataGrid,
+                filasHeaders
+                );
+        }
         public static Cliente? ObtenerClientePorCodigo(string codigoCliente)
         {
             Dictionary<string, object>? datos = UtilidadesBD.BuscarRegistro(
