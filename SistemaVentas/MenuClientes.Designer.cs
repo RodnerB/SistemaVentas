@@ -32,6 +32,18 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             dgvClientes = new DataGridView();
+            colCodigo = new DataGridViewTextBoxColumn();
+            colNombre = new DataGridViewTextBoxColumn();
+            colApellido = new DataGridViewTextBoxColumn();
+            colDireccion = new DataGridViewTextBoxColumn();
+            colSector = new DataGridViewTextBoxColumn();
+            colCiudad = new DataGridViewTextBoxColumn();
+            colTelefono = new DataGridViewTextBoxColumn();
+            colFax = new DataGridViewTextBoxColumn();
+            colLimite = new DataGridViewTextBoxColumn();
+            colBalance = new DataGridViewTextBoxColumn();
+            colObservaciones = new DataGridViewTextBoxColumn();
+            colEliminar = new DataGridViewButtonColumn();
             lblClientes = new Label();
             btnVolverMenuPrincipal = new Button();
             tableLayoutPanel1 = new TableLayoutPanel();
@@ -109,6 +121,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
             dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvClientes.Columns.AddRange(new DataGridViewColumn[] { colCodigo, colNombre, colApellido, colDireccion, colSector, colCiudad, colTelefono, colFax, colLimite, colBalance, colObservaciones, colEliminar });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -120,7 +133,8 @@
             dgvClientes.Dock = DockStyle.Fill;
             dgvClientes.EnableHeadersVisualStyles = false;
             dgvClientes.GridColor = SystemColors.HighlightText;
-            dgvClientes.Location = new Point(3, 74);
+            dgvClientes.Location = new Point(3, 55);
+            dgvClientes.Margin = new Padding(3, 2, 3, 2);
             dgvClientes.Name = "dgvClientes";
             dgvClientes.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -133,8 +147,83 @@
             dgvClientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvClientes.RowHeadersVisible = false;
             dgvClientes.RowHeadersWidth = 51;
-            dgvClientes.Size = new Size(1392, 691);
+            dgvClientes.Size = new Size(1217, 519);
             dgvClientes.TabIndex = 0;
+            dgvClientes.CellClick += dgvClientes_CellClick;
+            // 
+            // colCodigo
+            // 
+            colCodigo.HeaderText = "Codigo";
+            colCodigo.Name = "colCodigo";
+            colCodigo.ReadOnly = true;
+            // 
+            // colNombre
+            // 
+            colNombre.HeaderText = "Nombre";
+            colNombre.Name = "colNombre";
+            colNombre.ReadOnly = true;
+            // 
+            // colApellido
+            // 
+            colApellido.HeaderText = "Apellido";
+            colApellido.Name = "colApellido";
+            colApellido.ReadOnly = true;
+            // 
+            // colDireccion
+            // 
+            colDireccion.HeaderText = "Direccion";
+            colDireccion.Name = "colDireccion";
+            colDireccion.ReadOnly = true;
+            // 
+            // colSector
+            // 
+            colSector.HeaderText = "Sector";
+            colSector.Name = "colSector";
+            colSector.ReadOnly = true;
+            // 
+            // colCiudad
+            // 
+            colCiudad.HeaderText = "Ciudad";
+            colCiudad.Name = "colCiudad";
+            colCiudad.ReadOnly = true;
+            // 
+            // colTelefono
+            // 
+            colTelefono.HeaderText = "Telefono";
+            colTelefono.Name = "colTelefono";
+            colTelefono.ReadOnly = true;
+            // 
+            // colFax
+            // 
+            colFax.HeaderText = "Fax";
+            colFax.Name = "colFax";
+            colFax.ReadOnly = true;
+            // 
+            // colLimite
+            // 
+            colLimite.HeaderText = "Limite Credito";
+            colLimite.Name = "colLimite";
+            colLimite.ReadOnly = true;
+            // 
+            // colBalance
+            // 
+            colBalance.HeaderText = "Balance";
+            colBalance.Name = "colBalance";
+            colBalance.ReadOnly = true;
+            // 
+            // colObservaciones
+            // 
+            colObservaciones.HeaderText = "Observaciones";
+            colObservaciones.Name = "colObservaciones";
+            colObservaciones.ReadOnly = true;
+            // 
+            // colEliminar
+            // 
+            colEliminar.HeaderText = "Accion";
+            colEliminar.Name = "colEliminar";
+            colEliminar.ReadOnly = true;
+            colEliminar.Text = "Eliminar";
+            colEliminar.UseColumnTextForButtonValue = true;
             // 
             // lblClientes
             // 
@@ -143,7 +232,7 @@
             lblClientes.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             lblClientes.Location = new Point(3, 0);
             lblClientes.Name = "lblClientes";
-            lblClientes.Size = new Size(115, 29);
+            lblClientes.Size = new Size(97, 22);
             lblClientes.TabIndex = 1;
             lblClientes.Text = "CLIENTES";
             // 
@@ -157,9 +246,10 @@
             btnVolverMenuPrincipal.FlatAppearance.MouseDownBackColor = Color.Silver;
             btnVolverMenuPrincipal.FlatAppearance.MouseOverBackColor = Color.Silver;
             btnVolverMenuPrincipal.FlatStyle = FlatStyle.Flat;
-            btnVolverMenuPrincipal.Location = new Point(18, 12);
+            btnVolverMenuPrincipal.Location = new Point(15, 9);
+            btnVolverMenuPrincipal.Margin = new Padding(3, 2, 3, 2);
             btnVolverMenuPrincipal.Name = "btnVolverMenuPrincipal";
-            btnVolverMenuPrincipal.Size = new Size(33, 34);
+            btnVolverMenuPrincipal.Size = new Size(29, 26);
             btnVolverMenuPrincipal.TabIndex = 28;
             btnVolverMenuPrincipal.UseVisualStyleBackColor = false;
             btnVolverMenuPrincipal.Click += BtnVolverMenuPrincipal_Click;
@@ -174,12 +264,13 @@
             tableLayoutPanel1.Controls.Add(panel2, 0, 1);
             tableLayoutPanel1.Controls.Add(panel3, 1, 1);
             tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 3;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 7.40740728F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 89.5833359F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 3F));
-            tableLayoutPanel1.Size = new Size(1872, 864);
+            tableLayoutPanel1.Size = new Size(1638, 648);
             tableLayoutPanel1.TabIndex = 29;
             // 
             // panel1
@@ -188,9 +279,10 @@
             panel1.Controls.Add(tableLayoutPanel8);
             panel1.Controls.Add(tableLayoutPanel7);
             panel1.Controls.Add(tableLayoutPanel2);
-            panel1.Location = new Point(3, 3);
+            panel1.Location = new Point(3, 2);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(462, 58);
+            panel1.Size = new Size(403, 44);
             panel1.TabIndex = 1;
             // 
             // tableLayoutPanel8
@@ -198,11 +290,12 @@
             tableLayoutPanel8.ColumnCount = 1;
             tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel8.Controls.Add(picClientes, 0, 0);
-            tableLayoutPanel8.Location = new Point(50, 0);
+            tableLayoutPanel8.Location = new Point(44, 0);
+            tableLayoutPanel8.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel8.Name = "tableLayoutPanel8";
             tableLayoutPanel8.RowCount = 1;
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel8.Size = new Size(52, 58);
+            tableLayoutPanel8.Size = new Size(46, 44);
             tableLayoutPanel8.TabIndex = 31;
             // 
             // picClientes
@@ -210,9 +303,10 @@
             picClientes.Anchor = AnchorStyles.Right;
             picClientes.BackColor = Color.Transparent;
             picClientes.BackgroundImage = Properties.Resources.users_people_workers_customers_icon_1242431;
-            picClientes.Location = new Point(3, 7);
+            picClientes.Location = new Point(3, 5);
+            picClientes.Margin = new Padding(3, 2, 3, 2);
             picClientes.Name = "picClientes";
-            picClientes.Size = new Size(46, 44);
+            picClientes.Size = new Size(40, 33);
             picClientes.SizeMode = PictureBoxSizeMode.Zoom;
             picClientes.TabIndex = 5;
             picClientes.TabStop = false;
@@ -224,12 +318,13 @@
             tableLayoutPanel7.Controls.Add(label5, 0, 1);
             tableLayoutPanel7.Controls.Add(lblClientes, 0, 0);
             tableLayoutPanel7.Dock = DockStyle.Right;
-            tableLayoutPanel7.Location = new Point(105, 0);
+            tableLayoutPanel7.Location = new Point(91, 0);
+            tableLayoutPanel7.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel7.Name = "tableLayoutPanel7";
             tableLayoutPanel7.RowCount = 2;
             tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel7.Size = new Size(357, 58);
+            tableLayoutPanel7.Size = new Size(312, 44);
             tableLayoutPanel7.TabIndex = 30;
             // 
             // label5
@@ -237,9 +332,9 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Gray;
-            label5.Location = new Point(3, 29);
+            label5.Location = new Point(3, 22);
             label5.Name = "label5";
-            label5.Size = new Size(296, 20);
+            label5.Size = new Size(232, 15);
             label5.TabIndex = 2;
             label5.Text = "Administra la información de tus clientes";
             // 
@@ -250,10 +345,11 @@
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.Controls.Add(btnVolverMenuPrincipal, 0, 0);
             tableLayoutPanel2.Location = new Point(0, 0);
+            tableLayoutPanel2.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Size = new Size(54, 58);
+            tableLayoutPanel2.Size = new Size(47, 44);
             tableLayoutPanel2.TabIndex = 29;
             // 
             // panel2
@@ -261,9 +357,10 @@
             panel2.Anchor = AnchorStyles.None;
             panel2.BackColor = SystemColors.ButtonHighlight;
             panel2.Controls.Add(tableLayoutPanel5);
-            panel2.Location = new Point(16, 67);
+            panel2.Location = new Point(13, 50);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(436, 768);
+            panel2.Size = new Size(382, 576);
             panel2.TabIndex = 2;
             // 
             // tableLayoutPanel5
@@ -275,12 +372,13 @@
             tableLayoutPanel5.Controls.Add(tableLayoutPanel6, 0, 2);
             tableLayoutPanel5.Controls.Add(label3, 0, 0);
             tableLayoutPanel5.Location = new Point(0, 0);
+            tableLayoutPanel5.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 3;
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 9.558F));
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 76.3877F));
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 14.0542974F));
-            tableLayoutPanel5.Size = new Size(436, 768);
+            tableLayoutPanel5.Size = new Size(382, 576);
             tableLayoutPanel5.TabIndex = 0;
             // 
             // tableLayoutPanel3
@@ -311,7 +409,8 @@
             tableLayoutPanel3.Controls.Add(inpObsCliente, 0, 21);
             tableLayoutPanel3.Controls.Add(lblCodCli, 0, 0);
             tableLayoutPanel3.Dock = DockStyle.Fill;
-            tableLayoutPanel3.Location = new Point(3, 76);
+            tableLayoutPanel3.Location = new Point(3, 57);
+            tableLayoutPanel3.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 22;
             tableLayoutPanel3.RowStyles.Add(new RowStyle());
@@ -336,195 +435,206 @@
             tableLayoutPanel3.RowStyles.Add(new RowStyle());
             tableLayoutPanel3.RowStyles.Add(new RowStyle());
             tableLayoutPanel3.RowStyles.Add(new RowStyle());
-            tableLayoutPanel3.Size = new Size(430, 580);
+            tableLayoutPanel3.Size = new Size(376, 435);
             tableLayoutPanel3.TabIndex = 29;
             // 
             // lblObsCli
             // 
             lblObsCli.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblObsCli.AutoSize = true;
-            lblObsCli.Location = new Point(3, 530);
+            lblObsCli.Location = new Point(3, 420);
             lblObsCli.Name = "lblObsCli";
-            lblObsCli.Size = new Size(424, 20);
+            lblObsCli.Size = new Size(370, 15);
             lblObsCli.TabIndex = 22;
             lblObsCli.Text = "        Observaciones";
             // 
             // inpBalCliente
             // 
             inpBalCliente.Anchor = AnchorStyles.None;
-            inpBalCliente.Location = new Point(34, 500);
+            inpBalCliente.Location = new Point(29, 395);
+            inpBalCliente.Margin = new Padding(3, 2, 3, 2);
             inpBalCliente.Name = "inpBalCliente";
-            inpBalCliente.Size = new Size(362, 27);
+            inpBalCliente.Size = new Size(317, 23);
             inpBalCliente.TabIndex = 21;
             // 
             // lblBalCli
             // 
             lblBalCli.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblBalCli.AutoSize = true;
-            lblBalCli.Location = new Point(3, 477);
+            lblBalCli.Location = new Point(3, 378);
             lblBalCli.Name = "lblBalCli";
-            lblBalCli.Size = new Size(424, 20);
+            lblBalCli.Size = new Size(370, 15);
             lblBalCli.TabIndex = 20;
             lblBalCli.Text = "        Balance actual";
             // 
             // inpCredCliente
             // 
             inpCredCliente.Anchor = AnchorStyles.None;
-            inpCredCliente.Location = new Point(34, 447);
+            inpCredCliente.Location = new Point(29, 353);
+            inpCredCliente.Margin = new Padding(3, 2, 3, 2);
             inpCredCliente.Name = "inpCredCliente";
-            inpCredCliente.Size = new Size(362, 27);
+            inpCredCliente.Size = new Size(317, 23);
             inpCredCliente.TabIndex = 19;
             // 
             // lblNumCre
             // 
             lblNumCre.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblNumCre.AutoSize = true;
-            lblNumCre.Location = new Point(3, 424);
+            lblNumCre.Location = new Point(3, 336);
             lblNumCre.Name = "lblNumCre";
-            lblNumCre.Size = new Size(424, 20);
+            lblNumCre.Size = new Size(370, 15);
             lblNumCre.TabIndex = 18;
             lblNumCre.Text = "        Límite de crédito";
             // 
             // inpFaxCliente
             // 
             inpFaxCliente.Anchor = AnchorStyles.None;
-            inpFaxCliente.Location = new Point(34, 394);
+            inpFaxCliente.Location = new Point(29, 311);
+            inpFaxCliente.Margin = new Padding(3, 2, 3, 2);
             inpFaxCliente.Name = "inpFaxCliente";
-            inpFaxCliente.Size = new Size(362, 27);
+            inpFaxCliente.Size = new Size(317, 23);
             inpFaxCliente.TabIndex = 17;
             // 
             // lblFax
             // 
             lblFax.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblFax.AutoSize = true;
-            lblFax.Location = new Point(3, 371);
+            lblFax.Location = new Point(3, 294);
             lblFax.Name = "lblFax";
-            lblFax.Size = new Size(424, 20);
+            lblFax.Size = new Size(370, 15);
             lblFax.TabIndex = 16;
             lblFax.Text = "        Fax";
             // 
             // inpTelCliente
             // 
             inpTelCliente.Anchor = AnchorStyles.None;
-            inpTelCliente.Location = new Point(34, 341);
+            inpTelCliente.Location = new Point(29, 269);
+            inpTelCliente.Margin = new Padding(3, 2, 3, 2);
             inpTelCliente.Name = "inpTelCliente";
-            inpTelCliente.Size = new Size(362, 27);
+            inpTelCliente.Size = new Size(317, 23);
             inpTelCliente.TabIndex = 15;
             // 
             // lblTelCli
             // 
             lblTelCli.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblTelCli.AutoSize = true;
-            lblTelCli.Location = new Point(3, 318);
+            lblTelCli.Location = new Point(3, 252);
             lblTelCli.Name = "lblTelCli";
-            lblTelCli.Size = new Size(424, 20);
+            lblTelCli.Size = new Size(370, 15);
             lblTelCli.TabIndex = 14;
             lblTelCli.Text = "        Teléfono";
             // 
             // inpCiuCliente
             // 
             inpCiuCliente.Anchor = AnchorStyles.None;
-            inpCiuCliente.Location = new Point(34, 288);
+            inpCiuCliente.Location = new Point(29, 227);
+            inpCiuCliente.Margin = new Padding(3, 2, 3, 2);
             inpCiuCliente.Name = "inpCiuCliente";
-            inpCiuCliente.Size = new Size(362, 27);
+            inpCiuCliente.Size = new Size(317, 23);
             inpCiuCliente.TabIndex = 13;
             // 
             // lblCiuCli
             // 
             lblCiuCli.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblCiuCli.AutoSize = true;
-            lblCiuCli.Location = new Point(3, 265);
+            lblCiuCli.Location = new Point(3, 210);
             lblCiuCli.Name = "lblCiuCli";
-            lblCiuCli.Size = new Size(424, 20);
+            lblCiuCli.Size = new Size(370, 15);
             lblCiuCli.TabIndex = 12;
             lblCiuCli.Text = "        Ciudad";
             // 
             // inpSecCliente
             // 
             inpSecCliente.Anchor = AnchorStyles.None;
-            inpSecCliente.Location = new Point(34, 235);
+            inpSecCliente.Location = new Point(29, 185);
+            inpSecCliente.Margin = new Padding(3, 2, 3, 2);
             inpSecCliente.Name = "inpSecCliente";
-            inpSecCliente.Size = new Size(362, 27);
+            inpSecCliente.Size = new Size(317, 23);
             inpSecCliente.TabIndex = 11;
             // 
             // lblSecCli
             // 
             lblSecCli.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblSecCli.AutoSize = true;
-            lblSecCli.Location = new Point(3, 212);
+            lblSecCli.Location = new Point(3, 168);
             lblSecCli.Name = "lblSecCli";
-            lblSecCli.Size = new Size(424, 20);
+            lblSecCli.Size = new Size(370, 15);
             lblSecCli.TabIndex = 10;
             lblSecCli.Text = "        Sector";
             // 
             // inpDirCliente
             // 
             inpDirCliente.Anchor = AnchorStyles.None;
-            inpDirCliente.Location = new Point(34, 182);
+            inpDirCliente.Location = new Point(29, 143);
+            inpDirCliente.Margin = new Padding(3, 2, 3, 2);
             inpDirCliente.Name = "inpDirCliente";
-            inpDirCliente.Size = new Size(362, 27);
+            inpDirCliente.Size = new Size(317, 23);
             inpDirCliente.TabIndex = 9;
             // 
             // lblDirCli
             // 
             lblDirCli.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblDirCli.AutoSize = true;
-            lblDirCli.Location = new Point(3, 159);
+            lblDirCli.Location = new Point(3, 126);
             lblDirCli.Name = "lblDirCli";
-            lblDirCli.Size = new Size(424, 20);
+            lblDirCli.Size = new Size(370, 15);
             lblDirCli.TabIndex = 8;
             lblDirCli.Text = "        Dirección";
             // 
             // inpApeCliente
             // 
             inpApeCliente.Anchor = AnchorStyles.None;
-            inpApeCliente.Location = new Point(34, 129);
+            inpApeCliente.Location = new Point(29, 101);
+            inpApeCliente.Margin = new Padding(3, 2, 3, 2);
             inpApeCliente.Name = "inpApeCliente";
-            inpApeCliente.Size = new Size(362, 27);
+            inpApeCliente.Size = new Size(317, 23);
             inpApeCliente.TabIndex = 7;
             // 
             // lblApeCli
             // 
             lblApeCli.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblApeCli.AutoSize = true;
-            lblApeCli.Location = new Point(3, 106);
+            lblApeCli.Location = new Point(3, 84);
             lblApeCli.Name = "lblApeCli";
-            lblApeCli.Size = new Size(424, 20);
+            lblApeCli.Size = new Size(370, 15);
             lblApeCli.TabIndex = 6;
             lblApeCli.Text = "        Apellido";
             // 
             // inpNomCliente
             // 
             inpNomCliente.Anchor = AnchorStyles.None;
-            inpNomCliente.Location = new Point(34, 76);
+            inpNomCliente.Location = new Point(29, 59);
+            inpNomCliente.Margin = new Padding(3, 2, 3, 2);
             inpNomCliente.Name = "inpNomCliente";
-            inpNomCliente.Size = new Size(362, 27);
+            inpNomCliente.Size = new Size(317, 23);
             inpNomCliente.TabIndex = 5;
             // 
             // lblNomCli
             // 
             lblNomCli.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblNomCli.AutoSize = true;
-            lblNomCli.Location = new Point(3, 53);
+            lblNomCli.Location = new Point(3, 42);
             lblNomCli.Name = "lblNomCli";
-            lblNomCli.Size = new Size(424, 20);
+            lblNomCli.Size = new Size(370, 15);
             lblNomCli.TabIndex = 4;
             lblNomCli.Text = "        Nombre";
             // 
             // inpCodCliente
             // 
             inpCodCliente.Anchor = AnchorStyles.None;
-            inpCodCliente.Location = new Point(34, 23);
+            inpCodCliente.Location = new Point(29, 17);
+            inpCodCliente.Margin = new Padding(3, 2, 3, 2);
             inpCodCliente.Name = "inpCodCliente";
-            inpCodCliente.Size = new Size(362, 27);
+            inpCodCliente.Size = new Size(317, 23);
             inpCodCliente.TabIndex = 3;
             // 
             // inpObsCliente
             // 
             inpObsCliente.Anchor = AnchorStyles.Top;
-            inpObsCliente.Location = new Point(34, 553);
+            inpObsCliente.Location = new Point(29, 437);
+            inpObsCliente.Margin = new Padding(3, 2, 3, 2);
             inpObsCliente.Name = "inpObsCliente";
-            inpObsCliente.Size = new Size(362, 27);
+            inpObsCliente.Size = new Size(317, 23);
             inpObsCliente.TabIndex = 23;
             // 
             // lblCodCli
@@ -533,7 +643,7 @@
             lblCodCli.AutoSize = true;
             lblCodCli.Location = new Point(3, 0);
             lblCodCli.Name = "lblCodCli";
-            lblCodCli.Size = new Size(424, 20);
+            lblCodCli.Size = new Size(370, 15);
             lblCodCli.TabIndex = 2;
             lblCodCli.Text = "        Código";
             // 
@@ -544,12 +654,13 @@
             tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel6.Controls.Add(btnBuscarCli, 0, 0);
             tableLayoutPanel6.Controls.Add(btnAgregarCliente, 0, 1);
-            tableLayoutPanel6.Location = new Point(77, 662);
+            tableLayoutPanel6.Location = new Point(67, 496);
+            tableLayoutPanel6.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel6.Name = "tableLayoutPanel6";
             tableLayoutPanel6.RowCount = 2;
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 50.0024948F));
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 49.9975052F));
-            tableLayoutPanel6.Size = new Size(282, 103);
+            tableLayoutPanel6.Size = new Size(247, 77);
             tableLayoutPanel6.TabIndex = 30;
             // 
             // btnBuscarCli
@@ -565,9 +676,10 @@
             btnBuscarCli.FlatStyle = FlatStyle.Flat;
             btnBuscarCli.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnBuscarCli.ForeColor = SystemColors.ButtonHighlight;
-            btnBuscarCli.Location = new Point(3, 3);
+            btnBuscarCli.Location = new Point(3, 2);
+            btnBuscarCli.Margin = new Padding(3, 2, 3, 2);
             btnBuscarCli.Name = "btnBuscarCli";
-            btnBuscarCli.Size = new Size(276, 28);
+            btnBuscarCli.Size = new Size(241, 21);
             btnBuscarCli.TabIndex = 25;
             btnBuscarCli.Text = "Buscar cliente";
             btnBuscarCli.UseVisualStyleBackColor = false;
@@ -586,9 +698,10 @@
             btnAgregarCliente.FlatStyle = FlatStyle.Flat;
             btnAgregarCliente.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAgregarCliente.ForeColor = SystemColors.ButtonHighlight;
-            btnAgregarCliente.Location = new Point(3, 54);
+            btnAgregarCliente.Location = new Point(3, 40);
+            btnAgregarCliente.Margin = new Padding(3, 2, 3, 2);
             btnAgregarCliente.Name = "btnAgregarCliente";
-            btnAgregarCliente.Size = new Size(276, 28);
+            btnAgregarCliente.Size = new Size(241, 21);
             btnAgregarCliente.TabIndex = 24;
             btnAgregarCliente.Text = "Guardar cliente ";
             btnAgregarCliente.UseVisualStyleBackColor = false;
@@ -599,9 +712,9 @@
             label3.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(3, 13);
+            label3.Location = new Point(3, 9);
             label3.Name = "label3";
-            label3.Size = new Size(430, 46);
+            label3.Size = new Size(376, 37);
             label3.TabIndex = 31;
             label3.Text = "Nuevo Cliente";
             // 
@@ -610,9 +723,10 @@
             panel3.BackColor = SystemColors.ButtonHighlight;
             panel3.Controls.Add(tableLayoutPanel4);
             panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(471, 67);
+            panel3.Location = new Point(412, 50);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1398, 768);
+            panel3.Size = new Size(1223, 576);
             panel3.TabIndex = 3;
             // 
             // tableLayoutPanel4
@@ -623,11 +737,12 @@
             tableLayoutPanel4.Controls.Add(label4, 0, 0);
             tableLayoutPanel4.Dock = DockStyle.Fill;
             tableLayoutPanel4.Location = new Point(0, 0);
+            tableLayoutPanel4.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
             tableLayoutPanel4.RowCount = 2;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 9.244792F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 90.75521F));
-            tableLayoutPanel4.Size = new Size(1398, 768);
+            tableLayoutPanel4.Size = new Size(1223, 576);
             tableLayoutPanel4.TabIndex = 0;
             // 
             // label4
@@ -635,18 +750,19 @@
             label4.Anchor = AnchorStyles.Left;
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(3, 12);
+            label4.Location = new Point(3, 8);
             label4.Name = "label4";
-            label4.Size = new Size(285, 46);
+            label4.Size = new Size(232, 37);
             label4.TabIndex = 1;
             label4.Text = "Lista de Clientes ";
             // 
             // MenuClientes
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1872, 864);
+            ClientSize = new Size(1638, 648);
             Controls.Add(tableLayoutPanel1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "MenuClientes";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Clientes";
@@ -716,5 +832,18 @@
         private TextBox inpObsCliente;
         private PictureBox picClientes;
         private Label label3;
+        private DataGridViewButtonColumn Eliminar;
+        private DataGridViewTextBoxColumn colCodigo;
+        private DataGridViewTextBoxColumn colNombre;
+        private DataGridViewTextBoxColumn colApellido;
+        private DataGridViewTextBoxColumn colDireccion;
+        private DataGridViewTextBoxColumn colSector;
+        private DataGridViewTextBoxColumn colCiudad;
+        private DataGridViewTextBoxColumn colTelefono;
+        private DataGridViewTextBoxColumn colFax;
+        private DataGridViewTextBoxColumn colLimite;
+        private DataGridViewTextBoxColumn colBalance;
+        private DataGridViewTextBoxColumn colObservaciones;
+        private DataGridViewButtonColumn colEliminar;
     }
 }

@@ -27,7 +27,6 @@ namespace SistemaVentas
             this.Resize += MenuClientes_Resize;
 
             formMenuPrincipal = MenuPrincipal; // Guarda la referencia del formulario principal que abrió este formulario
-            CargarClientes();
             this.StartPosition = FormStartPosition.CenterScreen;
 
             // Aplicar redondeo a todos los controles excepto los TextBox
@@ -113,11 +112,26 @@ namespace SistemaVentas
             }
         }
 
+        // activar o desactivar texto de los inputs
+        private void activarInputs(bool activar)
+        {
+            inpNomCliente.Enabled = activar;
+            inpApeCliente.Enabled = activar;
+            inpDirCliente.Enabled = activar;
+            inpSecCliente.Enabled = activar;
+            inpCiuCliente.Enabled = activar;
+            inpTelCliente.Enabled = activar;
+            inpFaxCliente.Enabled = activar;
+            inpCredCliente.Enabled = activar;
+            inpBalCliente.Enabled = activar;
+            inpObsCliente.Enabled = activar;
+        }
+
         private void CargarClientes()
         {
             try
             {
-                Cliente.CargarClientesEnGrid(dgvClientes);
+                Cliente.CargarClientesGridConFilas(dgvClientes);
             }
             catch (Exception ex)
             {
@@ -144,8 +158,7 @@ namespace SistemaVentas
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error en la base de datos: " + ex.Message,
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MostrarAdvertenciaCampoVacio(ex.Message, null);
                 existeElCliente = false;
                 return null;
             }
@@ -173,24 +186,17 @@ namespace SistemaVentas
                 // Si InsertarCliente devolvió false, no hacer limpiezas; el método responsabiliza de mostrar mensajes
                 return false;
             }
-            catch (ArgumentException ex)
+            catch (Exception ex)
             {
                 MostrarAdvertenciaCampoVacio(ex.Message, null);
                 return false;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error en la base de datos: " + ex.Message,
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
         }
 
-        private void EliminarCliente(Cliente cliente)
+        private void EliminarCliente(string codigoCliente)
         {
             try
             {
-                string codigoCliente = cliente.CodigoCliente;
                 if (Cliente.eliminarCliente(codigoCliente))
                 {
                     MessageBox.Show("Cliente eliminado exitosamente.", "Éxito",
@@ -205,85 +211,12 @@ namespace SistemaVentas
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error en la base de datos: " + ex.Message,
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MostrarAdvertenciaCampoVacio(ex.Message, null);
             }
             existeElCliente = false;
             btnAgregarCliente.Enabled = false;
         }
 
-        // Evento del botón para volver al menú principal
-        private void BtnVolverMenuPrincipal_Click(object sender, EventArgs e)
-        {
-            formMenuPrincipal.Show(); // Muestra el formulario principal nuevamente
-            this.Close(); //Cierra el formulario actual de clientes
-        }
-        private void EventoMoverConEnter(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode != Keys.Enter || !(sender is Control control))
-                return;
-
-            // Si es TextBox multiline, dejar que el Enter inserte nueva línea
-            if (control is TextBox tb && tb.Multiline)
-                return;
-
-            e.SuppressKeyPress = true; // evita sonido y salto de línea
-
-            // Si el control es la caja de código del cliente, validar existencia antes de avanzar
-            if (control == inpCodCliente)
-            {
-                // Requiere que haya texto para validar existencia
-                if (string.IsNullOrWhiteSpace(inpCodCliente?.Text))
-                {
-                    // Usar helper: muestra advertencia y mantiene otros campos intactos
-                    MostrarAdvertenciaCampoVacio("Debe introducir el código del cliente antes de continuar.", inpCodCliente);
-                    return; // NO avanzar si está vacío
-                }
-
-                // Buscar el cliente directamente (no pulsar el botón)
-                Cliente? encontrado = BuscarCliente(inpCodCliente.Text);
-
-                if (encontrado != null)
-                {
-                    // Si existe, rellenar campos y avanzar al siguiente control (nombre)
-                    inpNomCliente.Text = encontrado.NombreCliente;
-                    inpApeCliente.Text = encontrado.ApellidoCliente;
-                    inpDirCliente.Text = encontrado.DireccionCliente;
-                    inpSecCliente.Text = encontrado.SectorCliente;
-                    inpCiuCliente.Text = encontrado.CiudadCliente;
-                    inpTelCliente.Text = encontrado.TelefonoCliente;
-                    inpFaxCliente.Text = encontrado.FaxCliente;
-                    inpCredCliente.Text = encontrado.LimiteCreditoCliente.ToString();
-                    inpBalCliente.Text = encontrado.BalanceActualCliente.ToString();
-                    inpObsCliente.Text = encontrado.ObservacionesCliente;
-
-                    btnAgregarCliente.Enabled = true;
-
-                    inpNomCliente?.Focus();
-                    return;
-                }
-
-                inpNomCliente?.Clear();
-                inpApeCliente?.Clear();
-                inpDirCliente?.Clear();
-                inpSecCliente?.Clear();
-                inpCiuCliente?.Clear();
-                inpTelCliente?.Clear();
-                inpFaxCliente?.Clear();
-                inpCredCliente?.Clear();
-                inpBalCliente?.Clear();
-                inpObsCliente?.Clear();
-
-                existeElCliente = false;
-                btnAgregarCliente.Enabled = true;
-
-                inpNomCliente?.Focus();
-                return;
-            }
-
-            // Comportamiento por defecto para otros controles: avanzar al siguiente control
-            this.SelectNextControl(control, true, true, true, true);
-        }
 
         private Cliente ObtenerClienteEnInputs()
         {
@@ -303,39 +236,10 @@ namespace SistemaVentas
         }
 
 
-        private void btnAgregarCliente_Click(object? sender, EventArgs e)
-        {
-            cliente = ObtenerClienteEnInputs();
 
-            // Intentar guardar; sólo limpiar campos si la inserción fue exitosa
-            if (GuardarCliente(cliente))
-            {
-
-            // Limpiar casillas después de agregar (solo si guardado con éxito)
-            inpCodCliente?.Clear();
-            inpNomCliente?.Clear();
-            inpApeCliente?.Clear();
-            inpDirCliente?.Clear();
-            inpSecCliente?.Clear();
-            inpCiuCliente?.Clear();
-            inpTelCliente?.Clear();
-            inpFaxCliente?.Clear();
-            inpCredCliente?.Clear();
-            inpBalCliente?.Clear();
-            inpObsCliente?.Clear();
-
-            // Poner foco en la primera casilla
-            inpCodCliente?.Focus();
-            }
-
-
-        }
-
-        private void btnEliminarCli_Click(object sender, EventArgs e)
-        {
-            if (cliente == null) return;
-            EliminarCliente(cliente);
-        }
+        /* ---------------------------------------
+         * EVENTOS AQUi:
+         ---------------------------------------*/
 
         private void btnBuscarCli_Click(object? sender, EventArgs e)
         {
@@ -368,15 +272,72 @@ namespace SistemaVentas
             }
 
             btnAgregarCliente.Enabled = true;
+            activarInputs(true);
 
             // Mover el cursor automáticamente a la segunda casilla (nombre)
             inpNomCliente?.Focus();
             ultimoControlConFoco = inpNomCliente;
         }
 
-        private void MenuClientes_Load(object sender, EventArgs e)
+        private void btnAgregarCliente_Click(object? sender, EventArgs e)
         {
+            cliente = ObtenerClienteEnInputs();
+
+            // Intentar guardar; sólo limpiar campos si la inserción fue exitosa
+            if (GuardarCliente(cliente))
+            {
+
+                // Limpiar casillas después de agregar (solo si guardado con éxito)
+                activarInputs(false);
+                inpCodCliente?.Clear();
+                inpNomCliente?.Clear();
+                inpApeCliente?.Clear();
+                inpDirCliente?.Clear();
+                inpSecCliente?.Clear();
+                inpCiuCliente?.Clear();
+                inpTelCliente?.Clear();
+                inpFaxCliente?.Clear();
+                inpCredCliente?.Clear();
+                inpBalCliente?.Clear();
+                inpObsCliente?.Clear();
+
+                // Poner foco en la primera casilla
+                inpCodCliente?.Focus();
+            }
 
         }
+        private void dgvClientes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == dgvClientes.Columns["colEliminar"].Index)
+            {
+
+                string codigoCliente = dgvClientes.Rows[e.RowIndex].Cells["colCodigo"].Value.ToString()!;
+                EliminarCliente(codigoCliente);
+            }
+        }
+
+        // Evento del botón para volver al menú principal
+        private void BtnVolverMenuPrincipal_Click(object sender, EventArgs e)
+        {
+            formMenuPrincipal.Show(); // Muestra el formulario principal nuevamente
+            this.Close(); //Cierra el formulario actual de clientes
+        }
+        private void EventoMoverConEnter(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter || !(sender is Control control))
+                return;
+
+            e.SuppressKeyPress = true; // salto de línea
+
+            // Comportamiento por defecto para otros controles: avanzar al siguiente control
+            this.SelectNextControl(control, true, true, true, true);
+        }
+
+        private void MenuClientes_Load(object sender, EventArgs e)
+        {
+            CargarClientes();
+            activarInputs(false);
+        }
+
     }
 }
