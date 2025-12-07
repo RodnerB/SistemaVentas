@@ -6,13 +6,13 @@ using Microsoft.Data.SqlClient;
 
 namespace SistemaVentas
 {
-    public partial class MenuDetalles : Form
+    public partial class MenuDestallesFactura : Form
     {
         MenuPrincipal formMenuPrincipal; // variable de referencia al formulario principal
         private readonly Resizer resizer = new Resizer();
 
         // Constructor que recibe una referencia al formulario principal
-        public MenuDetalles(MenuPrincipal formMenuPrincipal)
+        public MenuDestallesFactura(MenuPrincipal formMenuPrincipal)
         {
             InitializeComponent();
             this.formMenuPrincipal = formMenuPrincipal;

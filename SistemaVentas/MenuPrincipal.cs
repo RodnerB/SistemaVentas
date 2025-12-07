@@ -14,10 +14,12 @@ namespace SistemaVentas
     public partial class MenuPrincipal : Form
     {
         private readonly Resizer resizer = new Resizer();
+        private readonly MenuLogin parentLogin;
 
-        public MenuPrincipal()
+        public MenuPrincipal(MenuLogin parent)
         {
             InitializeComponent();
+            parentLogin = parent;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Load += MenuPrincipal_Load;
             resizer.CaptureOriginalSizes(this);
@@ -33,18 +35,13 @@ namespace SistemaVentas
         private void MenuPrincipal_Load(object? sender, EventArgs e)
         {
 
-            RoundedControlHelper.RedondearTodosLosPaneles(this, 20);
-            RoundedControlHelper.RedondearBordes(btnSalir, 9);
-            RoundedControlHelper.RedondearBordes(picArtículos, 40);
-            RoundedControlHelper.RedondearBordes(picClientes, 40);
-            RoundedControlHelper.RedondearBordes(picFacturacion, 40);
-            RoundedControlHelper.RedondearBordes(picDetalles, 40);
-            RoundedControlHelper.RedondearBordes(picUnidadMedida, 40);
-            RoundedControlHelper.RedondearBordes(picConfiguracion, 40);
+            RoundedControlHelper.RedondearTodosLosPaneles(this, 50);
+            RoundedControlHelper.RedondearBordes(btnCerrarSesion, 12);
+            
             RoundedControlHelper.RedondearBordes(picLogo, 15);
 
-            btnSalir.TabStop = false;
-            btnSalir.FlatAppearance.BorderSize = 0;
+            btnCerrarSesion.TabStop = false;
+            btnCerrarSesion.FlatAppearance.BorderSize = 0;
         }
 
         private void btnClientes_Click(object sender, EventArgs e)
@@ -74,7 +71,7 @@ namespace SistemaVentas
         private void btnDetalles_Click(object sender, EventArgs e)
         {
             // Abrir el formulario de detalles
-            Form1 detalles = new Form1(this);
+            MenuVentas detalles = new MenuVentas(this);
             detalles.Show(); // Mostrar el formulario de detalles
             this.Hide(); // Ocultar el formulario principal
         }
@@ -95,9 +92,9 @@ namespace SistemaVentas
             this.Hide(); // Ocultar el formulario principal
         }
 
-        private void btnSalir_Click_1(object sender, EventArgs e)
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("¿Seguro que deseas salir?",
+            var result = MessageBox.Show("¿Seguro que desea cerrar sesión?",
                                          "Confirmar",
                                          MessageBoxButtons.YesNo,
                                          MessageBoxIcon.Question,
@@ -105,11 +102,11 @@ namespace SistemaVentas
 
             if (result == DialogResult.Yes)
             {
-                Application.Exit();
+                MenuLogin menuLogin = new MenuLogin();
+                menuLogin.Show();
+                this.Close();
             }
         }
-
-       
     }
 }
 

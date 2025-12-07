@@ -1,6 +1,6 @@
 ﻿namespace SistemaVentas
 {
-    partial class MenuDetalles
+    partial class MenuDestallesFactura
     {
         /// <summary>
         /// Required designer variable.
@@ -89,13 +89,13 @@
             lblCodArtDet.TabIndex = 4;
             lblCodArtDet.Text = "Artículo:";
             // 
-            // cmbCodArtDet
+            // cmbArtDet
             // 
             cmbArtDet.FormattingEnabled = true;
             cmbArtDet.Location = new Point(82, 135);
-            cmbArtDet.Name = "cmbCodArtDet";
+            cmbArtDet.Name = "cmbArtDet";
             cmbArtDet.Size = new Size(320, 28);
-            cmbArtDet.TabIndex = 5;
+            cmbArtDet.TabIndex = 13;
             // 
             // lblCantDet
             // 
@@ -159,19 +159,11 @@
             btnVolverMenuPrincipal.UseVisualStyleBackColor = true;
             btnVolverMenuPrincipal.Click += btnVolverMenuPrincipal_Click;
             // 
-            // cmbArtDet
-            // 
-            cmbArtDet.FormattingEnabled = true;
-            cmbArtDet.Location = new Point(82, 135);
-            cmbArtDet.Name = "cmbArtDet";
-            cmbArtDet.Size = new Size(320, 28);
-            cmbArtDet.TabIndex = 13;
-            // 
-            // Form5
+            // MenuDestallesFactura
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(919, 508);
+            ClientSize = new Size(629, 800);
             Controls.Add(cmbArtDet);
             Controls.Add(btnVolverMenuPrincipal);
             Controls.Add(btnEliminarDet);
@@ -187,7 +179,7 @@
             Controls.Add(lblDetalle);
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "Form5";
+            Name = "MenuDestallesFactura";
             Text = "Detalles";
             ((System.ComponentModel.ISupportInitialize)dgvDetFact).EndInit();
             ResumeLayout(false);

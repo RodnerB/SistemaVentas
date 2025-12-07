@@ -11,13 +11,18 @@ using SistemaVentas.Utilidades;
 
 namespace SistemaVentas
 {
-    public partial class Form1 : Form
+    public partial class MenuVentas : Form
     {
         private MenuPrincipal? formMenuPrincipal;
         private List<Articulo> productosDisponibles;
         private float totalVenta = 0f;
+        private Resizer resizer = new Resizer();
 
-        public Form1(MenuPrincipal? menuPrincipal = null)
+        private const int ButtonRadius = 12;
+        
+        private const int ControlRadius = 12;
+
+        public MenuVentas(MenuPrincipal? menuPrincipal = null)
         {
             InitializeComponent();
             formMenuPrincipal = menuPrincipal;
@@ -37,7 +42,6 @@ namespace SistemaVentas
             dgvProductosSeleccionados.CellValueChanged += DgvProductosSeleccionados_CellValueChanged;
             dgvProductosSeleccionados.CellClick += DgvProductosSeleccionados_CellClick;
             btnFacturar.Click += BtnFacturar_Click;
-            btnVolverMenu.Click += BtnVolverMenu_Click;
 
             // Ocultar lista cuando se hace clic fuera
             this.Click += (s, e) => { lstResultadosBusqueda.Visible = false; };
@@ -49,6 +53,47 @@ namespace SistemaVentas
 
             // Configurar modo de edición
             dgvProductosSeleccionados.EditMode = DataGridViewEditMode.EditOnEnter;
+
+            // Aplicar bordes redondeados al formulario y a sus controles (excepto TextBox)
+            ApplyRoundedExceptTextBoxes(this, ControlRadius);
+        }
+
+        private void MenuVentas_Resize(object? sender, EventArgs e)
+        {
+            resizer.ResizeControls(this);
+            // Reaplicar redondeo al cambiar tamaño si es necesario
+            ApplyRoundedExceptTextBoxes(this, ControlRadius);
+        }
+
+        // Reemplaza la lógica anterior para que SOLO aplique RedondearBordes a Paneles y Botones.
+        // Mantén una única API pública que recorre el árbol de controles y aplica el redondeo
+        // únicamente cuando el control sea Panel o Button.
+        private void ApplyRoundedExceptTextBoxes(Control parent, int radius)
+        {
+            ApplyRoundedToPanelsAndButtons(parent, radius);
+        }
+
+        private void ApplyRoundedToPanelsAndButtons(Control parent, int radius)
+        {
+            if (parent == null) return;
+
+            foreach (Control c in parent.Controls)
+            {
+                // Solo aplicar a Panel y Button
+                if (c is Panel)
+                {
+                    RoundedControlHelper.RedondearBordes(c, radius);
+                }
+                else if (c is Button)
+                {
+                    RoundedControlHelper.RedondearBordes(c, ButtonRadius);
+                }
+
+                if (c.HasChildren)
+                {
+                    ApplyRoundedToPanelsAndButtons(c, radius);
+                }
+            }
         }
 
         // ============================================

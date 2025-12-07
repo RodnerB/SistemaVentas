@@ -6,7 +6,6 @@
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-        private Label lblFacturaciónSub;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -30,15 +29,16 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuPrincipal));
-            lblSistemaDeFacturacion = new Label();
-            lblSubtitulo = new Label();
-            panelFacturación = new Panel();
+            pictureBox6 = new PictureBox();
+            lblClientesTitulo = new Label();
+            tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel8 = new TableLayoutPanel();
             tableLayoutPanel9 = new TableLayoutPanel();
             tableLayoutPanel10 = new TableLayoutPanel();
             lblFacturacionTitulo = new Label();
             lblFacturaciónSub = new Label();
             picFacturacion = new PictureBox();
+            picLogo = new PictureBox();
             panel4 = new Panel();
             tableLayoutPanel17 = new TableLayoutPanel();
             tableLayoutPanel18 = new TableLayoutPanel();
@@ -46,18 +46,12 @@
             tableLayoutPanel19 = new TableLayoutPanel();
             label3 = new Label();
             lblConfiguraciónTitulo = new Label();
-            pictureBox6 = new PictureBox();
-            lblClientesTitulo = new Label();
-            tableLayoutPanel1 = new TableLayoutPanel();
-            picLogo = new PictureBox();
-            btnSalir = new Button();
             panelDetalles = new Panel();
-            tableLayoutPanel11 = new TableLayoutPanel();
             tableLayoutPanel12 = new TableLayoutPanel();
             picDetalles = new PictureBox();
             tableLayoutPanel13 = new TableLayoutPanel();
-            lblDetallesSub = new Label();
-            lblDetallesTitulo = new Label();
+            lblVentasTitulo = new Label();
+            label1 = new Label();
             panel3 = new Panel();
             tableLayoutPanel5 = new TableLayoutPanel();
             tableLayoutPanel6 = new TableLayoutPanel();
@@ -77,21 +71,23 @@
             lblArticulosTitulo = new Label();
             lblArticulosSub = new Label();
             picArtículos = new PictureBox();
-            panelFacturación.SuspendLayout();
+            lblSubtitulo = new Label();
+            lblSistemaDeFacturacion = new Label();
+            btnCerrarSesion = new Button();
+            panelFacturación = new Panel();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel8.SuspendLayout();
             tableLayoutPanel9.SuspendLayout();
             tableLayoutPanel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picFacturacion).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             panel4.SuspendLayout();
             tableLayoutPanel17.SuspendLayout();
             tableLayoutPanel18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picConfiguracion).BeginInit();
             tableLayoutPanel19.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
-            tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             panelDetalles.SuspendLayout();
-            tableLayoutPanel11.SuspendLayout();
             tableLayoutPanel12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picDetalles).BeginInit();
             tableLayoutPanel13.SuspendLayout();
@@ -108,45 +104,60 @@
             tableLayoutPanel3.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picArtículos).BeginInit();
+            panelFacturación.SuspendLayout();
             SuspendLayout();
             // 
-            // lblSistemaDeFacturacion
+            // pictureBox6
             // 
-            lblSistemaDeFacturacion.Anchor = AnchorStyles.Bottom;
-            lblSistemaDeFacturacion.AutoSize = true;
-            lblSistemaDeFacturacion.Font = new Font("Segoe UI", 28.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblSistemaDeFacturacion.ForeColor = Color.MediumBlue;
-            lblSistemaDeFacturacion.Location = new Point(567, 141);
-            lblSistemaDeFacturacion.Name = "lblSistemaDeFacturacion";
-            lblSistemaDeFacturacion.Size = new Size(532, 62);
-            lblSistemaDeFacturacion.TabIndex = 6;
-            lblSistemaDeFacturacion.Text = "Sistema de Facturación";
+            pictureBox6.BackColor = Color.Transparent;
+            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
+            pictureBox6.Location = new Point(15, 32);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(10, 40);
+            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox6.TabIndex = 5;
+            pictureBox6.TabStop = false;
             // 
-            // lblSubtitulo
+            // lblClientesTitulo
             // 
-            lblSubtitulo.Anchor = AnchorStyles.Top;
-            lblSubtitulo.AutoSize = true;
-            lblSubtitulo.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblSubtitulo.ForeColor = SystemColors.ControlDark;
-            lblSubtitulo.Location = new Point(622, 203);
-            lblSubtitulo.Name = "lblSubtitulo";
-            lblSubtitulo.Size = new Size(422, 25);
-            lblSubtitulo.TabIndex = 8;
-            lblSubtitulo.Text = "Gestiona tu negocio de forma profesional";
+            lblClientesTitulo.AutoSize = true;
+            lblClientesTitulo.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblClientesTitulo.ForeColor = Color.Black;
+            lblClientesTitulo.Location = new Point(61, 36);
+            lblClientesTitulo.Name = "lblClientesTitulo";
+            lblClientesTitulo.Size = new Size(66, 19);
+            lblClientesTitulo.TabIndex = 0;
+            lblClientesTitulo.Text = "Clientes";
             // 
-            // panelFacturación
+            // tableLayoutPanel1
             // 
-            panelFacturación.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            panelFacturación.BackColor = SystemColors.ButtonHighlight;
-            panelFacturación.Controls.Add(tableLayoutPanel8);
-            panelFacturación.Cursor = Cursors.Hand;
-            panelFacturación.Location = new Point(1111, 312);
-            panelFacturación.Margin = new Padding(0, 10, 0, 10);
-            panelFacturación.Name = "panelFacturación";
-            panelFacturación.Padding = new Padding(10);
-            panelFacturación.Size = new Size(488, 206);
-            panelFacturación.TabIndex = 10;
-            panelFacturación.Click += btnFacturacion_Click;
+            tableLayoutPanel1.Anchor = AnchorStyles.None;
+            tableLayoutPanel1.BackColor = Color.AliceBlue;
+            tableLayoutPanel1.ColumnCount = 3;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33333F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333359F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333359F));
+            tableLayoutPanel1.Controls.Add(picLogo, 1, 0);
+            tableLayoutPanel1.Controls.Add(panel4, 2, 4);
+            tableLayoutPanel1.Controls.Add(panel3, 1, 4);
+            tableLayoutPanel1.Controls.Add(panelClientes, 0, 3);
+            tableLayoutPanel1.Controls.Add(panel1, 1, 3);
+            tableLayoutPanel1.Controls.Add(lblSubtitulo, 1, 2);
+            tableLayoutPanel1.Controls.Add(lblSistemaDeFacturacion, 1, 1);
+            tableLayoutPanel1.Controls.Add(btnCerrarSesion, 2, 5);
+            tableLayoutPanel1.Controls.Add(panelDetalles, 2, 3);
+            tableLayoutPanel1.Controls.Add(panelFacturación, 0, 4);
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 6;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.5005989F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 7.26717424F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 7.270915F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 30.7724915F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 30.7724915F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 7.41633368F));
+            tableLayoutPanel1.Size = new Size(1668, 857);
+            tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel8
             // 
@@ -158,7 +169,7 @@
             tableLayoutPanel8.Name = "tableLayoutPanel8";
             tableLayoutPanel8.RowCount = 1;
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel8.Size = new Size(488, 206);
+            tableLayoutPanel8.Size = new Size(488, 193);
             tableLayoutPanel8.TabIndex = 5;
             tableLayoutPanel8.Click += btnFacturacion_Click;
             // 
@@ -170,11 +181,11 @@
             tableLayoutPanel9.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 66.6666641F));
             tableLayoutPanel9.Controls.Add(tableLayoutPanel10, 1, 0);
             tableLayoutPanel9.Controls.Add(picFacturacion, 0, 0);
-            tableLayoutPanel9.Location = new Point(19, 16);
+            tableLayoutPanel9.Location = new Point(19, 42);
             tableLayoutPanel9.Name = "tableLayoutPanel9";
             tableLayoutPanel9.RowCount = 1;
             tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel9.Size = new Size(450, 173);
+            tableLayoutPanel9.Size = new Size(450, 108);
             tableLayoutPanel9.TabIndex = 0;
             tableLayoutPanel9.Click += btnFacturacion_Click;
             // 
@@ -190,7 +201,7 @@
             tableLayoutPanel10.RowCount = 2;
             tableLayoutPanel10.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel10.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel10.Size = new Size(295, 167);
+            tableLayoutPanel10.Size = new Size(295, 102);
             tableLayoutPanel10.TabIndex = 0;
             tableLayoutPanel10.Click += btnFacturacion_Click;
             // 
@@ -200,7 +211,7 @@
             lblFacturacionTitulo.AutoSize = true;
             lblFacturacionTitulo.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblFacturacionTitulo.ForeColor = Color.Black;
-            lblFacturacionTitulo.Location = new Point(3, 37);
+            lblFacturacionTitulo.Location = new Point(3, 5);
             lblFacturacionTitulo.Name = "lblFacturacionTitulo";
             lblFacturacionTitulo.Size = new Size(205, 46);
             lblFacturacionTitulo.TabIndex = 0;
@@ -212,7 +223,7 @@
             lblFacturaciónSub.AutoSize = true;
             lblFacturaciónSub.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblFacturaciónSub.ForeColor = Color.Gray;
-            lblFacturaciónSub.Location = new Point(3, 83);
+            lblFacturaciónSub.Location = new Point(3, 51);
             lblFacturaciónSub.Name = "lblFacturaciónSub";
             lblFacturaciónSub.Size = new Size(127, 23);
             lblFacturaciónSub.TabIndex = 1;
@@ -224,13 +235,25 @@
             picFacturacion.Anchor = AnchorStyles.Right;
             picFacturacion.BackColor = Color.Transparent;
             picFacturacion.BackgroundImage = Properties.Resources._1492617381_9_sheet_data_spreadsheets_file_google_suit_service_83434;
-            picFacturacion.Location = new Point(81, 54);
+            picFacturacion.Location = new Point(81, 22);
             picFacturacion.Name = "picFacturacion";
             picFacturacion.Size = new Size(65, 64);
             picFacturacion.SizeMode = PictureBoxSizeMode.Zoom;
             picFacturacion.TabIndex = 4;
             picFacturacion.TabStop = false;
             picFacturacion.Click += btnFacturacion_Click;
+            // 
+            // picLogo
+            // 
+            picLogo.Anchor = AnchorStyles.None;
+            picLogo.BackColor = Color.Transparent;
+            picLogo.BackgroundImage = Properties.Resources.cloud_money_system_icon_175829;
+            picLogo.Location = new Point(802, 40);
+            picLogo.Name = "picLogo";
+            picLogo.Size = new Size(61, 60);
+            picLogo.SizeMode = PictureBoxSizeMode.Zoom;
+            picLogo.TabIndex = 4;
+            picLogo.TabStop = false;
             // 
             // panel4
             // 
@@ -267,11 +290,11 @@
             tableLayoutPanel18.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 66.6666641F));
             tableLayoutPanel18.Controls.Add(picConfiguracion, 0, 0);
             tableLayoutPanel18.Controls.Add(tableLayoutPanel19, 1, 0);
-            tableLayoutPanel18.Location = new Point(19, 11);
+            tableLayoutPanel18.Location = new Point(3, 3);
             tableLayoutPanel18.Name = "tableLayoutPanel18";
             tableLayoutPanel18.RowCount = 1;
             tableLayoutPanel18.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel18.Size = new Size(450, 173);
+            tableLayoutPanel18.Size = new Size(482, 190);
             tableLayoutPanel18.TabIndex = 0;
             tableLayoutPanel18.Click += btnConfiguracion_Click;
             // 
@@ -280,7 +303,7 @@
             picConfiguracion.Anchor = AnchorStyles.Right;
             picConfiguracion.BackColor = Color.Transparent;
             picConfiguracion.BackgroundImage = Properties.Resources.settingscog_87317;
-            picConfiguracion.Location = new Point(84, 57);
+            picConfiguracion.Location = new Point(95, 65);
             picConfiguracion.Name = "picConfiguracion";
             picConfiguracion.Size = new Size(62, 59);
             picConfiguracion.SizeMode = PictureBoxSizeMode.Zoom;
@@ -295,12 +318,12 @@
             tableLayoutPanel19.Controls.Add(label3, 0, 1);
             tableLayoutPanel19.Controls.Add(lblConfiguraciónTitulo, 0, 0);
             tableLayoutPanel19.Dock = DockStyle.Fill;
-            tableLayoutPanel19.Location = new Point(152, 3);
+            tableLayoutPanel19.Location = new Point(163, 3);
             tableLayoutPanel19.Name = "tableLayoutPanel19";
             tableLayoutPanel19.RowCount = 2;
             tableLayoutPanel19.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel19.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel19.Size = new Size(295, 167);
+            tableLayoutPanel19.Size = new Size(316, 184);
             tableLayoutPanel19.TabIndex = 0;
             tableLayoutPanel19.Click += btnConfiguracion_Click;
             // 
@@ -309,7 +332,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Gray;
-            label3.Location = new Point(3, 83);
+            label3.Location = new Point(3, 92);
             label3.Name = "label3";
             label3.Size = new Size(221, 23);
             label3.TabIndex = 3;
@@ -322,122 +345,26 @@
             lblConfiguraciónTitulo.AutoSize = true;
             lblConfiguraciónTitulo.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblConfiguraciónTitulo.ForeColor = Color.Black;
-            lblConfiguraciónTitulo.Location = new Point(3, 37);
+            lblConfiguraciónTitulo.Location = new Point(3, 46);
             lblConfiguraciónTitulo.Name = "lblConfiguraciónTitulo";
             lblConfiguraciónTitulo.Size = new Size(248, 46);
             lblConfiguraciónTitulo.TabIndex = 0;
             lblConfiguraciónTitulo.Text = "Configuración";
             lblConfiguraciónTitulo.Click += btnConfiguracion_Click;
             // 
-            // pictureBox6
-            // 
-            pictureBox6.BackColor = Color.Transparent;
-            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
-            pictureBox6.Location = new Point(15, 32);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(10, 40);
-            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox6.TabIndex = 5;
-            pictureBox6.TabStop = false;
-            // 
-            // lblClientesTitulo
-            // 
-            lblClientesTitulo.AutoSize = true;
-            lblClientesTitulo.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblClientesTitulo.ForeColor = Color.Black;
-            lblClientesTitulo.Location = new Point(61, 36);
-            lblClientesTitulo.Name = "lblClientesTitulo";
-            lblClientesTitulo.Size = new Size(66, 19);
-            lblClientesTitulo.TabIndex = 0;
-            lblClientesTitulo.Text = "Clientes";
-            // 
-            // tableLayoutPanel1
-            // 
-            tableLayoutPanel1.Anchor = AnchorStyles.None;
-            tableLayoutPanel1.BackColor = Color.AliceBlue;
-            tableLayoutPanel1.ColumnCount = 3;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33333F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333359F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333359F));
-            tableLayoutPanel1.Controls.Add(picLogo, 1, 0);
-            tableLayoutPanel1.Controls.Add(btnSalir, 2, 5);
-            tableLayoutPanel1.Controls.Add(panel4, 2, 4);
-            tableLayoutPanel1.Controls.Add(panelFacturación, 2, 3);
-            tableLayoutPanel1.Controls.Add(panelDetalles, 0, 4);
-            tableLayoutPanel1.Controls.Add(panel3, 1, 4);
-            tableLayoutPanel1.Controls.Add(panelClientes, 0, 3);
-            tableLayoutPanel1.Controls.Add(panel1, 1, 3);
-            tableLayoutPanel1.Controls.Add(lblSubtitulo, 1, 2);
-            tableLayoutPanel1.Controls.Add(lblSistemaDeFacturacion, 1, 1);
-            tableLayoutPanel1.Location = new Point(0, 0);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 6;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.5005989F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 7.26717424F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 7.270915F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 30.7724915F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 30.7724915F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 7.41633368F));
-            tableLayoutPanel1.Size = new Size(1668, 857);
-            tableLayoutPanel1.TabIndex = 0;
-            // 
-            // picLogo
-            // 
-            picLogo.Anchor = AnchorStyles.None;
-            picLogo.BackColor = Color.Transparent;
-            picLogo.BackgroundImage = Properties.Resources.cloud_money_system_icon_175829;
-            picLogo.Location = new Point(802, 40);
-            picLogo.Name = "picLogo";
-            picLogo.Size = new Size(61, 60);
-            picLogo.SizeMode = PictureBoxSizeMode.Zoom;
-            picLogo.TabIndex = 4;
-            picLogo.TabStop = false;
-            // 
-            // btnSalir
-            // 
-            btnSalir.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
-            btnSalir.Cursor = Cursors.Hand;
-            btnSalir.FlatAppearance.BorderSize = 0;
-            btnSalir.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            btnSalir.FlatAppearance.MouseOverBackColor = Color.Silver;
-            btnSalir.FlatStyle = FlatStyle.Flat;
-            btnSalir.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSalir.Location = new Point(1571, 794);
-            btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(94, 60);
-            btnSalir.TabIndex = 15;
-            btnSalir.Text = "Salir";
-            btnSalir.UseVisualStyleBackColor = true;
-            btnSalir.Click += btnSalir_Click_1;
-            // 
             // panelDetalles
             // 
-            panelDetalles.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            panelDetalles.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             panelDetalles.BackColor = SystemColors.ButtonHighlight;
-            panelDetalles.Controls.Add(tableLayoutPanel11);
+            panelDetalles.Controls.Add(tableLayoutPanel12);
             panelDetalles.Cursor = Cursors.Hand;
-            panelDetalles.Location = new Point(69, 538);
+            panelDetalles.Location = new Point(1111, 312);
             panelDetalles.Margin = new Padding(0, 10, 0, 10);
             panelDetalles.Name = "panelDetalles";
             panelDetalles.Padding = new Padding(10);
-            panelDetalles.Size = new Size(486, 196);
+            panelDetalles.Size = new Size(486, 206);
             panelDetalles.TabIndex = 11;
             panelDetalles.Click += btnDetalles_Click;
-            // 
-            // tableLayoutPanel11
-            // 
-            tableLayoutPanel11.BackColor = Color.Transparent;
-            tableLayoutPanel11.ColumnCount = 1;
-            tableLayoutPanel11.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel11.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel11.Controls.Add(tableLayoutPanel12, 0, 0);
-            tableLayoutPanel11.Location = new Point(0, 0);
-            tableLayoutPanel11.Name = "tableLayoutPanel11";
-            tableLayoutPanel11.RowCount = 1;
-            tableLayoutPanel11.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel11.Size = new Size(486, 196);
-            tableLayoutPanel11.TabIndex = 6;
-            tableLayoutPanel11.Click += btnDetalles_Click;
             // 
             // tableLayoutPanel12
             // 
@@ -447,11 +374,11 @@
             tableLayoutPanel12.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 64.51613F));
             tableLayoutPanel12.Controls.Add(picDetalles, 0, 0);
             tableLayoutPanel12.Controls.Add(tableLayoutPanel13, 1, 0);
-            tableLayoutPanel12.Location = new Point(18, 11);
+            tableLayoutPanel12.Location = new Point(0, 0);
             tableLayoutPanel12.Name = "tableLayoutPanel12";
             tableLayoutPanel12.RowCount = 1;
             tableLayoutPanel12.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel12.Size = new Size(450, 173);
+            tableLayoutPanel12.Size = new Size(486, 206);
             tableLayoutPanel12.TabIndex = 0;
             tableLayoutPanel12.Click += btnDetalles_Click;
             // 
@@ -459,10 +386,10 @@
             // 
             picDetalles.Anchor = AnchorStyles.Right;
             picDetalles.BackColor = Color.Transparent;
-            picDetalles.BackgroundImage = Properties.Resources.viewdetails_vista_3354;
-            picDetalles.Location = new Point(91, 56);
+            picDetalles.BackgroundImage = Properties.Resources.sale_basket_cart_ecommerce_on_buy_shop_trolley_bag_shopping_icon_266849__3_;
+            picDetalles.Location = new Point(108, 72);
             picDetalles.Name = "picDetalles";
-            picDetalles.Size = new Size(65, 61);
+            picDetalles.Size = new Size(61, 61);
             picDetalles.SizeMode = PictureBoxSizeMode.Zoom;
             picDetalles.TabIndex = 5;
             picDetalles.TabStop = false;
@@ -472,42 +399,41 @@
             // 
             tableLayoutPanel13.ColumnCount = 1;
             tableLayoutPanel13.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel13.Controls.Add(lblDetallesSub, 0, 1);
-            tableLayoutPanel13.Controls.Add(lblDetallesTitulo, 0, 0);
+            tableLayoutPanel13.Controls.Add(lblVentasTitulo, 0, 0);
+            tableLayoutPanel13.Controls.Add(label1, 0, 1);
             tableLayoutPanel13.Dock = DockStyle.Fill;
-            tableLayoutPanel13.Location = new Point(162, 3);
+            tableLayoutPanel13.Location = new Point(175, 3);
             tableLayoutPanel13.Name = "tableLayoutPanel13";
             tableLayoutPanel13.RowCount = 2;
             tableLayoutPanel13.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel13.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel13.Size = new Size(285, 167);
+            tableLayoutPanel13.Size = new Size(308, 200);
             tableLayoutPanel13.TabIndex = 0;
             tableLayoutPanel13.Click += btnDetalles_Click;
             // 
-            // lblDetallesSub
+            // lblVentasTitulo
             // 
-            lblDetallesSub.AutoSize = true;
-            lblDetallesSub.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblDetallesSub.ForeColor = Color.Gray;
-            lblDetallesSub.Location = new Point(3, 83);
-            lblDetallesSub.Name = "lblDetallesSub";
-            lblDetallesSub.Size = new Size(168, 23);
-            lblDetallesSub.TabIndex = 2;
-            lblDetallesSub.Text = "Detalles de facturas";
-            lblDetallesSub.Click += btnDetalles_Click;
+            lblVentasTitulo.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            lblVentasTitulo.AutoSize = true;
+            lblVentasTitulo.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblVentasTitulo.ForeColor = Color.Black;
+            lblVentasTitulo.Location = new Point(3, 54);
+            lblVentasTitulo.Name = "lblVentasTitulo";
+            lblVentasTitulo.Size = new Size(126, 46);
+            lblVentasTitulo.TabIndex = 0;
+            lblVentasTitulo.Text = "Ventas";
+            lblVentasTitulo.Click += btnDetalles_Click;
             // 
-            // lblDetallesTitulo
+            // label1
             // 
-            lblDetallesTitulo.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            lblDetallesTitulo.AutoSize = true;
-            lblDetallesTitulo.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblDetallesTitulo.ForeColor = Color.Black;
-            lblDetallesTitulo.Location = new Point(3, 37);
-            lblDetallesTitulo.Name = "lblDetallesTitulo";
-            lblDetallesTitulo.Size = new Size(147, 46);
-            lblDetallesTitulo.TabIndex = 0;
-            lblDetallesTitulo.Text = "Detalles";
-            lblDetallesTitulo.Click += btnDetalles_Click;
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            label1.ForeColor = Color.Gray;
+            label1.Location = new Point(3, 100);
+            label1.Name = "label1";
+            label1.Size = new Size(151, 23);
+            label1.TabIndex = 1;
+            label1.Text = "Gestión de ventas";
             // 
             // panel3
             // 
@@ -716,7 +642,7 @@
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel3.Size = new Size(489, 206);
+            tableLayoutPanel3.Size = new Size(486, 206);
             tableLayoutPanel3.TabIndex = 0;
             tableLayoutPanel3.Click += btnArticulos_Click;
             // 
@@ -727,7 +653,7 @@
             tableLayoutPanel4.Controls.Add(lblArticulosTitulo, 0, 0);
             tableLayoutPanel4.Controls.Add(lblArticulosSub, 0, 1);
             tableLayoutPanel4.Dock = DockStyle.Left;
-            tableLayoutPanel4.Location = new Point(165, 3);
+            tableLayoutPanel4.Location = new Point(164, 3);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
             tableLayoutPanel4.RowCount = 2;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
@@ -766,13 +692,68 @@
             picArtículos.Anchor = AnchorStyles.Right;
             picArtículos.BackColor = Color.Transparent;
             picArtículos.BackgroundImage = Properties.Resources.box_5124;
-            picArtículos.Location = new Point(94, 71);
+            picArtículos.Location = new Point(93, 71);
             picArtículos.Name = "picArtículos";
             picArtículos.Size = new Size(65, 64);
             picArtículos.SizeMode = PictureBoxSizeMode.Zoom;
             picArtículos.TabIndex = 3;
             picArtículos.TabStop = false;
             picArtículos.Click += btnArticulos_Click;
+            // 
+            // lblSubtitulo
+            // 
+            lblSubtitulo.Anchor = AnchorStyles.Top;
+            lblSubtitulo.AutoSize = true;
+            lblSubtitulo.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblSubtitulo.ForeColor = SystemColors.ControlDark;
+            lblSubtitulo.Location = new Point(622, 203);
+            lblSubtitulo.Name = "lblSubtitulo";
+            lblSubtitulo.Size = new Size(422, 25);
+            lblSubtitulo.TabIndex = 8;
+            lblSubtitulo.Text = "Gestiona tu negocio de forma profesional";
+            // 
+            // lblSistemaDeFacturacion
+            // 
+            lblSistemaDeFacturacion.Anchor = AnchorStyles.Bottom;
+            lblSistemaDeFacturacion.AutoSize = true;
+            lblSistemaDeFacturacion.Font = new Font("Segoe UI", 28.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblSistemaDeFacturacion.ForeColor = Color.MediumBlue;
+            lblSistemaDeFacturacion.Location = new Point(567, 141);
+            lblSistemaDeFacturacion.Name = "lblSistemaDeFacturacion";
+            lblSistemaDeFacturacion.Size = new Size(532, 62);
+            lblSistemaDeFacturacion.TabIndex = 6;
+            lblSistemaDeFacturacion.Text = "Sistema de Facturación";
+            // 
+            // btnCerrarSesion
+            // 
+            btnCerrarSesion.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            btnCerrarSesion.Cursor = Cursors.Hand;
+            btnCerrarSesion.FlatAppearance.BorderSize = 0;
+            btnCerrarSesion.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnCerrarSesion.FlatAppearance.MouseOverBackColor = Color.Silver;
+            btnCerrarSesion.FlatStyle = FlatStyle.Flat;
+            btnCerrarSesion.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCerrarSesion.Location = new Point(1456, 794);
+            btnCerrarSesion.Name = "btnCerrarSesion";
+            btnCerrarSesion.Size = new Size(209, 60);
+            btnCerrarSesion.TabIndex = 15;
+            btnCerrarSesion.Text = "Cerrar sesión";
+            btnCerrarSesion.UseVisualStyleBackColor = true;
+            btnCerrarSesion.Click += btnCerrarSesion_Click;
+            // 
+            // panelFacturación
+            // 
+            panelFacturación.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            panelFacturación.BackColor = SystemColors.ButtonHighlight;
+            panelFacturación.Controls.Add(tableLayoutPanel8);
+            panelFacturación.Cursor = Cursors.Hand;
+            panelFacturación.Location = new Point(67, 538);
+            panelFacturación.Margin = new Padding(0, 10, 0, 10);
+            panelFacturación.Name = "panelFacturación";
+            panelFacturación.Padding = new Padding(10);
+            panelFacturación.Size = new Size(488, 196);
+            panelFacturación.TabIndex = 10;
+            panelFacturación.Click += btnFacturacion_Click;
             // 
             // MenuPrincipal
             // 
@@ -784,24 +765,22 @@
             Name = "MenuPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
             WindowState = FormWindowState.Maximized;
-            panelFacturación.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
             tableLayoutPanel8.ResumeLayout(false);
             tableLayoutPanel9.ResumeLayout(false);
             tableLayoutPanel10.ResumeLayout(false);
             tableLayoutPanel10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picFacturacion).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
             panel4.ResumeLayout(false);
             tableLayoutPanel17.ResumeLayout(false);
             tableLayoutPanel18.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)picConfiguracion).EndInit();
             tableLayoutPanel19.ResumeLayout(false);
             tableLayoutPanel19.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
-            tableLayoutPanel1.ResumeLayout(false);
-            tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
             panelDetalles.ResumeLayout(false);
-            tableLayoutPanel11.ResumeLayout(false);
             tableLayoutPanel12.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)picDetalles).EndInit();
             tableLayoutPanel13.ResumeLayout(false);
@@ -822,55 +801,57 @@
             tableLayoutPanel4.ResumeLayout(false);
             tableLayoutPanel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picArtículos).EndInit();
+            panelFacturación.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-        private Label lblSistemaDeFacturacion;
-        private Label lblSubtitulo;
-        private Label lblFacturacionTitulo;
-        private Panel panel4;
-        private Label lblConfiguraciónTitulo;
-        private Label label3;
-        private PictureBox picConfiguracion;
-        internal Panel panelFacturación;
         private PictureBox pictureBox6;
         private Label lblClientesTitulo;
         private TableLayoutPanel tableLayoutPanel1;
-        private Panel panel3;
-        private PictureBox picUnidadMedida;
-        private Label lblUnidadesDeMedidasSub;
-        private Label lblUnidadesMedidaTitulo;
-        private Panel panelClientes;
-        private Label lblClienteSub;
-        private Label lblClienteTitulo;
-        private Panel panelDetalles;
-        private PictureBox picDetalles;
-        private Label lblDetallesSub;
-        private Label lblDetallesTitulo;
-        private PictureBox picArtículos;
-        private Label lblArticulosSub;
-        private Label lblArticulosTitulo;
-        private TableLayoutPanel tableLayoutPanel5;
-        private TableLayoutPanel tableLayoutPanel6;
-        private TableLayoutPanel tableLayoutPanel7;
-        private TableLayoutPanel tableLayoutPanel3;
-        private TableLayoutPanel tableLayoutPanel4;
+        private Button btnCerrarSesion;
+        private PictureBox picLogo;
+        private Panel panel4;
+        private TableLayoutPanel tableLayoutPanel17;
+        private TableLayoutPanel tableLayoutPanel18;
+        private PictureBox picConfiguracion;
+        private TableLayoutPanel tableLayoutPanel19;
+        private Label label3;
+        private Label lblConfiguraciónTitulo;
+        internal Panel panelFacturación;
         private TableLayoutPanel tableLayoutPanel8;
         private TableLayoutPanel tableLayoutPanel9;
         private TableLayoutPanel tableLayoutPanel10;
-        private TableLayoutPanel tableLayoutPanel11;
+        private Label lblFacturacionTitulo;
+        private Label lblFacturaciónSub;
+        private PictureBox picFacturacion;
+        private Panel panelDetalles;
         private TableLayoutPanel tableLayoutPanel12;
+        private PictureBox picDetalles;
         private TableLayoutPanel tableLayoutPanel13;
-        private TableLayoutPanel tableLayoutPanel17;
-        private TableLayoutPanel tableLayoutPanel18;
-        private TableLayoutPanel tableLayoutPanel19;
+        private Label lblDetallesSub;
+        private Label lblVentasTitulo;
+        private Panel panel3;
+        private TableLayoutPanel tableLayoutPanel5;
+        private TableLayoutPanel tableLayoutPanel6;
+        private PictureBox picUnidadMedida;
+        private TableLayoutPanel tableLayoutPanel7;
+        private Label lblUnidadesMedidaTitulo;
+        private Label lblUnidadesDeMedidasSub;
+        private Panel panelClientes;
         private TableLayoutPanel tableLayoutPanel15;
         private PictureBox picClientes;
         private TableLayoutPanel tableLayoutPanel16;
-        private Button btnSalir;
-        private PictureBox picFacturacion;
+        private Label lblClienteSub;
+        private Label lblClienteTitulo;
         private Panel panel1;
-        private PictureBox picLogo;
+        private TableLayoutPanel tableLayoutPanel3;
+        private TableLayoutPanel tableLayoutPanel4;
+        private Label lblArticulosTitulo;
+        private Label lblArticulosSub;
+        private PictureBox picArtículos;
+        private Label lblSubtitulo;
+        private Label lblSistemaDeFacturacion;
+        private Label label1;
     }
 }
