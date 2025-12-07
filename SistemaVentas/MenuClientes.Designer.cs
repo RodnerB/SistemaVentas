@@ -47,12 +47,6 @@
             lblClientes = new Label();
             btnVolverMenuPrincipal = new Button();
             tableLayoutPanel1 = new TableLayoutPanel();
-            panel1 = new Panel();
-            tableLayoutPanel8 = new TableLayoutPanel();
-            picClientes = new PictureBox();
-            tableLayoutPanel7 = new TableLayoutPanel();
-            label5 = new Label();
-            tableLayoutPanel2 = new TableLayoutPanel();
             panel2 = new Panel();
             tableLayoutPanel5 = new TableLayoutPanel();
             tableLayoutPanel3 = new TableLayoutPanel();
@@ -85,19 +79,25 @@
             panel3 = new Panel();
             tableLayoutPanel4 = new TableLayoutPanel();
             label4 = new Label();
+            panel1 = new Panel();
+            tableLayoutPanel8 = new TableLayoutPanel();
+            picClientes = new PictureBox();
+            tableLayoutPanel7 = new TableLayoutPanel();
+            label5 = new Label();
+            tableLayoutPanel2 = new TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)dgvClientes).BeginInit();
             tableLayoutPanel1.SuspendLayout();
-            panel1.SuspendLayout();
-            tableLayoutPanel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picClientes).BeginInit();
-            tableLayoutPanel7.SuspendLayout();
-            tableLayoutPanel2.SuspendLayout();
             panel2.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             tableLayoutPanel6.SuspendLayout();
             panel3.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
+            panel1.SuspendLayout();
+            tableLayoutPanel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picClientes).BeginInit();
+            tableLayoutPanel7.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
             SuspendLayout();
             // 
             // dgvClientes
@@ -229,6 +229,7 @@
             // 
             // colEliminar
             // 
+            colEliminar.FlatStyle = FlatStyle.Flat;
             colEliminar.HeaderText = "Accion";
             colEliminar.MinimumWidth = 6;
             colEliminar.Name = "colEliminar";
@@ -243,9 +244,9 @@
             lblClientes.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             lblClientes.Location = new Point(3, 0);
             lblClientes.Name = "lblClientes";
-            lblClientes.Size = new Size(115, 29);
+            lblClientes.Size = new Size(219, 29);
             lblClientes.TabIndex = 1;
-            lblClientes.Text = "CLIENTES";
+            lblClientes.Text = "Gestión de Clientes";
             // 
             // btnVolverMenuPrincipal
             // 
@@ -270,9 +271,9 @@
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 75F));
-            tableLayoutPanel1.Controls.Add(panel1, 0, 0);
             tableLayoutPanel1.Controls.Add(panel2, 0, 1);
             tableLayoutPanel1.Controls.Add(panel3, 1, 1);
+            tableLayoutPanel1.Controls.Add(panel1, 0, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -282,80 +283,6 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 3F));
             tableLayoutPanel1.Size = new Size(1872, 864);
             tableLayoutPanel1.TabIndex = 29;
-            // 
-            // panel1
-            // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panel1.Controls.Add(tableLayoutPanel8);
-            panel1.Controls.Add(tableLayoutPanel7);
-            panel1.Controls.Add(tableLayoutPanel2);
-            panel1.Location = new Point(3, 3);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(462, 58);
-            panel1.TabIndex = 1;
-            // 
-            // tableLayoutPanel8
-            // 
-            tableLayoutPanel8.ColumnCount = 1;
-            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel8.Controls.Add(picClientes, 0, 0);
-            tableLayoutPanel8.Location = new Point(50, 0);
-            tableLayoutPanel8.Name = "tableLayoutPanel8";
-            tableLayoutPanel8.RowCount = 1;
-            tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel8.Size = new Size(53, 58);
-            tableLayoutPanel8.TabIndex = 31;
-            // 
-            // picClientes
-            // 
-            picClientes.Anchor = AnchorStyles.Right;
-            picClientes.BackColor = Color.Transparent;
-            picClientes.BackgroundImage = Properties.Resources.users_people_workers_customers_icon_1242431;
-            picClientes.Location = new Point(4, 7);
-            picClientes.Name = "picClientes";
-            picClientes.Size = new Size(46, 44);
-            picClientes.SizeMode = PictureBoxSizeMode.Zoom;
-            picClientes.TabIndex = 5;
-            picClientes.TabStop = false;
-            // 
-            // tableLayoutPanel7
-            // 
-            tableLayoutPanel7.ColumnCount = 1;
-            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel7.Controls.Add(label5, 0, 1);
-            tableLayoutPanel7.Controls.Add(lblClientes, 0, 0);
-            tableLayoutPanel7.Dock = DockStyle.Right;
-            tableLayoutPanel7.Location = new Point(105, 0);
-            tableLayoutPanel7.Name = "tableLayoutPanel7";
-            tableLayoutPanel7.RowCount = 2;
-            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel7.Size = new Size(357, 58);
-            tableLayoutPanel7.TabIndex = 30;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.Gray;
-            label5.Location = new Point(3, 29);
-            label5.Name = "label5";
-            label5.Size = new Size(296, 20);
-            label5.TabIndex = 2;
-            label5.Text = "Administra la información de tus clientes";
-            // 
-            // tableLayoutPanel2
-            // 
-            tableLayoutPanel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            tableLayoutPanel2.ColumnCount = 1;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Controls.Add(btnVolverMenuPrincipal, 0, 0);
-            tableLayoutPanel2.Location = new Point(3, 0);
-            tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 1;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Size = new Size(48, 58);
-            tableLayoutPanel2.TabIndex = 29;
             // 
             // panel2
             // 
@@ -742,6 +669,80 @@
             label4.TabIndex = 1;
             label4.Text = "Lista de Clientes ";
             // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.Controls.Add(tableLayoutPanel8);
+            panel1.Controls.Add(tableLayoutPanel7);
+            panel1.Controls.Add(tableLayoutPanel2);
+            panel1.Location = new Point(3, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(462, 58);
+            panel1.TabIndex = 1;
+            // 
+            // tableLayoutPanel8
+            // 
+            tableLayoutPanel8.ColumnCount = 1;
+            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel8.Controls.Add(picClientes, 0, 0);
+            tableLayoutPanel8.Location = new Point(50, 0);
+            tableLayoutPanel8.Name = "tableLayoutPanel8";
+            tableLayoutPanel8.RowCount = 1;
+            tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel8.Size = new Size(53, 58);
+            tableLayoutPanel8.TabIndex = 31;
+            // 
+            // picClientes
+            // 
+            picClientes.Anchor = AnchorStyles.Right;
+            picClientes.BackColor = Color.Transparent;
+            picClientes.BackgroundImage = Properties.Resources.users_people_workers_customers_icon_1242431;
+            picClientes.Location = new Point(4, 7);
+            picClientes.Name = "picClientes";
+            picClientes.Size = new Size(46, 44);
+            picClientes.SizeMode = PictureBoxSizeMode.Zoom;
+            picClientes.TabIndex = 5;
+            picClientes.TabStop = false;
+            // 
+            // tableLayoutPanel7
+            // 
+            tableLayoutPanel7.ColumnCount = 1;
+            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel7.Controls.Add(label5, 0, 1);
+            tableLayoutPanel7.Controls.Add(lblClientes, 0, 0);
+            tableLayoutPanel7.Dock = DockStyle.Right;
+            tableLayoutPanel7.Location = new Point(105, 0);
+            tableLayoutPanel7.Name = "tableLayoutPanel7";
+            tableLayoutPanel7.RowCount = 2;
+            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel7.Size = new Size(357, 58);
+            tableLayoutPanel7.TabIndex = 30;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Gray;
+            label5.Location = new Point(3, 29);
+            label5.Name = "label5";
+            label5.Size = new Size(296, 20);
+            label5.TabIndex = 2;
+            label5.Text = "Administra la información de tus clientes";
+            // 
+            // tableLayoutPanel2
+            // 
+            tableLayoutPanel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            tableLayoutPanel2.ColumnCount = 1;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.Controls.Add(btnVolverMenuPrincipal, 0, 0);
+            tableLayoutPanel2.Location = new Point(3, 0);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 1;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.Size = new Size(48, 58);
+            tableLayoutPanel2.TabIndex = 29;
+            // 
             // MenuClientes
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -755,12 +756,6 @@
             Load += MenuClientes_Load;
             ((System.ComponentModel.ISupportInitialize)dgvClientes).EndInit();
             tableLayoutPanel1.ResumeLayout(false);
-            panel1.ResumeLayout(false);
-            tableLayoutPanel8.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)picClientes).EndInit();
-            tableLayoutPanel7.ResumeLayout(false);
-            tableLayoutPanel7.PerformLayout();
-            tableLayoutPanel2.ResumeLayout(false);
             panel2.ResumeLayout(false);
             tableLayoutPanel5.ResumeLayout(false);
             tableLayoutPanel5.PerformLayout();
@@ -770,6 +765,12 @@
             panel3.ResumeLayout(false);
             tableLayoutPanel4.ResumeLayout(false);
             tableLayoutPanel4.PerformLayout();
+            panel1.ResumeLayout(false);
+            tableLayoutPanel8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)picClientes).EndInit();
+            tableLayoutPanel7.ResumeLayout(false);
+            tableLayoutPanel7.PerformLayout();
+            tableLayoutPanel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 

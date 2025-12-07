@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="gearloading_87549" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gearloading_87549.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="hard_drives_icon_1730951" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hard_drives_icon_1730951.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -157,9 +160,6 @@
   <data name="viewdetails_vista_3354" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\viewdetails_vista_3354.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sale_basket_cart_ecommerce_on_buy_shop_trolley_bag_shopping_icon_266849 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sale_basket_cart_ecommerce_on_buy_shop_trolley_bag_shopping_icon_266849 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="settingscog_87317" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\settingscog_87317.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -175,8 +175,8 @@
   <data name="exit_icon_143788" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\exit_icon_143788.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="packages" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\packages.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="exitdoor_87195 (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\exitdoor_87195 (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="hard_drives_icon_173095 (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hard_drives_icon_173095 (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -184,8 +184,8 @@
   <data name="users_people_workers_customers_icon_124243" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\users_people_workers_customers_icon_124243.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="exitdoor_87195 (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\exitdoor_87195 (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sale_basket_cart_ecommerce_on_buy_shop_trolley_bag_shopping_icon_266849 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sale_basket_cart_ecommerce_on_buy_shop_trolley_bag_shopping_icon_266849 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="gear_icon-icons.com_69371" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\gear_icon-icons.com_69371.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -199,17 +199,23 @@
   <data name="invoice_icon_213786" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\invoice_icon_213786.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="invoice_icon_213786 (3)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\invoice_icon_213786 (3).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sale_basket_cart_ecommerce_on_buy_shop_trolley_bag_shopping_icon_266849 (3)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sale_basket_cart_ecommerce_on_buy_shop_trolley_bag_shopping_icon_266849 (3).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="return_up_back_icon_233992" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\return_up_back_icon_233992.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="invoice_icon_213786 (3)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\invoice_icon_213786 (3).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="box" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\box.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="sale_basket_cart_ecommerce_on_buy_shop_trolley_bag_shopping_icon_266849" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sale_basket_cart_ecommerce_on_buy_shop_trolley_bag_shopping_icon_266849.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="packages" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\packages.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="hard_drives_icon_173095" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hard_drives_icon_173095.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -232,7 +238,7 @@
   <data name="return_up_back_icon_233992 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\return_up_back_icon_233992 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sale_basket_cart_ecommerce_on_buy_shop_trolley_bag_shopping_icon_266849 (3)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sale_basket_cart_ecommerce_on_buy_shop_trolley_bag_shopping_icon_266849 (3).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="gearloading_87549 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gearloading_87549 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

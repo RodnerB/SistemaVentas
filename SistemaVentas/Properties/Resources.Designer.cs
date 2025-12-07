@@ -234,6 +234,26 @@ namespace SistemaVentas.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap gearloading_87549 {
+            get {
+                object obj = ResourceManager.GetObject("gearloading_87549", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gearloading_87549__1_ {
+            get {
+                object obj = ResourceManager.GetObject("gearloading_87549 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap hard_drives_icon_173095 {
             get {
                 object obj = ResourceManager.GetObject("hard_drives_icon_173095", resourceCulture);
