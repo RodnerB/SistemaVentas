@@ -338,6 +338,5 @@ namespace SistemaVentas
             CargarClientes();
             activarInputs(false);
         }
-
     }
 }

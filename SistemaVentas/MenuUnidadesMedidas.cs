@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SistemaVentas.Utilidades;
 
 namespace SistemaVentas
 {
@@ -16,6 +17,7 @@ namespace SistemaVentas
         UnidadesMedida? unidadesMedida = new UnidadesMedida();
         bool existeUnidad = false;
         private MenuPrincipal? formMenuPrincipal; // referencia al formulario principal
+        private readonly Resizer resizer = new Resizer();
 
         // Constructor sin parámetros (necesario para el diseñador)
         public MenuUnidadesMedidas()
@@ -44,6 +46,16 @@ namespace SistemaVentas
 #pragma warning restore CS8622
                 }
             }
+
+            // Integrar Resizer y redondeo (no en tiempo de diseño)
+            if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
+            {
+                resizer.CaptureOriginalSizes(this);
+                this.Resize += MenuUnidadesMedidas_Resize;
+
+                // Aplicar redondeo a hijos (no TextBox ni al propio Form)
+                try { ApplyRoundedExceptTextBoxes(this, 12); } catch { }
+            }
         }
 
         // Constructor con referencia al formulario principal
@@ -52,13 +64,16 @@ namespace SistemaVentas
             this.formMenuPrincipal = menuPrincipal;
         }
 
+        private void MenuUnidadesMedidas_Resize(object? sender, EventArgs e)
+        {
+            resizer.ResizeControls(this);
+        }
+
         private void InicializarEstadoBotones()
         {
             // Al iniciar: solo buscar habilitado
             btnBuscarUni.Enabled = true;
             btnAgregarUni.Enabled = false;
-            btnModificarUni.Enabled = false;
-            btnEliminarUni.Enabled = false;
             this.AcceptButton = btnBuscarUni;
         }
 
@@ -234,11 +249,9 @@ namespace SistemaVentas
             ModificarUnidad(unidadesMedida);
             CargarUnidades();
 
-            // Mantener habilitados modificar/eliminar si la unidad existe
+
             btnAgregarUni.Enabled = false;
-            btnModificarUni.Enabled = true;
-            btnEliminarUni.Enabled = true;
-            this.AcceptButton = btnModificarUni;
+
         }
 
         private void btnEliminarUni_Click(object sender, EventArgs e)
@@ -269,8 +282,6 @@ namespace SistemaVentas
 
             // Después de buscar: permitir agregar; permitir modificar/eliminar si existe
             btnAgregarUni.Enabled = true;
-            btnModificarUni.Enabled = existeUnidad;
-            btnEliminarUni.Enabled = existeUnidad;
             this.AcceptButton = btnAgregarUni;
 
             // Mover el cursor automáticamente a la segunda casilla (descripción)
@@ -314,6 +325,44 @@ namespace SistemaVentas
             {
                 MessageBox.Show("Error en la base de datos: " + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        // Aplica RoundedControlHelper a todos los controles hijos excepto TextBox y sin tocar el propio Form.
+        private void ApplyRoundedExceptTextBoxes(Control parent, int radius)
+        {
+            if (parent == null) return;
+
+            // Si el parent es el formulario raíz, no aplicamos al formulario; sí a sus hijos.
+            if (parent is Form)
+            {
+                foreach (Control c in parent.Controls)
+                {
+                    if (c is not TextBox)
+                    {
+                        try { RoundedControlHelper.RedondearBordes(c, radius); }
+                        catch { /* ignorar errores */ }
+                    }
+                    if (c.HasChildren) ApplyRoundedExceptTextBoxes(c, radius);
+                }
+                return;
+            }
+
+            // Para controles que no son el Form, aplicar normalmente (excepto TextBox)
+            if (parent is not TextBox)
+            {
+                try { RoundedControlHelper.RedondearBordes(parent, radius); }
+                catch { /* ignorar errores */ }
+            }
+
+            foreach (Control c in parent.Controls)
+            {
+                if (c is not TextBox)
+                {
+                    try { RoundedControlHelper.RedondearBordes(c, radius); }
+                    catch { /* ignorar errores */ }
+                }
+                if (c.HasChildren) ApplyRoundedExceptTextBoxes(c, radius);
             }
         }
     }

@@ -2,6 +2,7 @@
 using System.Data;
 using System.ComponentModel;
 using System.Windows.Forms;
+using System.Linq;
 using SistemaVentas.Utilidades;
 
 namespace SistemaVentas
@@ -26,21 +27,28 @@ namespace SistemaVentas
 
             formMenuPrincipal = MenuPrincipal;  // Guarda la referencia del formulario principal que abrió este formulario
 
-            // Estado inicial: deshabilitar el botón hasta que se cumplan condiciones
-            btnAgregarFac.Enabled = false;
 
             // Inicializar resizer y suscribir evento Resize
             resizer.CaptureOriginalSizes(this);
             this.Resize += MenuFacturas_Resize;
 
             CargarFacturas(); // Carga las facturas en el DataGridView al iniciar el formulario
-            cmbCondicion.SelectedIndex = 0;
+
+            // Intentar establecer SelectedIndex de cmbCondicion si existe en tiempo de ejecución
+            var cbCond = this.Controls.Find("cmbCondicion", true).FirstOrDefault() as ComboBox;
+            if (cbCond != null && cbCond.Items.Count > 0)
+                cbCond.SelectedIndex = 0;
 
             ObtenerClientesComboBox();
 
             // Suscribir eventos que controlan si se puede habilitar el botón Agregar
-            cmbCodCliente.SelectedIndexChanged += CmbCodCliente_SelectedIndexChanged;
-            inpNumFactura.TextChanged += InputsChanged;
+            var cbCliente = this.Controls.Find("cmbCodCliente", true).FirstOrDefault() as ComboBox;
+            if (cbCliente != null)
+                cbCliente.SelectedIndexChanged += CmbCodCliente_SelectedIndexChanged;
+
+            var txtNumFac = this.Controls.Find("inpNumFactura", true).FirstOrDefault() as TextBox;
+            if (txtNumFac != null)
+                txtNumFac.TextChanged += InputsChanged;
 
             // Asignar handler KeyDown a todos los TextBox (recursivo para controles anidados)
             AttachKeyDownToTextBoxes(this);
@@ -49,8 +57,9 @@ namespace SistemaVentas
             ApplyRoundedExceptTextBoxes(this, 12);
 
             // Evitar subrayado azul en el DateTimePicker al recibir foco
-            if (inpDateTime is not null)
-                inpDateTime.GotFocus += (s, e) => inpDateTime.Select();
+            var dt = this.Controls.Find("inpDateTime", true).FirstOrDefault() as DateTimePicker;
+            if (dt is not null)
+                dt.GotFocus += (s, e) => dt.Select();
 
             // Cuando el formulario se muestre, establecer el foco en la primera casilla de texto
             this.Shown += MenuFacturas_Shown;
@@ -65,9 +74,10 @@ namespace SistemaVentas
 
         private void MenuFacturas_Shown(object? sender, EventArgs e)
         {
-            // Poner foco en el número de factura al mostrar
-            inpNumFactura?.Focus();
-            ultimoControlConFoco = inpNumFactura;
+            // Poner foco en el número de factura al mostrar (si existe)
+            var txtNum = this.Controls.Find("inpNumFactura", true).FirstOrDefault() as TextBox;
+            txtNum?.Focus();
+            ultimoControlConFoco = txtNum;
         }
 
         private void CargarFacturas() => Factura.CargarFacturasEnGrid(dgvFacturas);
@@ -75,13 +85,28 @@ namespace SistemaVentas
         // Método para obtener los datos de entrada y crear un objeto Factura
         private Factura obtenerFacturaInputs()
         {
-            float descuento = inpDescFactura.Text.Length == 0 ? 0 : float.Parse(inpDescFactura.Text);
-            float montoFactura = inpMonFactura.Text.Length == 0 ? 0 : float.Parse(inpMonFactura.Text);
+            var txtDesc = this.Controls.Find("inpDescFactura", true).FirstOrDefault() as TextBox;
+            var txtMon = this.Controls.Find("inpMonFactura", true).FirstOrDefault() as TextBox;
+            var txtNum = this.Controls.Find("inpNumFactura", true).FirstOrDefault() as TextBox;
+            var dt = this.Controls.Find("inpDateTime", true).FirstOrDefault() as DateTimePicker;
+            var cbCliente = this.Controls.Find("cmbCodCliente", true).FirstOrDefault() as ComboBox;
+            var cbCond = this.Controls.Find("cmbCondicion", true).FirstOrDefault() as ComboBox;
+
+            float descuento = string.IsNullOrWhiteSpace(txtDesc?.Text) ? 0 : float.Parse(txtDesc.Text);
+            float montoFactura = string.IsNullOrWhiteSpace(txtMon?.Text) ? 0 : float.Parse(txtMon.Text);
+            int numero = 0;
+            if (!string.IsNullOrWhiteSpace(txtNum?.Text))
+                int.TryParse(txtNum.Text, out numero);
+
+            string codigoCliente = cbCliente?.SelectedValue?.ToString() ?? "";
+            string condicion = (cbCond?.Text == "Contado") ? "1" : "2";
+            DateTime fecha = dt?.Value ?? DateTime.Now;
+
             return new Factura(
-                Convert.ToInt32(inpNumFactura.Text),
-                inpDateTime.Value,
-                cmbCodCliente.SelectedValue?.ToString() ?? "",
-                cmbCondicion.Text == "Contado" ? "1" : "2",
+                numero,
+                fecha,
+                codigoCliente,
+                condicion,
                 descuento,
                 montoFactura
             );
@@ -102,13 +127,16 @@ namespace SistemaVentas
             fila["NOMCLI"] = "Seleccione un cliente";
             tablaClientes.Rows.InsertAt(fila, 0);
 
-            cmbCodCliente.DataSource = tablaClientes;
-            cmbCodCliente.DisplayMember = "NOMCLI"; // Muestra el nombre del cliente
-            cmbCodCliente.ValueMember = "CODCLI"; // Usa el código del cliente como valor
+            var cbCliente = this.Controls.Find("cmbCodCliente", true).FirstOrDefault() as ComboBox;
+            if (cbCliente == null) return;
+
+            cbCliente.DataSource = tablaClientes;
+            cbCliente.DisplayMember = "NOMCLI"; // Muestra el nombre del cliente
+            cbCliente.ValueMember = "CODCLI"; // Usa el código del cliente como valor
 
             // Asegurar SelectedIndex seguro
-            if (cmbCodCliente.Items.Count > 0)
-                cmbCodCliente.SelectedIndex = 0;
+            if (cbCliente.Items.Count > 0)
+                cbCliente.SelectedIndex = 0;
 
             // Evaluar estado inicial del botón Agregar
             UpdateAgregarButtonState();
@@ -136,16 +164,30 @@ namespace SistemaVentas
         // Ahora requiere: número de factura válido, cliente seleccionado y cliente previamente buscado/confirmado.
         private void UpdateAgregarButtonState()
         {
-            bool tieneNumero = !string.IsNullOrWhiteSpace(inpNumFactura.Text);
-            bool clienteSeleccionado = cmbCodCliente?.SelectedValue != null && !string.IsNullOrWhiteSpace(cmbCodCliente.SelectedValue.ToString());
+            var txtNum = this.Controls.Find("inpNumFactura", true).FirstOrDefault() as TextBox;
+            var cbCliente = this.Controls.Find("cmbCodCliente", true).FirstOrDefault() as ComboBox;
+            var btnAgregar = this.Controls.Find("btnAgregarFac", true).FirstOrDefault() as Button;
 
-            btnAgregarFac.Enabled = tieneNumero && clienteSeleccionado && clienteBuscado;
+            bool tieneNumero = !string.IsNullOrWhiteSpace(txtNum?.Text);
+            bool clienteSeleccionado = cbCliente?.SelectedValue != null && !string.IsNullOrWhiteSpace(cbCliente.SelectedValue.ToString());
+
+            if (btnAgregar != null)
+                btnAgregar.Enabled = tieneNumero && clienteSeleccionado && clienteBuscado;
         }
 
         private void CmbCodCliente_SelectedIndexChanged(object? sender, EventArgs e)
         {
-            // Cuando cambia la selección, si el valor no es el placeholder, intentar confirmar/buscar el cliente
-            string? codigo = cmbCodCliente.SelectedValue?.ToString();
+            // Obtener el combo desde el sender o por búsqueda
+            var cb = sender as ComboBox ?? this.Controls.Find("cmbCodCliente", true).FirstOrDefault() as ComboBox;
+            if (cb == null)
+            {
+                cliente = null;
+                clienteBuscado = false;
+                UpdateAgregarButtonState();
+                return;
+            }
+
+            string? codigo = cb.SelectedValue?.ToString();
             if (!string.IsNullOrWhiteSpace(codigo))
             {
                 Cliente? encontrado = BuscarCliente(codigo);
@@ -229,11 +271,12 @@ namespace SistemaVentas
 
 
             // Si el control es la caja de número de factura, validar antes de avanzar
-            if (control == inpNumFactura)
+            if (control.Name == "inpNumFactura")
             {
-                if (string.IsNullOrWhiteSpace(inpNumFactura?.Text))
+                var txtNum = control as TextBox;
+                if (string.IsNullOrWhiteSpace(txtNum?.Text))
                 {
-                    MostrarAdvertenciaCampoVacio("Debe introducir el número de factura antes de continuar.", inpNumFactura);
+                    MostrarAdvertenciaCampoVacio("Debe introducir el número de factura antes de continuar.", control);
                     return; // NO avanzar si está vacío
                 }
 
@@ -324,5 +367,6 @@ namespace SistemaVentas
                     ApplyRoundedExceptTextBoxes(c, radius);
             }
         }
+
     }
 }

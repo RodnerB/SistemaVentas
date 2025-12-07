@@ -93,6 +93,16 @@ namespace SistemaVentas.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _1492617381_9_sheet_data_spreadsheets_file_google_suit_service_83434__3_ {
+            get {
+                object obj = ResourceManager.GetObject("1492617381-9-sheet-data-spreadsheets-file-google-suit-service_83434 (3)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _4115231_dashboard_stats_114039 {
             get {
                 object obj = ResourceManager.GetObject("4115231-dashboard-stats_114039", resourceCulture);
@@ -154,6 +164,16 @@ namespace SistemaVentas.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bulb_icon_icons_com_74600 {
+            get {
+                object obj = ResourceManager.GetObject("bulb_icon-icons.com_74600", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cloud_money_system_icon_175829 {
             get {
                 object obj = ResourceManager.GetObject("cloud_money_system_icon_175829", resourceCulture);
@@ -204,9 +224,59 @@ namespace SistemaVentas.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap gear_icon_icons_com_69371 {
+            get {
+                object obj = ResourceManager.GetObject("gear_icon-icons.com_69371", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap hard_drives_icon_173095 {
             get {
                 object obj = ResourceManager.GetObject("hard_drives_icon_173095", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hard_drives_icon_173095__1_ {
+            get {
+                object obj = ResourceManager.GetObject("hard_drives_icon_173095 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hard_drives_icon_173095__2_ {
+            get {
+                object obj = ResourceManager.GetObject("hard_drives_icon_173095 (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hard_drives_icon_1730951 {
+            get {
+                object obj = ResourceManager.GetObject("hard_drives_icon_1730951", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hard_drives_icon_1730952 {
+            get {
+                object obj = ResourceManager.GetObject("hard_drives_icon_1730952", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -297,6 +367,46 @@ namespace SistemaVentas.Properties {
         internal static System.Drawing.Bitmap return_up_back_icon_233992__1_ {
             get {
                 object obj = ResourceManager.GetObject("return_up_back_icon_233992 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sale_basket_cart_ecommerce_on_buy_shop_trolley_bag_shopping_icon_266849 {
+            get {
+                object obj = ResourceManager.GetObject("sale_basket_cart_ecommerce_on_buy_shop_trolley_bag_shopping_icon_266849", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sale_basket_cart_ecommerce_on_buy_shop_trolley_bag_shopping_icon_266849__1_ {
+            get {
+                object obj = ResourceManager.GetObject("sale_basket_cart_ecommerce_on_buy_shop_trolley_bag_shopping_icon_266849 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sale_basket_cart_ecommerce_on_buy_shop_trolley_bag_shopping_icon_266849__3_ {
+            get {
+                object obj = ResourceManager.GetObject("sale_basket_cart_ecommerce_on_buy_shop_trolley_bag_shopping_icon_266849 (3)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sales_deals_discounts_promotions_coupons_icon_260990 {
+            get {
+                object obj = ResourceManager.GetObject("sales_deals_discounts_promotions_coupons_icon_260990", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

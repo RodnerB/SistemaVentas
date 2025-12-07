@@ -29,8 +29,8 @@ namespace SistemaVentas
 
         static Dictionary<string, string> unidadesMedidaHeaders = new Dictionary<string, string>()
         {
-            {"CODUNI", "Código Unidad" },
-            {"DESUNI", "Descripción Unidad" }
+            {"CODUNI", "Código" },
+            {"DESUNI", "Descripción" }
         };
        
         public UnidadesMedida() { }

@@ -21,7 +21,7 @@ namespace SistemaVentas
             Application.SetCompatibleTextRenderingDefault(false);
 
             // Ejecutar el formulario principal
-            Application.Run(new MenuPrincipal());
+            Application.Run(new MenuLogin());
         }
     }
 }
