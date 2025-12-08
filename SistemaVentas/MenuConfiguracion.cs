@@ -157,5 +157,15 @@ namespace SistemaVentas
             path.CloseFigure();
             return path;
         }
+
+        private void tableLayoutPanel17_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel15_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             lblUnidadesMedida = new Label();
             dgvUnidad = new DataGridView();
             tableLayoutPanel1 = new TableLayoutPanel();
@@ -102,36 +102,36 @@
             dgvUnidad.BorderStyle = BorderStyle.None;
             dgvUnidad.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dgvUnidad.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = SystemColors.Control;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle7.ForeColor = Color.Black;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Control;
-            dataGridViewCellStyle7.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dgvUnidad.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Control;
+            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvUnidad.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvUnidad.ColumnHeadersHeight = 35;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = Color.White;
-            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle8.ForeColor = Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = SystemColors.ButtonHighlight;
-            dataGridViewCellStyle8.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
-            dgvUnidad.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.White;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.ButtonHighlight;
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvUnidad.DefaultCellStyle = dataGridViewCellStyle2;
             dgvUnidad.EnableHeadersVisualStyles = false;
             dgvUnidad.GridColor = Color.LightGray;
             dgvUnidad.Location = new Point(3, 76);
             dgvUnidad.Name = "dgvUnidad";
             dgvUnidad.ReadOnly = true;
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = SystemColors.Control;
-            dataGridViewCellStyle9.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle9.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = Color.White;
-            dataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
-            dgvUnidad.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvUnidad.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvUnidad.RowHeadersVisible = false;
             dgvUnidad.RowHeadersWidth = 51;
             dgvUnidad.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -457,32 +457,32 @@
             panel2.Anchor = AnchorStyles.None;
             panel2.BackColor = Color.AliceBlue;
             panel2.Controls.Add(tableLayoutPanel8);
-            panel2.Location = new Point(47, 597);
+            panel2.Location = new Point(9, 597);
             panel2.Name = "panel2";
-            panel2.Size = new Size(343, 46);
+            panel2.Size = new Size(419, 46);
             panel2.TabIndex = 1;
             // 
             // tableLayoutPanel8
             // 
             tableLayoutPanel8.ColumnCount = 2;
             tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 298F));
+            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 312F));
             tableLayoutPanel8.Controls.Add(pictureBox1, 0, 0);
             tableLayoutPanel8.Controls.Add(label2, 1, 0);
             tableLayoutPanel8.Location = new Point(0, 0);
             tableLayoutPanel8.Name = "tableLayoutPanel8";
             tableLayoutPanel8.RowCount = 1;
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel8.Size = new Size(343, 46);
+            tableLayoutPanel8.Size = new Size(419, 46);
             tableLayoutPanel8.TabIndex = 0;
             // 
             // pictureBox1
             // 
             pictureBox1.Anchor = AnchorStyles.Right;
             pictureBox1.BackgroundImage = Properties.Resources.bulb_icon_icons_com_74600;
-            pictureBox1.Location = new Point(13, 6);
+            pictureBox1.Location = new Point(75, 9);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(29, 34);
+            pictureBox1.Size = new Size(29, 28);
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
@@ -490,10 +490,11 @@
             // 
             label2.Anchor = AnchorStyles.Left;
             label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = SystemColors.Highlight;
-            label2.Location = new Point(48, 3);
+            label2.Location = new Point(110, 3);
             label2.Name = "label2";
-            label2.Size = new Size(274, 40);
+            label2.Size = new Size(286, 40);
             label2.TabIndex = 0;
             label2.Text = "Las unidades de medidas son utilizadas \r\nen la gestión de artículos e inventario.";
             // 
