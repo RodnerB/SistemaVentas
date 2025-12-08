@@ -219,12 +219,12 @@
             tableLayoutPanel4.ColumnCount = 1;
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel4.Controls.Add(panel2, 0, 0);
-            tableLayoutPanel4.Location = new Point(30, 3);
+            tableLayoutPanel4.Location = new Point(3, 3);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
             tableLayoutPanel4.RowCount = 1;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 235F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel4.Size = new Size(1806, 762);
+            tableLayoutPanel4.Size = new Size(1860, 762);
             tableLayoutPanel4.TabIndex = 0;
             // 
             // panel2
@@ -234,23 +234,22 @@
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(3, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1800, 756);
+            panel2.Size = new Size(1854, 756);
             panel2.TabIndex = 0;
             // 
             // tableLayoutPanel5
             // 
-            tableLayoutPanel5.Anchor = AnchorStyles.Bottom;
             tableLayoutPanel5.BackColor = SystemColors.ButtonHighlight;
             tableLayoutPanel5.ColumnCount = 1;
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel5.Controls.Add(dgvFacturas, 0, 1);
             tableLayoutPanel5.Controls.Add(label1, 0, 0);
-            tableLayoutPanel5.Location = new Point(3, 150);
+            tableLayoutPanel5.Location = new Point(0, 153);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 2;
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 8.55614948F));
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 91.44385F));
-            tableLayoutPanel5.Size = new Size(1797, 606);
+            tableLayoutPanel5.Size = new Size(1854, 603);
             tableLayoutPanel5.TabIndex = 3;
             // 
             // dgvFacturas
@@ -259,7 +258,6 @@
             dgvFacturas.AllowUserToDeleteRows = false;
             dgvFacturas.AllowUserToResizeColumns = false;
             dgvFacturas.AllowUserToResizeRows = false;
-            dgvFacturas.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvFacturas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvFacturas.BackgroundColor = SystemColors.ButtonHighlight;
             dgvFacturas.BorderStyle = BorderStyle.None;
@@ -282,6 +280,7 @@
             dataGridViewCellStyle2.SelectionForeColor = Color.Black;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dgvFacturas.DefaultCellStyle = dataGridViewCellStyle2;
+            dgvFacturas.Dock = DockStyle.Fill;
             dgvFacturas.EnableHeadersVisualStyles = false;
             dgvFacturas.GridColor = Color.LightGray;
             dgvFacturas.Location = new Point(3, 54);
@@ -298,7 +297,7 @@
             dgvFacturas.RowHeadersVisible = false;
             dgvFacturas.RowHeadersWidth = 51;
             dgvFacturas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvFacturas.Size = new Size(1791, 549);
+            dgvFacturas.Size = new Size(1848, 546);
             dgvFacturas.TabIndex = 12;
             // 
             // label1
@@ -322,22 +321,22 @@
             tableLayoutPanel10.Name = "tableLayoutPanel10";
             tableLayoutPanel10.RowCount = 1;
             tableLayoutPanel10.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel10.Size = new Size(1800, 147);
+            tableLayoutPanel10.Size = new Size(1854, 147);
             tableLayoutPanel10.TabIndex = 4;
             // 
             // tableLayoutPanel6
             // 
-            tableLayoutPanel6.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel6.BackColor = SystemColors.ButtonHighlight;
             tableLayoutPanel6.ColumnCount = 2;
             tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 23.74582F));
             tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 76.25418F));
             tableLayoutPanel6.Controls.Add(tableLayoutPanel8, 0, 0);
+            tableLayoutPanel6.Dock = DockStyle.Fill;
             tableLayoutPanel6.Location = new Point(3, 3);
             tableLayoutPanel6.Name = "tableLayoutPanel6";
             tableLayoutPanel6.RowCount = 1;
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 48.8F));
-            tableLayoutPanel6.Size = new Size(1794, 141);
+            tableLayoutPanel6.Size = new Size(1848, 141);
             tableLayoutPanel6.TabIndex = 2;
             // 
             // tableLayoutPanel8
@@ -356,7 +355,7 @@
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 64.38356F));
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 35.61644F));
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Absolute, 55F));
-            tableLayoutPanel8.Size = new Size(420, 135);
+            tableLayoutPanel8.Size = new Size(432, 135);
             tableLayoutPanel8.TabIndex = 0;
             // 
             // btnBuscarFactura
@@ -369,7 +368,7 @@
             btnBuscarFactura.FlatStyle = FlatStyle.Flat;
             btnBuscarFactura.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnBuscarFactura.ForeColor = SystemColors.ControlLightLight;
-            btnBuscarFactura.Location = new Point(282, 82);
+            btnBuscarFactura.Location = new Point(294, 82);
             btnBuscarFactura.Name = "btnBuscarFactura";
             btnBuscarFactura.Size = new Size(135, 29);
             btnBuscarFactura.TabIndex = 0;

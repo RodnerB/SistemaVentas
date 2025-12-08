@@ -218,13 +218,14 @@
             // 
             tableLayoutPanel6.ColumnCount = 1;
             tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel6.Dock = DockStyle.Fill;
             tableLayoutPanel6.Location = new Point(478, 3);
             tableLayoutPanel6.Name = "tableLayoutPanel6";
             tableLayoutPanel6.RowCount = 3;
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 60.82474F));
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 39.17526F));
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Absolute, 160F));
-            tableLayoutPanel6.Size = new Size(1401, 66);
+            tableLayoutPanel6.Size = new Size(1419, 66);
             tableLayoutPanel6.TabIndex = 1;
             // 
             // tableLayoutPanel2
@@ -437,11 +438,12 @@
             tableLayoutPanel10.ColumnCount = 1;
             tableLayoutPanel10.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel10.Controls.Add(tableLayoutPanel11, 0, 0);
+            tableLayoutPanel10.Dock = DockStyle.Fill;
             tableLayoutPanel10.Location = new Point(0, 0);
             tableLayoutPanel10.Name = "tableLayoutPanel10";
             tableLayoutPanel10.RowCount = 1;
             tableLayoutPanel10.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel10.Size = new Size(1870, 287);
+            tableLayoutPanel10.Size = new Size(1894, 268);
             tableLayoutPanel10.TabIndex = 0;
             // 
             // tableLayoutPanel11
@@ -460,7 +462,7 @@
             tableLayoutPanel11.RowStyles.Add(new RowStyle(SizeType.Percent, 36.11111F));
             tableLayoutPanel11.RowStyles.Add(new RowStyle(SizeType.Absolute, 34F));
             tableLayoutPanel11.RowStyles.Add(new RowStyle(SizeType.Absolute, 166F));
-            tableLayoutPanel11.Size = new Size(775, 281);
+            tableLayoutPanel11.Size = new Size(775, 262);
             tableLayoutPanel11.TabIndex = 0;
             // 
             // lblBuscarProducto
@@ -468,7 +470,7 @@
             lblBuscarProducto.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblBuscarProducto.AutoSize = true;
             lblBuscarProducto.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblBuscarProducto.Location = new Point(3, 60);
+            lblBuscarProducto.Location = new Point(3, 41);
             lblBuscarProducto.Name = "lblBuscarProducto";
             lblBuscarProducto.Size = new Size(254, 20);
             lblBuscarProducto.TabIndex = 1;
@@ -481,7 +483,7 @@
             lstResultadosBusqueda.Font = new Font("Segoe UI", 10F);
             lstResultadosBusqueda.FormattingEnabled = true;
             lstResultadosBusqueda.ItemHeight = 23;
-            lstResultadosBusqueda.Location = new Point(3, 118);
+            lstResultadosBusqueda.Location = new Point(3, 99);
             lstResultadosBusqueda.Margin = new Padding(3, 4, 3, 4);
             lstResultadosBusqueda.Name = "lstResultadosBusqueda";
             lstResultadosBusqueda.Size = new Size(591, 138);
@@ -490,7 +492,7 @@
             // 
             // txtBuscarProducto
             // 
-            txtBuscarProducto.Location = new Point(3, 83);
+            txtBuscarProducto.Location = new Point(3, 64);
             txtBuscarProducto.Name = "txtBuscarProducto";
             txtBuscarProducto.Size = new Size(591, 27);
             txtBuscarProducto.TabIndex = 4;
@@ -500,9 +502,9 @@
             label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(3, 5);
+            label1.Location = new Point(3, 0);
             label1.Name = "label1";
-            label1.Size = new Size(221, 46);
+            label1.Size = new Size(221, 39);
             label1.TabIndex = 5;
             label1.Text = "Nueva Venta";
             // 
