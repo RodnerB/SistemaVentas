@@ -221,7 +221,7 @@
             // btnEntrar
             // 
             btnEntrar.Anchor = AnchorStyles.None;
-            btnEntrar.BackColor = Color.MediumBlue;
+            btnEntrar.BackColor = SystemColors.HotTrack;
             btnEntrar.Cursor = Cursors.Hand;
             btnEntrar.FlatAppearance.BorderSize = 0;
             btnEntrar.FlatAppearance.MouseDownBackColor = Color.Silver;
@@ -240,7 +240,7 @@
             // btnSalir
             // 
             btnSalir.Anchor = AnchorStyles.None;
-            btnSalir.BackColor = Color.MediumBlue;
+            btnSalir.BackColor = SystemColors.HotTrack;
             btnSalir.Cursor = Cursors.Hand;
             btnSalir.FlatAppearance.BorderSize = 0;
             btnSalir.FlatAppearance.MouseDownBackColor = Color.Silver;

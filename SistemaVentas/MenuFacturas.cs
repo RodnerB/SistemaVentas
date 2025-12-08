@@ -367,6 +367,5 @@ namespace SistemaVentas
                     ApplyRoundedExceptTextBoxes(c, radius);
             }
         }
-
     }
 }

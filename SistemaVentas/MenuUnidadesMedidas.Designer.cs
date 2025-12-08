@@ -183,7 +183,7 @@
             // 
             // button1
             // 
-            button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button1.Anchor = AnchorStyles.Right;
             button1.BackColor = Color.Transparent;
             button1.BackgroundImage = Properties.Resources.return_up_back_icon_233992__1_;
             button1.Cursor = Cursors.Hand;
@@ -191,9 +191,9 @@
             button1.FlatAppearance.MouseDownBackColor = Color.Silver;
             button1.FlatAppearance.MouseOverBackColor = Color.Silver;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(11, 3);
+            button1.Location = new Point(13, 12);
             button1.Name = "button1";
-            button1.Size = new Size(34, 41);
+            button1.Size = new Size(32, 34);
             button1.TabIndex = 28;
             button1.UseVisualStyleBackColor = false;
             button1.Click += btnVolverMenuPrincipal_Click;
@@ -457,32 +457,32 @@
             panel2.Anchor = AnchorStyles.None;
             panel2.BackColor = Color.AliceBlue;
             panel2.Controls.Add(tableLayoutPanel8);
-            panel2.Location = new Point(47, 597);
+            panel2.Location = new Point(9, 587);
             panel2.Name = "panel2";
-            panel2.Size = new Size(343, 46);
+            panel2.Size = new Size(419, 67);
             panel2.TabIndex = 1;
             // 
             // tableLayoutPanel8
             // 
             tableLayoutPanel8.ColumnCount = 2;
             tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 298F));
+            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 361F));
             tableLayoutPanel8.Controls.Add(pictureBox1, 0, 0);
             tableLayoutPanel8.Controls.Add(label2, 1, 0);
-            tableLayoutPanel8.Location = new Point(0, 0);
+            tableLayoutPanel8.Location = new Point(0, 1);
             tableLayoutPanel8.Name = "tableLayoutPanel8";
             tableLayoutPanel8.RowCount = 1;
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel8.Size = new Size(343, 46);
+            tableLayoutPanel8.Size = new Size(419, 66);
             tableLayoutPanel8.TabIndex = 0;
             // 
             // pictureBox1
             // 
             pictureBox1.Anchor = AnchorStyles.Right;
             pictureBox1.BackgroundImage = Properties.Resources.bulb_icon_icons_com_74600;
-            pictureBox1.Location = new Point(13, 6);
+            pictureBox1.Location = new Point(26, 19);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(29, 34);
+            pictureBox1.Size = new Size(29, 28);
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
@@ -490,10 +490,11 @@
             // 
             label2.Anchor = AnchorStyles.Left;
             label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = SystemColors.Highlight;
-            label2.Location = new Point(48, 3);
+            label2.Location = new Point(61, 13);
             label2.Name = "label2";
-            label2.Size = new Size(274, 40);
+            label2.Size = new Size(286, 40);
             label2.TabIndex = 0;
             label2.Text = "Las unidades de medidas son utilizadas \r\nen la gestión de artículos e inventario.";
             // 
