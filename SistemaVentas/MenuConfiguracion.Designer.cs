@@ -72,8 +72,8 @@
             lblContrasena = new Label();
             tableLayoutPanel16 = new TableLayoutPanel();
             tableLayoutPanel17 = new TableLayoutPanel();
-            button7 = new Button();
             button3 = new Button();
+            button7 = new Button();
             tableLayoutPanel18 = new TableLayoutPanel();
             button8 = new Button();
             inpUsuario = new TextBox();
@@ -683,24 +683,6 @@
             tableLayoutPanel17.TabIndex = 10;
             tableLayoutPanel17.Paint += tableLayoutPanel17_Paint;
             // 
-            // button7
-            // 
-            button7.Anchor = AnchorStyles.Top;
-            button7.BackColor = Color.Red;
-            button7.Cursor = Cursors.Hand;
-            button7.FlatAppearance.BorderSize = 0;
-            button7.FlatAppearance.MouseDownBackColor = Color.Silver;
-            button7.FlatAppearance.MouseOverBackColor = Color.Silver;
-            button7.FlatStyle = FlatStyle.Flat;
-            button7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button7.ForeColor = Color.White;
-            button7.Location = new Point(446, 3);
-            button7.Name = "button7";
-            button7.Size = new Size(419, 27);
-            button7.TabIndex = 1;
-            button7.Text = "Cancelar ";
-            button7.UseVisualStyleBackColor = false;
-            // 
             // button3
             // 
             button3.Anchor = AnchorStyles.Top;
@@ -718,6 +700,24 @@
             button3.TabIndex = 1;
             button3.Text = "Guardar";
             button3.UseVisualStyleBackColor = false;
+            // 
+            // button7
+            // 
+            button7.Anchor = AnchorStyles.Top;
+            button7.BackColor = Color.Red;
+            button7.Cursor = Cursors.Hand;
+            button7.FlatAppearance.BorderSize = 0;
+            button7.FlatAppearance.MouseDownBackColor = Color.Silver;
+            button7.FlatAppearance.MouseOverBackColor = Color.Silver;
+            button7.FlatStyle = FlatStyle.Flat;
+            button7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button7.ForeColor = Color.White;
+            button7.Location = new Point(446, 3);
+            button7.Name = "button7";
+            button7.Size = new Size(419, 27);
+            button7.TabIndex = 1;
+            button7.Text = "Cancelar ";
+            button7.UseVisualStyleBackColor = false;
             // 
             // tableLayoutPanel18
             // 
