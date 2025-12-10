@@ -31,6 +31,9 @@ namespace SistemaVentas
         [Requerido]
         public float BalanceActualCliente { get; set; } = 0f;
 
+        // Estado para determinar si se debe crear o actualizar el cliente
+        public bool existe { get; set; } = false;
+
         // Querys generales
         private const string getClientesQuery = "SELECT * FROM SFTCLIE0";
         private const string getClientePorCodigoQuery = "SELECT * FROM SFTCLIE0 WHERE CODCLI = @codigo";
@@ -39,6 +42,21 @@ namespace SistemaVentas
             (CODCLI, NOMCLI, APECLI, DIRCLI, SECCLI, CIUCLI, TELCLI, NUMFAX, LIMCRE, BALCLI, OBSCLI) 
             VALUES 
             (@CodigoCliente, @NombreCliente, @ApellidoCliente, @DireccionCliente, @SectorCliente, @CiudadCliente, @TelefonoCliente, @FaxCliente, @LimiteCreditoCliente, @BalanceActualCliente, @ObservacionesCliente)";
+        private const string actualizarClienteQuery = @"
+            UPDATE SFTCLIE0
+            SET 
+                NOMCLI = @NombreCliente,
+                APECLI = @ApellidoCliente,
+                DIRCLI = @DireccionCliente,
+                SECCLI = @SectorCliente,
+                CIUCLI = @CiudadCliente,
+                TELCLI = @TelefonoCliente,
+                NUMFAX = @FaxCliente,
+                LIMCRE = @LimiteCreditoCliente,
+                BALCLI = @BalanceActualCliente,
+                OBSCLI = @ObservacionesCliente
+            WHERE 
+                CODCLI = @CodigoCliente";
         private const string eliminarClienteQuery = "DELETE FROM SFTCLIE0 WHERE CODCLI = @codigo";
 
         // Headers para renombrar columnas 
@@ -89,9 +107,10 @@ namespace SistemaVentas
 
         public bool InsertarCliente()
         {
+            string query = existe ? actualizarClienteQuery : insertarClienteQuery;
             Validador.Requerido(this);
             return (UtilidadesBD.GuardarRegistro(
-                insertarClienteQuery,
+                query,
                 ObtenerParametrosCliente(this)
             ) > 0);
         }
