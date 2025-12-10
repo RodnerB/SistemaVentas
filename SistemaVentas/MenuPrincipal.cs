@@ -37,7 +37,7 @@ namespace SistemaVentas
 
             RoundedControlHelper.RedondearTodosLosPaneles(this, 50);
             RoundedControlHelper.RedondearBordes(btnCerrarSesion, 12);
-            
+
             RoundedControlHelper.RedondearBordes(picLogo, 15);
 
             btnCerrarSesion.TabStop = false;
@@ -107,6 +107,8 @@ namespace SistemaVentas
                 this.Close();
             }
         }
+
+       
     }
 }
 

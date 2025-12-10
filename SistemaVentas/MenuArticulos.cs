@@ -77,9 +77,6 @@ namespace SistemaVentas
             inpCodArt?.Focus();
         }
 
-        // Recorre recursivamente el árbol de controles y aplica el helper salvo a los TextBox.
-        // CORRECCIÓN: nunca aplicar el helper al propio Form (evita cambios en this.Region
-        // que afectan los botones minimizar/maximizar/cerrar).
         private void ApplyRoundedExceptTextBoxes(Control parent, int radius)
         {
             if (parent == null) return;
@@ -93,14 +90,7 @@ namespace SistemaVentas
                     // Aplicar el helper solo a controles que no sean TextBox
                     if (c is not TextBox)
                     {
-                        try
-                        {
-                            RoundedControlHelper.RedondearBordes(c, radius);
-                        }
-                        catch
-                        {
-                            // Ignorar errores del helper para no romper el formulario
-                        }
+                        RoundedControlHelper.RedondearBordes(c, radius);
                     }
 
                     if (c.HasChildren)
@@ -113,25 +103,16 @@ namespace SistemaVentas
             // Para controles que no son el Form, aplicar normalmente (excepto TextBox)
             if (parent is not TextBox)
             {
-                try
-                {
-                    RoundedControlHelper.RedondearBordes(parent, radius);
-                }
-                catch
-                {
-                    // Ignorar errores del helper para no romper el formulario
-                }
+
+                RoundedControlHelper.RedondearBordes(parent, radius);
+
             }
 
             foreach (Control c in parent.Controls)
             {
                 if (c is not TextBox)
                 {
-                    
-                   
-                        RoundedControlHelper.RedondearBordes(c, radius);
-                 
-                  
+                    RoundedControlHelper.RedondearBordes(c, radius);
                 }
 
                 if (c.HasChildren)
@@ -161,12 +142,8 @@ namespace SistemaVentas
         // Handler para volver al menú principal
         private void BtnVolverMenuPrincipal_Click(object? sender, EventArgs e)
         {
-            if (formMenuPrincipal is not null)
-            {
-                formMenuPrincipal.Show();
-                this.Hide();
-            }
-            // si es null (modo diseño o invocado sin referencia) no hace nada
+            formMenuPrincipal.Show(); // Muestra el formulario principal nuevamente
+            this.Close(); //Cierra el formulario actual de clientes
         }
 
         // Método para cargar los artículos en el DataGridView

@@ -75,7 +75,7 @@
             button3 = new Button();
             button7 = new Button();
             tableLayoutPanel18 = new TableLayoutPanel();
-            button8 = new Button();
+            btnVerUsuario = new Button();
             inpUsuario = new TextBox();
             inpNombre = new TextBox();
             inpContrasena = new TextBox();
@@ -628,7 +628,6 @@
             tableLayoutPanel15.RowStyles.Add(new RowStyle(SizeType.Percent, 6.404658F));
             tableLayoutPanel15.Size = new Size(768, 517);
             tableLayoutPanel15.TabIndex = 2;
-            tableLayoutPanel15.Paint += tableLayoutPanel15_Paint;
             // 
             // lblUsuario
             // 
@@ -708,7 +707,6 @@
             tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel17.Size = new Size(762, 28);
             tableLayoutPanel17.TabIndex = 10;
-            tableLayoutPanel17.Paint += tableLayoutPanel17_Paint;
             // 
             // button3
             // 
@@ -752,7 +750,7 @@
             // 
             tableLayoutPanel18.ColumnCount = 1;
             tableLayoutPanel18.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel18.Controls.Add(button8, 0, 0);
+            tableLayoutPanel18.Controls.Add(btnVerUsuario, 0, 0);
             tableLayoutPanel18.Dock = DockStyle.Fill;
             tableLayoutPanel18.Location = new Point(3, 480);
             tableLayoutPanel18.Margin = new Padding(3, 2, 3, 2);
@@ -762,24 +760,24 @@
             tableLayoutPanel18.Size = new Size(762, 35);
             tableLayoutPanel18.TabIndex = 11;
             // 
-            // button8
+            // btnVerUsuario
             // 
-            button8.Anchor = AnchorStyles.Top;
-            button8.BackColor = SystemColors.HotTrack;
-            button8.Cursor = Cursors.Hand;
-            button8.FlatAppearance.BorderSize = 0;
-            button8.FlatAppearance.MouseDownBackColor = Color.Silver;
-            button8.FlatAppearance.MouseOverBackColor = Color.Silver;
-            button8.FlatStyle = FlatStyle.Flat;
-            button8.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button8.ForeColor = Color.White;
-            button8.Location = new Point(5, 2);
-            button8.Margin = new Padding(3, 2, 3, 2);
-            button8.Name = "button8";
-            button8.Size = new Size(752, 22);
-            button8.TabIndex = 0;
-            button8.Text = "Ver usuarios";
-            button8.UseVisualStyleBackColor = false;
+            btnVerUsuario.Anchor = AnchorStyles.Top;
+            btnVerUsuario.BackColor = SystemColors.HotTrack;
+            btnVerUsuario.Cursor = Cursors.Hand;
+            btnVerUsuario.FlatAppearance.BorderSize = 0;
+            btnVerUsuario.FlatAppearance.MouseDownBackColor = Color.Silver;
+            btnVerUsuario.FlatAppearance.MouseOverBackColor = Color.Silver;
+            btnVerUsuario.FlatStyle = FlatStyle.Flat;
+            btnVerUsuario.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnVerUsuario.ForeColor = Color.White;
+            btnVerUsuario.Location = new Point(8, 3);
+            btnVerUsuario.Name = "btnVerUsuario";
+            btnVerUsuario.Size = new Size(859, 29);
+            btnVerUsuario.TabIndex = 0;
+            btnVerUsuario.Text = "Ver usuarios";
+            btnVerUsuario.UseVisualStyleBackColor = false;
+            btnVerUsuario.Click += btnVerUsuario_Click_1;
             // 
             // inpUsuario
             // 
@@ -902,7 +900,7 @@
         private TableLayoutPanel tableLayoutPanel17;
         private Button button3;
         private TableLayoutPanel tableLayoutPanel18;
-        private Button button8;
+        private Button btnVerUsuario;
         private Button button7;
         private TextBox inpUsuario;
         private TextBox inpNombre;
