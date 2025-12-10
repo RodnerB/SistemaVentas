@@ -169,7 +169,7 @@ namespace SistemaVentas
         {
             try
             {
-
+                cliente.existe = existeElCliente;
                 // Intentar insertar; InsertarCliente debe validar los campos y devolver false si faltan datos
                 if (cliente.InsertarCliente())
                 {

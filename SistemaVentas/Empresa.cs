@@ -40,11 +40,11 @@ namespace SistemaVentas
             };
         }
 
-        public static void InsertarEmpresa(Empresa empresa)
+        public void InsertarEmpresa()
         {
             Utilidades.UtilidadesBD.GuardarRegistro(
                 insertarEmpresaQuery,
-                ObtenerParametrosEmpresa(empresa)
+                ObtenerParametrosEmpresa(this)
             );
         }
 
