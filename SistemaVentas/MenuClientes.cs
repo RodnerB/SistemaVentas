@@ -115,6 +115,7 @@ namespace SistemaVentas
         // activar o desactivar texto de los inputs
         private void activarInputs(bool activar)
         {
+            inpCodCliente.Enabled = !activar;
             inpNomCliente.Enabled = activar;
             inpApeCliente.Enabled = activar;
             inpDirCliente.Enabled = activar;
@@ -235,11 +236,32 @@ namespace SistemaVentas
             };
         }
 
+        /* 
+         -----------------------------------------
+         * VALIDACIONES DE INPUTS:
+         -----------------------------------------
+        */
+
+        // Validar tamaños y que el balance no sea mayor al limite
+        public bool Validaciones()
+        {
+            if (!Validador.EsCantidadMenorAlTope(
+                    Convert.ToDecimal(inpCredCliente.Text),
+                    Convert.ToDecimal(inpBalCliente.Text)))
+            {
+                MostrarAdvertenciaCampoVacio("El balance actual no puede ser mayor al límite de crédito.", inpBalCliente);
+                return false;
+            }
+            return true;
+        }
 
 
-        /* ---------------------------------------
+
+        /* 
+         -----------------------------------------
          * EVENTOS AQUi:
-         ---------------------------------------*/
+         -----------------------------------------
+        */
 
         private void btnBuscarCli_Click(object? sender, EventArgs e)
         {
@@ -331,6 +353,12 @@ namespace SistemaVentas
 
             // Comportamiento por defecto para otros controles: avanzar al siguiente control
             this.SelectNextControl(control, true, true, true, true);
+        }
+
+        private void inpCredCliente_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            Validador.validarSoloNumeros(sender, e);
+
         }
 
         private void MenuClientes_Load(object sender, EventArgs e)
