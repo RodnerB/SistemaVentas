@@ -240,11 +240,6 @@ namespace SistemaVentas
         }
     }
 
-    // ------------------------------------------------------------
-    // Clases colocadas en este archivo según lo solicitado:
-    // - FormFacturacionAppearanceManager: aplica redondeo SOLO a Panel y Button
-    // - FormFacturacionResizer: ajusta control y fuentes al cambiar tamaño
-    // ------------------------------------------------------------
     internal static class FormFacturacionAppearanceManager
     {
         public static void Apply(Form form, int panelRadius = 12, int buttonRadius = 12)

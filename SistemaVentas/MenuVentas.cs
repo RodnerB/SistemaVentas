@@ -30,6 +30,10 @@ namespace SistemaVentas
 
             this.StartPosition = FormStartPosition.CenterScreen;
 
+            // Capturar tamaños originales y suscribir resize
+            resizer.CaptureOriginalSizes(this);
+            this.Resize += MenuVentas_Resize;
+
             // Ocultar lista de resultados inicialmente
             lstResultadosBusqueda.Visible = false;
 
@@ -61,8 +65,6 @@ namespace SistemaVentas
         private void MenuVentas_Resize(object? sender, EventArgs e)
         {
             resizer.ResizeControls(this);
-            // Reaplicar redondeo al cambiar tamaño si es necesario
-            ApplyRoundedExceptTextBoxes(this, ControlRadius);
         }
 
         // Reemplaza la lógica anterior para que SOLO aplique RedondearBordes a Paneles y Botones.
