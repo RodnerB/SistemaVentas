@@ -45,10 +45,7 @@ namespace SistemaVentas
         // Evento del botón para volver al menú principal
         private void btnVolverMenuPrincipal_Click(object sender, EventArgs e)
         {
-            if (this.formMenuPrincipal != null)
-            {
-                this.formMenuPrincipal.Show(); // Muestra el formulario principal nuevamente
-            }
+            formMenuPrincipal.Show(); // Muestra el formulario principal nuevamente
             this.Close(); //Cierra el formulario actual de clientes
         }
 
@@ -158,14 +155,11 @@ namespace SistemaVentas
             return path;
         }
 
-        private void tableLayoutPanel17_Paint(object sender, PaintEventArgs e)
+        private void btnVerUsuario_Click_1(object sender, EventArgs e)
         {
-
-        }
-
-        private void tableLayoutPanel15_Paint(object sender, PaintEventArgs e)
-        {
-
+            MenuVerUsuarios verusuarios = new MenuVerUsuarios(this);
+            verusuarios.Show();
+            this.Hide(); 
         }
     }
 }
