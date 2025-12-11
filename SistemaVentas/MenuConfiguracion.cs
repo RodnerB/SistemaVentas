@@ -20,7 +20,7 @@ namespace SistemaVentas
                 resizer.CaptureOriginalSizes(this);
                 this.Resize += MenuConfiguracion_Resize;
                 this.StartPosition = FormStartPosition.CenterScreen;
-                
+
                 // Aplicar redondeo a todos los controles excepto los TextBox
                 ApplyRoundedExceptTextBoxes(this, 12);
             }
@@ -37,7 +37,7 @@ namespace SistemaVentas
                 resizer.CaptureOriginalSizes(this);
                 this.Resize += MenuConfiguracion_Resize;
                 this.StartPosition = FormStartPosition.CenterScreen;
-                
+
                 // Aplicar redondeo a todos los controles excepto los TextBox
                 ApplyRoundedExceptTextBoxes(this, 12);
             }
@@ -113,12 +113,7 @@ namespace SistemaVentas
             {
                 return;
             }
-        }       
-        private void btnVerUsuario_Click_1(object sender, EventArgs e)
-        {
-            MenuVerUsuarios verusuarios = new MenuVerUsuarios(this);
-            verusuarios.Show();
-            this.Hide(); 
         }
+
     }
 }
