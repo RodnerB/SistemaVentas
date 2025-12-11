@@ -384,6 +384,7 @@
             inpBalCliente.Name = "inpBalCliente";
             inpBalCliente.Size = new Size(362, 27);
             inpBalCliente.TabIndex = 21;
+            inpBalCliente.KeyPress += inpCredCliente_KeyPress;
             // 
             // lblBalCli
             // 
@@ -402,6 +403,7 @@
             inpCredCliente.Name = "inpCredCliente";
             inpCredCliente.Size = new Size(362, 27);
             inpCredCliente.TabIndex = 19;
+            inpCredCliente.KeyPress += inpCredCliente_KeyPress;
             // 
             // lblNumCre
             // 
