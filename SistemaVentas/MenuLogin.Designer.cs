@@ -215,6 +215,7 @@
             inpContrasena.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             inpContrasena.Location = new Point(3, 151);
             inpContrasena.Name = "inpContrasena";
+            inpContrasena.PasswordChar = '*';
             inpContrasena.Size = new Size(244, 27);
             inpContrasena.TabIndex = 3;
             // 

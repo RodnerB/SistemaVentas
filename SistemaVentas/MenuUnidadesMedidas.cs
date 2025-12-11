@@ -365,5 +365,10 @@ namespace SistemaVentas
                 if (c.HasChildren) ApplyRoundedExceptTextBoxes(c, radius);
             }
         }
+
+        private void txtDesUni_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -22,6 +22,10 @@ namespace SistemaVentas
         {
             InitializeComponent();
 
+            // Manejar Enter en los campos de usuario y contraseña
+            inpUsuario.KeyDown += Inputs_KeyDown;
+            inpContrasena.KeyDown += Inputs_KeyDown;
+
             // No ejecutar en tiempo de diseño
             if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
             {
@@ -89,6 +93,29 @@ namespace SistemaVentas
                 if (c.HasChildren) ApplyRoundedExceptTextBoxes(c, radius);
             }
         }
+
+        // NUEVO: manejar Enter para cambiar de campo y después pulsar el botón
+        private void Inputs_KeyDown(object? sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter || sender is not Control control)
+            {
+                return;
+            }
+
+            e.SuppressKeyPress = true; // evitar beep / salto de línea
+
+            if (control == inpUsuario)
+            {
+                // Del primer campo (usuario) al segundo (contraseña)
+                inpContrasena.Focus();
+            }
+            else if (control == inpContrasena)
+            {
+                // Desde contraseña, Enter dispara el botón Entrar
+                btnEntrar.PerformClick();
+            }
+        }
+
         private Usuario ObtenerUsuarioInputs()
         {
             string usuario = inpUsuario.Text.Trim();
@@ -129,7 +156,7 @@ namespace SistemaVentas
             {
                 Application.Exit();
             }
-            
+
         }
     }
 }
