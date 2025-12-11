@@ -22,8 +22,7 @@ namespace SistemaVentas.Utilidades
         {
             if (control == null) return;
 
-            try
-            {
+            
                 _controlsData.Add(new ControlOriginalData
                 {
                     Control = control,
@@ -33,11 +32,7 @@ namespace SistemaVentas.Utilidades
                     OriginalFontStyle = control.Font?.Style ?? FontStyle.Regular,
                     OriginalFontFamily = control.Font?.FontFamily ?? SystemFonts.DefaultFont.FontFamily
                 });
-            }
-            catch
-            {
-                // Ignorar controles que no permitan lectura de propiedades
-            }
+            
 
             foreach (Control child in control.Controls)
                 SaveControl(child);

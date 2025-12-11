@@ -15,68 +15,28 @@ namespace SistemaVentas
             InitializeComponent();
             parentMenuConfiguracion = menuConfiguracion;
 
-            // Evitar ejecutar lógica en tiempo de diseño
             if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
             {
-                // Inicializar resizer
                 resizer.CaptureOriginalSizes(this);
                 Resize += MenuVerUsuarios_Resize;
 
-               
-                ApplyRoundedExceptTextBoxes(this, 12);
+                RoundedControlHelper.RedondearTodosLosPaneles(this, 12);
+                RoundedControlHelper.RedondearTodosLosBotones(this, 12);
             }
+        }
+
+        private void MenuVerUsuarios_Resize(object? sender, EventArgs e)
+        {
+            resizer.ResizeControls(this);
+
+            RoundedControlHelper.RedondearTodosLosPaneles(this, 12);
+            RoundedControlHelper.RedondearTodosLosBotones(this, 12);
         }
 
         private void btnVolverMenuPrincipal_Click(object sender, EventArgs e)
         {
             parentMenuConfiguracion.Show();
             Close();
-        }
-
-        private void MenuVerUsuarios_Resize(object? sender, EventArgs e)
-        {
-            resizer.ResizeControls(this);
-        }
-
-        private void ApplyRoundedExceptTextBoxes(Control parent, int radius)
-        {
-            if (parent == null) return;
-
-            if (parent is Form)
-            {
-                foreach (Control c in parent.Controls)
-                {
-                    if (c is not TextBox)
-                    {
-                        RoundedControlHelper.RedondearBordes(c, radius);
-                    }
-
-                    if (c.HasChildren)
-                    {
-                        ApplyRoundedExceptTextBoxes(c, radius);
-                    }
-                }
-
-                return;
-            }
-
-            if (parent is not TextBox)
-            {
-                RoundedControlHelper.RedondearBordes(parent, radius);
-            }
-
-            foreach (Control c in parent.Controls)
-            {
-                if (c is not TextBox)
-                {
-                    RoundedControlHelper.RedondearBordes(c, radius);
-                }
-
-                if (c.HasChildren)
-                {
-                    ApplyRoundedExceptTextBoxes(c, radius);
-                }
-            }
         }
     }
 }

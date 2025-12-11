@@ -89,9 +89,29 @@ namespace SistemaVentas
                 if (c.HasChildren) ApplyRoundedExceptTextBoxes(c, radius);
             }
         }
+        private Usuario ObtenerUsuarioInputs()
+        {
+            string usuario = inpUsuario.Text.Trim();
+            string password = inpContrasena.Text.Trim();
+            return new Usuario(usuario, password);
+        }
+
+        private bool ValidarPassword()
+        {
+            Usuario usuario = ObtenerUsuarioInputs();
+
+            return Usuario.validarPassword(usuario);
+
+        }
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
+            /*
+            if (!ValidarPassword())
+            {
+                MessageBox.Show("Ete usuario no esite", "Error", MessageBoxButtons.OK);
+                return;
+            }*/
             MenuPrincipal menuPrincipal = new MenuPrincipal(this);
             menuPrincipal.Show();
             this.Hide();

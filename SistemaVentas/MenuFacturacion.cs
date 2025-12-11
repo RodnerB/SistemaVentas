@@ -8,14 +8,14 @@ using Microsoft.Data.SqlClient;
 
 namespace SistemaVentas
 {
-    public partial class FormFacturacion : Form
+    public partial class MenuFacturacion : Form
     {
         private DataGridView dgvProductos;
         private float montoTotal;
         private float subtotal;
         private float descuentoAplicado;
 
-        public FormFacturacion(DataGridView productos, float total)
+        public MenuFacturacion(DataGridView productos, float total)
         {
             InitializeComponent();
 

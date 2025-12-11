@@ -363,7 +363,7 @@ namespace SistemaVentas
             }
 
             // Abrir formulario de facturación
-            using (var formFacturacion = new FormFacturacion(dgvProductosSeleccionados, totalVenta))
+            using (var formFacturacion = new MenuFacturacion(dgvProductosSeleccionados, totalVenta))
             {
                 if (formFacturacion.ShowDialog() == DialogResult.OK)
                 {

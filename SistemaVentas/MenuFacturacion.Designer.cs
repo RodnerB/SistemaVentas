@@ -1,6 +1,6 @@
 namespace SistemaVentas
 {
-    partial class FormFacturacion
+    partial class MenuFacturacion
     {
         /// <summary>
         /// Required designer variable.

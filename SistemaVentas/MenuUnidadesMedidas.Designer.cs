@@ -480,9 +480,9 @@
             // 
             pictureBox1.Anchor = AnchorStyles.Right;
             pictureBox1.BackgroundImage = Properties.Resources.bulb_icon_icons_com_74600;
-            pictureBox1.Location = new Point(26, 19);
+            pictureBox1.Location = new Point(26, 21);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(29, 28);
+            pictureBox1.Size = new Size(29, 24);
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 

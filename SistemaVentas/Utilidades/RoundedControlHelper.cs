@@ -50,5 +50,28 @@ namespace SistemaVentas.Utilidades
                 }
             }
         }
+
+        
+        public static void RedondearTodosLosBotones(Control parent, int radius)
+        {
+            if (parent == null) return;
+
+            foreach (Control c in parent.Controls)
+            {
+                if (c is Button btn)
+                {
+                    // Opcional: estilo para que respete la Region
+                    btn.FlatStyle = FlatStyle.Flat;
+                    btn.FlatAppearance.BorderSize = 0;
+
+                    RedondearBordes(btn, radius);
+                }
+
+                if (c.HasChildren)
+                {
+                    RedondearTodosLosBotones(c, radius);
+                }
+            }
+        }
     }
 }
