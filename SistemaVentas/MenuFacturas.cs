@@ -80,7 +80,7 @@ namespace SistemaVentas
             ultimoControlConFoco = txtNum;
         }
 
-        private void CargarFacturas() => Factura.CargarFacturasEnGrid(dgvFacturas);
+        private void CargarFacturas() => Factura.CargarFacturasEnGridConFilas(dgvFacturas);
 
         // Método para obtener los datos de entrada y crear un objeto Factura
         private Factura obtenerFacturaInputs()

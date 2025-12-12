@@ -366,9 +366,6 @@ namespace SistemaVentas
             }
         }
 
-        private void txtDesUni_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }

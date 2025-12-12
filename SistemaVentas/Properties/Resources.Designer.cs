@@ -184,6 +184,16 @@ namespace SistemaVentas.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap delete_outline_icon_148544 {
+            get {
+                object obj = ResourceManager.GetObject("delete_outline_icon_148544", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap exit_icon_143788 {
             get {
                 object obj = ResourceManager.GetObject("exit_icon_143788", resourceCulture);
