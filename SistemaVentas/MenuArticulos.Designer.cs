@@ -31,6 +31,15 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             dgvArticulos = new DataGridView();
+            colCodigo = new DataGridViewTextBoxColumn();
+            colDescripcion = new DataGridViewTextBoxColumn();
+            colUnidad = new DataGridViewTextBoxColumn();
+            colExistenciaMinima = new DataGridViewTextBoxColumn();
+            colExisteciaMaxima = new DataGridViewTextBoxColumn();
+            colExistenciaActual = new DataGridViewTextBoxColumn();
+            colPrecioDeVenta = new DataGridViewTextBoxColumn();
+            colCostoDeCompra = new DataGridViewTextBoxColumn();
+            colAccion = new DataGridViewButtonColumn();
             lblCosArt = new Label();
             lblPreArt = new Label();
             btnAgregarArt = new Button();
@@ -110,7 +119,8 @@
             dataGridViewCellStyle1.SelectionForeColor = Color.Black;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgvArticulos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dgvArticulos.ColumnHeadersHeight = 20;
+            dgvArticulos.ColumnHeadersHeight = 22;
+            dgvArticulos.Columns.AddRange(new DataGridViewColumn[] { colCodigo, colDescripcion, colUnidad, colExistenciaMinima, colExisteciaMaxima, colExistenciaActual, colPrecioDeVenta, colCostoDeCompra, colAccion });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.ButtonHighlight;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -129,6 +139,63 @@
             dgvArticulos.RowTemplate.Height = 32;
             dgvArticulos.Size = new Size(1392, 672);
             dgvArticulos.TabIndex = 0;
+            // 
+            // colCodigo
+            // 
+            colCodigo.HeaderText = "Código";
+            colCodigo.MinimumWidth = 6;
+            colCodigo.Name = "colCodigo";
+            // 
+            // colDescripcion
+            // 
+            colDescripcion.HeaderText = "Descripción";
+            colDescripcion.MinimumWidth = 6;
+            colDescripcion.Name = "colDescripcion";
+            // 
+            // colUnidad
+            // 
+            colUnidad.HeaderText = "Unidad";
+            colUnidad.MinimumWidth = 6;
+            colUnidad.Name = "colUnidad";
+            // 
+            // colExistenciaMinima
+            // 
+            colExistenciaMinima.HeaderText = "Existencia mínima";
+            colExistenciaMinima.MinimumWidth = 6;
+            colExistenciaMinima.Name = "colExistenciaMinima";
+            // 
+            // colExisteciaMaxima
+            // 
+            colExisteciaMaxima.HeaderText = "Existencia maxima";
+            colExisteciaMaxima.MinimumWidth = 6;
+            colExisteciaMaxima.Name = "colExisteciaMaxima";
+            // 
+            // colExistenciaActual
+            // 
+            colExistenciaActual.HeaderText = "Existencia actual";
+            colExistenciaActual.MinimumWidth = 6;
+            colExistenciaActual.Name = "colExistenciaActual";
+            // 
+            // colPrecioDeVenta
+            // 
+            colPrecioDeVenta.HeaderText = "Precio de venta";
+            colPrecioDeVenta.MinimumWidth = 6;
+            colPrecioDeVenta.Name = "colPrecioDeVenta";
+            // 
+            // colCostoDeCompra
+            // 
+            colCostoDeCompra.HeaderText = "Costo de compra";
+            colCostoDeCompra.MinimumWidth = 6;
+            colCostoDeCompra.Name = "colCostoDeCompra";
+            // 
+            // colAccion
+            // 
+            colAccion.FlatStyle = FlatStyle.Flat;
+            colAccion.HeaderText = "Acción";
+            colAccion.MinimumWidth = 6;
+            colAccion.Name = "colAccion";
+            colAccion.Text = "Eliminar";
+            colAccion.UseColumnTextForButtonValue = true;
             // 
             // lblCosArt
             // 
@@ -703,5 +770,14 @@
         private TableLayoutPanel tableLayoutPanel13;
         private Panel panel7;
         private Label label4;
+        private DataGridViewTextBoxColumn colCodigo;
+        private DataGridViewTextBoxColumn colDescripcion;
+        private DataGridViewTextBoxColumn colUnidad;
+        private DataGridViewTextBoxColumn colExistenciaMinima;
+        private DataGridViewTextBoxColumn colExisteciaMaxima;
+        private DataGridViewTextBoxColumn colExistenciaActual;
+        private DataGridViewTextBoxColumn colPrecioDeVenta;
+        private DataGridViewTextBoxColumn colCostoDeCompra;
+        private DataGridViewButtonColumn colAccion;
     }
 }

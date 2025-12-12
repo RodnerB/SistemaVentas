@@ -303,6 +303,7 @@ namespace SistemaVentas
 
         private void btnAgregarCliente_Click(object? sender, EventArgs e)
         {
+            if (!Validaciones()) return;
             cliente = ObtenerClienteEnInputs();
 
             // Intentar guardar; sólo limpiar campos si la inserción fue exitosa

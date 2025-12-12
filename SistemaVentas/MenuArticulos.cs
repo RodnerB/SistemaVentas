@@ -151,7 +151,7 @@ namespace SistemaVentas
         {
             try
             {
-                Articulo.CargarArticulosEnGrid(dgvArticulos); // Llama al método estático para cargar los artículos
+                Articulo.CargarArticulosGridConFilas(dgvArticulos); // Llama al método estático para cargar los artículos
             }
             catch (Exception ex)
             {
