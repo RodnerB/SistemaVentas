@@ -163,7 +163,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(629, 800);
+            ClientSize = new Size(979, 800);
             Controls.Add(cmbArtDet);
             Controls.Add(btnVolverMenuPrincipal);
             Controls.Add(btnEliminarDet);

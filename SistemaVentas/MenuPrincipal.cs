@@ -24,7 +24,6 @@ namespace SistemaVentas
             this.Load += MenuPrincipal_Load;
             resizer.CaptureOriginalSizes(this);
             this.Resize += MenuPrincipal_Resize;
-
         }
 
         private void MenuPrincipal_Resize(object? sender, EventArgs e)
@@ -42,6 +41,17 @@ namespace SistemaVentas
 
             btnCerrarSesion.TabStop = false;
             btnCerrarSesion.FlatAppearance.BorderSize = 0;
+        }
+
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+
+            MenuContraseña popup = new MenuContraseña(this);
+            popup.StartPosition = FormStartPosition.CenterParent;
+            popup.ShowInTaskbar = false;
+
+            popup.ShowDialog(this); 
         }
 
         private void btnClientes_Click(object sender, EventArgs e)
