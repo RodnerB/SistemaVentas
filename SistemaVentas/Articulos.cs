@@ -25,16 +25,17 @@ namespace SistemaVentas
 
         private const string EliminarArticuloQuery = "DELETE FROM SFTARTI0 WHERE CODART = @codigo";
 
-        private static Dictionary<string, string> articulosHeaders = new()
+
+        private static Dictionary<string, string> filasHeaders = new()
         {
-            {"CODART", "Código" },
-            {"DESART", "Descripción" },
-            {"CODUNI", "Código Unidad" },
-            {"EXIMIN", "Existencia Mínima" },
-            {"EXIMAX", "Existencia Máxima" },
-            {"EXIACT", "Existencia Actual" },
-            {"PREART", "Precio compra" },
-            {"COSART", "Costo compra" }
+            {"colCodigo", "CODART" },
+            {"colDescripcion", "DESART"},
+            {"colUnidad", "CODUNI"},
+            {"colExistenciaMinima", "EXIMIN" },
+            {"colExisteciaMaxima", "EXIMAX"},
+            {"colExistenciaActual", "EXIACT"},
+            {"colPrecioDeVenta", "PREART"},
+            {"colCostoDeCompra", "COSART"}
         };
         
         public Articulo() { }
@@ -59,6 +60,7 @@ namespace SistemaVentas
                 {"@CostoArticulo", articulo.CostoArticulo }
             };
         }
+
         public static bool InsertarArticulo(Articulo articulo)
         {
             return (UtilidadesBD.GuardarRegistro(
@@ -66,14 +68,16 @@ namespace SistemaVentas
                 ObtenerParametrosArticulo(articulo)
                 ) > 0);
         }
+
         public static DataTable ObtenerArticulos() => UtilidadesBD.ObtenerTodosLosRegistros(getArticulosQuery);
-        public static void CargarArticulosEnGrid(DataGridView dataGrid) 
+
+        public static void CargarArticulosGridConFilas(DataGridView dataGrid)
         { 
             DataTable tabla = UtilidadesBD.ObtenerTodosLosRegistros(getArticulosQuery);
-            UtilidadesUI.CargarDatosEnGrid(
+            UtilidadesUI.CargarDatosEnGridConFilas(
                 tabla,
                 dataGrid,
-                articulosHeaders
+                filasHeaders
                 );
         }
 

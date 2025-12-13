@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             lblUnidadesMedida = new Label();
             dgvUnidad = new DataGridView();
             tableLayoutPanel1 = new TableLayoutPanel();
@@ -60,6 +61,9 @@
             tableLayoutPanel8 = new TableLayoutPanel();
             pictureBox1 = new PictureBox();
             label2 = new Label();
+            colCodigoUnidad = new DataGridViewTextBoxColumn();
+            colDescripcionUnidad = new DataGridViewTextBoxColumn();
+            colAccion = new DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)dgvUnidad).BeginInit();
             tableLayoutPanel1.SuspendLayout();
             panel3.SuspendLayout();
@@ -97,7 +101,6 @@
             dgvUnidad.AllowUserToResizeColumns = false;
             dgvUnidad.AllowUserToResizeRows = false;
             dgvUnidad.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dgvUnidad.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvUnidad.BackgroundColor = SystemColors.ButtonHighlight;
             dgvUnidad.BorderStyle = BorderStyle.None;
             dgvUnidad.CellBorderStyle = DataGridViewCellBorderStyle.None;
@@ -110,28 +113,28 @@
             dataGridViewCellStyle1.SelectionForeColor = Color.Black;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgvUnidad.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dgvUnidad.ColumnHeadersHeight = 35;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.White;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.ButtonHighlight;
-            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvUnidad.DefaultCellStyle = dataGridViewCellStyle2;
+            dgvUnidad.ColumnHeadersHeight = 25;
+            dgvUnidad.Columns.AddRange(new DataGridViewColumn[] { colCodigoUnidad, colDescripcionUnidad, colAccion });
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.ButtonHighlight;
+            dataGridViewCellStyle3.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvUnidad.DefaultCellStyle = dataGridViewCellStyle3;
             dgvUnidad.EnableHeadersVisualStyles = false;
             dgvUnidad.GridColor = Color.LightGray;
             dgvUnidad.Location = new Point(3, 76);
             dgvUnidad.Name = "dgvUnidad";
-            dgvUnidad.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvUnidad.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvUnidad.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dgvUnidad.RowHeadersVisible = false;
             dgvUnidad.RowHeadersWidth = 51;
             dgvUnidad.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -401,7 +404,6 @@
             txtDesUni.Name = "txtDesUni";
             txtDesUni.Size = new Size(306, 27);
             txtDesUni.TabIndex = 5;
-            txtDesUni.TextChanged += txtDesUni_TextChanged;
             // 
             // tableLayoutPanel10
             // 
@@ -499,6 +501,35 @@
             label2.TabIndex = 0;
             label2.Text = "Las unidades de medidas son utilizadas \r\nen la gestión de artículos e inventario.";
             // 
+            // colCodigoUnidad
+            // 
+            colCodigoUnidad.HeaderText = "Código";
+            colCodigoUnidad.MinimumWidth = 6;
+            colCodigoUnidad.Name = "colCodigoUnidad";
+            colCodigoUnidad.SortMode = DataGridViewColumnSortMode.NotSortable;
+            colCodigoUnidad.Width = 464;
+            // 
+            // colDescripcionUnidad
+            // 
+            colDescripcionUnidad.HeaderText = "Descripción";
+            colDescripcionUnidad.MinimumWidth = 6;
+            colDescripcionUnidad.Name = "colDescripcionUnidad";
+            colDescripcionUnidad.SortMode = DataGridViewColumnSortMode.NotSortable;
+            colDescripcionUnidad.Width = 464;
+            // 
+            // colAccion
+            // 
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Padding = new Padding(3);
+            colAccion.DefaultCellStyle = dataGridViewCellStyle2;
+            colAccion.FlatStyle = FlatStyle.Flat;
+            colAccion.HeaderText = "Acción";
+            colAccion.MinimumWidth = 6;
+            colAccion.Name = "colAccion";
+            colAccion.Text = "Eliminar";
+            colAccion.UseColumnTextForButtonValue = true;
+            colAccion.Width = 464;
+            // 
             // MenuUnidadesMedidas
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -563,5 +594,8 @@
         private Label lblClientes;
         private TableLayoutPanel tableLayoutPanel4;
         private Button button1;
+        private DataGridViewTextBoxColumn colCodigoUnidad;
+        private DataGridViewTextBoxColumn colDescripcionUnidad;
+        private DataGridViewButtonColumn colAccion;
     }
 }

@@ -117,16 +117,6 @@ namespace SistemaVentas
 
         public static DataTable ObtenerClientes() => UtilidadesBD.ObtenerTodosLosRegistros(getClientesQuery);
 
-        public static void CargarClientesEnGrid(DataGridView dataGrid)
-        {
-            
-            DataTable tabla = ObtenerClientes();
-            UtilidadesUI.CargarDatosEnGrid(
-                tabla,
-                dataGrid,
-                filasHeaders
-                );
-        }
         public static void CargarClientesGridConFilas(DataGridView dataGrid)
         {
             DataTable tabla = ObtenerClientes();

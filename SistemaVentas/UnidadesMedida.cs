@@ -29,8 +29,8 @@ namespace SistemaVentas
 
         static Dictionary<string, string> unidadesMedidaHeaders = new Dictionary<string, string>()
         {
-            {"CODUNI", "Código" },
-            {"DESUNI", "Descripción" }
+            {"colCodigoUnidad", "CODUNI"},
+            {"colDescripcionUnidad", "DESUNI"}
         };
        
         public UnidadesMedida() { }
@@ -41,7 +41,7 @@ namespace SistemaVentas
             DescripcionUnidad = descripcionUnidad;
         }
 
-        private static Dictionary<string, object> ObtenerParametrosUnidad(UnidadesMedida unidad)
+        private static Dictionary<string, object> ObtenerParametrosUnidadConFilas(UnidadesMedida unidad)
         {
             return new Dictionary<string, object>
             {
@@ -54,7 +54,7 @@ namespace SistemaVentas
         {
             return (UtilidadesBD.GuardarRegistro(
                 insertarUnidadQuery,
-                ObtenerParametrosUnidad(unidad)
+                ObtenerParametrosUnidadConFilas(unidad)
                 ) > 0);
         }
 
@@ -62,7 +62,7 @@ namespace SistemaVentas
         {
             return (UtilidadesBD.GuardarRegistro(
                 actualizarUnidadQuery,
-                ObtenerParametrosUnidad(unidad)
+                ObtenerParametrosUnidadConFilas(unidad)
                 ) > 0);
         }
 
@@ -81,7 +81,7 @@ namespace SistemaVentas
         {
             DataTable tabla = UtilidadesBD.ObtenerTodosLosRegistros(getUnidadesMedidaQuery);
 
-            UtilidadesUI.CargarDatosEnGrid(
+            UtilidadesUI.CargarDatosEnGridConFilas(
                 tabla,
                 dataGrid,
                 unidadesMedidaHeaders

@@ -115,5 +115,9 @@ namespace SistemaVentas
             }
         }
 
+        private void dgvUnidad_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
