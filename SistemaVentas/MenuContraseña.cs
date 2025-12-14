@@ -29,10 +29,7 @@ namespace SistemaVentas
             parentForm = parent;
         }
 
-        private void btnConfirmar_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void btnConfirmar_Click_1(object sender, EventArgs e)
         {
@@ -42,8 +39,6 @@ namespace SistemaVentas
             }
             else
             {
-                // Aquí necesitas un objeto MenuLogin válido para pasar al constructor de MenuPrincipal.
-                // Por ejemplo, si puedes crear uno nuevo:
                 MenuLogin menuLogin = new MenuLogin();
                 MenuPrincipal menuPrincipal = new MenuPrincipal(menuLogin);
                 menuPrincipal.Show();

@@ -371,6 +371,7 @@ namespace SistemaVentas
             // 
             btnCancelar.Anchor = AnchorStyles.None;
             btnCancelar.BackColor = Color.FromArgb(192, 0, 0);
+            btnCancelar.Cursor = Cursors.Hand;
             btnCancelar.FlatAppearance.BorderSize = 0;
             btnCancelar.FlatAppearance.MouseDownBackColor = Color.Silver;
             btnCancelar.FlatAppearance.MouseOverBackColor = Color.Silver;
@@ -389,6 +390,7 @@ namespace SistemaVentas
             // 
             btnGuardarFactura.Anchor = AnchorStyles.None;
             btnGuardarFactura.BackColor = Color.FromArgb(0, 192, 0);
+            btnGuardarFactura.Cursor = Cursors.Hand;
             btnGuardarFactura.FlatAppearance.BorderSize = 0;
             btnGuardarFactura.FlatAppearance.MouseDownBackColor = Color.Silver;
             btnGuardarFactura.FlatAppearance.MouseOverBackColor = Color.Silver;
@@ -470,7 +472,7 @@ namespace SistemaVentas
             tableLayoutPanel7.Size = new Size(572, 347);
             tableLayoutPanel7.TabIndex = 16;
             // 
-            // FormFacturacion
+            // MenuFacturacion
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -481,7 +483,7 @@ namespace SistemaVentas
             Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "FormFacturacion";
+            Name = "MenuFacturacion";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Facturar Venta";
             groupBoxResumen.ResumeLayout(false);

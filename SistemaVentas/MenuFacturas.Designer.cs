@@ -60,6 +60,7 @@
             colCondicion = new DataGridViewTextBoxColumn();
             colDescuento = new DataGridViewTextBoxColumn();
             colMontoFactura = new DataGridViewTextBoxColumn();
+            colAccion = new DataGridViewButtonColumn();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             panel1.SuspendLayout();
@@ -278,7 +279,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgvFacturas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvFacturas.ColumnHeadersHeight = 35;
-            dgvFacturas.Columns.AddRange(new DataGridViewColumn[] { colNumeroFactura, colFechaFactura, colCodigoCliente, colCondicion, colDescuento, colMontoFactura });
+            dgvFacturas.Columns.AddRange(new DataGridViewColumn[] { colNumeroFactura, colFechaFactura, colCodigoCliente, colCondicion, colDescuento, colMontoFactura, colAccion });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.White;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -453,6 +454,16 @@
             colMontoFactura.Name = "colMontoFactura";
             colMontoFactura.ReadOnly = true;
             // 
+            // colAccion
+            // 
+            colAccion.FlatStyle = FlatStyle.Flat;
+            colAccion.HeaderText = "Acción";
+            colAccion.MinimumWidth = 6;
+            colAccion.Name = "colAccion";
+            colAccion.ReadOnly = true;
+            colAccion.Text = "Ver detalles";
+            colAccion.UseColumnTextForButtonValue = true;
+            // 
             // MenuFacturas
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -513,5 +524,6 @@
         private DataGridViewTextBoxColumn colCondicion;
         private DataGridViewTextBoxColumn colDescuento;
         private DataGridViewTextBoxColumn colMontoFactura;
+        private DataGridViewButtonColumn colAccion;
     }
 }

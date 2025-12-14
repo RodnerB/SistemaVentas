@@ -73,8 +73,8 @@
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 3;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 3F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 94F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 3F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 95.85253F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 1.22887862F));
             tableLayoutPanel1.Size = new Size(464, 651);
             tableLayoutPanel1.TabIndex = 0;
             // 
@@ -93,7 +93,7 @@
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 3F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 94F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 3F));
-            tableLayoutPanel2.Size = new Size(439, 605);
+            tableLayoutPanel2.Size = new Size(439, 617);
             tableLayoutPanel2.TabIndex = 0;
             // 
             // tableLayoutPanel3
@@ -108,7 +108,7 @@
             tableLayoutPanel3.RowCount = 2;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 15.4804268F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 84.51957F));
-            tableLayoutPanel3.Size = new Size(415, 562);
+            tableLayoutPanel3.Size = new Size(415, 573);
             tableLayoutPanel3.TabIndex = 0;
             // 
             // tableLayoutPanel4
@@ -123,7 +123,7 @@
             tableLayoutPanel4.Name = "tableLayoutPanel4";
             tableLayoutPanel4.RowCount = 1;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel4.Size = new Size(409, 81);
+            tableLayoutPanel4.Size = new Size(409, 82);
             tableLayoutPanel4.TabIndex = 0;
             // 
             // picLogo
@@ -131,7 +131,7 @@
             picLogo.Anchor = AnchorStyles.Bottom;
             picLogo.BackColor = Color.Transparent;
             picLogo.BackgroundImage = Properties.Resources.cloud_money_system_icon_175829;
-            picLogo.Location = new Point(3, 3);
+            picLogo.Location = new Point(3, 4);
             picLogo.Name = "picLogo";
             picLogo.Size = new Size(70, 75);
             picLogo.SizeMode = PictureBoxSizeMode.Zoom;
@@ -150,7 +150,7 @@
             tableLayoutPanel10.RowCount = 2;
             tableLayoutPanel10.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel10.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel10.Size = new Size(327, 75);
+            tableLayoutPanel10.Size = new Size(327, 76);
             tableLayoutPanel10.TabIndex = 12;
             // 
             // lblSubtitulo
@@ -159,7 +159,7 @@
             lblSubtitulo.AutoSize = true;
             lblSubtitulo.Font = new Font("Times New Roman", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblSubtitulo.ForeColor = SystemColors.ControlDark;
-            lblSubtitulo.Location = new Point(6, 37);
+            lblSubtitulo.Location = new Point(6, 38);
             lblSubtitulo.Name = "lblSubtitulo";
             lblSubtitulo.Size = new Size(314, 19);
             lblSubtitulo.TabIndex = 10;
@@ -173,7 +173,7 @@
             label1.ForeColor = Color.MediumBlue;
             label1.Location = new Point(3, 0);
             label1.Name = "label1";
-            label1.Size = new Size(319, 37);
+            label1.Size = new Size(319, 38);
             label1.TabIndex = 0;
             label1.Text = "Sistema de Facturación";
             // 
@@ -183,12 +183,12 @@
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel5.Controls.Add(tableLayoutPanel6, 0, 1);
             tableLayoutPanel5.Dock = DockStyle.Fill;
-            tableLayoutPanel5.Location = new Point(3, 90);
+            tableLayoutPanel5.Location = new Point(3, 91);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 2;
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 4.9040513F));
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 95.09595F));
-            tableLayoutPanel5.Size = new Size(409, 469);
+            tableLayoutPanel5.Size = new Size(409, 479);
             tableLayoutPanel5.TabIndex = 1;
             // 
             // tableLayoutPanel6

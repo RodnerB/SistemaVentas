@@ -460,8 +460,8 @@
             tableLayoutPanel11.RowCount = 4;
             tableLayoutPanel11.RowStyles.Add(new RowStyle(SizeType.Percent, 63.88889F));
             tableLayoutPanel11.RowStyles.Add(new RowStyle(SizeType.Percent, 36.11111F));
-            tableLayoutPanel11.RowStyles.Add(new RowStyle(SizeType.Absolute, 34F));
-            tableLayoutPanel11.RowStyles.Add(new RowStyle(SizeType.Absolute, 166F));
+            tableLayoutPanel11.RowStyles.Add(new RowStyle(SizeType.Absolute, 27F));
+            tableLayoutPanel11.RowStyles.Add(new RowStyle(SizeType.Absolute, 154F));
             tableLayoutPanel11.Size = new Size(775, 262);
             tableLayoutPanel11.TabIndex = 0;
             // 
@@ -470,7 +470,7 @@
             lblBuscarProducto.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblBuscarProducto.AutoSize = true;
             lblBuscarProducto.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblBuscarProducto.Location = new Point(3, 41);
+            lblBuscarProducto.Location = new Point(3, 60);
             lblBuscarProducto.Name = "lblBuscarProducto";
             lblBuscarProducto.Size = new Size(254, 20);
             lblBuscarProducto.TabIndex = 1;
@@ -483,7 +483,7 @@
             lstResultadosBusqueda.Font = new Font("Segoe UI", 10F);
             lstResultadosBusqueda.FormattingEnabled = true;
             lstResultadosBusqueda.ItemHeight = 23;
-            lstResultadosBusqueda.Location = new Point(3, 99);
+            lstResultadosBusqueda.Location = new Point(3, 111);
             lstResultadosBusqueda.Margin = new Padding(3, 4, 3, 4);
             lstResultadosBusqueda.Name = "lstResultadosBusqueda";
             lstResultadosBusqueda.Size = new Size(591, 138);
@@ -492,7 +492,7 @@
             // 
             // txtBuscarProducto
             // 
-            txtBuscarProducto.Location = new Point(3, 64);
+            txtBuscarProducto.Location = new Point(3, 83);
             txtBuscarProducto.Name = "txtBuscarProducto";
             txtBuscarProducto.Size = new Size(591, 27);
             txtBuscarProducto.TabIndex = 4;
@@ -502,9 +502,9 @@
             label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(3, 0);
+            label1.Location = new Point(3, 5);
             label1.Name = "label1";
-            label1.Size = new Size(221, 39);
+            label1.Size = new Size(221, 46);
             label1.TabIndex = 5;
             label1.Text = "Nueva Venta";
             // 
