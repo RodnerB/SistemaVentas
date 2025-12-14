@@ -14,7 +14,7 @@ namespace SistemaVentas
     public partial class MenuLogin : Form
     {
         private readonly Resizer resizer = new Resizer();
-
+        Usuario usuario;
         // Radio distinto para botones
         private const int ButtonRadius = 12;
 
@@ -125,8 +125,7 @@ namespace SistemaVentas
 
         private bool ValidarPassword()
         {
-            Usuario usuario = ObtenerUsuarioInputs();
-
+            usuario = ObtenerUsuarioInputs();
             return Usuario.validarPassword(usuario);
 
         }
@@ -138,8 +137,10 @@ namespace SistemaVentas
             {
                 MessageBox.Show("Ete usuario no esite", "Error", MessageBoxButtons.OK);
                 return;
-            }*/
-            MenuPrincipal menuPrincipal = new MenuPrincipal(this);
+            }
+            usuario.existe = true;
+            */
+            MenuPrincipal menuPrincipal = new MenuPrincipal(this/* , quitar eto ante de entregar */);
             menuPrincipal.Show();
             this.Hide();
         }

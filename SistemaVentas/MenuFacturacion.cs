@@ -42,7 +42,28 @@ namespace SistemaVentas
 
             // Aplicar apariencia local: solo Panels y Buttons redondeados
             // y activar ajuste automático del contenido a cualquier pantalla.
-            FormFacturacionAppearanceManager.Apply(this, panelRadius: 12, buttonRadius: 12);
+            ApplyRoundedExceptTextBoxes(this, 12);
+
+        }
+
+        private void ApplyRoundedExceptTextBoxes(Control parent, int radius)
+        {
+            if (parent == null) return;
+
+            foreach (Control c in parent.Controls)
+            {
+                if (c is not TextBox)
+                {
+                    // No redondear TextBox
+                    // Aplicar el redondeo usando la clase existente
+                    RoundedControlHelper.RedondearBordes(c, radius);
+                }
+
+                if (c.HasChildren)
+                {
+                    ApplyRoundedExceptTextBoxes(c, radius);
+                }
+            }
         }
 
         private void GenerarNumeroFactura()
@@ -240,127 +261,4 @@ namespace SistemaVentas
         }
     }
 
-    internal static class FormFacturacionAppearanceManager
-    {
-        public static void Apply(Form form, int panelRadius = 12, int buttonRadius = 12)
-        {
-            if (form == null || form.IsDisposed) return;
-
-            
-                // Aplicar redondeo solo a Panel y Button (recursivo)
-                foreach (Control c in GetAllChildControls(form))
-                {
-                    if (c is Panel)
-                        RoundedControlHelper.RedondearBordes(c, panelRadius);
-                    else if (c is Button)
-                        RoundedControlHelper.RedondearBordes(c, buttonRadius);
-                }
-
-                // Configurar resizer local para el formulario (ajuste automático)
-                var resizer = new FormFacturacionResizer();
-                resizer.CaptureOriginalSizes(form);
-                form.Resize += (s, e) => resizer.ResizeControls(form);
-                // No se guarda en una colección: está ligado al ciclo de vida del Form.
-            
-          
-        }
-
-        private static IEnumerable<Control> GetAllChildControls(Control parent)
-        {
-            if (parent == null) yield break;
-            var stack = new Stack<Control>();
-            stack.Push(parent);
-            while (stack.Count > 0)
-            {
-                var current = stack.Pop();
-                foreach (Control child in current.Controls)
-                {
-                    yield return child;
-                    if (child.HasChildren) stack.Push(child);
-                }
-            }
-        }
-    }
-
-    internal sealed class FormFacturacionResizer
-    {
-        private readonly List<ControlOriginalData> _controlsData = new();
-        private Size _formOriginalSize;
-
-        public void CaptureOriginalSizes(Form form)
-        {
-            if (form == null) return;
-            _formOriginalSize = form.ClientSize;
-            _controlsData.Clear();
-            SaveControl(form);
-        }
-
-        private void SaveControl(Control control)
-        {
-            if (control == null) return;
-            try
-            {
-                _controlsData.Add(new ControlOriginalData
-                {
-                    Control = control,
-                    OriginalLocation = control.Location,
-                    OriginalSize = control.Size,
-                    OriginalFontSize = control.Font?.Size ?? SystemFonts.DefaultFont.Size,
-                    OriginalFontStyle = control.Font?.Style ?? FontStyle.Regular,
-                    OriginalFontFamily = control.Font?.FontFamily ?? SystemFonts.DefaultFont.FontFamily
-                });
-            }
-            catch
-            {
-                // Ignorar controles problemáticos
-            }
-
-            foreach (Control child in control.Controls)
-                SaveControl(child);
-        }
-
-        public void ResizeControls(Form form)
-        {
-            if (form == null) return;
-            if (_formOriginalSize.Width == 0 || _formOriginalSize.Height == 0) return;
-
-            float xRatio = (float)form.ClientSize.Width / _formOriginalSize.Width;
-            float yRatio = (float)form.ClientSize.Height / _formOriginalSize.Height;
-            float scale = Math.Min(xRatio, yRatio);
-
-            foreach (var item in _controlsData)
-            {
-                var ctrl = item.Control;
-                if (ctrl == null || ctrl.IsDisposed) continue;
-
-                try
-                {
-                    ctrl.Location = new Point(
-                        (int)Math.Round(item.OriginalLocation.X * xRatio),
-                        (int)Math.Round(item.OriginalLocation.Y * yRatio));
-
-                    ctrl.Size = new Size(
-                        Math.Max(1, (int)Math.Round(item.OriginalSize.Width * xRatio)),
-                        Math.Max(1, (int)Math.Round(item.OriginalSize.Height * yRatio)));
-
-                    float newFontSize = Math.Max(6f, item.OriginalFontSize * scale);
-                    ctrl.Font = new Font(item.OriginalFontFamily, newFontSize, item.OriginalFontStyle);
-                }
-                catch
-                {
-                    // Ignorar errores individuales
-                }
-            }
-        }
-
-        private sealed class ControlOriginalData
-        {
-            public Control Control { get; set; } = null!;
-            public Point OriginalLocation { get; set; }
-            public Size OriginalSize { get; set; }
-            public float OriginalFontSize { get; set; }
-            public FontStyle OriginalFontStyle { get; set; }
-            public FontFamily OriginalFontFamily { get; set; } = null!;
-        }
-    }
 }

@@ -37,26 +37,9 @@ namespace SistemaVentas
             // Ocultar lista de resultados inicialmente
             lstResultadosBusqueda.Visible = false;
 
-            // Configurar eventos
-            txtBuscarProducto.TextChanged += TxtBuscarProducto_TextChanged;
-            txtBuscarProducto.KeyDown += TxtBuscarProducto_KeyDown;
-            lstResultadosBusqueda.DoubleClick += LstResultadosBusqueda_DoubleClick;
-            lstResultadosBusqueda.KeyDown += LstResultadosBusqueda_KeyDown;
-            dgvProductosSeleccionados.CellContentClick += DgvProductosSeleccionados_CellContentClick;
-            dgvProductosSeleccionados.CellValueChanged += DgvProductosSeleccionados_CellValueChanged;
-            dgvProductosSeleccionados.CellClick += DgvProductosSeleccionados_CellClick;
-            btnFacturar.Click += BtnFacturar_Click;
-
-            // Ocultar lista cuando se hace clic fuera
-            this.Click += (s, e) => { lstResultadosBusqueda.Visible = false; };
-            dgvProductosSeleccionados.Click += (s, e) => { lstResultadosBusqueda.Visible = false; };
-
             // Cargar productos desde la base de datos
             CargarProductos();
             ActualizarTotal();
-
-            // Configurar modo de edición
-            dgvProductosSeleccionados.EditMode = DataGridViewEditMode.EditOnEnter;
 
             // Aplicar bordes redondeados al formulario y a sus controles (excepto TextBox)
             ApplyRoundedExceptTextBoxes(this, ControlRadius);
@@ -363,18 +346,16 @@ namespace SistemaVentas
             }
 
             // Abrir formulario de facturación
-            using (var formFacturacion = new MenuFacturacion(dgvProductosSeleccionados, totalVenta))
+            using var formFacturacion = new MenuFacturacion(dgvProductosSeleccionados, totalVenta);
+            if (formFacturacion.ShowDialog() == DialogResult.OK)
             {
-                if (formFacturacion.ShowDialog() == DialogResult.OK)
-                {
-                    // Limpiar el grid después de facturar exitosamente
-                    dgvProductosSeleccionados.Rows.Clear();
-                    ActualizarTotal();
-                    txtBuscarProducto.Clear();
+                // Limpiar el grid después de facturar exitosamente
+                dgvProductosSeleccionados.Rows.Clear();
+                ActualizarTotal();
+                txtBuscarProducto.Clear();
 
-                    MessageBox.Show("Factura generada exitosamente", "Éxito",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                MessageBox.Show("Factura generada exitosamente", "Éxito",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

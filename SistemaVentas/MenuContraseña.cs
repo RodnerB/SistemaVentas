@@ -14,41 +14,46 @@ namespace SistemaVentas
     public partial class MenuContraseña : Form
     {
         private MenuPrincipal parentForm;
+        private Usuario usuario;
 
-        public MenuContraseña()
+        public MenuContraseña(Usuario usuario)
         {
             InitializeComponent();
-
+            this.StartPosition = FormStartPosition.CenterParent;
+            this.ShowInTaskbar = false;
             RoundedControlHelper.RedondearTodosLosPaneles(this, 15);
-            RoundedControlHelper.RedondearTodosLosBotones(this, 15);
-        }
-
-
-        public MenuContraseña(MenuPrincipal parent) : this()
-        {
-            parentForm = parent;
+            this.usuario = usuario;
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
+            if (!Validar()) return;
+            string password = inpConfirmarContrasena.Text.Trim();
+            usuario.password = password;
 
+            if (usuario.GuardarUsuario())
+            {
+                MessageBox.Show("Contraseña cambiada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
         }
 
-        private void btnConfirmar_Click_1(object sender, EventArgs e)
+        private bool Validar()
         {
-            if (parentForm != null)
+            string nuevaPassword = inpNuevaContrasena.Text.Trim();
+            string confirmarPassword = inpConfirmarContrasena.Text.Trim();
+            if (!Validador.ValidarTamanoPermitido(nuevaPassword, 30, 6))
             {
-                parentForm.Show();
+                MessageBox.Show("La nueva contraseña debe tener entre 6 y 30 caracteres.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            else
+            if(nuevaPassword != confirmarPassword)
             {
-                // Aquí necesitas un objeto MenuLogin válido para pasar al constructor de MenuPrincipal.
-                // Por ejemplo, si puedes crear uno nuevo:
-                MenuLogin menuLogin = new MenuLogin();
-                MenuPrincipal menuPrincipal = new MenuPrincipal(menuLogin);
-                menuPrincipal.Show();
+                MessageBox.Show("Las contraseñas no coinciden.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            this.Hide();
+            return true;
         }
     }
 }
