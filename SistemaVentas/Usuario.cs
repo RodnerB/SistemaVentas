@@ -42,14 +42,6 @@ namespace SistemaVentas
             };
         }
 
-        private static Dictionary<string, object> ObtenerParametros(string nuevaContrasena)
-        {
-            return new Dictionary<string, object>()
-            {
-                {"@password", nuevaContrasena}
-            };
-        }
-
         public static Usuario? ObtenerUsuarioPorUsuario(string usuario)
         {
             Dictionary<string, object>? datos = UtilidadesBD.BuscarRegistro(

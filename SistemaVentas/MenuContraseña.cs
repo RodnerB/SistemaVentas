@@ -8,14 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SistemaVentas.Utilidades;
-
 namespace SistemaVentas
 {
     public partial class MenuContraseña : Form
     {
-        private MenuPrincipal parentForm;
         private Usuario usuario;
-        private readonly Resizer resizer = new Resizer();
         public MenuContraseña(Usuario usuario)
         {
             InitializeComponent();
@@ -24,17 +21,18 @@ namespace SistemaVentas
             RoundedControlHelper.RedondearTodosLosPaneles(this, 15);
             this.usuario = usuario;
         }
-
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            // si la contraseña no e valida, no hace na
             if (!Validar()) return;
-
             string password = inpConfirmarContrasena.Text.Trim();
             usuario.password = password;
+            if (usuario.GuardarUsuario())
+            {
+                MessageBox.Show("Contraseña cambiada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
         }
-
-
         private bool Validar()
         {
             string nuevaPassword = inpNuevaContrasena.Text.Trim();
@@ -44,11 +42,10 @@ namespace SistemaVentas
                 MessageBox.Show("La nueva contraseña debe tener entre 6 y 30 caracteres.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            if(nuevaPassword != confirmarPassword)
+            if (nuevaPassword != confirmarPassword)
             {
-                MenuLogin menuLogin = new MenuLogin();
-                MenuPrincipal menuPrincipal = new MenuPrincipal(menuLogin);
-                menuPrincipal.Show();
+                MessageBox.Show("Las contraseñas no coinciden.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
             return true;
         }
