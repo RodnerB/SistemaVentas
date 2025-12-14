@@ -33,13 +33,6 @@ namespace SistemaVentas
             string password = inpConfirmarContrasena.Text.Trim();
             usuario.password = password;
 
-            if (usuario.GuardarUsuario())
-            {
-                MessageBox.Show("Contraseña cambiada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.DialogResult = DialogResult.OK;
-                this.Close();
-            }
-        }
 
         private bool Validar()
         {
@@ -52,8 +45,9 @@ namespace SistemaVentas
             }
             if(nuevaPassword != confirmarPassword)
             {
-                MessageBox.Show("Las contraseñas no coinciden.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                MenuLogin menuLogin = new MenuLogin();
+                MenuPrincipal menuPrincipal = new MenuPrincipal(menuLogin);
+                menuPrincipal.Show();
             }
             return true;
         }

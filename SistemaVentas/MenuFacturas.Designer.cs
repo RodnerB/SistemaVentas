@@ -60,6 +60,13 @@
             inpNumeroFactura = new TextBox();
             lblNumeroFactura = new Label();
             lblFactura = new Label();
+            colNumeroFactura = new DataGridViewTextBoxColumn();
+            colFechaFactura = new DataGridViewTextBoxColumn();
+            colCodigoCliente = new DataGridViewTextBoxColumn();
+            colCondicion = new DataGridViewTextBoxColumn();
+            colDescuento = new DataGridViewTextBoxColumn();
+            colMontoFactura = new DataGridViewTextBoxColumn();
+            colAccion = new DataGridViewButtonColumn();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             panel1.SuspendLayout();
@@ -290,8 +297,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgvFacturas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvFacturas.ColumnHeadersHeight = 35;
-            dgvFacturas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvFacturas.Columns.AddRange(new DataGridViewColumn[] { colNumeroFactura, colFechaFactura, colCodigoCliente, colCondicion, colDescuento, colMontoFactura });
+            dgvFacturas.Columns.AddRange(new DataGridViewColumn[] { colNumeroFactura, colFechaFactura, colCodigoCliente, colCondicion, colDescuento, colMontoFactura, colAccion });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.White;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -473,6 +479,58 @@
             lblFactura.TabIndex = 2;
             lblFactura.Text = "Factura";
             // 
+            // colNumeroFactura
+            // 
+            colNumeroFactura.HeaderText = "Número de la factura";
+            colNumeroFactura.MinimumWidth = 6;
+            colNumeroFactura.Name = "colNumeroFactura";
+            colNumeroFactura.ReadOnly = true;
+            // 
+            // colFechaFactura
+            // 
+            colFechaFactura.HeaderText = "Fecha de la factura";
+            colFechaFactura.MinimumWidth = 6;
+            colFechaFactura.Name = "colFechaFactura";
+            colFechaFactura.ReadOnly = true;
+            // 
+            // colCodigoCliente
+            // 
+            colCodigoCliente.HeaderText = "Código del cliente";
+            colCodigoCliente.MinimumWidth = 6;
+            colCodigoCliente.Name = "colCodigoCliente";
+            colCodigoCliente.ReadOnly = true;
+            // 
+            // colCondicion
+            // 
+            colCondicion.HeaderText = "Condición";
+            colCondicion.MinimumWidth = 6;
+            colCondicion.Name = "colCondicion";
+            colCondicion.ReadOnly = true;
+            // 
+            // colDescuento
+            // 
+            colDescuento.HeaderText = "Descuento";
+            colDescuento.MinimumWidth = 6;
+            colDescuento.Name = "colDescuento";
+            colDescuento.ReadOnly = true;
+            // 
+            // colMontoFactura
+            // 
+            colMontoFactura.HeaderText = "Monto de la factura";
+            colMontoFactura.MinimumWidth = 6;
+            colMontoFactura.Name = "colMontoFactura";
+            colMontoFactura.ReadOnly = true;
+            // 
+            // colAccion
+            // 
+            colAccion.FlatStyle = FlatStyle.Flat;
+            colAccion.HeaderText = "Acción";
+            colAccion.MinimumWidth = 6;
+            colAccion.Name = "colAccion";
+            colAccion.ReadOnly = true;
+            colAccion.Text = "Ver detalles";
+            colAccion.UseColumnTextForButtonValue = true;
+            // 
             // MenuFacturas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -534,5 +592,6 @@
         private DataGridViewTextBoxColumn colCondicion;
         private DataGridViewTextBoxColumn colDescuento;
         private DataGridViewTextBoxColumn colMontoFactura;
+        private DataGridViewButtonColumn colAccion;
     }
 }
