@@ -27,7 +27,9 @@ namespace SistemaVentas
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
+            // si la contraseña no e valida, no hace na
             if (!Validar()) return;
+
             string password = inpConfirmarContrasena.Text.Trim();
             usuario.password = password;
 
