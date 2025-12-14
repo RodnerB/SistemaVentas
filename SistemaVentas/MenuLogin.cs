@@ -132,6 +132,8 @@ namespace SistemaVentas
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
+
+            // descomentar la validacion ante de entregar al profe y comentar el menu sin usuario
             /*
             if (!ValidarPassword())
             {
@@ -139,8 +141,10 @@ namespace SistemaVentas
                 return;
             }
             usuario.existe = true;
-            */
-            MenuPrincipal menuPrincipal = new MenuPrincipal(this/* , quitar eto ante de entregar */);
+            
+            MenuPrincipal menuPrincipal = new MenuPrincipal(this, usuario);
+            /*/
+            MenuPrincipal menuPrincipal = new MenuPrincipal(this); // sin usuario pa no tener q iniciar sesion cada ve q pruebe algo
             menuPrincipal.Show();
             this.Hide();
         }

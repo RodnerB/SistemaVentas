@@ -15,7 +15,7 @@ namespace SistemaVentas
     {
         private MenuPrincipal parentForm;
         private Usuario usuario;
-
+        private readonly Resizer resizer = new Resizer();
         public MenuContraseña(Usuario usuario)
         {
             InitializeComponent();
