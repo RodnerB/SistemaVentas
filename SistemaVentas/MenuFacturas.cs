@@ -65,7 +65,37 @@ namespace SistemaVentas
             this.Shown += MenuFacturas_Shown;
 
             this.StartPosition = FormStartPosition.CenterScreen;
+
+            dgvFacturas.CellContentClick += dgvFacturas_CellContentClick;
+
         }
+
+        private void dgvFacturas_CellContentClick(object? sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            if (dgvFacturas.Columns[e.ColumnIndex].Name == "colAccion")
+            {
+                var cellValue = dgvFacturas.Rows[e.RowIndex].Cells["colNumeroFactura"].Value;
+                if (cellValue == null || cellValue == DBNull.Value)
+                {
+                    MessageBox.Show("Número de factura inválido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (!int.TryParse(cellValue.ToString(), out int datoFactura))
+                {
+                    MessageBox.Show("Número de factura no es un entero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                using (var form = new MenuDetallesFactura(datoFactura))
+                {
+                    form.ShowDialog();
+                }
+            }
+        }
+
 
         private void MenuFacturas_Resize(object? sender, EventArgs e)
         {
@@ -79,6 +109,7 @@ namespace SistemaVentas
             txtNum?.Focus();
             ultimoControlConFoco = txtNum;
         }
+
 
         private void CargarFacturas() => Factura.CargarFacturasEnGridConFilas(dgvFacturas);
 
