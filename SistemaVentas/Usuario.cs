@@ -1,27 +1,54 @@
-﻿using System;
+﻿using SistemaVentas.Utilidades;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SistemaVentas.Utilidades;
 namespace SistemaVentas
 {
-    internal class Usuario
+    public partial class Usuario
     {
         public string usuario;
         public string password;
-        public string nombre;
-        public string estado;
-
+        public string nombre = string.Empty;
+        public string estado = "2";
+        public bool existe = false;
         private const string getUsuarioPorCodigoQuery = "SELECT * FROM SFTUSUA0 WHERE USUARIO = @codigo";
-
+        private const string insertarUsuarioQuery = @"INSERT INTO SFTUSUA0 (USUARIO, PASSWORD, NOMUSU, ESTAUSU)
+                                                        VALUES(@usuario, @password, @nomusu, @estausu)";
+        private const string actualizarUsuarioQuery = @"
+            UPDATE SFTUSUA0
+            SET 
+                NOMUSU = @nomusu,
+                PASSWORD = @password,
+                ESTAUSU = @estausu
+            WHERE 
+                USUARIO = @usuario";
         public Usuario(string usuario, string password)
         {
             this.usuario = usuario;
             this.password = password;
         }
 
-        public Usuario() { }
+        private static Dictionary<string, object> ObtenerParametrosUsuario(Usuario usuario)
+        {
+            return new Dictionary<string, object>()
+            {
+                {"@usuario", usuario.usuario},
+                {"@password", usuario.password},
+                {"@nomusu", usuario.nombre},
+                {"@estausu", usuario.estado}
+            };
+        }
+
+        private static Dictionary<string, object> ObtenerParametros(string nuevaContrasena)
+        {
+            return new Dictionary<string, object>()
+            {
+                {"@password", nuevaContrasena}
+            };
+        }
 
         public static Usuario? ObtenerUsuarioPorUsuario(string usuario)
         {
@@ -31,15 +58,21 @@ namespace SistemaVentas
 
             if (datos == null) return null;
 
-            return new Usuario
+            return new Usuario((string)datos["USUARIO"], (string)datos["PASSWORD"])
             {
-                usuario = (string)datos["USUARIO"]!,
-                password = (string)datos["PASSWORD"]!,
                 nombre = (string)datos["NOMUSU"]!,
-                estado = (string)datos["ESTAUSU"]!
+                estado = (string)datos["ESTAUSU"]!,
+                existe = true
             };
+        }
 
-
+        public bool GuardarUsuario()
+        {
+            string query = existe ? actualizarUsuarioQuery : insertarUsuarioQuery;
+            return (UtilidadesBD.GuardarRegistro(
+                query,
+                ObtenerParametrosUsuario(this)
+            ) > 0);
         }
         public static bool validarPassword(Usuario usuarioEntrante)
         {
