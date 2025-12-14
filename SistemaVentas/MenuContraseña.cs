@@ -32,6 +32,7 @@ namespace SistemaVentas
 
             string password = inpConfirmarContrasena.Text.Trim();
             usuario.password = password;
+        }
 
 
         private bool Validar()
