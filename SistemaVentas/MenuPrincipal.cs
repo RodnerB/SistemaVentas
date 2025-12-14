@@ -15,8 +15,9 @@ namespace SistemaVentas
     {
         private readonly Resizer resizer = new Resizer();
         private readonly MenuLogin parentLogin;
+        private Usuario usuario;
 
-        public MenuPrincipal(MenuLogin parent)
+        public MenuPrincipal(MenuLogin parent, Usuario usuario = null)
         {
             InitializeComponent();
             parentLogin = parent;
@@ -24,6 +25,7 @@ namespace SistemaVentas
             this.Load += MenuPrincipal_Load;
             resizer.CaptureOriginalSizes(this);
             this.Resize += MenuPrincipal_Resize;
+            this.usuario = usuario;
         }
 
         private void MenuPrincipal_Resize(object? sender, EventArgs e)
@@ -45,15 +47,18 @@ namespace SistemaVentas
 
         protected override void OnShown(EventArgs e)
         {
+            if (usuario == null || usuario.password != usuario.usuario)
+            {
+                return;
+            }
+            MessageBox.Show("Por favor, cambie su contraseña por motivos de seguridad.", "Cambio de Contraseña Requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             base.OnShown(e);
 
-            MenuContraseña popup = new MenuContraseña(this);
-            popup.StartPosition = FormStartPosition.CenterParent;
-            popup.ShowInTaskbar = false;
+            MenuContraseña popup = new MenuContraseña(usuario);
+            popup.ShowDialog(); 
 
-            popup.ShowDialog(this); 
         }
-
+        
         private void btnClientes_Click(object sender, EventArgs e)
         {
             // Abrir el formulario de clientes

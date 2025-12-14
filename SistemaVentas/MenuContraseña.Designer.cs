@@ -70,6 +70,7 @@
             tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 1, 1);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 3;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 3F));
@@ -87,7 +88,8 @@
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 2F));
             tableLayoutPanel2.Controls.Add(tableLayoutPanel3, 1, 1);
             tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(12, 22);
+            tableLayoutPanel2.Location = new Point(11, 16);
+            tableLayoutPanel2.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 3;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 3F));
@@ -103,7 +105,8 @@
             tableLayoutPanel3.Controls.Add(tableLayoutPanel4, 0, 0);
             tableLayoutPanel3.Controls.Add(tableLayoutPanel5, 0, 1);
             tableLayoutPanel3.Dock = DockStyle.Fill;
-            tableLayoutPanel3.Location = new Point(11, 21);
+            tableLayoutPanel3.Location = new Point(10, 15);
+            tableLayoutPanel3.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 2;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 15.4804268F));
@@ -119,7 +122,8 @@
             tableLayoutPanel4.Controls.Add(picLogo, 0, 0);
             tableLayoutPanel4.Controls.Add(tableLayoutPanel10, 1, 0);
             tableLayoutPanel4.Dock = DockStyle.Fill;
-            tableLayoutPanel4.Location = new Point(3, 3);
+            tableLayoutPanel4.Location = new Point(3, 2);
+            tableLayoutPanel4.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
             tableLayoutPanel4.RowCount = 1;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
@@ -133,7 +137,7 @@
             picLogo.BackgroundImage = Properties.Resources.cloud_money_system_icon_175829;
             picLogo.Location = new Point(3, 4);
             picLogo.Name = "picLogo";
-            picLogo.Size = new Size(70, 75);
+            picLogo.Size = new Size(59, 56);
             picLogo.SizeMode = PictureBoxSizeMode.Zoom;
             picLogo.TabIndex = 11;
             picLogo.TabStop = false;
@@ -145,7 +149,8 @@
             tableLayoutPanel10.Controls.Add(lblSubtitulo, 0, 1);
             tableLayoutPanel10.Controls.Add(label1, 0, 0);
             tableLayoutPanel10.Dock = DockStyle.Fill;
-            tableLayoutPanel10.Location = new Point(79, 3);
+            tableLayoutPanel10.Location = new Point(68, 2);
+            tableLayoutPanel10.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel10.Name = "tableLayoutPanel10";
             tableLayoutPanel10.RowCount = 2;
             tableLayoutPanel10.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
@@ -161,7 +166,7 @@
             lblSubtitulo.ForeColor = SystemColors.ControlDark;
             lblSubtitulo.Location = new Point(6, 38);
             lblSubtitulo.Name = "lblSubtitulo";
-            lblSubtitulo.Size = new Size(314, 19);
+            lblSubtitulo.Size = new Size(260, 17);
             lblSubtitulo.TabIndex = 10;
             lblSubtitulo.Text = "Gestiona tu negocio de forma profesional";
             // 
@@ -197,12 +202,13 @@
             tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel6.Controls.Add(label2, 0, 0);
             tableLayoutPanel6.Controls.Add(tableLayoutPanel7, 0, 1);
-            tableLayoutPanel6.Location = new Point(3, 26);
+            tableLayoutPanel6.Location = new Point(3, 19);
+            tableLayoutPanel6.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel6.Name = "tableLayoutPanel6";
             tableLayoutPanel6.RowCount = 2;
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 12.045455F));
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 87.9545441F));
-            tableLayoutPanel6.Size = new Size(403, 440);
+            tableLayoutPanel6.Size = new Size(345, 330);
             tableLayoutPanel6.TabIndex = 11;
             // 
             // label2
@@ -210,9 +216,9 @@
             label2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(3, 28);
+            label2.Location = new Point(3, 19);
             label2.Name = "label2";
-            label2.Size = new Size(186, 25);
+            label2.Size = new Size(152, 20);
             label2.TabIndex = 0;
             label2.Text = " Cambiar contraseña";
             // 
@@ -222,21 +228,22 @@
             tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel7.Controls.Add(label3, 0, 0);
             tableLayoutPanel7.Controls.Add(tableLayoutPanel8, 0, 1);
-            tableLayoutPanel7.Location = new Point(3, 56);
+            tableLayoutPanel7.Location = new Point(3, 41);
+            tableLayoutPanel7.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel7.Name = "tableLayoutPanel7";
             tableLayoutPanel7.RowCount = 2;
             tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 13.9107609F));
             tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 86.08924F));
-            tableLayoutPanel7.Size = new Size(397, 381);
+            tableLayoutPanel7.Size = new Size(339, 286);
             tableLayoutPanel7.TabIndex = 1;
             // 
             // label3
             // 
             label3.Anchor = AnchorStyles.None;
             label3.AutoSize = true;
-            label3.Location = new Point(9, 6);
+            label3.Location = new Point(21, 4);
             label3.Name = "label3";
-            label3.Size = new Size(378, 40);
+            label3.Size = new Size(297, 30);
             label3.TabIndex = 0;
             label3.Text = "Una contraseña bien protegida reduce el riesgo de que terceros accedan a tu cuenta.";
             // 
@@ -247,12 +254,13 @@
             tableLayoutPanel8.Controls.Add(tableLayoutPanel9, 0, 0);
             tableLayoutPanel8.Controls.Add(btnConfirmar, 0, 1);
             tableLayoutPanel8.Dock = DockStyle.Fill;
-            tableLayoutPanel8.Location = new Point(3, 56);
+            tableLayoutPanel8.Location = new Point(3, 41);
+            tableLayoutPanel8.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel8.Name = "tableLayoutPanel8";
             tableLayoutPanel8.RowCount = 2;
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 79.19254F));
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 20.8074532F));
-            tableLayoutPanel8.Size = new Size(391, 322);
+            tableLayoutPanel8.Size = new Size(333, 243);
             tableLayoutPanel8.TabIndex = 1;
             // 
             // tableLayoutPanel9
@@ -264,49 +272,52 @@
             tableLayoutPanel9.Controls.Add(lblNuevaContrasena, 0, 0);
             tableLayoutPanel9.Controls.Add(lblConfirmarContrasena, 0, 2);
             tableLayoutPanel9.Dock = DockStyle.Fill;
-            tableLayoutPanel9.Location = new Point(3, 3);
+            tableLayoutPanel9.Location = new Point(3, 2);
+            tableLayoutPanel9.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel9.Name = "tableLayoutPanel9";
             tableLayoutPanel9.RowCount = 4;
             tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 15.32258F));
             tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 34.6774178F));
-            tableLayoutPanel9.Size = new Size(385, 248);
+            tableLayoutPanel9.Size = new Size(327, 188);
             tableLayoutPanel9.TabIndex = 0;
             // 
             // inpConfirmarContrasena
             // 
             inpConfirmarContrasena.ForeColor = Color.Black;
-            inpConfirmarContrasena.Location = new Point(3, 165);
+            inpConfirmarContrasena.Location = new Point(3, 124);
+            inpConfirmarContrasena.Margin = new Padding(3, 2, 3, 2);
             inpConfirmarContrasena.Name = "inpConfirmarContrasena";
-            inpConfirmarContrasena.Size = new Size(279, 27);
+            inpConfirmarContrasena.Size = new Size(245, 23);
             inpConfirmarContrasena.TabIndex = 1;
             // 
             // inpNuevaContrasena
             // 
             inpNuevaContrasena.Anchor = AnchorStyles.Left;
             inpNuevaContrasena.ForeColor = Color.Black;
-            inpNuevaContrasena.Location = new Point(3, 79);
+            inpNuevaContrasena.Location = new Point(3, 59);
+            inpNuevaContrasena.Margin = new Padding(3, 2, 3, 2);
             inpNuevaContrasena.Name = "inpNuevaContrasena";
-            inpNuevaContrasena.Size = new Size(279, 27);
+            inpNuevaContrasena.Size = new Size(245, 23);
             inpNuevaContrasena.TabIndex = 0;
             // 
             // lblNuevaContrasena
             // 
             lblNuevaContrasena.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblNuevaContrasena.AutoSize = true;
-            lblNuevaContrasena.Location = new Point(3, 42);
+            lblNuevaContrasena.Location = new Point(3, 32);
             lblNuevaContrasena.Name = "lblNuevaContrasena";
-            lblNuevaContrasena.Size = new Size(194, 20);
+            lblNuevaContrasena.Size = new Size(156, 15);
             lblNuevaContrasena.TabIndex = 2;
             lblNuevaContrasena.Text = "Ingrese su nueva contraseña";
             // 
             // lblConfirmarContrasena
             // 
             lblConfirmarContrasena.AutoSize = true;
-            lblConfirmarContrasena.Location = new Point(3, 124);
+            lblConfirmarContrasena.Location = new Point(3, 94);
             lblConfirmarContrasena.Name = "lblConfirmarContrasena";
-            lblConfirmarContrasena.Size = new Size(207, 20);
+            lblConfirmarContrasena.Size = new Size(168, 15);
             lblConfirmarContrasena.TabIndex = 3;
             lblConfirmarContrasena.Text = "Confirme su nueva contraseña";
             // 
@@ -321,26 +332,35 @@
             btnConfirmar.FlatStyle = FlatStyle.Flat;
             btnConfirmar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnConfirmar.ForeColor = Color.White;
-            btnConfirmar.Location = new Point(224, 290);
+            btnConfirmar.Location = new Point(186, 219);
+            btnConfirmar.Margin = new Padding(3, 2, 3, 2);
             btnConfirmar.Name = "btnConfirmar";
-            btnConfirmar.Size = new Size(164, 29);
+            btnConfirmar.Size = new Size(144, 22);
             btnConfirmar.TabIndex = 1;
             btnConfirmar.Text = "Confirmar";
             btnConfirmar.UseVisualStyleBackColor = false;
-            btnConfirmar.Click += btnConfirmar_Click_1;
+            btnConfirmar.Click += btnConfirmar_Click;
             // 
             // MenuContraseña
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AcceptButton = btnConfirmar;
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.AliceBlue;
-            ClientSize = new Size(464, 651);
+            BackgroundImageLayout = ImageLayout.Center;
+            ClientSize = new Size(402, 484);
+            ControlBox = false;
             Controls.Add(tableLayoutPanel1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "MenuContraseña";
+            ShowIcon = false;
+            ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "MenuContraseña";
+            Text = "Cambiar Contraseña";
+            TransparencyKey = Color.FromArgb(0, 0, 64);
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
