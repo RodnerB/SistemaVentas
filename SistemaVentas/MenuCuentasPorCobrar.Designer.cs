@@ -55,18 +55,6 @@
             label1 = new Label();
             tableLayoutPanel4 = new TableLayoutPanel();
             dgvCuentasPorCobrar = new DataGridView();
-            colCodigo = new DataGridViewTextBoxColumn();
-            colNombre = new DataGridViewTextBoxColumn();
-            colApellido = new DataGridViewTextBoxColumn();
-            colDireccion = new DataGridViewTextBoxColumn();
-            colSector = new DataGridViewTextBoxColumn();
-            colCiudad = new DataGridViewTextBoxColumn();
-            colTelefono = new DataGridViewTextBoxColumn();
-            colFax = new DataGridViewTextBoxColumn();
-            colLimite = new DataGridViewTextBoxColumn();
-            colBalance = new DataGridViewTextBoxColumn();
-            colObservaciones = new DataGridViewTextBoxColumn();
-            colEliminar = new DataGridViewButtonColumn();
             tableLayoutPanel9 = new TableLayoutPanel();
             tableLayoutPanel10 = new TableLayoutPanel();
             label7 = new Label();
@@ -74,6 +62,9 @@
             tableLayoutPanel11 = new TableLayoutPanel();
             label9 = new Label();
             label10 = new Label();
+            colNumeroDeFactura = new DataGridViewTextBoxColumn();
+            colVendedor = new DataGridViewTextBoxColumn();
+            colValor = new DataGridViewTextBoxColumn();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             tableLayoutPanel8.SuspendLayout();
@@ -410,7 +401,7 @@
             dgvCuentasPorCobrar.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvCuentasPorCobrar.ColumnHeadersHeight = 35;
             dgvCuentasPorCobrar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvCuentasPorCobrar.Columns.AddRange(new DataGridViewColumn[] { colCodigo, colNombre, colApellido, colDireccion, colSector, colCiudad, colTelefono, colFax, colLimite, colBalance, colObservaciones, colEliminar });
+            dgvCuentasPorCobrar.Columns.AddRange(new DataGridViewColumn[] { colNumeroDeFactura, colVendedor, colValor });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -438,93 +429,6 @@
             dgvCuentasPorCobrar.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dgvCuentasPorCobrar.Size = new Size(1392, 691);
             dgvCuentasPorCobrar.TabIndex = 1;
-            // 
-            // colCodigo
-            // 
-            colCodigo.HeaderText = "Código";
-            colCodigo.MinimumWidth = 6;
-            colCodigo.Name = "colCodigo";
-            colCodigo.ReadOnly = true;
-            // 
-            // colNombre
-            // 
-            colNombre.HeaderText = "Nombre";
-            colNombre.MinimumWidth = 6;
-            colNombre.Name = "colNombre";
-            colNombre.ReadOnly = true;
-            // 
-            // colApellido
-            // 
-            colApellido.HeaderText = "Apellido";
-            colApellido.MinimumWidth = 6;
-            colApellido.Name = "colApellido";
-            colApellido.ReadOnly = true;
-            // 
-            // colDireccion
-            // 
-            colDireccion.HeaderText = "Direccion";
-            colDireccion.MinimumWidth = 6;
-            colDireccion.Name = "colDireccion";
-            colDireccion.ReadOnly = true;
-            // 
-            // colSector
-            // 
-            colSector.HeaderText = "Sector";
-            colSector.MinimumWidth = 6;
-            colSector.Name = "colSector";
-            colSector.ReadOnly = true;
-            // 
-            // colCiudad
-            // 
-            colCiudad.HeaderText = "Ciudad";
-            colCiudad.MinimumWidth = 6;
-            colCiudad.Name = "colCiudad";
-            colCiudad.ReadOnly = true;
-            // 
-            // colTelefono
-            // 
-            colTelefono.HeaderText = "Telefono";
-            colTelefono.MinimumWidth = 6;
-            colTelefono.Name = "colTelefono";
-            colTelefono.ReadOnly = true;
-            // 
-            // colFax
-            // 
-            colFax.HeaderText = "Fax";
-            colFax.MinimumWidth = 6;
-            colFax.Name = "colFax";
-            colFax.ReadOnly = true;
-            // 
-            // colLimite
-            // 
-            colLimite.HeaderText = "Limite Credito";
-            colLimite.MinimumWidth = 6;
-            colLimite.Name = "colLimite";
-            colLimite.ReadOnly = true;
-            // 
-            // colBalance
-            // 
-            colBalance.HeaderText = "Balance";
-            colBalance.MinimumWidth = 6;
-            colBalance.Name = "colBalance";
-            colBalance.ReadOnly = true;
-            // 
-            // colObservaciones
-            // 
-            colObservaciones.HeaderText = "Observaciones";
-            colObservaciones.MinimumWidth = 6;
-            colObservaciones.Name = "colObservaciones";
-            colObservaciones.ReadOnly = true;
-            // 
-            // colEliminar
-            // 
-            colEliminar.FlatStyle = FlatStyle.Flat;
-            colEliminar.HeaderText = "Accion";
-            colEliminar.MinimumWidth = 6;
-            colEliminar.Name = "colEliminar";
-            colEliminar.ReadOnly = true;
-            colEliminar.Text = "Eliminar";
-            colEliminar.UseColumnTextForButtonValue = true;
             // 
             // tableLayoutPanel9
             // 
@@ -615,6 +519,27 @@
             label10.TabIndex = 1;
             label10.Text = "Total:";
             // 
+            // colNumeroDeFactura
+            // 
+            colNumeroDeFactura.HeaderText = "N. de factura";
+            colNumeroDeFactura.MinimumWidth = 6;
+            colNumeroDeFactura.Name = "colNumeroDeFactura";
+            colNumeroDeFactura.ReadOnly = true;
+            // 
+            // colVendedor
+            // 
+            colVendedor.HeaderText = "Vendedor";
+            colVendedor.MinimumWidth = 6;
+            colVendedor.Name = "colVendedor";
+            colVendedor.ReadOnly = true;
+            // 
+            // colValor
+            // 
+            colValor.HeaderText = "Valor";
+            colValor.MinimumWidth = 6;
+            colValor.Name = "colValor";
+            colValor.ReadOnly = true;
+            // 
             // MenuCuentasPorCobrar
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -662,18 +587,6 @@
         private TableLayoutPanel tableLayoutPanel3;
         private TableLayoutPanel tableLayoutPanel4;
         private DataGridView dgvCuentasPorCobrar;
-        private DataGridViewTextBoxColumn colCodigo;
-        private DataGridViewTextBoxColumn colNombre;
-        private DataGridViewTextBoxColumn colApellido;
-        private DataGridViewTextBoxColumn colDireccion;
-        private DataGridViewTextBoxColumn colSector;
-        private DataGridViewTextBoxColumn colCiudad;
-        private DataGridViewTextBoxColumn colTelefono;
-        private DataGridViewTextBoxColumn colFax;
-        private DataGridViewTextBoxColumn colLimite;
-        private DataGridViewTextBoxColumn colBalance;
-        private DataGridViewTextBoxColumn colObservaciones;
-        private DataGridViewButtonColumn colEliminar;
         private TableLayoutPanel tableLayoutPanel5;
         private TableLayoutPanel tableLayoutPanel6;
         private Label lblCodigoCliente;
@@ -693,5 +606,8 @@
         private TableLayoutPanel tableLayoutPanel11;
         private Label label9;
         private Label label10;
+        private DataGridViewTextBoxColumn colNumeroDeFactura;
+        private DataGridViewTextBoxColumn colVendedor;
+        private DataGridViewTextBoxColumn colValor;
     }
 }
