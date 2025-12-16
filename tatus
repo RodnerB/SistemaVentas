@@ -1,0 +1,161 @@
+[33me46d349[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mMenuCuentasPorCobrar[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/MenuCuentasPorCobrar[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m Merge pull request #57 from RodnerB/refactor
+[33mc6ad3b5[m Unifica redondeo y redimensionado en UtilidadesUI
+[33m585cabe[m Mejoras en validación de contraseñas y login
+[33m0172c20[m Corregida estructura de método en MenuContraseña.cs
+[33m7fb3aad[m Merge pull request #56 from RodnerB/contrasena
+[33m7b8a306[m Merge branch 'main' into contrasena
+[33m112d1a5[m Validación de contraseña en btnConfirmar_Click
+[33maa8eab0[m Merge pull request #54 from RodnerB/Modal_VerDetalles
+[33mc3abd5d[m[33m ([m[1;31morigin/Modal_VerDetalles[m[33m)[m Merge branch 'main' into Modal_VerDetalles
+[33m0ee06d1[m Merge pull request #55 from RodnerB/contrasena
+[33m1f413db[m Mejoras UI en MenuContraseña y paso de usuario a MenuPrincipal
+[33m7ac4d1c[m Mejoras de UI y flujo de cambio de contraseña
+[33m6b69535[m Se_creo_la_modal_verDetalles
+[33md6160d5[m Merge pull request #53 from RodnerB/MenuContrasena
+[33m7abf3ca[m Creacion_del_menucontrasena
+[33mef0f4e2[m Merge pull request #52 from RodnerB/Modificando_los_data_grid_view
+[33m944e168[m Ajuste_de_los_data_grid
+[33m62c0a9d[m Modificacion_del_data_grid_articulos
+[33m4df37d0[m Merge pull request #51 from RodnerB/validaciones
+[33mae96478[m Merge pull request #50 from RodnerB/Rediseno_MenuConfiguracion
+[33m2a5dc0b[m Ajuste_MenuConfiguracion
+[33mc5d9feb[m cambios hechos x el chino, y se anadio el login pero lo desactivamos
+[33m8768c6e[m Validaciones en balance y límite de crédito de clientes
+[33mbb49001[m Merge pull request #49 from RodnerB/Diseno_MenuVerusuarios
+[33me130c11[m Merge branch 'main' into Diseno_MenuVerusuarios
+[33m5fa716a[m Merge pull request #48 from RodnerB/modificaciones
+[33maacfdab[m Diseno_MenuVerUsuarios
+[33m0c1da77[m Mejora de resize dinámico en MenuVentas
+[33mb01d2a3[m Mejora de UI y refactorización en Configuración Empresa
+[33m77b3514[m Merge pull request #47 from RodnerB/Puliendo
+[33m8edd85e[m Soporte para actualización de clientes existente
+[33mf9bb9d8[m Merge pull request #46 from RodnerB/Redisenando
+[33mccfc4ba[m Ajuste_de_tamanos_de_algunos_paneles
+[33m78d675e[m Ajuste_de_un_letrero_menuUnidadesMedida
+[33m7564be3[m Terminando_ajuste_de_disenos
+[33mfa9064b[m disemos
+[33m84f15bd[m Merge pull request #45 from RodnerB/Redisenando
+[33m66edca5[m Ajuste_de_disenos
+[33m7c76943[m Merge pull request #44 from RodnerB/nose
+[33m912a5be[m Merge pull request #43 from RodnerB/formArticulos
+[33mc4ddbe8[m Refactorización y mejoras en gestión de clientes
+[33m933064c[m Ajuste_de_nombre_de_los_textBox
+[33mb56fa60[m Merge pull request #42 from RodnerB/VentaForm
+[33mb24d34f[m refactorizacion para no permitir que se ingrese una cantidad mayor de la existencia actual de un producto en una venta, a su vez, se añadio una condicion extra al momento de buscar productos para no incluir aquellos cuyo stock sea menor a 0
+[33mbc17e03[m Refactorización y mejoras en gestión de facturas y clientes
+[33mb3f3aca[m Refactorización de manejo de detalles y consultas SQL
+[33md0731be[m Refactorización y optimización de lógica de datos y UI
+[33m8430200[m creacion de la base para las ventas
+[33m05a09a2[m Merge pull request #41 from RodnerB/Diseno_menuFacturas
+[33mfcb86e7[m Ajuste_de_los_botones
+[33mafbc81e[m Ajuste menuFacturas
+[33m034dc04[m Merge pull request #40 from RodnerB/Diseno_menuFacturas
+[33ma9cc2b3[m Ajuste_diseno_menuFacturas
+[33m8c1f6d8[m Diseno_menuFacturas
+[33m87d37ca[m Merge pull request #39 from RodnerB/Diseno_menuArticulos
+[33mb8a9f49[m Diseno_menuArticulos
+[33mb3da746[m Merge Diseno_menu_principal usando versión de main
+[33mbe88de3[m quitando helper otra vez
+[33m4fcdcf6[m Merge branch 'main' of https://github.com/RodnerB/SistemaVentas
+[33m4c3eabe[m eliminando el helper innecesario del chino
+[33m0a167dc[m Merge branch 'nueva_version_menuClientes'
+[33mbf44759[m Ajustando_menuClientes
+[33mac0c2b8[m Ajuste_menuClientes
+[33md081cbd[m Merge pull request #38 from RodnerB/nueva_version_menuClientes
+[33m9fb61dc[m Ajuste_menuClientes
+[33mccf9e4b[m Ajustando_boton_agregar
+[33mcfb2e52[m Restaurando versión anterior
+[33mf36abb3[m Agregando icono faltante
+[33m840f699[m Actualizando resources automáticamente
+[33m9ef71c8[m Restaurando Cliente.cs correctamente
+[33m18aa5fe[m Aceptando versión theirs (stash) para resolver conflictos
+[33mda3caca[m Restaurado MenuClientes.Designer.cs desde el commit 4649c50
+[33m2526e8c[m Merge pull request #37 from RodnerB/Diseno_menu_Clientes
+[33m4a4c8c3[m Merge branch 'main' into Diseno_menu_Clientes
+[33m4649c50[m Diseno_menu_Clientes
+[33m18ab5b6[m Merge pull request #36 from RodnerB/Diseno_menu_principal
+[33m55db88e[m modifique_los_colores_de_menuPrincipal
+[33md6ac2ff[m Reajustando_diseno_menuPrincipal_2.0
+[33m1a96ace[m Reajuste_de_diseno_menuPrincipal
+[33m6a32b30[m Merge pull request #35 from RodnerB/refactor
+[33me574a69[m Ajuste_del_tamano_de_pantalla
+[33m28eddd6[m Moviendo RoundedControlHelper (funcion para redondear bordes) a Utilidades
+[33me578bc6[m Eliminando archivo ramdon creado x don chino
+[33mab34d70[m Merge pull request #34 from RodnerB/Diseno_menu_principal
+[33ma840c39[m Diseno_menu_principal
+[33mce3c950[m Merge pull request #33 from RodnerB/revert-31-Disenando_menu_y_formClientes
+[33m92c5727[m Revert "Disenando_menu_y_formClientes"
+[33mf4708dc[m Disenando_menu_principal
+[33m4b68ce3[m Merge pull request #31 from RodnerB/Disenando_menu_y_formClientes
+[33mca1eff0[m Disenando_menu_y_formClientes
+[33m2cde6b1[m Merge pull request #30 from RodnerB/bug
+[33m9ab045e[m Arreglando bug producidos x don chino
+[33m94aed11[m Merge pull request #29 from RodnerB/Disenado_el_menú
+[33ma2aacda[m Diseno_menú
+[33medb6d81[m Merge pull request #28 from RodnerB/Refactorizacion_menu_unidadesMedida
+[33mfdd4965[m refactorizacion_menu_unidadesMedida
+[33mdb77545[m Merge pull request #27 from RodnerB/Validaciones
+[33m41a7ee4[m Se creo el atributo [Requerido] Para marcar aquellos parametros que no puedan contener valores null. Asi mismo, se creo la clase Validador, mediante la cual se verifica que aquellos parametros de una instancia x, que sean marcados con dicho atributo, cumplan con lo mencionado anteriormente, y en caso de ser de tipo numerico, que no tengan un valor por debajo de 0
+[33me8f026b[m Merge pull request #26 from RodnerB/Cambiando_double_a_float
+[33m4751c1d[m Acomadando_codigo
+[33mc9e6de4[m reacondicionando_codigo
+[33m349b5df[m Merge pull request #25 from RodnerB/Cambiando_double_a_float
+[33md7cc80f[m Arreglado_errores
+[33mc594016[m Refactorización de módulos de Artículos
+[33mcc19289[m Merge pull request #23 from RodnerB/MenuClienteRefactor
+[33m6a662ef[m Refactor:
+[33md087fcb[m Merge pull request #22 from RodnerB/refactorizacion
+[33m3fa5151[m Refactorización de métodos y manejo de excepciones
+[33mf6a0fc8[m Merge pull request #21 from RodnerB/refactorizacion
+[33m8446033[m Mejoras en manejo de clientes e interfaz de usuario
+[33mcff9b50[m Merge pull request #20 from RodnerB/refactorizacion
+[33m61fd2aa[m Refactorizacion de UtilidadesUI para eliminar dependencia a UtilidadesDB asegurando el correcto uso de SRP
+[33m2d00055[m Eliminar archivos Form residuales de la raíz
+[33mf0770f9[m Merge branch 'Rename' - Renombrar formularios con nombres descriptivos
+[33me5aed0f[m Renombrar formularios y mejorar consistencia en referencias
+[33m34e11da[m Merge pull request #18 from RodnerB/centrando_form2_y_form4
+[33m723c1f1[m centrando_form2_y_form4
+[33mfd7a6f1[m Merge pull request #17 from RodnerB/config
+[33m2605040[m Refactorización y soporte para gestión de empresas
+[33mecd91ee[m Merge pull request #16 from RodnerB/unidades-de-medida
+[33m07c0770[m Form_unidadesMedida
+[33m86a6027[m Merge pull request #15 from RodnerB/rapido
+[33me9809a9[m Refactorización y soporte para insertar facturas
+[33mbb73833[m Merge pull request #14 from RodnerB/solucion_al_problema_de_volver_al_menu_de_form3
+[33me120b14[m volver_menu_form3
+[33m7bd6074[m arreglando_el_regreso_al_menu
+[33m271ea8b[m Merge pull request #13 from RodnerB/restauracion_del_formulario_articulos
+[33mc595f15[m reconstruccion_del_formulario_clientes
+[33mc618838[m Merge pull request #12 from RodnerB/UtilidadesBD
+[33mf6685ee[m Refactorización y mejoras en lógica de clientes y facturas
+[33m657353c[m Merge pull request #10 from RodnerB/Logica
+[33m59d1cea[m Centrar Form2 y manejar entradas vacías en cliente
+[33md7e96c3[m Refactorización y mejoras en gestión de clientes
+[33m9407ee5[m Merge pull request #9 from RodnerB/Clientes
+[33m40e1839[m Refactorización y modularización de lógica de clientes
+[33m2c25ac2[m Merge pull request #8 from RodnerB/form3-Artículos
+[33m9466795[m Merge branch 'main' into form3-Artículos
+[33mefb28c1[m articulos: implementación completa del módulo de gestión de artículos, desarrolle la funcionalidad del módulo de artículos, incorporando conexión a base de datos, operaciones de inserción, consulta, modificación y eliminación.
+[33m7cae557[m Merge pull request #7 from RodnerB/Clientes
+[33m175563f[m Mejoras en la gestión de clientes en Form2
+[33mc9c7995[m Merge pull request #6 from RodnerB/Clientes
+[33m331ed91[m Refactorización y mejoras en la gestión de clientes
+[33mddda912[m Merge pull request #5 from RodnerB/Clientes
+[33mc3679a5[m Refactorización de Cliente y mejoras en Form2
+[33mb1c3024[m Adding the Clientes Class to the proyect for a proper handling of the clients info
+[33mddf20f4[m Merge pull request #4 from RodnerB/DBConnection
+[33md8c16f0[m Merge branch 'main' into DBConnection
+[33m27f7b17[m añadiendo una funcion para buscar un cliente x en base a su codigo
+[33m9890bf8[m modifique la conexion a la bd para que utiilice un archivo cs para recuperar la conexion, asi evitar conflictos entre cada computadora
+[33mff0cc43[m adding a function to get all the clients from the database
+[33m31d70f0[m temporal fix to the sql certificate error
+[33ma89f9a0[m Merge pull request #3 from RodnerB/DBConnection
+[33mbdb890f[m Adding the sqlConnection NuGet package and creating a class for the connection
+[33m1f3c485[m Merge pull request #2 from RodnerB/vinculacion_de_las_pantallas
+[33mb95553e[m Conecte las pantallas
+[33m51eceef[m Merge pull request #1 from RodnerB/pantallas
+[33mf38837d[m Estos son los cambios realizados, trabaje con las pantallas
+[33med14bc3[m Añadir y eliminar archivos binarios de la base de datos
+[33mad2e17c[m Subiendo archivo de base de datos sql
+[33ma9575f8[m Inicialización del proyecto SistemaVentas
+[33mb0d15d9[m Agregar README.md.
