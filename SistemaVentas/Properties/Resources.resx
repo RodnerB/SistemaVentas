@@ -127,11 +127,14 @@
   <data name="sales_deals_discounts_promotions_coupons_icon_260990" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sales_deals_discounts_promotions_coupons_icon_260990.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="gearloading_87549 (3)1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gearloading_87549 (3)1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="hard_drives_icon_173095 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hard_drives_icon_173095 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="1492617381-9-sheet-data-spreadsheets-file-google-suit-service_83434 (3)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1492617381-9-sheet-data-spreadsheets-file-google-suit-service_83434 (3).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="delete_outline_icon_148544" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\delete_outline_icon_148544.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="box_5124 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\box_5124 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -154,11 +157,23 @@
   <data name="4115231-dashboard-stats_114039" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\4115231-dashboard-stats_114039.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="gearloading_87549 (3)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gearloading_87549 (3).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="cloud_money_system_icon_175829" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cloud_money_system_icon_175829.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="viewdetails_vista_3354" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\viewdetails_vista_3354.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="money_cash_currency_finance_bank_icon_192201 (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\money_cash_currency_finance_bank_icon_192201 (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="money_cash_currency_finance_bank_icon_192201 (2)3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\money_cash_currency_finance_bank_icon_192201 (2)3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1492617381-9-sheet-data-spreadsheets-file-google-suit-service_83434 (3)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1492617381-9-sheet-data-spreadsheets-file-google-suit-service_83434 (3).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="settingscog_87317" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\settingscog_87317.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -175,8 +190,11 @@
   <data name="exit_icon_143788" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\exit_icon_143788.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="exitdoor_87195 (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\exitdoor_87195 (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sale_basket_cart_ecommerce_on_buy_shop_trolley_bag_shopping_icon_266849 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sale_basket_cart_ecommerce_on_buy_shop_trolley_bag_shopping_icon_266849 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="packages" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\packages.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="hard_drives_icon_173095 (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hard_drives_icon_173095 (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -184,8 +202,8 @@
   <data name="users_people_workers_customers_icon_124243" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\users_people_workers_customers_icon_124243.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sale_basket_cart_ecommerce_on_buy_shop_trolley_bag_shopping_icon_266849 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sale_basket_cart_ecommerce_on_buy_shop_trolley_bag_shopping_icon_266849 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="exitdoor_87195 (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\exitdoor_87195 (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="gear_icon-icons.com_69371" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\gear_icon-icons.com_69371.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -193,8 +211,14 @@
   <data name="exitdoor_87195 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\exitdoor_87195 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="gearloading_87549 (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gearloading_87549 (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="1492617381-9-sheet-data-spreadsheets-file-google-suit-service_83434 (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1492617381-9-sheet-data-spreadsheets-file-google-suit-service_83434 (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="money_cash_currency_finance_bank_icon_192201 (2)2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\money_cash_currency_finance_bank_icon_192201 (2)2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="invoice_icon_213786" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\invoice_icon_213786.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -214,14 +238,17 @@
   <data name="sale_basket_cart_ecommerce_on_buy_shop_trolley_bag_shopping_icon_266849" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sale_basket_cart_ecommerce_on_buy_shop_trolley_bag_shopping_icon_266849.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="packages" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\packages.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="money_cash_currency_finance_bank_icon_192201 (2)1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\money_cash_currency_finance_bank_icon_192201 (2)1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="money_cash_currency_finance_bank_icon_192201 (1)1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\money_cash_currency_finance_bank_icon_192201 (1)1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="hard_drives_icon_173095" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hard_drives_icon_173095.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="invoice_icon_213786 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\invoice_icon_213786 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="money_cash_currency_finance_bank_icon_192201 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\money_cash_currency_finance_bank_icon_192201 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="invoice_icon_213786 (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\invoice_icon_213786 (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -232,16 +259,22 @@
   <data name="gearloading_87549 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\gearloading_87549 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="exitdoor_87195" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\exitdoor_87195.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="invoice_icon_213786 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\invoice_icon_213786 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="packages (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\packages (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="exitdoor_87195" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\exitdoor_87195.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="return_up_back_icon_233992 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\return_up_back_icon_233992 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="delete_outline_icon_148544" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\delete_outline_icon_148544.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="gearloading_87549 (3)2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gearloading_87549 (3)2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="money_cash_currency_finance_bank_icon_192201 (2)4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\money_cash_currency_finance_bank_icon_192201 (2)4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

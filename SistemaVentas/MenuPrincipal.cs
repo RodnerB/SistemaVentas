@@ -90,11 +90,11 @@ namespace SistemaVentas
             this.Hide(); // Ocultar el formulario principal
         }
 
-        private void btnUnidadesDeMedida_Click(object sender, EventArgs e)
+        private void btnCuentasPorCobrar_Click(object sender, EventArgs e)
         {
-            // Abrir el formulario de unidades de medida
-            MenuUnidadesMedidas unidadesdemedida = new MenuUnidadesMedidas(this);
-            unidadesdemedida.Show(); // Mostrar el formulario de unidades de medida
+            // Pasar la referencia del formulario principal al crear el formulario secundario
+            MenuCuentasPorCobrar cuentasporcobrar = new MenuCuentasPorCobrar(this);
+            cuentasporcobrar.Show(); // Mostrar el formulario de unidades de medida
             this.Hide(); // Ocultar el formulario principal
         }
 

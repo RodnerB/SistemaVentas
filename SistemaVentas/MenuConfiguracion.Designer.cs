@@ -99,9 +99,9 @@
             tableLayoutPanel15 = new TableLayoutPanel();
             label2 = new Label();
             tableLayoutPanel16 = new TableLayoutPanel();
-            txtDesUni = new TextBox();
+            inpDesUni = new TextBox();
             lblDesUni = new Label();
-            txtCodUni = new TextBox();
+            inpCodUni = new TextBox();
             lblCodUni = new Label();
             tableLayoutPanel18 = new TableLayoutPanel();
             btnAgregarUni = new Button();
@@ -109,9 +109,9 @@
             tableLayoutPanel19 = new TableLayoutPanel();
             button2 = new Button();
             dgvUnidad = new DataGridView();
-            ColCodigo = new DataGridViewButtonColumn();
-            ColDescripcion = new DataGridViewButtonColumn();
-            ColAcción = new DataGridViewButtonColumn();
+            colCodigoUnidad = new DataGridViewTextBoxColumn();
+            colDescripcionUnidad = new DataGridViewTextBoxColumn();
+            colAccion = new DataGridViewButtonColumn();
             panel1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -230,7 +230,7 @@
             label5.ForeColor = Color.Gray;
             label5.Location = new Point(3, 27);
             label5.Name = "label5";
-            label5.Size = new Size(232, 15);
+            label5.Size = new Size(296, 20);
             label5.TabIndex = 2;
             label5.Text = "Administra la información de tu empresa";
             // 
@@ -239,9 +239,9 @@
             lblClientes.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblClientes.AutoSize = true;
             lblClientes.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-            lblClientes.Location = new Point(3, 2);
+            lblClientes.Location = new Point(3, 0);
             lblClientes.Name = "lblClientes";
-            lblClientes.Size = new Size(247, 25);
+            lblClientes.Size = new Size(295, 27);
             lblClientes.TabIndex = 1;
             lblClientes.Text = "Configuración de Empresa";
             // 
@@ -420,9 +420,9 @@
             label8.Anchor = AnchorStyles.Left;
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(3, 7);
+            label8.Location = new Point(3, 2);
             label8.Name = "label8";
-            label8.Size = new Size(234, 37);
+            label8.Size = new Size(289, 46);
             label8.TabIndex = 3;
             label8.Text = "Lista de Usuarios";
             // 
@@ -490,9 +490,9 @@
             // 
             label6.Anchor = AnchorStyles.Left;
             label6.AutoSize = true;
-            label6.Location = new Point(3, 89);
+            label6.Location = new Point(3, 87);
             label6.Name = "label6";
-            label6.Size = new Size(51, 15);
+            label6.Size = new Size(64, 20);
             label6.TabIndex = 15;
             label6.Text = "Nombre";
             // 
@@ -503,16 +503,16 @@
             cmbEstado.FormattingEnabled = true;
             cmbEstado.Location = new Point(3, 261);
             cmbEstado.Name = "cmbEstado";
-            cmbEstado.Size = new Size(398, 23);
+            cmbEstado.Size = new Size(398, 28);
             cmbEstado.TabIndex = 17;
             // 
             // label7
             // 
             label7.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label7.AutoSize = true;
-            label7.Location = new Point(3, 27);
+            label7.Location = new Point(3, 22);
             label7.Name = "label7";
-            label7.Size = new Size(47, 15);
+            label7.Size = new Size(59, 20);
             label7.TabIndex = 0;
             label7.Text = "Usuario";
             // 
@@ -521,7 +521,7 @@
             label9.AutoSize = true;
             label9.Location = new Point(3, 236);
             label9.Name = "label9";
-            label9.Size = new Size(42, 15);
+            label9.Size = new Size(54, 20);
             label9.TabIndex = 16;
             label9.Text = "Estado";
             // 
@@ -529,25 +529,25 @@
             // 
             inpUsuario.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             inpUsuario.Enabled = false;
-            inpUsuario.Location = new Point(3, 51);
+            inpUsuario.Location = new Point(3, 49);
             inpUsuario.Name = "inpUsuario";
-            inpUsuario.Size = new Size(398, 23);
+            inpUsuario.Size = new Size(398, 27);
             inpUsuario.TabIndex = 1;
             // 
             // inpContrasena
             // 
             inpContrasena.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            inpContrasena.Location = new Point(3, 202);
+            inpContrasena.Location = new Point(3, 200);
             inpContrasena.Name = "inpContrasena";
-            inpContrasena.Size = new Size(398, 23);
+            inpContrasena.Size = new Size(398, 27);
             inpContrasena.TabIndex = 20;
             // 
             // inpNombre
             // 
             inpNombre.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            inpNombre.Location = new Point(3, 127);
+            inpNombre.Location = new Point(3, 125);
             inpNombre.Name = "inpNombre";
-            inpNombre.Size = new Size(398, 23);
+            inpNombre.Size = new Size(398, 27);
             inpNombre.TabIndex = 19;
             // 
             // label10
@@ -555,7 +555,7 @@
             label10.AutoSize = true;
             label10.Location = new Point(3, 168);
             label10.Name = "label10";
-            label10.Size = new Size(67, 15);
+            label10.Size = new Size(83, 20);
             label10.TabIndex = 18;
             label10.Text = "Contraseña";
             // 
@@ -581,9 +581,9 @@
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label11.ForeColor = SystemColors.Highlight;
-            label11.Location = new Point(56, 13);
+            label11.Location = new Point(56, 1);
             label11.Name = "label11";
-            label11.Size = new Size(270, 15);
+            label11.Size = new Size(286, 40);
             label11.TabIndex = 2;
             label11.Text = "Aquí Puedes Gestionar los Usuarios del Sistema.";
             // 
@@ -673,9 +673,9 @@
             labelusuarioooooo.Anchor = AnchorStyles.Left;
             labelusuarioooooo.AutoSize = true;
             labelusuarioooooo.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelusuarioooooo.Location = new Point(3, 6);
+            labelusuarioooooo.Location = new Point(3, 2);
             labelusuarioooooo.Name = "labelusuarioooooo";
-            labelusuarioooooo.Size = new Size(283, 37);
+            labelusuarioooooo.Size = new Size(350, 46);
             labelusuarioooooo.TabIndex = 0;
             labelusuarioooooo.Text = "Usuarios del Sistema";
             // 
@@ -731,9 +731,9 @@
             label1.BackColor = SystemColors.ButtonHighlight;
             label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(3, 5);
+            label1.Location = new Point(3, 0);
             label1.Name = "label1";
-            label1.Size = new Size(339, 37);
+            label1.Size = new Size(422, 46);
             label1.TabIndex = 0;
             label1.Text = "Información Empresarial ";
             // 
@@ -786,9 +786,9 @@
             // 
             lblEmpresa.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblEmpresa.AutoSize = true;
-            lblEmpresa.Location = new Point(3, 46);
+            lblEmpresa.Location = new Point(3, 41);
             lblEmpresa.Name = "lblEmpresa";
-            lblEmpresa.Size = new Size(133, 15);
+            lblEmpresa.Size = new Size(170, 20);
             lblEmpresa.TabIndex = 1;
             lblEmpresa.Text = "  Nombre de la Empresa";
             // 
@@ -814,9 +814,9 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = SystemColors.Highlight;
-            label3.Location = new Point(117, 17);
+            label3.Location = new Point(117, 15);
             label3.Name = "label3";
-            label3.Size = new Size(497, 15);
+            label3.Size = new Size(633, 20);
             label3.TabIndex = 0;
             label3.Text = "Esta información aparecera en todas las facturas y documentos generados por el sistema.";
             // 
@@ -835,7 +835,7 @@
             inpEmpresa.Anchor = AnchorStyles.Top;
             inpEmpresa.Location = new Point(3, 64);
             inpEmpresa.Name = "inpEmpresa";
-            inpEmpresa.Size = new Size(844, 23);
+            inpEmpresa.Size = new Size(844, 27);
             inpEmpresa.TabIndex = 2;
             // 
             // lblDireccion
@@ -843,7 +843,7 @@
             lblDireccion.AutoSize = true;
             lblDireccion.Location = new Point(3, 99);
             lblDireccion.Name = "lblDireccion";
-            lblDireccion.Size = new Size(63, 15);
+            lblDireccion.Size = new Size(80, 20);
             lblDireccion.TabIndex = 3;
             lblDireccion.Text = "  Dirección";
             // 
@@ -852,7 +852,7 @@
             inpEmail.Anchor = AnchorStyles.Top;
             inpEmail.Location = new Point(3, 259);
             inpEmail.Name = "inpEmail";
-            inpEmail.Size = new Size(844, 23);
+            inpEmail.Size = new Size(844, 27);
             inpEmail.TabIndex = 9;
             // 
             // inpDireccion
@@ -860,7 +860,7 @@
             inpDireccion.Anchor = AnchorStyles.Top;
             inpDireccion.Location = new Point(3, 131);
             inpDireccion.Name = "inpDireccion";
-            inpDireccion.Size = new Size(844, 23);
+            inpDireccion.Size = new Size(844, 27);
             inpDireccion.TabIndex = 4;
             // 
             // lblEmail
@@ -868,7 +868,7 @@
             lblEmail.AutoSize = true;
             lblEmail.Location = new Point(3, 226);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(111, 15);
+            lblEmail.Size = new Size(140, 20);
             lblEmail.TabIndex = 8;
             lblEmail.Text = "  Correo electrónico";
             // 
@@ -894,7 +894,7 @@
             // 
             inpFax.Location = new Point(425, 30);
             inpFax.Name = "inpFax";
-            inpFax.Size = new Size(416, 23);
+            inpFax.Size = new Size(416, 27);
             inpFax.TabIndex = 13;
             // 
             // lblTelefono
@@ -902,7 +902,7 @@
             lblTelefono.AutoSize = true;
             lblTelefono.Location = new Point(3, 0);
             lblTelefono.Name = "lblTelefono";
-            lblTelefono.Size = new Size(59, 15);
+            lblTelefono.Size = new Size(75, 20);
             lblTelefono.TabIndex = 5;
             lblTelefono.Text = "  Teléfono";
             // 
@@ -911,7 +911,7 @@
             inpTelefono.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             inpTelefono.Location = new Point(3, 30);
             inpTelefono.Name = "inpTelefono";
-            inpTelefono.Size = new Size(416, 23);
+            inpTelefono.Size = new Size(416, 27);
             inpTelefono.TabIndex = 6;
             // 
             // lblFax
@@ -919,7 +919,7 @@
             lblFax.AutoSize = true;
             lblFax.Location = new Point(425, 0);
             lblFax.Name = "lblFax";
-            lblFax.Size = new Size(27, 15);
+            lblFax.Size = new Size(34, 20);
             lblFax.TabIndex = 7;
             lblFax.Text = " Fax";
             // 
@@ -1008,9 +1008,9 @@
             label2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(3, 10);
+            label2.Location = new Point(3, 1);
             label2.Name = "label2";
-            label2.Size = new Size(281, 37);
+            label2.Size = new Size(347, 46);
             label2.TabIndex = 2;
             label2.Text = "Unidades de Medida";
             // 
@@ -1018,9 +1018,9 @@
             // 
             tableLayoutPanel16.ColumnCount = 1;
             tableLayoutPanel16.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel16.Controls.Add(txtDesUni, 0, 3);
+            tableLayoutPanel16.Controls.Add(inpDesUni, 0, 3);
             tableLayoutPanel16.Controls.Add(lblDesUni, 0, 2);
-            tableLayoutPanel16.Controls.Add(txtCodUni, 0, 1);
+            tableLayoutPanel16.Controls.Add(inpCodUni, 0, 1);
             tableLayoutPanel16.Controls.Add(lblCodUni, 0, 0);
             tableLayoutPanel16.Controls.Add(tableLayoutPanel18, 0, 5);
             tableLayoutPanel16.Controls.Add(tableLayoutPanel19, 0, 6);
@@ -1041,39 +1041,39 @@
             tableLayoutPanel16.Size = new Size(850, 621);
             tableLayoutPanel16.TabIndex = 2;
             // 
-            // txtDesUni
+            // inpDesUni
             // 
-            txtDesUni.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtDesUni.Location = new Point(3, 131);
-            txtDesUni.Name = "txtDesUni";
-            txtDesUni.Size = new Size(844, 23);
-            txtDesUni.TabIndex = 15;
+            inpDesUni.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            inpDesUni.Location = new Point(3, 131);
+            inpDesUni.Name = "inpDesUni";
+            inpDesUni.Size = new Size(844, 27);
+            inpDesUni.TabIndex = 15;
             // 
             // lblDesUni
             // 
             lblDesUni.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblDesUni.AutoSize = true;
-            lblDesUni.Location = new Point(3, 113);
+            lblDesUni.Location = new Point(3, 108);
             lblDesUni.Name = "lblDesUni";
-            lblDesUni.Size = new Size(69, 15);
+            lblDesUni.Size = new Size(87, 20);
             lblDesUni.TabIndex = 14;
             lblDesUni.Text = "Descripción";
             // 
-            // txtCodUni
+            // inpCodUni
             // 
-            txtCodUni.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            txtCodUni.Location = new Point(3, 73);
-            txtCodUni.Name = "txtCodUni";
-            txtCodUni.Size = new Size(844, 23);
-            txtCodUni.TabIndex = 13;
+            inpCodUni.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            inpCodUni.Location = new Point(3, 69);
+            inpCodUni.Name = "inpCodUni";
+            inpCodUni.Size = new Size(844, 27);
+            inpCodUni.TabIndex = 13;
             // 
             // lblCodUni
             // 
             lblCodUni.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblCodUni.AutoSize = true;
-            lblCodUni.Location = new Point(3, 47);
+            lblCodUni.Location = new Point(3, 42);
             lblCodUni.Name = "lblCodUni";
-            lblCodUni.Size = new Size(46, 15);
+            lblCodUni.Size = new Size(58, 20);
             lblCodUni.TabIndex = 12;
             lblCodUni.Text = "Código";
             // 
@@ -1182,7 +1182,7 @@
             dgvUnidad.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvUnidad.ColumnHeadersHeight = 35;
             dgvUnidad.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvUnidad.Columns.AddRange(new DataGridViewColumn[] { ColCodigo, ColDescripcion, ColAcción });
+            dgvUnidad.Columns.AddRange(new DataGridViewColumn[] { colCodigoUnidad, colDescripcionUnidad, colAccion });
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = Color.White;
             dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
@@ -1211,31 +1211,30 @@
             dgvUnidad.ShowEditingIcon = false;
             dgvUnidad.Size = new Size(844, 314);
             dgvUnidad.TabIndex = 16;
-            dgvUnidad.CellContentClick += dgvUnidad_CellContentClick;
             // 
-            // ColCodigo
+            // colCodigoUnidad
             // 
-            ColCodigo.HeaderText = "Código";
-            ColCodigo.MinimumWidth = 6;
-            ColCodigo.Name = "ColCodigo";
-            ColCodigo.ReadOnly = true;
-            ColCodigo.Text = "Código";
+            colCodigoUnidad.HeaderText = "Código";
+            colCodigoUnidad.MinimumWidth = 6;
+            colCodigoUnidad.Name = "colCodigoUnidad";
+            colCodigoUnidad.ReadOnly = true;
             // 
-            // ColDescripcion
+            // colDescripcionUnidad
             // 
-            ColDescripcion.HeaderText = "Descripción";
-            ColDescripcion.MinimumWidth = 6;
-            ColDescripcion.Name = "ColDescripcion";
-            ColDescripcion.ReadOnly = true;
-            ColDescripcion.Text = "Descripción";
+            colDescripcionUnidad.HeaderText = "Descripción";
+            colDescripcionUnidad.MinimumWidth = 6;
+            colDescripcionUnidad.Name = "colDescripcionUnidad";
+            colDescripcionUnidad.ReadOnly = true;
             // 
-            // ColAcción
+            // colAccion
             // 
-            ColAcción.HeaderText = "Acción";
-            ColAcción.MinimumWidth = 6;
-            ColAcción.Name = "ColAcción";
-            ColAcción.ReadOnly = true;
-            ColAcción.Text = "Eliminar";
+            colAccion.FlatStyle = FlatStyle.Flat;
+            colAccion.HeaderText = "Acción";
+            colAccion.MinimumWidth = 6;
+            colAccion.Name = "colAccion";
+            colAccion.ReadOnly = true;
+            colAccion.Text = "Eliminar";
+            colAccion.UseColumnTextForButtonValue = true;
             // 
             // MenuConfiguracion
             // 
@@ -1336,9 +1335,9 @@
         private TableLayoutPanel tableLayoutPanel16;
         private Label label2;
         private Label lblCodUni;
-        private TextBox txtCodUni;
+        private TextBox inpCodUni;
         private Label lblDesUni;
-        private TextBox txtDesUni;
+        private TextBox inpDesUni;
         private TableLayoutPanel tableLayoutPanel18;
         private Button button3;
         private Button button7;
@@ -1375,8 +1374,8 @@
         private DataGridViewTextBoxColumn colNombre;
         private DataGridViewTextBoxColumn colEstado;
         private DataGridViewButtonColumn colEliminar;
-        private DataGridViewButtonColumn ColCodigo;
-        private DataGridViewButtonColumn ColDescripcion;
-        private DataGridViewButtonColumn ColAcción;
+        private DataGridViewTextBoxColumn colCodigoUnidad;
+        private DataGridViewTextBoxColumn colDescripcionUnidad;
+        private DataGridViewButtonColumn colAccion;
     }
 }
