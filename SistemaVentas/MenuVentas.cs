@@ -16,7 +16,7 @@ namespace SistemaVentas
         private MenuPrincipal? formMenuPrincipal;
         private List<Articulo> productosDisponibles;
         private float totalVenta = 0f;
-        private Resizer resizer = new Resizer();
+        private UtilidadesUI resizer = new UtilidadesUI();
 
         private const int ButtonRadius = 12;
         
@@ -42,43 +42,12 @@ namespace SistemaVentas
             ActualizarTotal();
 
             // Aplicar bordes redondeados al formulario y a sus controles (excepto TextBox)
-            ApplyRoundedExceptTextBoxes(this, ControlRadius);
+            UtilidadesUI.ApplyRoundedExceptTextBoxes(this, ControlRadius);
         }
 
         private void MenuVentas_Resize(object? sender, EventArgs e)
         {
             resizer.ResizeControls(this);
-        }
-
-        // Reemplaza la lógica anterior para que SOLO aplique RedondearBordes a Paneles y Botones.
-        // Mantén una única API pública que recorre el árbol de controles y aplica el redondeo
-        // únicamente cuando el control sea Panel o Button.
-        private void ApplyRoundedExceptTextBoxes(Control parent, int radius)
-        {
-            ApplyRoundedToPanelsAndButtons(parent, radius);
-        }
-
-        private void ApplyRoundedToPanelsAndButtons(Control parent, int radius)
-        {
-            if (parent == null) return;
-
-            foreach (Control c in parent.Controls)
-            {
-                // Solo aplicar a Panel y Button
-                if (c is Panel)
-                {
-                    RoundedControlHelper.RedondearBordes(c, radius);
-                }
-                else if (c is Button)
-                {
-                    RoundedControlHelper.RedondearBordes(c, ButtonRadius);
-                }
-
-                if (c.HasChildren)
-                {
-                    ApplyRoundedToPanelsAndButtons(c, radius);
-                }
-            }
         }
 
         // ============================================

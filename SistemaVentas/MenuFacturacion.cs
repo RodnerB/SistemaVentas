@@ -42,28 +42,8 @@ namespace SistemaVentas
 
             // Aplicar apariencia local: solo Panels y Buttons redondeados
             // y activar ajuste automático del contenido a cualquier pantalla.
-            ApplyRoundedExceptTextBoxes(this, 12);
+            UtilidadesUI.ApplyRoundedExceptTextBoxes(this, 12);
 
-        }
-
-        private void ApplyRoundedExceptTextBoxes(Control parent, int radius)
-        {
-            if (parent == null) return;
-
-            foreach (Control c in parent.Controls)
-            {
-                if (c is not TextBox)
-                {
-                    // No redondear TextBox
-                    // Aplicar el redondeo usando la clase existente
-                    RoundedControlHelper.RedondearBordes(c, radius);
-                }
-
-                if (c.HasChildren)
-                {
-                    ApplyRoundedExceptTextBoxes(c, radius);
-                }
-            }
         }
 
         private void GenerarNumeroFactura()

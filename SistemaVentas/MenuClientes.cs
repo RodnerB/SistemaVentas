@@ -6,7 +6,7 @@ namespace SistemaVentas
 {
     public partial class MenuClientes : Form
     {
-        private readonly Resizer resizer = new Resizer();
+        private readonly UtilidadesUI resizer = new UtilidadesUI();
 
         Cliente? cliente = new Cliente();
         bool existeElCliente = false;
@@ -30,7 +30,7 @@ namespace SistemaVentas
             this.StartPosition = FormStartPosition.CenterScreen;
 
             // Aplicar redondeo a todos los controles excepto los TextBox
-            ApplyRoundedExceptTextBoxes(this, 12);
+            UtilidadesUI.ApplyRoundedExceptTextBoxes(this, 12);
 
             // Asignar handler KeyDown a todos los TextBox (recursivo para controles anidados)
             AttachKeyDownToTextBoxes(this);
@@ -42,27 +42,6 @@ namespace SistemaVentas
         private void MenuClientes_Resize(object? sender, EventArgs e)
         {
             resizer.ResizeControls(this);
-        }
-
-        // Recorre recursivamente el árbol de controles y aplica el helper salvo a los TextBox
-        private void ApplyRoundedExceptTextBoxes(Control parent, int radius)
-        {
-            if (parent == null) return;
-
-            foreach (Control c in parent.Controls)
-            {
-                if (c is not TextBox)
-                {
-                    // No redondear TextBox
-                    // Aplicar el redondeo usando la clase existente
-                    RoundedControlHelper.RedondearBordes(c, radius);
-                }
-
-                if (c.HasChildren)
-                {
-                    ApplyRoundedExceptTextBoxes(c, radius);
-                }
-            }
         }
 
         // Añadido: asigna el evento KeyDown a todos los TextBox, incluso dentro de contenedores
