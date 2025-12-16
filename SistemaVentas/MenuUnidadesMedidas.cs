@@ -17,7 +17,7 @@ namespace SistemaVentas
         UnidadesMedida? unidadesMedida = new UnidadesMedida();
         bool existeUnidad = false;
         private MenuPrincipal? formMenuPrincipal; // referencia al formulario principal
-        private readonly Resizer resizer = new Resizer();
+        private readonly UtilidadesUI resizer = new UtilidadesUI();
 
         // Constructor sin parámetros (necesario para el diseñador)
         public MenuUnidadesMedidas()
@@ -54,7 +54,7 @@ namespace SistemaVentas
                 this.Resize += MenuUnidadesMedidas_Resize;
 
                 // Aplicar redondeo a hijos (no TextBox ni al propio Form)
-                try { ApplyRoundedExceptTextBoxes(this, 12); } catch { }
+                try { UtilidadesUI.ApplyRoundedExceptTextBoxes(this, 12); } catch { }
             }
         }
 
@@ -325,44 +325,6 @@ namespace SistemaVentas
             {
                 MessageBox.Show("Error en la base de datos: " + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        // Aplica RoundedControlHelper a todos los controles hijos excepto TextBox y sin tocar el propio Form.
-        private void ApplyRoundedExceptTextBoxes(Control parent, int radius)
-        {
-            if (parent == null) return;
-
-            // Si el parent es el formulario raíz, no aplicamos al formulario; sí a sus hijos.
-            if (parent is Form)
-            {
-                foreach (Control c in parent.Controls)
-                {
-                    if (c is not TextBox)
-                    {
-                        try { RoundedControlHelper.RedondearBordes(c, radius); }
-                        catch { /* ignorar errores */ }
-                    }
-                    if (c.HasChildren) ApplyRoundedExceptTextBoxes(c, radius);
-                }
-                return;
-            }
-
-            // Para controles que no son el Form, aplicar normalmente (excepto TextBox)
-            if (parent is not TextBox)
-            {
-                try { RoundedControlHelper.RedondearBordes(parent, radius); }
-                catch { /* ignorar errores */ }
-            }
-
-            foreach (Control c in parent.Controls)
-            {
-                if (c is not TextBox)
-                {
-                    try { RoundedControlHelper.RedondearBordes(c, radius); }
-                    catch { /* ignorar errores */ }
-                }
-                if (c.HasChildren) ApplyRoundedExceptTextBoxes(c, radius);
             }
         }
 

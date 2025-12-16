@@ -18,7 +18,7 @@ namespace SistemaVentas
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterParent;
             this.ShowInTaskbar = false;
-            RoundedControlHelper.RedondearTodosLosPaneles(this, 15);
+            UtilidadesUI.RedondearTodosLosPaneles(this, 15);
             this.usuario = usuario;
         }
         private void btnConfirmar_Click(object sender, EventArgs e)

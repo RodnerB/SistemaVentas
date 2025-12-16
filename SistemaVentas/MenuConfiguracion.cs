@@ -7,7 +7,7 @@ namespace SistemaVentas
 {
     public partial class MenuConfiguracion : Form
     {
-        private readonly Resizer resizer = new Resizer();
+        private readonly UtilidadesUI resizer = new UtilidadesUI();
         private MenuPrincipal? formMenuPrincipal; // Permite valores null
 
         public MenuConfiguracion()
@@ -22,7 +22,7 @@ namespace SistemaVentas
                 this.StartPosition = FormStartPosition.CenterScreen;
 
                 // Aplicar redondeo a todos los controles excepto los TextBox
-                ApplyRoundedExceptTextBoxes(this, 12);
+                UtilidadesUI.ApplyRoundedExceptTextBoxes(this, 12);
             }
         }
 
@@ -39,7 +39,7 @@ namespace SistemaVentas
                 this.StartPosition = FormStartPosition.CenterScreen;
 
                 // Aplicar redondeo a todos los controles excepto los TextBox
-                ApplyRoundedExceptTextBoxes(this, 12);
+                UtilidadesUI.ApplyRoundedExceptTextBoxes(this, 12);
             }
 
             this.formMenuPrincipal = MenuPrincipal; // Guarda la referencia del formulario principal que abrió este formulario
@@ -49,27 +49,6 @@ namespace SistemaVentas
         private void MenuConfiguracion_Resize(object? sender, EventArgs e)
         {
             resizer.ResizeControls(this);
-        }
-
-        // Recorre recursivamente el árbol de controles y aplica el helper salvo a los TextBox
-        private void ApplyRoundedExceptTextBoxes(Control parent, int radius)
-        {
-            if (parent == null) return;
-
-            foreach (Control c in parent.Controls)
-            {
-                if (c is not TextBox)
-                {
-                    // No redondear TextBox
-                    // Aplicar el redondeo usando la clase existente
-                    RoundedControlHelper.RedondearBordes(c, radius);
-                }
-
-                if (c.HasChildren)
-                {
-                    ApplyRoundedExceptTextBoxes(c, radius);
-                }
-            }
         }
 
         // Evento del botón para volver al menú principal

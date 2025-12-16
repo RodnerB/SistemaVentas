@@ -13,7 +13,7 @@ namespace SistemaVentas
 {
     public partial class MenuPrincipal : Form
     {
-        private readonly Resizer resizer = new Resizer();
+        private readonly UtilidadesUI resizer = new UtilidadesUI();
         private readonly MenuLogin parentLogin;
         private Usuario usuario;
 
@@ -36,10 +36,9 @@ namespace SistemaVentas
         private void MenuPrincipal_Load(object? sender, EventArgs e)
         {
 
-            RoundedControlHelper.RedondearTodosLosPaneles(this, 50);
-            RoundedControlHelper.RedondearBordes(btnCerrarSesion, 12);
-
-            RoundedControlHelper.RedondearBordes(picLogo, 15);
+            UtilidadesUI.RedondearTodosLosPaneles(this, 50);
+            UtilidadesUI.RedondearBordes(btnCerrarSesion, 12);
+            UtilidadesUI.RedondearBordes(picLogo, 15);
 
             btnCerrarSesion.TabStop = false;
             btnCerrarSesion.FlatAppearance.BorderSize = 0;

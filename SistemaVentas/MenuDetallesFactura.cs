@@ -10,7 +10,7 @@ namespace SistemaVentas
     public partial class MenuDetallesFactura : Form
     {
         private Form formMenuPrincipal;
-        private readonly Resizer resizer = new Resizer();
+        private readonly UtilidadesUI resizer = new UtilidadesUI();
         private TextBox inpNumeroFactura;
 
         public MenuDetallesFactura(int numFactura)
@@ -18,24 +18,8 @@ namespace SistemaVentas
             InitializeComponent();
 
 
-            ApplyRoundedExceptTextBoxes(this, 12);
+            UtilidadesUI.ApplyRoundedExceptTextBoxes(this, 12);
             AttachKeyDownToTextBoxes(this);
-        }
-
-        // Método para aplicar bordes redondeados excepto en los TextBox
-        private void ApplyRoundedExceptTextBoxes(Control parent, int radius)
-        {
-            foreach (Control control in parent.Controls)
-            {
-                if (control is TextBox)
-                    continue;
-
-                RoundedControlHelper.RedondearBordes(control, radius);
-
-                // Llamada recursiva para controles hijos
-                if (control.HasChildren)
-                    ApplyRoundedExceptTextBoxes(control, radius);
-            }
         }
 
         private void AttachKeyDownToTextBoxes(Control parent)

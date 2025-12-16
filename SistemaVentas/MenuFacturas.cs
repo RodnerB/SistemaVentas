@@ -9,7 +9,7 @@ namespace SistemaVentas
 {
     public partial class MenuFacturas : Form
     {
-        private Resizer resizer = new Resizer();
+        private UtilidadesUI resizer = new UtilidadesUI();
 
         MenuPrincipal formMenuPrincipal; // variable de referencia al formulario principal
 
@@ -54,7 +54,7 @@ namespace SistemaVentas
             AttachKeyDownToTextBoxes(this);
 
             // Aplicar redondeo a todos los controles excepto los TextBox
-            ApplyRoundedExceptTextBoxes(this, 12);
+            UtilidadesUI.ApplyRoundedExceptTextBoxes(this, 12);
 
             // Evitar subrayado azul en el DateTimePicker al recibir foco
             var dt = this.Controls.Find("inpDateTime", true).FirstOrDefault() as DateTimePicker;
@@ -105,7 +105,7 @@ namespace SistemaVentas
         private void MenuFacturas_Shown(object? sender, EventArgs e)
         {
             // Poner foco en el número de factura al mostrar (si existe)
-            var txtNum = this.Controls.Find("inpNumFactura", true).FirstOrDefault() as TextBox;
+            var txtNum = inpNumeroFactura;
             txtNum?.Focus();
             ultimoControlConFoco = txtNum;
         }
@@ -333,69 +333,6 @@ namespace SistemaVentas
             if (objetivo is not null)
             {
                 this.BeginInvoke(() => objetivo.Focus());
-            }
-        }
-
-        // Aplica RoundedControlHelper a todos los controles excepto TextBox
-        // CORRECCIÓN: nunca aplicar el helper al propio Form (evita modificar this.Region)
-        private void ApplyRoundedExceptTextBoxes(Control parent, int radius)
-        {
-            if (parent == null) return;
-
-            // Si el control es el formulario raíz, NO aplicamos RedondearBordes sobre él.
-            // Solo procesamos sus hijos.
-            if (parent is Form)
-            {
-                foreach (Control c in parent.Controls)
-                {
-                    if (c is not TextBox)
-                    {
-                        try
-                        {
-                            RoundedControlHelper.RedondearBordes(c, radius);
-                        }
-                        catch
-                        {
-                            // Ignorar errores para no romper el formulario
-                        }
-                    }
-
-                    if (c.HasChildren)
-                        ApplyRoundedExceptTextBoxes(c, radius);
-                }
-
-                return;
-            }
-
-            // Para controles que no son el Form, aplicar normalmente (excepto TextBox)
-            if (parent is not TextBox)
-            {
-                try
-                {
-                    RoundedControlHelper.RedondearBordes(parent, radius);
-                }
-                catch
-                {
-                    // Ignorar errores del helper para no romper el formulario
-                }
-            }
-
-            foreach (Control c in parent.Controls)
-            {
-                if (c is not TextBox)
-                {
-                    try
-                    {
-                        RoundedControlHelper.RedondearBordes(c, radius);
-                    }
-                    catch
-                    {
-                        // Ignorar por seguridad
-                    }
-                }
-
-                if (c.HasChildren)
-                    ApplyRoundedExceptTextBoxes(c, radius);
             }
         }
     }

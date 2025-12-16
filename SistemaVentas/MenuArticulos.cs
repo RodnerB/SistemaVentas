@@ -19,7 +19,7 @@ namespace SistemaVentas
         Articulo? articulo = new Articulo();
         bool existeElArticulo = false;
         MenuPrincipal? formMenuPrincipal; // ahora nullable para soportar diseñador
-        private readonly Resizer resizer = new Resizer();
+        private readonly UtilidadesUI resizer = new UtilidadesUI();
 
         // Constructor con referencia al formulario principal (opcional para el diseñador)
         public MenuArticulos(MenuPrincipal? MenuPrincipal = null)
@@ -56,7 +56,7 @@ namespace SistemaVentas
                 this.Shown += Form3_Shown;
 
                 // Aplicar redondeos pero NUNCA al formulario (NO modificar this.Region)
-                ApplyRoundedExceptTextBoxes(this, 12);
+                UtilidadesUI.ApplyRoundedExceptTextBoxes(this, 12);
                 AttachKeyDownToTextBoxes(this);
             }
             else
@@ -75,49 +75,6 @@ namespace SistemaVentas
         {
             // Ajustar el nombre del control si el primer textbox tiene otro nombre
             inpCodArt?.Focus();
-        }
-
-        private void ApplyRoundedExceptTextBoxes(Control parent, int radius)
-        {
-            if (parent == null) return;
-
-            // Si es el formulario raíz, NO aplicar RoundedControlHelper sobre él.
-            // Solo procesamos sus hijos.
-            if (parent is Form)
-            {
-                foreach (Control c in parent.Controls)
-                {
-                    // Aplicar el helper solo a controles que no sean TextBox
-                    if (c is not TextBox)
-                    {
-                        RoundedControlHelper.RedondearBordes(c, radius);
-                    }
-
-                    if (c.HasChildren)
-                        ApplyRoundedExceptTextBoxes(c, radius);
-                }
-
-                return;
-            }
-
-            // Para controles que no son el Form, aplicar normalmente (excepto TextBox)
-            if (parent is not TextBox)
-            {
-
-                RoundedControlHelper.RedondearBordes(parent, radius);
-
-            }
-
-            foreach (Control c in parent.Controls)
-            {
-                if (c is not TextBox)
-                {
-                    RoundedControlHelper.RedondearBordes(c, radius);
-                }
-
-                if (c.HasChildren)
-                    ApplyRoundedExceptTextBoxes(c, radius);
-            }
         }
 
         // Asigna el evento KeyDown a todos los TextBox, incluso dentro de contenedores

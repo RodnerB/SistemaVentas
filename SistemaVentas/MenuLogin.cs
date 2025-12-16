@@ -13,7 +13,7 @@ namespace SistemaVentas
 {
     public partial class MenuLogin : Form
     {
-        private readonly Resizer resizer = new Resizer();
+        private readonly UtilidadesUI resizer = new UtilidadesUI();
         Usuario usuario;
         // Radio distinto para botones
         private const int ButtonRadius = 12;
@@ -36,7 +36,7 @@ namespace SistemaVentas
                 // Aplicar redondeo cuando el formulario ya esté mostrado y los controles tengan su tamaño final
                 this.Shown += (s, e) =>
                 {
-                    ApplyRoundedExceptTextBoxes(this, 50);
+                    UtilidadesUI.ApplyRoundedExceptTextBoxes(this, 50);
                 };
             }
         }
@@ -46,53 +46,6 @@ namespace SistemaVentas
             resizer.ResizeControls(this);
         }
 
-        private void ApplyRoundedExceptTextBoxes(Control parent, int radius)
-        {
-            if (parent == null) return;
-
-            // Si el parent es el Form, NO aplicamos al propio Form; procesamos solo sus hijos.
-            if (parent is Form)
-            {
-                foreach (Control c in parent.Controls)
-                {
-                    if (c is not TextBox)
-                    {
-                        // Si es botón, usar radio específico para botones
-                        if (c is Button)
-                            RoundedControlHelper.RedondearBordes(c, ButtonRadius);
-                        else
-                            RoundedControlHelper.RedondearBordes(c, radius);
-
-                    }
-                    if (c.HasChildren) ApplyRoundedExceptTextBoxes(c, radius);
-                }
-                return;
-            }
-
-            // Para controles que no son el Form, aplicar normalmente (excepto TextBox)
-            if (parent is not TextBox)
-            {
-
-                if (parent is Button)
-                    RoundedControlHelper.RedondearBordes(parent, ButtonRadius);
-                else
-                    RoundedControlHelper.RedondearBordes(parent, radius);
-            }
-
-            foreach (Control c in parent.Controls)
-            {
-                if (c is not TextBox)
-                {
-
-                    if (c is Button)
-                        RoundedControlHelper.RedondearBordes(c, ButtonRadius);
-                    else
-                        RoundedControlHelper.RedondearBordes(c, radius);
-
-                }
-                if (c.HasChildren) ApplyRoundedExceptTextBoxes(c, radius);
-            }
-        }
 
         // NUEVO: manejar Enter para cambiar de campo y después pulsar el botón
         private void Inputs_KeyDown(object? sender, KeyEventArgs e)
@@ -134,7 +87,7 @@ namespace SistemaVentas
         {
 
             // descomentar la validacion ante de entregar al profe y comentar el menu sin usuario
-            
+            /*
             if (!ValidarPassword())
             {
                 MessageBox.Show("Ete usuario no esite", "Error", MessageBoxButtons.OK);
@@ -143,8 +96,8 @@ namespace SistemaVentas
             usuario.existe = true;
             
             MenuPrincipal menuPrincipal = new MenuPrincipal(this, usuario);
-            
-            //MenuPrincipal menuPrincipal = new MenuPrincipal(this); // sin usuario pa no tener q iniciar sesion cada ve q pruebe algo
+            */
+            MenuPrincipal menuPrincipal = new MenuPrincipal(this); // sin usuario pa no tener q iniciar sesion cada ve q pruebe algo
             menuPrincipal.Show();
             this.Hide();
         }
