@@ -48,10 +48,6 @@
             tableLayoutPanel20 = new TableLayoutPanel();
             tableLayoutPanel25 = new TableLayoutPanel();
             dgvVerUsuarios = new DataGridView();
-            colUsuario = new DataGridViewTextBoxColumn();
-            colNombre = new DataGridViewTextBoxColumn();
-            colEstado = new DataGridViewTextBoxColumn();
-            colEliminar = new DataGridViewButtonColumn();
             label8 = new Label();
             tableLayoutPanel21 = new TableLayoutPanel();
             tableLayoutPanel22 = new TableLayoutPanel();
@@ -70,7 +66,7 @@
             tableLayoutPanel17 = new TableLayoutPanel();
             btnCancelarUsuario = new Button();
             btnGuardarUsuario = new Button();
-            btnBuscar = new Button();
+            btnBuscarUsuario = new Button();
             labelusuarioooooo = new Label();
             tableLayoutPanel5 = new TableLayoutPanel();
             tableLayoutPanel6 = new TableLayoutPanel();
@@ -112,6 +108,10 @@
             colCodigoUnidad = new DataGridViewTextBoxColumn();
             colDescripcionUnidad = new DataGridViewTextBoxColumn();
             colAccion = new DataGridViewButtonColumn();
+            colUsuario = new DataGridViewTextBoxColumn();
+            colNombre = new DataGridViewTextBoxColumn();
+            colEstado = new DataGridViewTextBoxColumn();
+            colEliminar = new DataGridViewButtonColumn();
             panel1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -385,36 +385,6 @@
             dgvVerUsuarios.Size = new Size(1277, 563);
             dgvVerUsuarios.TabIndex = 2;
             // 
-            // colUsuario
-            // 
-            colUsuario.HeaderText = "Usuario";
-            colUsuario.MinimumWidth = 6;
-            colUsuario.Name = "colUsuario";
-            colUsuario.ReadOnly = true;
-            // 
-            // colNombre
-            // 
-            colNombre.HeaderText = "Nombre";
-            colNombre.MinimumWidth = 6;
-            colNombre.Name = "colNombre";
-            colNombre.ReadOnly = true;
-            // 
-            // colEstado
-            // 
-            colEstado.HeaderText = "Estado";
-            colEstado.MinimumWidth = 6;
-            colEstado.Name = "colEstado";
-            colEstado.ReadOnly = true;
-            // 
-            // colEliminar
-            // 
-            colEliminar.HeaderText = "Acción";
-            colEliminar.MinimumWidth = 6;
-            colEliminar.Name = "colEliminar";
-            colEliminar.ReadOnly = true;
-            colEliminar.Text = "Eliminar";
-            colEliminar.UseColumnTextForButtonValue = true;
-            // 
             // label8
             // 
             label8.Anchor = AnchorStyles.Left;
@@ -603,7 +573,7 @@
             tableLayoutPanel17.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel17.Controls.Add(btnCancelarUsuario, 0, 2);
             tableLayoutPanel17.Controls.Add(btnGuardarUsuario, 0, 1);
-            tableLayoutPanel17.Controls.Add(btnBuscar, 0, 0);
+            tableLayoutPanel17.Controls.Add(btnBuscarUsuario, 0, 0);
             tableLayoutPanel17.Dock = DockStyle.Fill;
             tableLayoutPanel17.Location = new Point(3, 502);
             tableLayoutPanel17.Name = "tableLayoutPanel17";
@@ -650,23 +620,23 @@
             btnGuardarUsuario.Text = "Guardar Usuario";
             btnGuardarUsuario.UseVisualStyleBackColor = false;
             // 
-            // btnBuscar
+            // btnBuscarUsuario
             // 
-            btnBuscar.Anchor = AnchorStyles.None;
-            btnBuscar.BackColor = SystemColors.HotTrack;
-            btnBuscar.Cursor = Cursors.Hand;
-            btnBuscar.FlatAppearance.BorderSize = 0;
-            btnBuscar.FlatAppearance.MouseDownBackColor = Color.Silver;
-            btnBuscar.FlatAppearance.MouseOverBackColor = Color.Silver;
-            btnBuscar.FlatStyle = FlatStyle.Flat;
-            btnBuscar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnBuscar.ForeColor = SystemColors.ButtonHighlight;
-            btnBuscar.Location = new Point(3, 6);
-            btnBuscar.Name = "btnBuscar";
-            btnBuscar.Size = new Size(404, 26);
-            btnBuscar.TabIndex = 2;
-            btnBuscar.Text = "Buscar Usuario";
-            btnBuscar.UseVisualStyleBackColor = false;
+            btnBuscarUsuario.Anchor = AnchorStyles.None;
+            btnBuscarUsuario.BackColor = SystemColors.HotTrack;
+            btnBuscarUsuario.Cursor = Cursors.Hand;
+            btnBuscarUsuario.FlatAppearance.BorderSize = 0;
+            btnBuscarUsuario.FlatAppearance.MouseDownBackColor = Color.Silver;
+            btnBuscarUsuario.FlatAppearance.MouseOverBackColor = Color.Silver;
+            btnBuscarUsuario.FlatStyle = FlatStyle.Flat;
+            btnBuscarUsuario.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnBuscarUsuario.ForeColor = SystemColors.ButtonHighlight;
+            btnBuscarUsuario.Location = new Point(3, 6);
+            btnBuscarUsuario.Name = "btnBuscarUsuario";
+            btnBuscarUsuario.Size = new Size(404, 26);
+            btnBuscarUsuario.TabIndex = 2;
+            btnBuscarUsuario.Text = "Buscar Usuario";
+            btnBuscarUsuario.UseVisualStyleBackColor = false;
             // 
             // labelusuarioooooo
             // 
@@ -1236,6 +1206,37 @@
             colAccion.Text = "Eliminar";
             colAccion.UseColumnTextForButtonValue = true;
             // 
+            // colUsuario
+            // 
+            colUsuario.HeaderText = "Usuario";
+            colUsuario.MinimumWidth = 6;
+            colUsuario.Name = "colUsuario";
+            colUsuario.ReadOnly = true;
+            // 
+            // colNombre
+            // 
+            colNombre.HeaderText = "Nombre";
+            colNombre.MinimumWidth = 6;
+            colNombre.Name = "colNombre";
+            colNombre.ReadOnly = true;
+            // 
+            // colEstado
+            // 
+            colEstado.HeaderText = "Estado";
+            colEstado.MinimumWidth = 6;
+            colEstado.Name = "colEstado";
+            colEstado.ReadOnly = true;
+            // 
+            // colEliminar
+            // 
+            colEliminar.FlatStyle = FlatStyle.Flat;
+            colEliminar.HeaderText = "Acción";
+            colEliminar.MinimumWidth = 6;
+            colEliminar.Name = "colEliminar";
+            colEliminar.ReadOnly = true;
+            colEliminar.Text = "Eliminar";
+            colEliminar.UseColumnTextForButtonValue = true;
+            // 
             // MenuConfiguracion
             // 
             AutoScaleMode = AutoScaleMode.None;
@@ -1366,16 +1367,16 @@
         private TableLayoutPanel tableLayoutPanel17;
         private Button btnCancelarUsuario;
         private Button btnGuardarUsuario;
-        private Button btnBuscar;
+        private Button btnBuscarUsuario;
         private Label labelusuarioooooo;
         private Label label11;
         private DataGridViewButtonColumn ColAcciones;
+        private DataGridViewTextBoxColumn colCodigoUnidad;
+        private DataGridViewTextBoxColumn colDescripcionUnidad;
+        private DataGridViewButtonColumn colAccion;
         private DataGridViewTextBoxColumn colUsuario;
         private DataGridViewTextBoxColumn colNombre;
         private DataGridViewTextBoxColumn colEstado;
         private DataGridViewButtonColumn colEliminar;
-        private DataGridViewTextBoxColumn colCodigoUnidad;
-        private DataGridViewTextBoxColumn colDescripcionUnidad;
-        private DataGridViewButtonColumn colAccion;
     }
 }
