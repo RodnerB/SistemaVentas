@@ -8,15 +8,15 @@ namespace SistemaVentas
     {
         /* Parametros obligatorios */
         // inicializado para evitar nullables en el constructor vacio, estos seran llenados obligatoriamente
-        [Requerido]
+        
         public string CodigoCliente { get; set; } = string.Empty;
-        [Requerido]
+        
         public string NombreCliente { get; set; } = string.Empty;
-        [Requerido]
+        
         public string DireccionCliente { get; set; } = string.Empty;
-        [Requerido]
+        
         public string CiudadCliente { get; set; } = string.Empty;
-        [Requerido]
+        
         public string TelefonoCliente { get; set; } = string.Empty;
 
         /* Parametros opcionales */
@@ -26,9 +26,9 @@ namespace SistemaVentas
         public string ObservacionesCliente { get; set; } = string.Empty;
         // Aun parametros opcionales, pero se valida que estos no contengan
         // un valor negativo
-        [Requerido]
+
         public float LimiteCreditoCliente { get; set; } = 0f;
-        [Requerido]
+
         public float BalanceActualCliente { get; set; } = 0f;
 
         // Estado para determinar si se debe crear o actualizar el cliente

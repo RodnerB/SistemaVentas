@@ -627,6 +627,7 @@
             txtExiMax.Name = "txtExiMax";
             txtExiMax.Size = new Size(101, 23);
             txtExiMax.TabIndex = 11;
+            txtExiMax.KeyPress += txtExiMax_KeyPress;
             // 
             // txtExiMin
             // 
@@ -635,6 +636,7 @@
             txtExiMin.Name = "txtExiMin";
             txtExiMin.Size = new Size(101, 23);
             txtExiMin.TabIndex = 14;
+            txtExiMin.KeyPress += txtExiMin_KeyPress;
             // 
             // lblExiAct
             // 
@@ -652,6 +654,7 @@
             txtExiAct.Name = "txtExiAct";
             txtExiAct.Size = new Size(101, 23);
             txtExiAct.TabIndex = 13;
+            txtExiAct.KeyPress += txtExiAct_KeyPress;
             // 
             // tableLayoutPanel8
             // 
@@ -681,6 +684,7 @@
             txtCosArt.Name = "txtCosArt";
             txtCosArt.Size = new Size(315, 23);
             txtCosArt.TabIndex = 16;
+            txtCosArt.KeyPress += txtCosArt_KeyPress;
             // 
             // txtPreArt
             // 
@@ -689,6 +693,7 @@
             txtPreArt.Name = "txtPreArt";
             txtPreArt.Size = new Size(315, 23);
             txtPreArt.TabIndex = 17;
+            txtPreArt.KeyPress += txtPreArt_KeyPress;
             // 
             // lblArticulos
             // 

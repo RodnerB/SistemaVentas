@@ -157,7 +157,7 @@ namespace SistemaVentas
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarClientes(); // Recarga la lista de clientes después de agregar uno
 
-                    // Estado post-inserción
+                    
                     existeElCliente = false;
                     btnAgregarCliente.Enabled = false;
                     return true;

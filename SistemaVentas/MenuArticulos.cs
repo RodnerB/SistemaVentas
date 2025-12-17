@@ -21,7 +21,8 @@ namespace SistemaVentas
         MenuPrincipal? formMenuPrincipal; // ahora nullable para soportar diseñador
         private readonly UtilidadesUI resizer = new UtilidadesUI();
 
-        // Constructor con referencia al formulario principal (opcional para el diseñador)
+        private Control? ultimoControlConFoco;
+        
         public MenuArticulos(MenuPrincipal? MenuPrincipal = null)
         {
             InitializeComponent();
@@ -75,6 +76,19 @@ namespace SistemaVentas
         {
             // Ajustar el nombre del control si el primer textbox tiene otro nombre
             inpCodArt?.Focus();
+            ultimoControlConFoco = inpCodArt;
+        }
+
+        private void MostrarAdvertenciasCampoVacio(string mensaje, Control? controlFoco = null)
+        {
+            MessageBox.Show(mensaje, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            Control? objetivo = controlFoco ?? ultimoControlConFoco;
+
+            if (objetivo is not null)
+            {
+                this.BeginInvoke(() => objetivo.Focus());
+            }
         }
 
         // Asigna el evento KeyDown a todos los TextBox, incluso dentro de contenedores
@@ -89,6 +103,7 @@ namespace SistemaVentas
 #pragma warning disable CS8622
                     txt.KeyDown += EventoMoverConEnter;
 #pragma warning restore CS8622
+                    txt.Enter += (s, e) => { ultimoControlConFoco = txt; };
                 }
 
                 if (c.HasChildren)
@@ -316,7 +331,11 @@ namespace SistemaVentas
 
         private void btnBuscarArt_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(inpCodArt.Text)) return;
+            if (string.IsNullOrWhiteSpace(inpCodArt.Text))
+            {
+                MostrarAdvertenciasCampoVacio("Debe introducir el código del artículo a buscar.", inpCodArt);
+                return;
+            }
 
             articulo = BuscarArticulo(inpCodArt.Text);
             if (articulo != null)
@@ -348,7 +367,33 @@ namespace SistemaVentas
 
             // Mover el cursor automáticamente a la segunda casilla (descripción)
             txtDesArt?.Focus();
+            ultimoControlConFoco = txtDesArt;
         }
 
+        //  métodos KeyPress para validar solo números
+        private void txtExiMin_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            Validador.validarSoloNumeros(sender, e);
+        }
+
+        private void txtExiMax_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            Validador.validarSoloNumeros(sender, e);
+        }
+
+        private void txtExiAct_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            Validador.validarSoloNumeros(sender, e);
+        }
+
+        private void txtPreArt_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            Validador.validarSoloNumeros(sender, e);
+        }
+
+        private void txtCosArt_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            Validador.validarSoloNumeros(sender, e);
+        }
     }
 }
