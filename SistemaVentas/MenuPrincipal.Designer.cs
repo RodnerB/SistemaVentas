@@ -725,9 +725,9 @@
             lblFacturacionTitulo.ForeColor = Color.Black;
             lblFacturacionTitulo.Location = new Point(3, 5);
             lblFacturacionTitulo.Name = "lblFacturacionTitulo";
-            lblFacturacionTitulo.Size = new Size(205, 46);
+            lblFacturacionTitulo.Size = new Size(152, 46);
             lblFacturacionTitulo.TabIndex = 0;
-            lblFacturacionTitulo.Text = "Facturación";
+            lblFacturacionTitulo.Text = "Facturas";
             lblFacturacionTitulo.Click += btnFacturacion_Click;
             // 
             // lblFacturaciónSub
