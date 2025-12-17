@@ -19,7 +19,7 @@ namespace SistemaVentas.Properties {
     // a través de una herramienta como ResGen o Visual Studio.
     // Para agregar o quitar un miembro, edite el archivo .ResX y, a continuación, vuelva a ejecutar ResGen
     // con la opción /str o recompile su proyecto de VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -264,6 +264,46 @@ namespace SistemaVentas.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap gearloading_87549__2_ {
+            get {
+                object obj = ResourceManager.GetObject("gearloading_87549 (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gearloading_87549__3_ {
+            get {
+                object obj = ResourceManager.GetObject("gearloading_87549 (3)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gearloading_87549__3_1 {
+            get {
+                object obj = ResourceManager.GetObject("gearloading_87549 (3)1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gearloading_87549__3_2 {
+            get {
+                object obj = ResourceManager.GetObject("gearloading_87549 (3)2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap hard_drives_icon_173095 {
             get {
                 object obj = ResourceManager.GetObject("hard_drives_icon_173095", resourceCulture);
@@ -357,6 +397,76 @@ namespace SistemaVentas.Properties {
         internal static System.Drawing.Bitmap invoice_icon_213786__4_ {
             get {
                 object obj = ResourceManager.GetObject("invoice_icon_213786 (4)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap money_cash_currency_finance_bank_icon_192201__1_ {
+            get {
+                object obj = ResourceManager.GetObject("money_cash_currency_finance_bank_icon_192201 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap money_cash_currency_finance_bank_icon_192201__1_1 {
+            get {
+                object obj = ResourceManager.GetObject("money_cash_currency_finance_bank_icon_192201 (1)1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap money_cash_currency_finance_bank_icon_192201__2_ {
+            get {
+                object obj = ResourceManager.GetObject("money_cash_currency_finance_bank_icon_192201 (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap money_cash_currency_finance_bank_icon_192201__2_1 {
+            get {
+                object obj = ResourceManager.GetObject("money_cash_currency_finance_bank_icon_192201 (2)1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap money_cash_currency_finance_bank_icon_192201__2_2 {
+            get {
+                object obj = ResourceManager.GetObject("money_cash_currency_finance_bank_icon_192201 (2)2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap money_cash_currency_finance_bank_icon_192201__2_3 {
+            get {
+                object obj = ResourceManager.GetObject("money_cash_currency_finance_bank_icon_192201 (2)3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap money_cash_currency_finance_bank_icon_192201__2_4 {
+            get {
+                object obj = ResourceManager.GetObject("money_cash_currency_finance_bank_icon_192201 (2)4", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

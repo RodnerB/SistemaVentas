@@ -280,7 +280,7 @@
             panel3.Padding = new Padding(10);
             panel3.Size = new Size(486, 196);
             panel3.TabIndex = 12;
-            panel3.Click += btnUnidadesDeMedida_Click;
+            panel3.Click += btnCuentasPorCobrar_Click;
             // 
             // tableLayoutPanel5
             // 
@@ -295,7 +295,7 @@
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel5.Size = new Size(486, 196);
             tableLayoutPanel5.TabIndex = 7;
-            tableLayoutPanel5.Click += btnUnidadesDeMedida_Click;
+            tableLayoutPanel5.Click += btnCuentasPorCobrar_Click;
             // 
             // tableLayoutPanel6
             // 
@@ -311,20 +311,20 @@
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel6.Size = new Size(450, 105);
             tableLayoutPanel6.TabIndex = 0;
-            tableLayoutPanel6.Click += btnUnidadesDeMedida_Click;
+            tableLayoutPanel6.Click += btnCuentasPorCobrar_Click;
             // 
             // picUnidadMedida
             // 
             picUnidadMedida.Anchor = AnchorStyles.Right;
             picUnidadMedida.BackColor = Color.Transparent;
-            picUnidadMedida.BackgroundImage = Properties.Resources.hard_drives_icon_173095;
-            picUnidadMedida.Location = new Point(81, 20);
+            picUnidadMedida.BackgroundImage = Properties.Resources.money_cash_currency_finance_bank_icon_192201__2_4;
+            picUnidadMedida.Location = new Point(90, 22);
             picUnidadMedida.Name = "picUnidadMedida";
-            picUnidadMedida.Size = new Size(65, 64);
+            picUnidadMedida.Size = new Size(56, 60);
             picUnidadMedida.SizeMode = PictureBoxSizeMode.Zoom;
             picUnidadMedida.TabIndex = 6;
             picUnidadMedida.TabStop = false;
-            picUnidadMedida.Click += btnUnidadesDeMedida_Click;
+            picUnidadMedida.Click += btnCuentasPorCobrar_Click;
             // 
             // tableLayoutPanel7
             // 
@@ -340,7 +340,7 @@
             tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel7.Size = new Size(295, 99);
             tableLayoutPanel7.TabIndex = 0;
-            tableLayoutPanel7.Click += btnUnidadesDeMedida_Click;
+            tableLayoutPanel7.Click += btnCuentasPorCobrar_Click;
             // 
             // lblUnidadesMedidaTitulo
             // 
@@ -350,10 +350,10 @@
             lblUnidadesMedidaTitulo.ForeColor = Color.Black;
             lblUnidadesMedidaTitulo.Location = new Point(3, 11);
             lblUnidadesMedidaTitulo.Name = "lblUnidadesMedidaTitulo";
-            lblUnidadesMedidaTitulo.Size = new Size(258, 38);
+            lblUnidadesMedidaTitulo.Size = new Size(266, 38);
             lblUnidadesMedidaTitulo.TabIndex = 0;
-            lblUnidadesMedidaTitulo.Text = "Unidad de Medida";
-            lblUnidadesMedidaTitulo.Click += btnUnidadesDeMedida_Click;
+            lblUnidadesMedidaTitulo.Text = "Cuentas por cobrar";
+            lblUnidadesMedidaTitulo.Click += btnCuentasPorCobrar_Click;
             // 
             // lblUnidadesDeMedidasSub
             // 
@@ -362,10 +362,10 @@
             lblUnidadesDeMedidasSub.ForeColor = Color.Gray;
             lblUnidadesDeMedidasSub.Location = new Point(3, 49);
             lblUnidadesDeMedidasSub.Name = "lblUnidadesDeMedidasSub";
-            lblUnidadesDeMedidasSub.Size = new Size(172, 23);
+            lblUnidadesDeMedidasSub.Size = new Size(250, 23);
             lblUnidadesDeMedidasSub.TabIndex = 2;
-            lblUnidadesDeMedidasSub.Text = "Gestión de unidades";
-            lblUnidadesDeMedidasSub.Click += btnUnidadesDeMedida_Click;
+            lblUnidadesDeMedidasSub.Text = "Gestión de cuentas por cobrar";
+            lblUnidadesDeMedidasSub.Click += btnCuentasPorCobrar_Click;
             // 
             // panelClientes
             // 
