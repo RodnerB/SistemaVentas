@@ -48,6 +48,10 @@
             tableLayoutPanel20 = new TableLayoutPanel();
             tableLayoutPanel25 = new TableLayoutPanel();
             dgvVerUsuarios = new DataGridView();
+            colUsuario = new DataGridViewTextBoxColumn();
+            colNombre = new DataGridViewTextBoxColumn();
+            colEstado = new DataGridViewTextBoxColumn();
+            colEliminar = new DataGridViewButtonColumn();
             label8 = new Label();
             tableLayoutPanel21 = new TableLayoutPanel();
             tableLayoutPanel22 = new TableLayoutPanel();
@@ -108,10 +112,6 @@
             colCodigoUnidad = new DataGridViewTextBoxColumn();
             colDescripcionUnidad = new DataGridViewTextBoxColumn();
             colAccion = new DataGridViewButtonColumn();
-            colUsuario = new DataGridViewTextBoxColumn();
-            colNombre = new DataGridViewTextBoxColumn();
-            colEstado = new DataGridViewTextBoxColumn();
-            colEliminar = new DataGridViewButtonColumn();
             panel1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -384,6 +384,37 @@
             dgvVerUsuarios.ShowEditingIcon = false;
             dgvVerUsuarios.Size = new Size(1277, 563);
             dgvVerUsuarios.TabIndex = 2;
+            // 
+            // colUsuario
+            // 
+            colUsuario.HeaderText = "Usuario";
+            colUsuario.MinimumWidth = 6;
+            colUsuario.Name = "colUsuario";
+            colUsuario.ReadOnly = true;
+            // 
+            // colNombre
+            // 
+            colNombre.HeaderText = "Nombre";
+            colNombre.MinimumWidth = 6;
+            colNombre.Name = "colNombre";
+            colNombre.ReadOnly = true;
+            // 
+            // colEstado
+            // 
+            colEstado.HeaderText = "Estado";
+            colEstado.MinimumWidth = 6;
+            colEstado.Name = "colEstado";
+            colEstado.ReadOnly = true;
+            // 
+            // colEliminar
+            // 
+            colEliminar.FlatStyle = FlatStyle.Flat;
+            colEliminar.HeaderText = "Acción";
+            colEliminar.MinimumWidth = 6;
+            colEliminar.Name = "colEliminar";
+            colEliminar.ReadOnly = true;
+            colEliminar.Text = "Eliminar";
+            colEliminar.UseColumnTextForButtonValue = true;
             // 
             // label8
             // 
@@ -1205,37 +1236,6 @@
             colAccion.ReadOnly = true;
             colAccion.Text = "Eliminar";
             colAccion.UseColumnTextForButtonValue = true;
-            // 
-            // colUsuario
-            // 
-            colUsuario.HeaderText = "Usuario";
-            colUsuario.MinimumWidth = 6;
-            colUsuario.Name = "colUsuario";
-            colUsuario.ReadOnly = true;
-            // 
-            // colNombre
-            // 
-            colNombre.HeaderText = "Nombre";
-            colNombre.MinimumWidth = 6;
-            colNombre.Name = "colNombre";
-            colNombre.ReadOnly = true;
-            // 
-            // colEstado
-            // 
-            colEstado.HeaderText = "Estado";
-            colEstado.MinimumWidth = 6;
-            colEstado.Name = "colEstado";
-            colEstado.ReadOnly = true;
-            // 
-            // colEliminar
-            // 
-            colEliminar.FlatStyle = FlatStyle.Flat;
-            colEliminar.HeaderText = "Acción";
-            colEliminar.MinimumWidth = 6;
-            colEliminar.Name = "colEliminar";
-            colEliminar.ReadOnly = true;
-            colEliminar.Text = "Eliminar";
-            colEliminar.UseColumnTextForButtonValue = true;
             // 
             // MenuConfiguracion
             // 
