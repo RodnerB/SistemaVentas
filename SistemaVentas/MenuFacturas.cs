@@ -406,5 +406,11 @@ namespace SistemaVentas
                 inpNumeroFactura?.Focus();
             }
         }
+
+        // Método KeyPress para validar solo números
+        private void inpNumeroFactura_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            Validador.validarSoloNumeros(sender, e);
+        }
     }
 }

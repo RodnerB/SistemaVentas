@@ -436,6 +436,7 @@
             inpNumeroFactura.Name = "inpNumeroFactura";
             inpNumeroFactura.Size = new Size(273, 27);
             inpNumeroFactura.TabIndex = 1;
+            inpNumeroFactura.KeyPress += inpNumeroFactura_KeyPress;
             // 
             // lblNumeroFactura
             // 
