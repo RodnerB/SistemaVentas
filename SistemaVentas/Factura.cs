@@ -64,7 +64,7 @@ namespace SistemaVentas
 
         public static Factura? ObtenerFacturaPorCodigo(string numeroFactura)
         {
-            Dictionary<string, object>? datos = Utilidades.UtilidadesBD.BuscarRegistro(getFacturaPorCodigoQuery,numeroFactura);
+            Dictionary<string, object>? datos = UtilidadesBD.BuscarRegistro(getFacturaPorCodigoQuery,numeroFactura);
             if(datos == null) return null;
             return new Factura(
                 Convert.ToInt32(datos["NUMFAC"]),

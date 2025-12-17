@@ -17,6 +17,9 @@ namespace SistemaVentas
         private Cliente? cliente = null;
         private bool clienteBuscado = false;
 
+        private Factura? facturaBuscada = null;
+        private bool facturaEncontrada = false;
+
         // Guarda el último control que tuvo el foco (para restaurarlo tras un MessageBox)
         private Control? ultimoControlConFoco;
 
@@ -68,6 +71,13 @@ namespace SistemaVentas
 
             dgvFacturas.CellContentClick += dgvFacturas_CellContentClick;
 
+            // Inicializar botón Ver Detalles deshabilitado
+            var btnVerDetalles = this.Controls.Find("btnVerDetalles", true).FirstOrDefault() as Button;
+            if (btnVerDetalles != null)
+            {
+                btnVerDetalles.Enabled = false;
+                btnVerDetalles.Click += btnVerDetalles_Click; // Conectar el evento
+            }
         }
 
         private void dgvFacturas_CellContentClick(object? sender, DataGridViewCellEventArgs e)
@@ -333,6 +343,67 @@ namespace SistemaVentas
             if (objetivo is not null)
             {
                 this.BeginInvoke(() => objetivo.Focus());
+            }
+        }
+
+        private void btnBuscarFactura_Click(object sender, EventArgs e)
+        {
+            // Validar que se ha introducido un número de factura
+            if (string.IsNullOrWhiteSpace(inpNumeroFactura?.Text))
+            {
+                MostrarAdvertenciaCampoVacio("Debe introducir el número de factura a buscar.", inpNumeroFactura);
+                facturaEncontrada = false;
+                var btnVerDetalles = this.Controls.Find("btnVerDetalles", true).FirstOrDefault() as Button;
+                if (btnVerDetalles != null)
+                    btnVerDetalles.Enabled = false;
+                return;
+            }
+
+            // Buscar la factura
+            facturaBuscada = Factura.ObtenerFacturaPorCodigo(inpNumeroFactura.Text);
+
+            if (facturaBuscada != null)
+            {
+                // Factura encontrada
+                facturaEncontrada = true;
+                MessageBox.Show("Factura encontrada exitosamente.", "Éxito",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                // Factura no encontrada
+                facturaEncontrada = false;
+                MessageBox.Show("Factura no encontrada.", "No encontrado",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            // Actualizar estado del botón Ver Detalles
+            var btnVer = this.Controls.Find("btnVerDetalles", true).FirstOrDefault() as Button;
+            if (btnVer != null)
+                btnVer.Enabled = facturaEncontrada;
+        }
+
+        private void btnVerDetalles_Click(object sender, EventArgs e)
+        {
+            if (facturaBuscada != null)
+            {
+                using (var form = new MenuDetallesFactura(facturaBuscada.numeroFactura))
+                {
+                    form.ShowDialog();
+                }
+
+                // Limpiar el textBox y resetear el estado
+                inpNumeroFactura?.Clear();
+                facturaBuscada = null;
+                facturaEncontrada = false;
+
+                // Deshabilitar el botón Ver Detalles
+                var btnVerDetalles = this.Controls.Find("btnVerDetalles", true).FirstOrDefault() as Button;
+                if (btnVerDetalles != null)
+                    btnVerDetalles.Enabled = false;
+
+                // Devolver el foco al textBox
+                inpNumeroFactura?.Focus();
             }
         }
     }
