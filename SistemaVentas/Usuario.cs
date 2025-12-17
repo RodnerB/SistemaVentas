@@ -2,9 +2,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+
 namespace SistemaVentas
 {
     public partial class Usuario
@@ -15,6 +19,7 @@ namespace SistemaVentas
         public string estado = "2";
         public bool existe = false;
         private const string getUsuarioPorCodigoQuery = "SELECT * FROM SFTUSUA0 WHERE USUARIO = @codigo";
+        private const string getUsuariosQuery = "SELECT USUARIO, NOMUSU, ESTAUSU FROM SFTUSUA0";
         private const string insertarUsuarioQuery = @"INSERT INTO SFTUSUA0 (USUARIO, PASSWORD, NOMUSU, ESTAUSU)
                                                         VALUES(@usuario, @password, @nomusu, @estausu)";
         private const string actualizarUsuarioQuery = @"
@@ -25,6 +30,16 @@ namespace SistemaVentas
                 ESTAUSU = @estausu
             WHERE 
                 USUARIO = @usuario";
+        private const string eliminarUsuarioQuery = "DELETE FROM SFTUSUA0 WHERE USUARIO = @codigo";
+
+      
+        private static Dictionary<string, string> usuariosHeaders = new()
+        {
+            {"colUsuario", "USUARIO"},
+            {"colNombre", "NOMUSU"},
+            {"colEstado", "ESTAUSU"}
+        };
+
         public Usuario(string usuario, string password)
         {
             this.usuario = usuario;
@@ -66,11 +81,29 @@ namespace SistemaVentas
                 ObtenerParametrosUsuario(this)
             ) > 0);
         }
+
         public static bool validarPassword(Usuario usuarioEntrante)
         {
             Usuario? usuarioBD = ObtenerUsuarioPorUsuario(usuarioEntrante.usuario);
             if(usuarioBD == null || usuarioBD.password != usuarioEntrante.password) return false;
             return true;
+        }
+
+        public static bool EliminarUsuario(string codigoUsuario)
+        {
+            return (UtilidadesBD.EliminarRegistro(eliminarUsuarioQuery, codigoUsuario) > 0);
+        }
+
+        public static DataTable ObtenerUsuarios() => UtilidadesBD.ObtenerTodosLosRegistros(getUsuariosQuery);
+
+        public static void CargarUsuariosGridConFilas(DataGridView dataGrid)
+        {
+            DataTable tabla = ObtenerUsuarios();
+            UtilidadesUI.CargarDatosEnGridConFilas(
+                tabla,
+                dataGrid,
+                usuariosHeaders
+            );
         }
     }
 }
