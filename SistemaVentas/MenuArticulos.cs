@@ -118,6 +118,19 @@ namespace SistemaVentas
             }
         }
 
+        // activar o desactivar texto de los inputs
+        private void activarInputs(bool activar)
+        {
+            inpCodArt.Enabled = !activar;
+            inpDesArt.Enabled = activar;
+            cmbCodUni.Enabled = activar;
+            inpExiMin.Enabled = activar;
+            inpExiMax.Enabled = activar;
+            inpExiAct.Enabled = activar;
+            inpPreArt.Enabled = activar;
+            inpCosArt.Enabled = activar;
+        }
+
         // Handler para volver al menú principal
         private void BtnVolverMenuPrincipal_Click(object? sender, EventArgs e)
         {
@@ -150,6 +163,10 @@ namespace SistemaVentas
                     existeElArticulo = false;
                     MessageBox.Show("El artículo no existe.", "No encontrado",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    existeElArticulo = true;
                 }
                 return articulo;
             }
@@ -225,6 +242,13 @@ namespace SistemaVentas
                 e.SuppressKeyPress = true;
 
                 Control origen = (Control)sender;
+
+                // Si estamos en el primer textbox y está habilitado el botón buscar, ejecutar búsqueda
+                if (origen == inpCodArt && btnBuscarArt.Enabled)
+                {
+                    btnBuscarArt.PerformClick();
+                    return;
+                }
 
                 // Si el botón Agregar está habilitado y el foco está en el último campo,
                 // simular el clic en el botón Agregar (esto mostrará el MessageBox).
@@ -311,6 +335,7 @@ namespace SistemaVentas
             GuardarArticulo(articulo);
 
             // Limpiar casillas después de agregar y restablecer combo
+            activarInputs(false);
             inpCodArt?.Clear();
             inpDesArt?.Clear();
             inpExiMin?.Clear();
@@ -349,6 +374,11 @@ namespace SistemaVentas
             }
 
             articulo = BuscarArticulo(inpCodArt.Text);
+            
+            // Siempre habilitar los inputs después de buscar (encuentre o no el artículo)
+            activarInputs(true);
+            btnAgregarArt.Enabled = true;
+
             if (articulo != null)
             {
                 // Rellenar los controles de la interfaz con los datos del artículo
@@ -359,13 +389,10 @@ namespace SistemaVentas
                 inpExiAct.Text = articulo.ExistenciaActual.ToString();
                 inpPreArt.Text = articulo.PrecioArticulo.ToString("0.##");
                 inpCosArt.Text = articulo.CostoArticulo.ToString("0.##");
-
-                existeElArticulo = true;
             }
             else
             {
-                existeElArticulo = false;
-
+                // Limpiar campos si no se encontró
                 inpDesArt.Clear();
                 inpExiMin.Clear();
                 inpExiMax.Clear();
@@ -374,12 +401,17 @@ namespace SistemaVentas
                 inpCosArt.Clear();
             }
 
-            btnAgregarArt.Enabled = true;
-
             // Mover el cursor automáticamente a la segunda casilla (descripción)
             inpDesArt?.Focus();
             ultimoControlConFoco = inpDesArt;
         }
+
+        private void MenuArticulos_Load(object sender, EventArgs e)
+        {
+            CargarArticulos();
+            activarInputs(false);
+        }
+
         private void ValidarSoloNumerosKeyPress(object? sender, KeyPressEventArgs e)
         {
             Validador.validarSoloNumeros(sender, e);
