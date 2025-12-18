@@ -39,20 +39,23 @@ namespace SistemaVentas
             // y activar ajuste automático del contenido a cualquier pantalla.
             UtilidadesUI.ApplyRoundedExceptTextBoxes(this, 12);
 
+            inpNumFactura.KeyPress += ValidarSoloNumeros;
+            inpDescuento.KeyPress += ValidarSoloNumeros;    
+
         }
 
         private void GenerarNumeroFactura()
         {
             try
             {
-                txtNumFactura.Text = Factura.ObtenerNuevoCodigoFactura().ToString();
+                inpNumFactura.Text = Factura.ObtenerNuevoCodigoFactura().ToString();
                
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al generar número de factura: " + ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtNumFactura.Text = "1";
+                inpNumFactura.Text = "1";
             }
         }
 
@@ -97,14 +100,14 @@ namespace SistemaVentas
         {
             try
             {
-                float descuentoPorcentaje = string.IsNullOrWhiteSpace(txtDescuento.Text)
+                float descuentoPorcentaje = string.IsNullOrWhiteSpace(inpDescuento.Text)
                     ? 0
-                    : float.Parse(txtDescuento.Text);
+                    : float.Parse(inpDescuento.Text);
 
                 if (descuentoPorcentaje < 0 || descuentoPorcentaje > 100)
                 {
                     descuentoPorcentaje = 0;
-                    txtDescuento.Text = "0";
+                    inpDescuento.Text = "0";
                 }
 
                 descuentoAplicado = subtotal * (float)(descuentoPorcentaje / 100);
@@ -115,8 +118,13 @@ namespace SistemaVentas
             }
             catch
             {
-                txtDescuento.Text = "0";
+                inpDescuento.Text = "0";
             }
+        }
+
+        private void ValidarSoloNumeros(object? sender, KeyPressEventArgs e)
+        {
+            Validador.validarSoloNumeros(sender, e);
         }
 
         private void BtnGuardarFactura_Click(object? sender, EventArgs e)
@@ -132,13 +140,13 @@ namespace SistemaVentas
             try
             {
                 // Crear la factura
-                int numeroFactura = Convert.ToInt32(txtNumFactura.Text);
+                int numeroFactura = Convert.ToInt32(inpNumFactura.Text);
                 DateTime fechaFactura = dtpFechaFactura.Value;
                 string codigoCliente = cmbCliente.SelectedValue?.ToString() ?? "";
                 string condicion = cmbCondicion.SelectedIndex == 0 ? "1" : "2";
-                float descuento = string.IsNullOrWhiteSpace(txtDescuento.Text)
+                float descuento = string.IsNullOrWhiteSpace(inpDescuento.Text)
                     ? 0
-                    : float.Parse(txtDescuento.Text);
+                    : float.Parse(inpDescuento.Text);
 
                 Factura factura = new Factura(
                     numeroFactura,
@@ -210,11 +218,11 @@ namespace SistemaVentas
         private bool ValidarCampos()
         {
 
-            if (string.IsNullOrWhiteSpace(txtNumFactura.Text))
+            if (string.IsNullOrWhiteSpace(inpNumFactura.Text))
             {
                 MessageBox.Show("Debe ingresar un número de factura", "Advertencia",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtNumFactura.Focus();
+                inpNumFactura.Focus();
                 return false;
             }
 
