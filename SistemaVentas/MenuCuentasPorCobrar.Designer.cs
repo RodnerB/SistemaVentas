@@ -461,14 +461,6 @@
             dgvCuentasPorCobrar.ColumnHeadersHeight = 35;
             dgvCuentasPorCobrar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvCuentasPorCobrar.Columns.AddRange(new DataGridViewColumn[] { colNumeroFactura, colFechaFactura, colMontoFactura });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.ButtonHighlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvCuentasPorCobrar.DefaultCellStyle = dataGridViewCellStyle2;
             dgvCuentasPorCobrar.Dock = DockStyle.Fill;
             dgvCuentasPorCobrar.EnableHeadersVisualStyles = false;
             dgvCuentasPorCobrar.GridColor = SystemColors.HighlightText;
