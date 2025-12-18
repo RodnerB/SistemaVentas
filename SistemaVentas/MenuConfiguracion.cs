@@ -44,8 +44,6 @@ namespace SistemaVentas
                 AddKeyDownToTextBoxesRecursive(c);
             }
 
-            
-
             // Integrar Resizer y redondeo (no en tiempo de diseño)
             if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
             {
@@ -55,6 +53,8 @@ namespace SistemaVentas
                 // Aplicar redondeo a hijos (no TextBox ni al propio Form)
                 try { UtilidadesUI.ApplyRoundedExceptTextBoxes(this, 12); } catch { }
             }
+
+            inpDesUni.KeyPress += validarSoloLetras;
         }
 
         // Constructor con referencia al formulario principal
@@ -210,6 +210,14 @@ namespace SistemaVentas
             }
 
             return true;
+        }
+
+        public static void validarSoloLetras(object? sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
         }
 
         private void btnAgregarUni_Click(object sender, EventArgs e)

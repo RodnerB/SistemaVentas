@@ -40,6 +40,12 @@ namespace SistemaVentas
             inpBalCliente.KeyPress += ValidarSoloNumerosKeyPress;
             inpFaxCliente.KeyPress += ValidarSoloNumerosKeyPress;
             inpTelCliente.KeyPress += ValidarSoloNumerosKeyPress;
+            inpCiuCliente.KeyPress += validarSoloLetras;
+            inpSecCliente.KeyPress += validarSoloLetras;
+            inpApeCliente.KeyPress += validarSoloLetras;
+            inpNomCliente.KeyPress += validarSoloLetras;
+            inpDirCliente.KeyPress += validarSoloLetras;
+
 
             // Cuando el formulario se muestre, establecer el foco en la primera casilla de texto
             this.Shown += Form2_Shown;
@@ -415,6 +421,14 @@ namespace SistemaVentas
         private void ValidarSoloNumerosKeyPress(object? sender, KeyPressEventArgs e)
         {
             Validador.validarSoloNumeros(sender, e);
+        }
+
+        public static void validarSoloLetras(object? sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
         }
     }
 }

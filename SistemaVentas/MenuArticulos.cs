@@ -71,6 +71,7 @@ namespace SistemaVentas
             inpExiAct.KeyPress += ValidarSoloNumerosKeyPress;
             inpPreArt.KeyPress += ValidarSoloNumerosKeyPress;
             inpCosArt.KeyPress += ValidarSoloNumerosKeyPress;
+            inpDesArt.KeyPress += validarSoloLetras;
         }
 
         private void MenuArticulos_Resize(object? sender, EventArgs e)
@@ -382,6 +383,14 @@ namespace SistemaVentas
         private void ValidarSoloNumerosKeyPress(object? sender, KeyPressEventArgs e)
         {
             Validador.validarSoloNumeros(sender, e);
+        }
+
+        public static void validarSoloLetras(object? sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
         }
     }
 }
