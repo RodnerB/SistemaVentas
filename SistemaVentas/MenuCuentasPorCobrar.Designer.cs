@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             tableLayoutPanel1 = new TableLayoutPanel();
             panel1 = new Panel();
             tableLayoutPanel8 = new TableLayoutPanel();
@@ -450,14 +450,14 @@
             dgvCuentasPorCobrar.BorderStyle = BorderStyle.None;
             dgvCuentasPorCobrar.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dgvCuentasPorCobrar.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            dgvCuentasPorCobrar.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dgvCuentasPorCobrar.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dgvCuentasPorCobrar.ColumnHeadersHeight = 35;
             dgvCuentasPorCobrar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvCuentasPorCobrar.Columns.AddRange(new DataGridViewColumn[] { colNumeroFactura, colFechaFactura, colMontoFactura });
@@ -476,14 +476,14 @@
             dgvCuentasPorCobrar.Margin = new Padding(3, 2, 3, 2);
             dgvCuentasPorCobrar.Name = "dgvCuentasPorCobrar";
             dgvCuentasPorCobrar.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvCuentasPorCobrar.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.Control;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dgvCuentasPorCobrar.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dgvCuentasPorCobrar.RowHeadersVisible = false;
             dgvCuentasPorCobrar.RowHeadersWidth = 51;
             dgvCuentasPorCobrar.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;

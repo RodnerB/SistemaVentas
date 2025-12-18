@@ -85,6 +85,7 @@
             tableLayoutPanel7 = new TableLayoutPanel();
             label5 = new Label();
             tableLayoutPanel2 = new TableLayoutPanel();
+            btnCancelar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvClientes).BeginInit();
             tableLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -386,7 +387,7 @@
             inpBalCliente.Name = "inpBalCliente";
             inpBalCliente.Size = new Size(362, 27);
             inpBalCliente.TabIndex = 21;
-            inpBalCliente.KeyPress += inpCredCliente_KeyPress;
+            inpBalCliente.KeyPress += ValidarSoloNumerosKeyPress;
             // 
             // lblBalCli
             // 
@@ -405,7 +406,7 @@
             inpCredCliente.Name = "inpCredCliente";
             inpCredCliente.Size = new Size(362, 27);
             inpCredCliente.TabIndex = 19;
-            inpCredCliente.KeyPress += inpCredCliente_KeyPress;
+            inpCredCliente.KeyPress += ValidarSoloNumerosKeyPress;
             // 
             // lblNumCre
             // 
@@ -574,14 +575,16 @@
             tableLayoutPanel6.Anchor = AnchorStyles.None;
             tableLayoutPanel6.ColumnCount = 1;
             tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel6.Controls.Add(btnCancelar, 0, 2);
             tableLayoutPanel6.Controls.Add(btnBuscarCli, 0, 0);
             tableLayoutPanel6.Controls.Add(btnAgregarCliente, 0, 1);
-            tableLayoutPanel6.Location = new Point(77, 662);
+            tableLayoutPanel6.Location = new Point(22, 662);
             tableLayoutPanel6.Name = "tableLayoutPanel6";
-            tableLayoutPanel6.RowCount = 2;
-            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 50.0024948F));
-            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 49.9975052F));
-            tableLayoutPanel6.Size = new Size(282, 103);
+            tableLayoutPanel6.RowCount = 3;
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel6.Size = new Size(392, 103);
             tableLayoutPanel6.TabIndex = 30;
             // 
             // btnBuscarCli
@@ -599,7 +602,7 @@
             btnBuscarCli.ForeColor = SystemColors.ButtonHighlight;
             btnBuscarCli.Location = new Point(3, 3);
             btnBuscarCli.Name = "btnBuscarCli";
-            btnBuscarCli.Size = new Size(276, 28);
+            btnBuscarCli.Size = new Size(386, 28);
             btnBuscarCli.TabIndex = 25;
             btnBuscarCli.Text = "Buscar cliente";
             btnBuscarCli.UseVisualStyleBackColor = false;
@@ -618,9 +621,9 @@
             btnAgregarCliente.FlatStyle = FlatStyle.Flat;
             btnAgregarCliente.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAgregarCliente.ForeColor = SystemColors.ButtonHighlight;
-            btnAgregarCliente.Location = new Point(3, 54);
+            btnAgregarCliente.Location = new Point(3, 37);
             btnAgregarCliente.Name = "btnAgregarCliente";
-            btnAgregarCliente.Size = new Size(276, 28);
+            btnAgregarCliente.Size = new Size(386, 28);
             btnAgregarCliente.TabIndex = 24;
             btnAgregarCliente.Text = "Guardar cliente ";
             btnAgregarCliente.UseVisualStyleBackColor = false;
@@ -748,6 +751,26 @@
             tableLayoutPanel2.Size = new Size(48, 59);
             tableLayoutPanel2.TabIndex = 29;
             // 
+            // btnCancelar
+            // 
+            btnCancelar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            btnCancelar.BackColor = Color.Red;
+            btnCancelar.Cursor = Cursors.Hand;
+            btnCancelar.Enabled = false;
+            btnCancelar.FlatAppearance.BorderColor = Color.White;
+            btnCancelar.FlatAppearance.BorderSize = 0;
+            btnCancelar.FlatAppearance.MouseDownBackColor = Color.Silver;
+            btnCancelar.FlatAppearance.MouseOverBackColor = Color.Silver;
+            btnCancelar.FlatStyle = FlatStyle.Flat;
+            btnCancelar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCancelar.ForeColor = SystemColors.ButtonHighlight;
+            btnCancelar.Location = new Point(3, 71);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(386, 28);
+            btnCancelar.TabIndex = 29;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = false;
+            // 
             // MenuClientes
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -836,5 +859,6 @@
         private DataGridViewTextBoxColumn colBalance;
         private DataGridViewTextBoxColumn colObservaciones;
         private DataGridViewButtonColumn colEliminar;
+        private Button btnCancelar;
     }
 }

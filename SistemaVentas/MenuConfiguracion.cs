@@ -44,27 +44,6 @@ namespace SistemaVentas
                 AddKeyDownToTextBoxesRecursive(c);
             }
 
-            // Asignar manejadores de evento de botones - Unidades
-            btnAgregarUni.Click -= btnAgregarUni_Click;
-            btnAgregarUni.Click += btnAgregarUni_Click;
-
-            btnBuscarUnidad.Click -= btnBuscarUnidad_Click;
-            btnBuscarUnidad.Click += btnBuscarUnidad_Click;
-
-            // Asignar manejadores de evento de botones - Usuarios
-            btnBuscarUsuario.Click -= btnBuscarUsuario_Click;
-            btnBuscarUsuario.Click += btnBuscarUsuario_Click;
-
-            btnGuardarUsuario.Click -= btnGuardarUsuario_Click;
-            btnGuardarUsuario.Click += btnGuardarUsuario_Click;
-
-            btnCancelarUsuario.Click -= btnCancelarUsuario_Click;
-            btnCancelarUsuario.Click += btnCancelarUsuario_Click;
-
-            // Asignar evento para eliminar usuarios desde el DataGridView
-            dgvVerUsuarios.CellClick -= dgvVerUsuarios_CellClick;
-            dgvVerUsuarios.CellClick += dgvVerUsuarios_CellClick;
-
             // Integrar Resizer y redondeo (no en tiempo de diseño)
             if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
             {
@@ -73,7 +52,12 @@ namespace SistemaVentas
 
                 // Aplicar redondeo a hijos (no TextBox ni al propio Form)
                 try { UtilidadesUI.ApplyRoundedExceptTextBoxes(this, 12); } catch { }
+                
+                // AGREGAR ESTA LÍNEA
+                this.Load += MenuConfiguracion_Load;
             }
+
+            inpDesUni.KeyPress += validarSoloLetras;
         }
 
         // Constructor con referencia al formulario principal
@@ -110,6 +94,12 @@ namespace SistemaVentas
             btnBuscarUnidad.Enabled = true;
             btnAgregarUni.Enabled = false;
             this.AcceptButton = btnBuscarUnidad;
+        }
+
+        private void activarInputsUnidad(bool activar)
+        {
+            inpCodUni.Enabled = !activar;
+            inpDesUni.Enabled = activar;
         }
 
         private void CargarUnidades()
@@ -212,7 +202,7 @@ namespace SistemaVentas
             };
         }
 
-        private bool AdvertenciaDesUni()
+        private bool Validaciones()
         {
             if (string.IsNullOrWhiteSpace(inpDesUni.Text))
             {
@@ -220,12 +210,28 @@ namespace SistemaVentas
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+
+            if (!Validador.ValidarTamanoPermitido(inpCodUni.Text, 3))
+            {
+                MessageBox.Show("La descripción debe tener 3 caracteres.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
             return true;
+        }
+
+        public static void validarSoloLetras(object? sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
         }
 
         private void btnAgregarUni_Click(object sender, EventArgs e)
         {
-            if (!AdvertenciaDesUni()) return;
+            if (!Validaciones()) return;
 
             unidadesMedida = ObtenerUnidadesEnText();
 
@@ -241,7 +247,7 @@ namespace SistemaVentas
 
         private void btnModificarUni_Click(object sender, EventArgs e)
         {
-            if (!AdvertenciaDesUni()) return;
+            if (!Validaciones()) return;
 
             unidadesMedida = ObtenerUnidadesEnText();
 
@@ -282,6 +288,7 @@ namespace SistemaVentas
 
             btnAgregarUni.Enabled = true;
             this.AcceptButton = btnAgregarUni;
+            activarInputsUnidad(true); 
 
             inpDesUni?.Focus();
         }
@@ -617,6 +624,11 @@ namespace SistemaVentas
         private void MenuUnidadesMedidas_Shown(object? sender, EventArgs e)
         {
             inpCodUni?.Focus();
+        }
+
+        private void MenuConfiguracion_Load(object sender, EventArgs e)
+        {
+            activarInputsUnidad(false);
         }
 
         #endregion

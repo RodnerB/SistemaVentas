@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel3 = new TableLayoutPanel();
             panel1 = new Panel();
@@ -61,6 +61,7 @@
             lblNumeroFactura = new Label();
             lblFactura = new Label();
             btnVerDetalles = new Button();
+            btnCancelar = new Button();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             panel1.SuspendLayout();
@@ -270,38 +271,38 @@
             dgvFacturas.BorderStyle = BorderStyle.None;
             dgvFacturas.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dgvFacturas.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Control;
-            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvFacturas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Control;
+            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvFacturas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvFacturas.ColumnHeadersHeight = 35;
             dgvFacturas.Columns.AddRange(new DataGridViewColumn[] { colNumeroFactura, colFechaFactura, colCodigoCliente, colCondicion, colDescuento, colMontoFactura });
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.White;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.ButtonHighlight;
-            dataGridViewCellStyle5.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dgvFacturas.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.White;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.ButtonHighlight;
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvFacturas.DefaultCellStyle = dataGridViewCellStyle2;
             dgvFacturas.Dock = DockStyle.Fill;
             dgvFacturas.EnableHeadersVisualStyles = false;
             dgvFacturas.GridColor = Color.LightGray;
             dgvFacturas.Location = new Point(3, 54);
             dgvFacturas.Name = "dgvFacturas";
             dgvFacturas.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Control;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = Color.White;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgvFacturas.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvFacturas.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvFacturas.RowHeadersVisible = false;
             dgvFacturas.RowHeadersWidth = 51;
             dgvFacturas.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -379,8 +380,8 @@
             // 
             tableLayoutPanel6.BackColor = SystemColors.ButtonHighlight;
             tableLayoutPanel6.ColumnCount = 2;
-            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 31.5817986F));
-            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 68.4182053F));
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 39.81582F));
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60.18418F));
             tableLayoutPanel6.Controls.Add(tableLayoutPanel8, 0, 0);
             tableLayoutPanel6.Dock = DockStyle.Fill;
             tableLayoutPanel6.Location = new Point(3, 3);
@@ -392,15 +393,17 @@
             // 
             // tableLayoutPanel8
             // 
-            tableLayoutPanel8.ColumnCount = 3;
-            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150F));
-            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 141F));
+            tableLayoutPanel8.ColumnCount = 4;
+            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 145F));
+            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 145F));
+            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 145F));
             tableLayoutPanel8.Controls.Add(btnBuscarFactura, 1, 2);
             tableLayoutPanel8.Controls.Add(inpNumeroFactura, 0, 2);
             tableLayoutPanel8.Controls.Add(lblNumeroFactura, 0, 1);
             tableLayoutPanel8.Controls.Add(lblFactura, 0, 0);
             tableLayoutPanel8.Controls.Add(btnVerDetalles, 2, 2);
+            tableLayoutPanel8.Controls.Add(btnCancelar, 3, 2);
             tableLayoutPanel8.Dock = DockStyle.Fill;
             tableLayoutPanel8.Location = new Point(3, 3);
             tableLayoutPanel8.Name = "tableLayoutPanel8";
@@ -408,7 +411,7 @@
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 64.38356F));
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 35.61644F));
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Absolute, 55F));
-            tableLayoutPanel8.Size = new Size(577, 135);
+            tableLayoutPanel8.Size = new Size(729, 135);
             tableLayoutPanel8.TabIndex = 0;
             // 
             // btnBuscarFactura
@@ -421,9 +424,9 @@
             btnBuscarFactura.FlatStyle = FlatStyle.Flat;
             btnBuscarFactura.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnBuscarFactura.ForeColor = SystemColors.ControlLightLight;
-            btnBuscarFactura.Location = new Point(289, 82);
+            btnBuscarFactura.Location = new Point(297, 82);
             btnBuscarFactura.Name = "btnBuscarFactura";
-            btnBuscarFactura.Size = new Size(134, 29);
+            btnBuscarFactura.Size = new Size(139, 28);
             btnBuscarFactura.TabIndex = 0;
             btnBuscarFactura.Text = "Buscar factura";
             btnBuscarFactura.UseVisualStyleBackColor = false;
@@ -469,12 +472,32 @@
             btnVerDetalles.FlatStyle = FlatStyle.Flat;
             btnVerDetalles.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnVerDetalles.ForeColor = SystemColors.ControlLightLight;
-            btnVerDetalles.Location = new Point(439, 82);
+            btnVerDetalles.Location = new Point(442, 82);
             btnVerDetalles.Name = "btnVerDetalles";
-            btnVerDetalles.Size = new Size(130, 29);
+            btnVerDetalles.Size = new Size(139, 28);
             btnVerDetalles.TabIndex = 3;
             btnVerDetalles.Text = "Ver detalles";
             btnVerDetalles.UseVisualStyleBackColor = false;
+            // 
+            // btnCancelar
+            // 
+            btnCancelar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            btnCancelar.BackColor = Color.Red;
+            btnCancelar.Cursor = Cursors.Hand;
+            btnCancelar.Enabled = false;
+            btnCancelar.FlatAppearance.BorderColor = Color.White;
+            btnCancelar.FlatAppearance.BorderSize = 0;
+            btnCancelar.FlatAppearance.MouseDownBackColor = Color.Silver;
+            btnCancelar.FlatAppearance.MouseOverBackColor = Color.Silver;
+            btnCancelar.FlatStyle = FlatStyle.Flat;
+            btnCancelar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCancelar.ForeColor = SystemColors.ButtonHighlight;
+            btnCancelar.Location = new Point(587, 82);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(139, 28);
+            btnCancelar.TabIndex = 29;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = false;
             // 
             // MenuFacturas
             // 
@@ -537,5 +560,6 @@
         private DataGridViewTextBoxColumn colDescuento;
         private DataGridViewTextBoxColumn colMontoFactura;
         private Button btnVerDetalles;
+        private Button btnCancelar;
     }
 }

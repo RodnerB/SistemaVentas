@@ -17,7 +17,7 @@ namespace SistemaVentas.Utilidades
         }
 
         public static bool EsCantidadMenorAlTope(decimal cantidadTope, decimal cantidadAComparar) => cantidadAComparar <= cantidadTope;
-        public static bool ValidarTamanoPermitido(string texto, int tamanoMaximo) => texto.Length >= 5 && texto.Length <= tamanoMaximo;
-        public static bool ValidarTamanoPermitido(string texto, int tamanoMaximo, int tamanoMinimo) => texto.Length >= 5 && texto.Length <= tamanoMaximo;
+        public static bool ValidarTamanoPermitido(string texto, int tamanoMaximo) => texto.Length <= tamanoMaximo;
+        public static bool ValidarTamanoPermitido(string texto, int tamanoMaximo, int tamanoMinimo) => texto.Length >= tamanoMinimo && texto.Length <= tamanoMaximo;
     }
 }

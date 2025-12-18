@@ -1,6 +1,7 @@
 ﻿using SistemaVentas.Utilidades;
 using System.CodeDom;
 using System.Data;
+using System.DirectoryServices.ActiveDirectory;
 
 namespace SistemaVentas
 {
@@ -15,6 +16,8 @@ namespace SistemaVentas
         public float PrecioArticulo { get; set; } = 0;
         public float CostoArticulo { get; set; } = 0;
 
+        public bool existe = false;
+
         private const string getArticulosQuery = "SELECT * FROM SFTARTI0 ";
         private const string getArticuloPorCodigoQuery = "SELECT * FROM SFTARTI0 WHERE CODART = @codigo";
         private const string insertarArticuloQuery = @"
@@ -22,6 +25,17 @@ namespace SistemaVentas
             (CODART, DESART, CODUNI, EXIMIN, EXIMAX, EXIACT, PREART, COSART) 
             VALUES 
             (@CodigoArticulo, @DescripcionArticulo, @CodigoUnidad, @ExistenciaMinima, @ExistenciaMaxima, @ExistenciaActual, @PrecioArticulo, @CostoArticulo)";
+        private const string actualizarArticuloQuery = @"
+    UPDATE SFTARTI0
+    SET 
+        DESART = @DescripcionArticulo,
+        CODUNI = @CodigoUnidad,
+        EXIMIN = @ExistenciaMinima,
+        EXIMAX = @ExistenciaMaxima,
+        EXIACT = @ExistenciaActual,
+        PREART = @PrecioArticulo,
+        COSART = @CostoArticulo
+    WHERE CODART = @CodigoArticulo";
 
         private const string EliminarArticuloQuery = "DELETE FROM SFTARTI0 WHERE CODART = @codigo";
 
@@ -61,11 +75,12 @@ namespace SistemaVentas
             };
         }
 
-        public static bool InsertarArticulo(Articulo articulo)
+        public bool InsertarArticulo()
         {
+            string query = existe ? actualizarArticuloQuery : insertarArticuloQuery;
             return (UtilidadesBD.GuardarRegistro(
-                insertarArticuloQuery,
-                ObtenerParametrosArticulo(articulo)
+                query,
+                ObtenerParametrosArticulo(this)
                 ) > 0);
         }
 
