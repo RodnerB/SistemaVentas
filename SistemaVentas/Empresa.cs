@@ -1,68 +1,113 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Collections.Generic;
+using SistemaVentas.Utilidades;
 
 namespace SistemaVentas
 {
-    internal class Empresa
+    public class Empresa
     {
-        public string empresa { get; private set; }
-        public string direccion { get; private set; }
-        public string telefono { get; private set; }
-        public string fax { get; private set; }
-        public string email { get; private set; }
-        public Empresa(string empresa, string direccion, string telefono, string fax, string email)
+        public string Nombre { get; set; }
+        public string Direccion { get; set; }
+        public string Telefono { get; set; }
+        public string Fax { get; set; }
+        public string Email { get; set; }
+
+        // Diccionario para mapear columnas del DataGridView de empresa
+        private static readonly Dictionary<string, string> filasHeaders = new()
         {
-            this.empresa = empresa;
-            this.direccion = direccion;
-            this.telefono = telefono;
-            this.fax = fax;
-            this.email = email;
+            { "colNombreEmpresa", "empresa" },
+            { "colDireccion", "direccion" },
+            { "colTelefono", "telefono" },
+            { "colFax", "fax" },
+            { "colCorreoElectronico", "email" }
+        };
+
+        public Empresa(string nombre, string direccion, string telefono, string fax, string email)
+        {
+            Nombre = nombre;
+            Direccion = direccion;
+            Telefono = telefono;
+            Fax = fax;
+            Email = email;
         }
 
-        private const string insertarEmpresaQuery = @"
-            INSERT INTO SFTCONF0
-            (EMPRESA, DIRECCION, TELEFONO, FAX, EMAIL)
-            VALUES
-            (@EMPRESA, @DIRECCION, @TELEFONO, @FAX, @EMAIL)";
-        private static Dictionary<string, object> ObtenerParametrosEmpresa(Empresa empresa)
+        // Método para cargar los datos de la empresa en un DataGridView usando el patrón "ConFilas"
+        public static void CargarEmpresaEnGridConFilas(DataGridView dgv)
         {
-            return new Dictionary<string, object>()
+            try
             {
-                {"@EMPRESA", empresa.empresa},
-                {"@DIRECCION", empresa.direccion},
-                {"@TELEFONO", empresa.telefono},
-                {"@FAX", empresa.fax},
-                {"@EMAIL", empresa.email}
-            };
-        }
-
-        public void InsertarEmpresa()
-        {
-            Utilidades.UtilidadesBD.GuardarRegistro(
-                insertarEmpresaQuery,
-                ObtenerParametrosEmpresa(this)
-            );
-        }
-
-        public static Empresa ObtenerEmpresa()
-        {
-            DataTable tabla = Utilidades.UtilidadesBD.ObtenerTodosLosRegistros("SELECT TOP 1 * FROM SFTCONF0");
-            if (tabla.Rows.Count == 0)
-            {
-                throw new Exception("No se encontró ninguna empresa en la base de datos.");
+                DataTable dtEmpresa = UtilidadesBD.ObtenerTodosLosRegistros("SELECT TOP 1 * FROM SFTCONF0");
+                UtilidadesUI.CargarDatosEnGridConFilas(dtEmpresa, dgv, filasHeaders);
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar la información de la empresa: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
-            DataRow fila = tabla.Rows[0];
-            return new Empresa(
-                fila["empresa"].ToString(),
-                fila["direccion"].ToString(),
-                fila["telefono"].ToString(),
-                fila["fax"].ToString(),
-                fila["email"].ToString());
+        // Método para guardar una nueva empresa en la base de datos
+        public static bool GuardarEmpresa(Empresa empresa)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(empresa.Nombre) ||
+                    string.IsNullOrWhiteSpace(empresa.Direccion) ||
+                    string.IsNullOrWhiteSpace(empresa.Telefono) ||
+                    string.IsNullOrWhiteSpace(empresa.Email))
+                {
+                    return false;
+                }
+
+                var parametros = new Dictionary<string, object>
+                {
+                    { "@empresa", empresa.Nombre },
+                    { "@direccion", empresa.Direccion },
+                    { "@telefono", empresa.Telefono },
+                    { "@fax", empresa.Fax },
+                    { "@email", empresa.Email }
+                };
+                int filas = UtilidadesBD.GuardarRegistro(
+                    "INSERT INTO SFTCONF0 (empresa, direccion, telefono, fax, email) VALUES (@empresa, @direccion, @telefono, @fax, @email)",
+                    parametros
+                );
+                return filas > 0;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public static bool ActualizarEmpresa(Empresa empresa)
+        {
+            try
+            {
+                var parametros = new Dictionary<string, object>
+                {
+                    { "@empresa", empresa.Nombre },
+                    { "@direccion", empresa.Direccion },
+                    { "@telefono", empresa.Telefono },
+                    { "@fax", empresa.Fax },
+                    { "@email", empresa.Email }
+                };
+                int filas = UtilidadesBD.GuardarRegistro(
+                    "UPDATE SFTCONF0 SET empresa = @empresa, direccion = @direccion, telefono = @telefono, fax = @fax, email = @email",
+                    parametros
+                );
+                return filas > 0;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public static void EliminarInformacionEmpresarial()
+        {
+            UtilidadesBD.EliminarRegistro("DELETE FROM SFTCONF0", "");
         }
     }
 }

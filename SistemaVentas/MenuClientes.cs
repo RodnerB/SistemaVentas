@@ -184,7 +184,7 @@ namespace SistemaVentas
             }
         }
 
-       
+
 
 
         private Cliente ObtenerClienteEnInputs()
@@ -327,6 +327,7 @@ namespace SistemaVentas
             }
 
             btnAgregarCliente.Enabled = true;
+            btnCancelar.Enabled = true; // Habilitar el botón Cancelar después de buscar
             activarInputs(true);
 
             // Mover el cursor automáticamente a la segunda casilla (nombre)
@@ -362,7 +363,7 @@ namespace SistemaVentas
             }
 
         }
-       
+
 
         // Evento del botón para volver al menú principal
         private void BtnVolverMenuPrincipal_Click(object sender, EventArgs e)
@@ -399,5 +400,30 @@ namespace SistemaVentas
                 e.Handled = true;
             }
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+
+
+            activarInputs(false);
+            limpiarInputs();
+
+        }
+
+        private void limpiarInputs()
+        {
+            inpCodCliente.Clear();
+            inpNomCliente.Clear();
+            inpApeCliente.Clear();
+            inpDirCliente.Clear();
+            inpSecCliente.Clear();
+            inpCiuCliente.Clear();
+            inpTelCliente.Clear();
+            inpFaxCliente.Clear();
+            inpCredCliente.Clear();
+            inpBalCliente.Clear();
+            inpObsCliente.Clear();
+        }
     }
+    
 }

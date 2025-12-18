@@ -205,6 +205,7 @@
             btnVolverMenuPrincipal.Name = "btnVolverMenuPrincipal";
             btnVolverMenuPrincipal.Size = new Size(33, 35);
             btnVolverMenuPrincipal.TabIndex = 18;
+            btnVolverMenuPrincipal.TabStop = false;
             btnVolverMenuPrincipal.UseVisualStyleBackColor = true;
             btnVolverMenuPrincipal.Click += btnVolverMenuPrincipal_Click;
             // 
@@ -435,7 +436,6 @@
             // inpNumeroFactura
             // 
             inpNumeroFactura.Location = new Point(3, 82);
-            inpNumeroFactura.Multiline = true;
             inpNumeroFactura.Name = "inpNumeroFactura";
             inpNumeroFactura.Size = new Size(273, 27);
             inpNumeroFactura.TabIndex = 1;
@@ -498,6 +498,7 @@
             btnCancelar.TabIndex = 29;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // MenuFacturas
             // 

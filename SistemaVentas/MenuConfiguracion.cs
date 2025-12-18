@@ -17,7 +17,7 @@ namespace SistemaVentas
         private MenuPrincipal? formMenuPrincipal;
         private readonly UtilidadesUI resizer = new UtilidadesUI();
         private string? contrasenaUsuari = null;
-        // Constructor sin parámetros (necesario para el diseñador)
+
         public MenuConfiguracion()
         {
             InitializeComponent();
@@ -38,12 +38,6 @@ namespace SistemaVentas
             // Asegurar que el primer cuadro de texto reciba el foco al mostrarse
             this.Shown += MenuUnidadesMedidas_Shown;
 
-            // Asignar comportamiento de Enter a los TextBox (recorre controles anidados)
-            foreach (Control c in this.Controls)
-            {
-                AddKeyDownToTextBoxesRecursive(c);
-            }
-
             // Integrar Resizer y redondeo (no en tiempo de diseño)
             if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
             {
@@ -53,33 +47,24 @@ namespace SistemaVentas
                 // Aplicar redondeo a hijos (no TextBox ni al propio Form)
                 try { UtilidadesUI.ApplyRoundedExceptTextBoxes(this, 12); } catch { }
 
-                // AGREGAR ESTA LÍNEA
-                this.Load += MenuConfiguracion_Load;
             }
 
             inpDesUni.KeyPress += validarSoloLetras;
+            inpTelefono.KeyPress += Validador.validarSoloNumeros;
+            inpFax.KeyPress += Validador.validarSoloNumeros;
+
+            // Inicialización de controles de empresa (llamar en el constructor después de InitializeComponent)
+            InicializarEmpresa();
+
+            btnBuscarUsuario.Click += btnBuscarUsuario_Click;
+            btnGuardarUsuario.Click += btnGuardarUsuario_Click;
+
         }
 
         // Constructor con referencia al formulario principal
         public MenuConfiguracion(MenuPrincipal menuPrincipal) : this()
         {
             this.formMenuPrincipal = menuPrincipal;
-        }
-
-        private void AddKeyDownToTextBoxesRecursive(Control control)
-        {
-            if (control is TextBox tb)
-            {
-#pragma warning disable CS8622
-                tb.KeyDown -= EventoMoverConEnter;
-                tb.KeyDown += EventoMoverConEnter;
-#pragma warning restore CS8622
-            }
-
-            foreach (Control child in control.Controls)
-            {
-                AddKeyDownToTextBoxesRecursive(child);
-            }
         }
 
         private void MenuUnidadesMedidas_Resize(object? sender, EventArgs e)
@@ -134,8 +119,6 @@ namespace SistemaVentas
                 return null;
             }
         }
-
-        //TODO: REFACTORIZAR ESTO PARA QUE SEA LA CLASE QUE DECIDA SI GUARDAR O CREAR COMO EN CLIENTES Y ARTCIULOS
 
         private void GuardarUnidad(UnidadesMedida unidad)
         {
@@ -233,7 +216,7 @@ namespace SistemaVentas
             this.AcceptButton = btnGuardarUni;
             activarInputsUnidad(true);
 
-            
+
         }
 
         private void limpiarCamposUnidad()
@@ -278,9 +261,8 @@ namespace SistemaVentas
 
         private void ActivarInputsUsuario(bool activar)
         {
-            inpUsuario.Enabled = !activar; // Usuario solo se puede escribir cuando está desactivado (para buscar)
+            inpUsuario.Enabled = !activar;
             inpNombre.Enabled = activar;
-            inpContrasena.Enabled = activar;
             cmbEstado.Enabled = activar;
 
             btnBuscarUsuario.Enabled = !activar;
@@ -368,7 +350,7 @@ namespace SistemaVentas
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarUsuarios();
                     LimpiarCamposUsuario();
-                    
+
                 }
                 else
                 {
@@ -385,7 +367,7 @@ namespace SistemaVentas
 
         private Usuario ObtenerUsuarioEnInputs()
         {
-            return new Usuario(inpUsuario.Text.Trim(),contrasenaUsuari)
+            return new Usuario(inpUsuario.Text.Trim(), contrasenaUsuari ?? string.Empty)
             {
                 nombre = inpNombre.Text.Trim(),
                 estado = cmbEstado.SelectedValue?.ToString() ?? "2"
@@ -410,13 +392,6 @@ namespace SistemaVentas
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(inpContrasena.Text))
-            {
-                MessageBox.Show("Debe introducir una contraseña.", "Advertencia",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                inpContrasena.Focus();
-                return false;
-            }
 
             if (string.IsNullOrWhiteSpace(cmbEstado.SelectedValue?.ToString()))
             {
@@ -433,44 +408,298 @@ namespace SistemaVentas
         {
             inpUsuario.Clear();
             inpNombre.Clear();
-            inpContrasena.Clear();
             cmbEstado.SelectedIndex = 0;
+        }
+
+
+
+        private void btnGuardarEmpresa_Click(object sender, EventArgs e)
+        {
+            if (!Validar()) return;
+
+            empresa = ObtenerEmpresaEnInputs();
+            if (empresa == null) return;
+
+            if (string.IsNullOrWhiteSpace(empresa.Nombre) ||
+                string.IsNullOrWhiteSpace(empresa.Direccion) ||
+                string.IsNullOrWhiteSpace(empresa.Telefono) ||
+                string.IsNullOrWhiteSpace(empresa.Email))
+            {
+                MessageBox.Show("Debe completar todos los campos obligatorios.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                if (Empresa.GuardarEmpresa(empresa))
+                {
+                    MessageBox.Show("Información empresarial guardada/actualizada exitosamente.", "Éxito",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo guardar la información empresarial.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                CargarEmpresaEnGrid();
+                activarInputsEmpresa(false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la base de datos: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        // ---------------------------
+        // Información Empresarial
+        // ---------------------------
+
+        private Empresa? empresa = null;
+        private bool existeEmpresa = false;
+
+        private void InicializarEmpresa()
+        {
+            activarInputsEmpresa(true);
+            Empresa.CargarEmpresaEnGridConFilas(dgvEmpresa);
+            btnCancelar.Click += btnCancelar_Click;
+            btnGuardarInfomacionEmpresarial.Click += btnGuardarInfomacionEmpresarial_Click;
+        }
+
+
+        private void activarInputsEmpresa(bool activar)
+        {
+            inpEmpresa.Enabled = true;
+            inpDireccion.Enabled = true;
+            inpTelefono.Enabled = true;
+            inpFax.Enabled = true;
+            inpEmail.Enabled = true;
+
+            btnGuardarInfomacionEmpresarial.Enabled = true;
+            btnCancelar.Enabled = true;
+        }
+
+        private void EmpresaInput_TextChanged(object? sender, EventArgs e)
+        {
+            if (!ValidarCamposEmpresa()) return;
+            var empresa = ObtenerEmpresaEnInputs();
+            Empresa.GuardarEmpresa(empresa);
+            Empresa.CargarEmpresaEnGridConFilas(dgvEmpresa);
+        }
+
+        // Carga la información de la empresa en los TextBox si existe
+        private void CargarEmpresaEnGrid()
+        {
+            try
+            {
+                empresa = null;
+                existeEmpresa = false;
+                DataTable dtEmpresa = UtilidadesBD.ObtenerTodosLosRegistros("SELECT TOP 1 * FROM SFTCONF0");
+                if (dtEmpresa.Rows.Count > 0)
+                {
+                    DataRow row = dtEmpresa.Rows[0];
+                    inpEmpresa.Text = row["empresa"]?.ToString() ?? "";
+                    inpDireccion.Text = row["direccion"]?.ToString() ?? "";
+                    inpTelefono.Text = row["telefono"]?.ToString() ?? "";
+                    inpFax.Text = row["fax"]?.ToString() ?? "";
+                    inpEmail.Text = row["email"]?.ToString() ?? "";
+                    existeEmpresa = true;
+                }
+                else
+                {
+                    LimpiarCamposEmpresa();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar la información de la empresa: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void btnCancelarEmpresa_Click(object sender, EventArgs e)
+        {
+            CargarEmpresaEnGrid();
+            activarInputsEmpresa(false);
+            inpEmpresa.Focus();
+        }
+
+        // Obtiene los datos de los inputs
+        private Empresa ObtenerEmpresaEnInputs()
+        {
+            return new Empresa(
+                inpEmpresa.Text.Trim(),
+                inpDireccion.Text.Trim(),
+                inpTelefono.Text.Trim(),
+                inpFax.Text.Trim(),
+                inpEmail.Text.Trim()
+            );
+        }
+
+        // Limpia los campos de empresa
+        private void LimpiarCamposEmpresa()
+        {
+            inpEmpresa.Clear();
+            inpDireccion.Clear();
+            inpTelefono.Clear();
+            inpFax.Clear();
+            inpEmail.Clear();
+        }
+
+        // Validación de campos empresariales
+        private bool ValidarCamposEmpresa()
+        {
+            if (string.IsNullOrWhiteSpace(inpEmpresa.Text))
+            {
+                MessageBox.Show("Debe introducir el nombre de la empresa.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                inpEmpresa.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(inpDireccion.Text))
+            {
+                MessageBox.Show("Debeintroducir la dirección de la empresa.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                inpDireccion.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(inpTelefono.Text))
+            {
+                MessageBox.Show("Debe introducir el teléfono de la empresa.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                inpTelefono.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(inpEmail.Text))
+            {
+                MessageBox.Show("Debe introducir el email de la empresa.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                inpEmail.Focus();
+                return false;
+            }
+            return true;
+        }
+
+        private void MenuUnidadesMedidas_Shown(object? sender, EventArgs e)
+        {
+
+            inpCodUni?.Focus();
+        }
+
+        private void btnCancelar_Click(object? sender, EventArgs e)
+        {
+            LimpiarCamposEmpresa();
+            activarInputsEmpresa(false);
+            inpEmpresa.Focus();
+        }
+
+        private void btnGuardarInfomacionEmpresarial_Click(object sender, EventArgs e)
+        {
+            if (!Validar()) return;
+
+            empresa = ObtenerEmpresaEnInputs();
+            if (empresa == null) return;
+
+            if (string.IsNullOrWhiteSpace(empresa.Nombre) ||
+                string.IsNullOrWhiteSpace(empresa.Direccion) ||
+                string.IsNullOrWhiteSpace(empresa.Telefono) ||
+                string.IsNullOrWhiteSpace(empresa.Email))
+            {
+                MessageBox.Show("Debe completar todos los campos obligatorios.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                Empresa.EliminarInformacionEmpresarial();
+
+                if (Empresa.GuardarEmpresa(empresa))
+                {
+                    MessageBox.Show("Información empresarial guardada exitosamente.", "Éxito",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo guardar la información empresarial.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                Empresa.CargarEmpresaEnGridConFilas(dgvEmpresa);
+                LimpiarCamposEmpresa();
+                activarInputsEmpresa(false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la base de datos: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private bool Validar()
+        {
+            if (!Validador.ValidarTamanoPermitido(inpEmpresa.Text, 60))
+            {
+                MessageBox.Show("El nombre de la empresa debe tener máximo 60 caracteres.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                inpEmpresa.Focus();
+                return false;
+            }
+            if (!Validador.ValidarTamanoPermitido(inpDireccion.Text, 60))
+            {
+                MessageBox.Show("La dirección debe tener máximo 60 caracteres.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                inpDireccion.Focus();
+                return false;
+            }
+            if (!Validador.ValidarTamanoPermitido(inpTelefono.Text, 10))
+            {
+                MessageBox.Show("El teléfono debe tener máximo 10 caracteres.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                inpTelefono.Focus();
+                return false;
+            }
+            if (!Validador.ValidarTamanoPermitido(inpFax.Text, 10))
+            {
+                MessageBox.Show("El fax debe tener máximo 10 caracteres.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                inpFax.Focus();
+                return false;
+            }
+            if (!Validador.ValidarTamanoPermitido(inpEmail.Text, 60))
+            {
+                MessageBox.Show("El email debe tener máximo 60 caracteres.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                inpEmail.Focus();
+                return false;
+            }
+            return true;
         }
 
         private void btnBuscarUsuario_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(inpUsuario.Text))
-            {
-                MessageBox.Show("Debe introducir el nombre de usuario a buscar.", "Advertencia",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                inpUsuario.Focus();
-                return;
-            }
+            if (string.IsNullOrWhiteSpace(inpUsuario.Text)) return;
 
-            usuario = BuscarUsuario(inpUsuario.Text.Trim());
-
+            usuario = BuscarUsuario(inpUsuario.Text);
             if (usuario != null)
             {
-                // Usuario encontrado - cargar datos
                 inpNombre.Text = usuario.nombre;
-                inpContrasena.Text = usuario.password;
                 cmbEstado.SelectedValue = usuario.estado;
                 existeUsuario = true;
             }
             else
             {
-                // Usuario no encontrado - limpiar campos para crearlo nuevo
                 existeUsuario = false;
                 inpNombre.Clear();
-                inpContrasena.Clear();
                 cmbEstado.SelectedIndex = 0;
             }
 
-            // Habilitar campos para editar/crear
+            btnGuardarUsuario.Enabled = true;
+            this.AcceptButton = btnGuardarUsuario;
             ActivarInputsUsuario(true);
-
-            // Mover foco al nombre
-            inpNombre?.Focus();
         }
 
         private void btnGuardarUsuario_Click(object sender, EventArgs e)
@@ -478,69 +707,17 @@ namespace SistemaVentas
             if (!ValidarCamposUsuario()) return;
 
             usuario = ObtenerUsuarioEnInputs();
-
             if (usuario == null) return;
 
             GuardarUsuario(usuario);
-        }
-
-        private void btnCancelarUsuario_Click(object sender, EventArgs e)
-        {
             LimpiarCamposUsuario();
             ActivarInputsUsuario(false);
-            inpUsuario.Focus();
         }
 
-
-        //  eventios
-
-        private void EventoMoverConEnter(object sender, KeyEventArgs e)
+        private void btnVolverAlMenuPrincipal_Click(object sender, EventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.SuppressKeyPress = true;
-                Control origen = (Control)sender;
-
-                // Para unidades de medida
-                if (btnGuardarUni.Enabled && origen == inpDesUni)
-                {
-                    btnGuardarUni.PerformClick();
-                    return;
-                }
-
-                if (origen == inpCodUni)
-                {
-                    inpDesUni?.Focus();
-                    return;
-                }
-
-                this.SelectNextControl(origen, true, true, true, true);
-            }
-        }
-
-        private void btnVolverMenuPrincipal_Click(object sender, EventArgs e)
-        {
-            if (formMenuPrincipal != null)
-            {
-                formMenuPrincipal.Show();
-            }
-            this.Close();
-        }
-
-        private void MenuUnidadesMedidas_Shown(object? sender, EventArgs e)
-        {
-            inpCodUni?.Focus();
-        }
-
-        private void MenuConfiguracion_Load(object sender, EventArgs e)
-        {
-            activarInputsUnidad(false);
-        }
-
-
-        private void btnGuardar_Click(object sender, EventArgs e)
-        {
-
+            formMenuPrincipal?.Show(); // Muestra el formulario principal nuevamente
+            this.Close(); //Cierra el formulario actual de artículos
         }
     }
 }
