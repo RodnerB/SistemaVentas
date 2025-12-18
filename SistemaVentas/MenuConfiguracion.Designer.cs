@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
             panel1 = new Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
             panel2 = new Panel();
@@ -45,7 +45,7 @@
             label5 = new Label();
             lblClientes = new Label();
             tableLayoutPanel3 = new TableLayoutPanel();
-            button1 = new Button();
+            btnVolverAlMenuPrincipal = new Button();
             tableLayoutPanel2 = new TableLayoutPanel();
             tableLayoutPanel4 = new TableLayoutPanel();
             tableLayoutPanel20 = new TableLayoutPanel();
@@ -54,7 +54,6 @@
             colUsuario = new DataGridViewTextBoxColumn();
             colNombre = new DataGridViewTextBoxColumn();
             colEstado = new DataGridViewTextBoxColumn();
-            colEliminar = new DataGridViewButtonColumn();
             label8 = new Label();
             tableLayoutPanel21 = new TableLayoutPanel();
             tableLayoutPanel22 = new TableLayoutPanel();
@@ -256,7 +255,7 @@
             tableLayoutPanel3.Anchor = AnchorStyles.Right;
             tableLayoutPanel3.ColumnCount = 1;
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.Controls.Add(button1, 0, 0);
+            tableLayoutPanel3.Controls.Add(btnVolverAlMenuPrincipal, 0, 0);
             tableLayoutPanel3.Location = new Point(9, 14);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
@@ -264,21 +263,22 @@
             tableLayoutPanel3.Size = new Size(39, 55);
             tableLayoutPanel3.TabIndex = 29;
             // 
-            // button1
+            // btnVolverAlMenuPrincipal
             // 
-            button1.Anchor = AnchorStyles.Right;
-            button1.BackColor = Color.Transparent;
-            button1.BackgroundImage = Properties.Resources.return_up_back_icon_233992__1_;
-            button1.Cursor = Cursors.Hand;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatAppearance.MouseDownBackColor = Color.Silver;
-            button1.FlatAppearance.MouseOverBackColor = Color.Silver;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(3, 14);
-            button1.Name = "button1";
-            button1.Size = new Size(33, 27);
-            button1.TabIndex = 28;
-            button1.UseVisualStyleBackColor = false;
+            btnVolverAlMenuPrincipal.Anchor = AnchorStyles.Right;
+            btnVolverAlMenuPrincipal.BackColor = Color.Transparent;
+            btnVolverAlMenuPrincipal.BackgroundImage = Properties.Resources.return_up_back_icon_233992__1_;
+            btnVolverAlMenuPrincipal.Cursor = Cursors.Hand;
+            btnVolverAlMenuPrincipal.FlatAppearance.BorderSize = 0;
+            btnVolverAlMenuPrincipal.FlatAppearance.MouseDownBackColor = Color.Silver;
+            btnVolverAlMenuPrincipal.FlatAppearance.MouseOverBackColor = Color.Silver;
+            btnVolverAlMenuPrincipal.FlatStyle = FlatStyle.Flat;
+            btnVolverAlMenuPrincipal.Location = new Point(3, 14);
+            btnVolverAlMenuPrincipal.Name = "btnVolverAlMenuPrincipal";
+            btnVolverAlMenuPrincipal.Size = new Size(33, 27);
+            btnVolverAlMenuPrincipal.TabIndex = 28;
+            btnVolverAlMenuPrincipal.UseVisualStyleBackColor = false;
+            btnVolverAlMenuPrincipal.Click += btnVolverAlMenuPrincipal_Click;
             // 
             // tableLayoutPanel2
             // 
@@ -357,25 +357,25 @@
             dgvVerUsuarios.BorderStyle = BorderStyle.None;
             dgvVerUsuarios.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dgvVerUsuarios.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.ButtonHighlight;
-            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvVerUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = SystemColors.Control;
+            dataGridViewCellStyle9.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle9.ForeColor = Color.Black;
+            dataGridViewCellStyle9.SelectionBackColor = SystemColors.ButtonHighlight;
+            dataGridViewCellStyle9.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
+            dgvVerUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             dgvVerUsuarios.ColumnHeadersHeight = 35;
             dgvVerUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvVerUsuarios.Columns.AddRange(new DataGridViewColumn[] { colUsuario, colNombre, colEstado, colEliminar });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.ButtonHighlight;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.ButtonHighlight;
-            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvVerUsuarios.DefaultCellStyle = dataGridViewCellStyle2;
+            dgvVerUsuarios.Columns.AddRange(new DataGridViewColumn[] { colUsuario, colNombre, colEstado });
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = SystemColors.ButtonHighlight;
+            dataGridViewCellStyle10.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle10.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = SystemColors.ButtonHighlight;
+            dataGridViewCellStyle10.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.False;
+            dgvVerUsuarios.DefaultCellStyle = dataGridViewCellStyle10;
             dgvVerUsuarios.EnableHeadersVisualStyles = false;
             dgvVerUsuarios.GridColor = Color.White;
             dgvVerUsuarios.Location = new Point(3, 54);
@@ -410,16 +410,6 @@
             colEstado.MinimumWidth = 6;
             colEstado.Name = "colEstado";
             colEstado.ReadOnly = true;
-            // 
-            // colEliminar
-            // 
-            colEliminar.FlatStyle = FlatStyle.Flat;
-            colEliminar.HeaderText = "Acción";
-            colEliminar.MinimumWidth = 6;
-            colEliminar.Name = "colEliminar";
-            colEliminar.ReadOnly = true;
-            colEliminar.Text = "Eliminar";
-            colEliminar.UseColumnTextForButtonValue = true;
             // 
             // label8
             // 
@@ -768,38 +758,38 @@
             dgvEmpresa.BorderStyle = BorderStyle.None;
             dgvEmpresa.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dgvEmpresa.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Control;
-            dataGridViewCellStyle3.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvEmpresa.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = SystemColors.Control;
+            dataGridViewCellStyle11.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle11.ForeColor = Color.Black;
+            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Control;
+            dataGridViewCellStyle11.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
+            dgvEmpresa.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             dgvEmpresa.ColumnHeadersHeight = 35;
             dgvEmpresa.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvEmpresa.Columns.AddRange(new DataGridViewColumn[] { colNombreEmpresa, colDireccion, colTelefono, colFax, colCorreoElectronico });
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.White;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.ButtonHighlight;
-            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            dgvEmpresa.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = Color.White;
+            dataGridViewCellStyle12.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle12.ForeColor = Color.Black;
+            dataGridViewCellStyle12.SelectionBackColor = SystemColors.ButtonHighlight;
+            dataGridViewCellStyle12.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.False;
+            dgvEmpresa.DefaultCellStyle = dataGridViewCellStyle12;
             dgvEmpresa.EnableHeadersVisualStyles = false;
             dgvEmpresa.GridColor = Color.LightGray;
             dgvEmpresa.Location = new Point(3, 300);
             dgvEmpresa.Name = "dgvEmpresa";
             dgvEmpresa.ReadOnly = true;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Control;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = Color.White;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dgvEmpresa.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = SystemColors.Control;
+            dataGridViewCellStyle13.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle13.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = Color.White;
+            dataGridViewCellStyle13.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
+            dgvEmpresa.RowHeadersDefaultCellStyle = dataGridViewCellStyle13;
             dgvEmpresa.RowHeadersVisible = false;
             dgvEmpresa.RowHeadersWidth = 51;
             dgvEmpresa.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -1236,38 +1226,38 @@
             dgvUnidad.BorderStyle = BorderStyle.None;
             dgvUnidad.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dgvUnidad.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Control;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Control;
-            dataGridViewCellStyle6.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgvUnidad.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = SystemColors.Control;
+            dataGridViewCellStyle14.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle14.ForeColor = Color.Black;
+            dataGridViewCellStyle14.SelectionBackColor = SystemColors.Control;
+            dataGridViewCellStyle14.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.True;
+            dgvUnidad.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             dgvUnidad.ColumnHeadersHeight = 35;
             dgvUnidad.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvUnidad.Columns.AddRange(new DataGridViewColumn[] { colCodigoUnidad, colDescripcionUnidad });
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = Color.White;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle7.ForeColor = Color.Black;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.ButtonHighlight;
-            dataGridViewCellStyle7.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
-            dgvUnidad.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = Color.White;
+            dataGridViewCellStyle15.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle15.ForeColor = Color.Black;
+            dataGridViewCellStyle15.SelectionBackColor = SystemColors.ButtonHighlight;
+            dataGridViewCellStyle15.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.False;
+            dgvUnidad.DefaultCellStyle = dataGridViewCellStyle15;
             dgvUnidad.EnableHeadersVisualStyles = false;
             dgvUnidad.GridColor = Color.LightGray;
             dgvUnidad.Location = new Point(3, 195);
             dgvUnidad.Name = "dgvUnidad";
             dgvUnidad.ReadOnly = true;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = SystemColors.Control;
-            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle8.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = Color.White;
-            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
-            dgvUnidad.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = SystemColors.Control;
+            dataGridViewCellStyle16.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle16.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = Color.White;
+            dataGridViewCellStyle16.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.True;
+            dgvUnidad.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
             dgvUnidad.RowHeadersVisible = false;
             dgvUnidad.RowHeadersWidth = 51;
             dgvUnidad.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -1359,7 +1349,7 @@
         private Label label5;
         private Label lblClientes;
         private TableLayoutPanel tableLayoutPanel3;
-        private Button button1;
+        private Button btnVolverAlMenuPrincipal;
         private TableLayoutPanel tableLayoutPanel2;
         private TableLayoutPanel tableLayoutPanel4;
         private TableLayoutPanel tableLayoutPanel5;
@@ -1422,10 +1412,6 @@
         private Label labelusuarioooooo;
         private Label label11;
         private DataGridViewButtonColumn ColAcciones;
-        private DataGridViewTextBoxColumn colUsuario;
-        private DataGridViewTextBoxColumn colNombre;
-        private DataGridViewTextBoxColumn colEstado;
-        private DataGridViewButtonColumn colEliminar;
         private DataGridViewTextBoxColumn colCodigoUnidad;
         private DataGridViewTextBoxColumn colDescripcionUnidad;
         private DataGridView dgvEmpresa;
@@ -1434,5 +1420,8 @@
         private DataGridViewTextBoxColumn colTelefono;
         private DataGridViewTextBoxColumn colFax;
         private DataGridViewTextBoxColumn colCorreoElectronico;
+        private DataGridViewTextBoxColumn colUsuario;
+        private DataGridViewTextBoxColumn colNombre;
+        private DataGridViewTextBoxColumn colEstado;
     }
 }

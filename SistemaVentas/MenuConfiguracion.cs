@@ -17,7 +17,7 @@ namespace SistemaVentas
         private MenuPrincipal? formMenuPrincipal;
         private readonly UtilidadesUI resizer = new UtilidadesUI();
         private string? contrasenaUsuari = null;
-        // Constructor sin parámetros (necesario para el diseñador)
+
         public MenuConfiguracion()
         {
             InitializeComponent();
@@ -55,6 +55,9 @@ namespace SistemaVentas
 
             // Inicialización de controles de empresa (llamar en el constructor después de InitializeComponent)
             InicializarEmpresa();
+
+            btnBuscarUsuario.Click += btnBuscarUsuario_Click;
+            btnGuardarUsuario.Click += btnGuardarUsuario_Click;
 
         }
 
@@ -117,10 +120,7 @@ namespace SistemaVentas
             }
         }
 
-        //TODO: REFACTORIZAR ESTO PARA QUE SEA LA CLASE QUE DECIDA SI GUARDAR O CREAR COMO EN CLIENTES Y ARTCIULOS
-
-        private void GuardarUnidad(UnidadesMedida unidad
-        )
+        private void GuardarUnidad(UnidadesMedida unidad)
         {
             try
             {
@@ -261,7 +261,7 @@ namespace SistemaVentas
 
         private void ActivarInputsUsuario(bool activar)
         {
-            inpUsuario.Enabled = !activar; // Usuario solo se puede escribir cuando está desactivado (para buscar)
+            inpUsuario.Enabled = !activar;
             inpNombre.Enabled = activar;
             cmbEstado.Enabled = activar;
 
@@ -367,7 +367,7 @@ namespace SistemaVentas
 
         private Usuario ObtenerUsuarioEnInputs()
         {
-            return new Usuario(inpUsuario.Text.Trim(), contrasenaUsuari)
+            return new Usuario(inpUsuario.Text.Trim(), contrasenaUsuari ?? string.Empty)
             {
                 nombre = inpNombre.Text.Trim(),
                 estado = cmbEstado.SelectedValue?.ToString() ?? "2"
@@ -413,9 +413,10 @@ namespace SistemaVentas
 
 
 
-        // Reemplaza el método btnGuardarEmpresa_Click por este para que siempre actualice el único registro existente
         private void btnGuardarEmpresa_Click(object sender, EventArgs e)
         {
+            if (!Validar()) return;
+
             empresa = ObtenerEmpresaEnInputs();
             if (empresa == null) return;
 
@@ -431,7 +432,6 @@ namespace SistemaVentas
 
             try
             {
-                // Siempre actualiza el único registro existente
                 if (Empresa.GuardarEmpresa(empresa))
                 {
                     MessageBox.Show("Información empresarial guardada/actualizada exitosamente.", "Éxito",
@@ -460,7 +460,6 @@ namespace SistemaVentas
         private Empresa? empresa = null;
         private bool existeEmpresa = false;
 
-        // Inicialización de controles de empresa (llamar en el constructor después de InitializeComponent)
         private void InicializarEmpresa()
         {
             activarInputsEmpresa(true);
@@ -478,7 +477,7 @@ namespace SistemaVentas
             inpFax.Enabled = true;
             inpEmail.Enabled = true;
 
-            btnGuardarInfomacionEmpresarial.Enabled = true; // Asegúrate de que esto esté en true
+            btnGuardarInfomacionEmpresarial.Enabled = true;
             btnCancelar.Enabled = true;
         }
 
@@ -520,7 +519,7 @@ namespace SistemaVentas
             }
         }
 
-        // Cancela la edición y restaura los datos originales antes de guardar
+
         private void btnCancelarEmpresa_Click(object sender, EventArgs e)
         {
             CargarEmpresaEnGrid();
@@ -599,6 +598,8 @@ namespace SistemaVentas
 
         private void btnGuardarInfomacionEmpresarial_Click(object sender, EventArgs e)
         {
+            if (!Validar()) return;
+
             empresa = ObtenerEmpresaEnInputs();
             if (empresa == null) return;
 
@@ -614,10 +615,8 @@ namespace SistemaVentas
 
             try
             {
-                // Elimina la información anterior
                 Empresa.EliminarInformacionEmpresarial();
 
-                // Guarda la nueva información
                 if (Empresa.GuardarEmpresa(empresa))
                 {
                     MessageBox.Show("Información empresarial guardada exitosamente.", "Éxito",
@@ -629,10 +628,7 @@ namespace SistemaVentas
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-                // Actualiza el DataGridView con la nueva información
                 Empresa.CargarEmpresaEnGridConFilas(dgvEmpresa);
-
-                // Limpia los campos
                 LimpiarCamposEmpresa();
                 activarInputsEmpresa(false);
             }
@@ -641,6 +637,87 @@ namespace SistemaVentas
                 MessageBox.Show("Error en la base de datos: " + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }    
+        }
+
+        private bool Validar()
+        {
+            if (!Validador.ValidarTamanoPermitido(inpEmpresa.Text, 60))
+            {
+                MessageBox.Show("El nombre de la empresa debe tener máximo 60 caracteres.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                inpEmpresa.Focus();
+                return false;
+            }
+            if (!Validador.ValidarTamanoPermitido(inpDireccion.Text, 60))
+            {
+                MessageBox.Show("La dirección debe tener máximo 60 caracteres.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                inpDireccion.Focus();
+                return false;
+            }
+            if (!Validador.ValidarTamanoPermitido(inpTelefono.Text, 10))
+            {
+                MessageBox.Show("El teléfono debe tener máximo 10 caracteres.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                inpTelefono.Focus();
+                return false;
+            }
+            if (!Validador.ValidarTamanoPermitido(inpFax.Text, 10))
+            {
+                MessageBox.Show("El fax debe tener máximo 10 caracteres.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                inpFax.Focus();
+                return false;
+            }
+            if (!Validador.ValidarTamanoPermitido(inpEmail.Text, 60))
+            {
+                MessageBox.Show("El email debe tener máximo 60 caracteres.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                inpEmail.Focus();
+                return false;
+            }
+            return true;
+        }
+
+        private void btnBuscarUsuario_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(inpUsuario.Text)) return;
+
+            usuario = BuscarUsuario(inpUsuario.Text);
+            if (usuario != null)
+            {
+                inpNombre.Text = usuario.nombre;
+                cmbEstado.SelectedValue = usuario.estado;
+                existeUsuario = true;
+            }
+            else
+            {
+                existeUsuario = false;
+                inpNombre.Clear();
+                cmbEstado.SelectedIndex = 0;
+            }
+
+            btnGuardarUsuario.Enabled = true;
+            this.AcceptButton = btnGuardarUsuario;
+            ActivarInputsUsuario(true);
+        }
+
+        private void btnGuardarUsuario_Click(object sender, EventArgs e)
+        {
+            if (!ValidarCamposUsuario()) return;
+
+            usuario = ObtenerUsuarioEnInputs();
+            if (usuario == null) return;
+
+            GuardarUsuario(usuario);
+            LimpiarCamposUsuario();
+            ActivarInputsUsuario(false);
+        }
+
+        private void btnVolverAlMenuPrincipal_Click(object sender, EventArgs e)
+        {
+            formMenuPrincipal?.Show(); // Muestra el formulario principal nuevamente
+            this.Close(); //Cierra el formulario actual de artículos
+        }
     }
 }
