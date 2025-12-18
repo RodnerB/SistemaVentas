@@ -52,6 +52,9 @@ namespace SistemaVentas
 
                 // Aplicar redondeo a hijos (no TextBox ni al propio Form)
                 try { UtilidadesUI.ApplyRoundedExceptTextBoxes(this, 12); } catch { }
+                
+                // AGREGAR ESTA LÍNEA
+                this.Load += MenuConfiguracion_Load;
             }
 
             inpDesUni.KeyPress += validarSoloLetras;
@@ -91,6 +94,12 @@ namespace SistemaVentas
             btnBuscarUnidad.Enabled = true;
             btnAgregarUni.Enabled = false;
             this.AcceptButton = btnBuscarUnidad;
+        }
+
+        private void activarInputsUnidad(bool activar)
+        {
+            inpCodUni.Enabled = !activar;
+            inpDesUni.Enabled = activar;
         }
 
         private void CargarUnidades()
@@ -279,6 +288,7 @@ namespace SistemaVentas
 
             btnAgregarUni.Enabled = true;
             this.AcceptButton = btnAgregarUni;
+            activarInputsUnidad(true); 
 
             inpDesUni?.Focus();
         }
@@ -614,6 +624,11 @@ namespace SistemaVentas
         private void MenuUnidadesMedidas_Shown(object? sender, EventArgs e)
         {
             inpCodUni?.Focus();
+        }
+
+        private void MenuConfiguracion_Load(object sender, EventArgs e)
+        {
+            activarInputsUnidad(false);
         }
 
         #endregion
