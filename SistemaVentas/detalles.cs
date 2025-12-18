@@ -4,87 +4,124 @@ using SistemaVentas.Utilidades;
 
 namespace SistemaVentas
 {
-    class Detalles
+    internal class Detalles
     {
-        private const string getDetallesQuery = "SELECT * FROM SFTDETFAC";
-        private const string getDetallesPorCodigoQuery = "SELECT * FROM SFTDETFAC WHERE NUMFAC = @codigo";
+        private const string getDetallesQuery = @"
+            SELECT  D.NUMFAC,
+                    D.CODART,
+                    A.DESART,
+                    D.CANTVEN,
+                    D.PRECVEN
+            FROM SFTDETFAC D
+            INNER JOIN SFTARTI0 A ON D.CODART = A.CODART";
+
+        private const string getDetallesPorCodigoQuery = @"
+            SELECT  D.NUMFAC,
+                    D.CODART,
+                    A.DESART,
+                    D.CANTVEN,
+                    D.PRECVEN
+            FROM SFTDETFAC D
+            INNER JOIN SFTARTI0 A ON D.CODART = A.CODART
+            WHERE D.NUMFAC = @codigo";
+
         private const string insertDetallesQuery = @"
             INSERT INTO SFTDETFAC 
-            (NUMFAC, CODART, CANTVEN, PRECVEN) 
+                (NUMFAC, CODART, CANTVEN, PRECVEN) 
             VALUES 
-            (@NUMFAC, @CODART, @CANTVEN, @PRECVEN)";
-        private const string actualizarCantidadQuery = @"UPDATE SFTARTI0 
-                               SET EXIACT = EXIACT - @cantidad 
-                               WHERE CODART = @codigo";
-        static Dictionary<string, string> detallesHeaders = new Dictionary<string, string>()
+                (@NUMFAC, @CODART, @CANTVEN, @PRECVEN)";
+
+        private const string actualizarCantidadQuery = @"
+            UPDATE SFTARTI0 
+            SET EXIACT = EXIACT - @cantidad 
+            WHERE CODART = @codigo";
+
+        private static readonly Dictionary<string, string> filasHeaders = new()
         {
-            {"NUMFAC", "Número de Factura" },
-            {"CODART", "Código de Artículo"},
-            {"CANTVEN", "Cantidad Vendida"},
-            {"PRECVEN", "Precio de Venta"}
+            { "colNombreArticulo", "DESART"  },
+            { "colCantidad",       "CANTVEN" },
+            { "colPrecio",         "PRECVEN" }
         };
+
         public int NumeroFactura { get; set; }
         public string CodigoArticulo { get; set; }
         public int CantidadVendida { get; set; }
         public float PrecioVenta { get; set; }
-        public Detalles(int NumeroFactura, string CodigoArticulo, int CantidadVendida, float PrecioVenta)
+
+        public Detalles(int numeroFactura, string codigoArticulo, int cantidadVendida, float precioVenta)
         {
-            this.NumeroFactura = NumeroFactura;
-            this.CodigoArticulo = CodigoArticulo;
-            this.CantidadVendida = CantidadVendida;
-            this.PrecioVenta = PrecioVenta;
+            NumeroFactura = numeroFactura;
+            CodigoArticulo = codigoArticulo;
+            CantidadVendida = cantidadVendida;
+            PrecioVenta = precioVenta;
         }
+
         private static Dictionary<string, object> ObtenerParametrosDetalles(Detalles detalle)
         {
-            return new Dictionary<string, object>()
+            return new Dictionary<string, object>
             {
-                {"@NUMFAC", detalle.NumeroFactura},
-                {"@CODART", detalle.CodigoArticulo },
-                {"@CANTVEN", detalle.CantidadVendida },
-                {"@PRECVEN", detalle.PrecioVenta }
+                { "@NUMFAC", detalle.NumeroFactura },
+                { "@CODART", detalle.CodigoArticulo },
+                { "@CANTVEN", detalle.CantidadVendida },
+                { "@PRECVEN", detalle.PrecioVenta }
             };
         }
+
         public bool InsertarDetalle()
         {
-            return (UtilidadesBD.GuardarRegistro(
+            return UtilidadesBD.GuardarRegistro(
                 insertDetallesQuery,
                 ObtenerParametrosDetalles(this)
-                ) > 0);
+            ) > 0;
         }
-        public static DataTable ObtenerDetalles() => UtilidadesBD.ObtenerTodosLosRegistros(getDetallesQuery);
-        public static void CargarDetallesEnGrid(DataGridView dataGrid)
+
+        public static DataTable ObtenerDetalles()
         {
-            DataTable tabla = ObtenerDetalles();
-            UtilidadesUI.CargarDatosEnGrid(
+            return UtilidadesBD.ObtenerTodosLosRegistros(getDetallesQuery);
+        }
+
+        public static DataTable ObtenerDetallesPorCodigo(int numeroFactura)
+        {
+            DataTable tabla = new();
+
+            try
+            {
+                using SqlConnection conexion = ConexionDB.ObtenerConexion();
+                using SqlCommand comando = new(getDetallesPorCodigoQuery, conexion);
+                comando.Parameters.AddWithValue("@codigo", numeroFactura);
+
+                using SqlDataAdapter adaptador = new(comando);
+                adaptador.Fill(tabla);
+
+                return tabla;
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Error al obtener los detalles por código: " + ex.Message);
+            }
+        }
+
+        public static void CargarDetallesGridConFilas(DataGridView dataGrid, int numeroFactura)
+        {
+            DataTable tabla = ObtenerDetallesPorCodigo(numeroFactura);
+
+            UtilidadesUI.CargarDatosEnGridConFilas(
                 tabla,
                 dataGrid,
-                detallesHeaders
-                );
-        }
-        public static Detalles? ObtenerDetallesPorCodigo(string numeroFactura)
-        {
-            Dictionary<string, object>? datos = UtilidadesBD.BuscarRegistro(
-                getDetallesPorCodigoQuery,
-                numeroFactura);
-            if (datos == null) return null;
-
-            int NumeroFactura = Convert.ToInt32(datos["NUMFAC"]);
-            string CodigoArticulo = datos["CODART"].ToString()!;
-            int CantidadVendida = Convert.ToInt32(datos["CANTVEN"]);
-            float PrecioVenta = Convert.ToSingle(datos["PRECVEN"]);
-
-            return new Detalles(NumeroFactura, CodigoArticulo, CantidadVendida, PrecioVenta);
+                filasHeaders
+            );
         }
 
         public static void ActualizarExistenciaArticulo(string codigoArticulo, int cantidadVendida)
         {
-            var parametros = new Dictionary<string, object>()
-            {
-                {"@codigo", codigoArticulo },
-                {"@cantidad", cantidadVendida }
-            };
-            UtilidadesBD.GuardarRegistro(actualizarCantidadQuery, parametros);
+            UtilidadesBD.GuardarRegistro(
+                actualizarCantidadQuery,
+                new Dictionary<string, object>
+                {
+                    { "@codigo", codigoArticulo },
+                    { "@cantidad", cantidadVendida }
+                }
+            );
         }
-
     }
 }
