@@ -49,5 +49,14 @@ namespace SistemaVentas
             }
             return true;
         }
+
+
+        private void CancelarF4(object sender, KeyEventArgs e)
+        {
+            if(e.Alt && e.KeyCode == Keys.F4)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
