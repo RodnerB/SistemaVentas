@@ -17,8 +17,6 @@ namespace SistemaVentas
         private List<Articulo> productosDisponibles;
         private float totalVenta = 0f;
         private UtilidadesUI resizer = new UtilidadesUI();
-
-        private const int ButtonRadius = 12;
         
         private const int ControlRadius = 12;
 
@@ -51,7 +49,7 @@ namespace SistemaVentas
         }
 
         // ============================================
-        // ?? CARGAR PRODUCTOS DESDE LA BD
+        //    CARGAR PRODUCTOS DESDE LA BD
         // ============================================
         private void CargarProductos()
         {
@@ -79,7 +77,7 @@ namespace SistemaVentas
         }
 
         // ============================================
-        // ?? BUSCAR MIENTRAS ESCRIBE
+        //    BUSCAR MIENTRAS ESCRIBE
         // ============================================
         private void TxtBuscarProducto_TextChanged(object? sender, EventArgs e)
         {
@@ -120,7 +118,7 @@ namespace SistemaVentas
         }
 
         // ============================================
-        // ?? NAVEGACIÓN CON TECLADO
+        //    NAVEGACIÓN CON TECLADO
         // ============================================
         private void TxtBuscarProducto_KeyDown(object? sender, KeyEventArgs e)
         {
@@ -149,7 +147,7 @@ namespace SistemaVentas
         }
 
         // ============================================
-        // ?? AGREGAR PRODUCTO AL HACER DOBLE CLIC
+        //    AGREGAR PRODUCTO AL HACER DOBLE CLIC
         // ============================================
         private void LstResultadosBusqueda_DoubleClick(object? sender, EventArgs e)
         {
@@ -208,7 +206,7 @@ namespace SistemaVentas
         }
 
         // ============================================
-        // ?? RECALCULAR SUBTOTAL AL CAMBIAR CANTIDAD
+        //  RECALCULAR SUBTOTAL AL CAMBIAR CANTIDAD
         // ============================================
         private void DgvProductosSeleccionados_CellValueChanged(object? sender, DataGridViewCellEventArgs e)
         {
@@ -256,7 +254,7 @@ namespace SistemaVentas
         }
 
         // ============================================
-        // ? ELIMINAR PRODUCTO
+        //  ELIMINAR PRODUCTO
         // ============================================
         private void DgvProductosSeleccionados_CellClick(object? sender, DataGridViewCellEventArgs e)
         {
@@ -287,7 +285,7 @@ namespace SistemaVentas
         }
 
         // ============================================
-        // ?? ACTUALIZAR TOTAL
+        //  ACTUALIZAR TOTAL
         // ============================================
         private void ActualizarTotal()
         {
@@ -303,7 +301,7 @@ namespace SistemaVentas
         }
 
         // ============================================
-        // ?? IR A FACTURAR
+        //  IR A FACTURAR
         // ============================================
         private void BtnFacturar_Click(object? sender, EventArgs e)
         {
@@ -329,7 +327,7 @@ namespace SistemaVentas
         }
 
         // ============================================
-        // ?? VOLVER AL MENÚ PRINCIPAL
+        //  VOLVER AL MENÚ PRINCIPAL
         // ============================================
         private void BtnVolverMenu_Click(object? sender, EventArgs e)
         {

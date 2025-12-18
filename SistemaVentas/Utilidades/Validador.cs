@@ -2,28 +2,17 @@ namespace SistemaVentas.Utilidades
 {
     public class Validador
     {
-        // Procedimiento para validad que las propiedades marcadas
-        // como [Requerido] no sean nulas, vacias, o que si sean del tipo esperado
-        public static void Requerido(object objeto)
-        {
-            ArgumentNullException.ThrowIfNull(objeto);
-
-            var tipoObjeto = objeto.GetType();
-            var propiedades = tipoObjeto.GetProperties();
-
-        }
-
         public static void validarSoloNumeros(object? sender, KeyPressEventArgs e)
         {
-            // Permitir solo dÌgitos, un punto decimal y teclas de control (como retroceso)
+            // Permitir solo d√≠gitos, un punto decimal y teclas de control (como retroceso)
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
             {
-                e.Handled = true; // Ignorar el car·cter si no es v·lido
+                e.Handled = true; // Ignorar el car√°cter si no es v√°lido
             }
             // Permitir solo un punto decimal
             if (e.KeyChar == '.' && (sender as TextBox)?.Text.Contains('.') == true)
             {
-                e.Handled = true; // Ignorar el car·cter si ya hay un punto
+                e.Handled = true; // Ignorar el car√°cter si ya hay un punto
             }
         }
 

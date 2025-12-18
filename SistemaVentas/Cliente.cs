@@ -1,6 +1,5 @@
 ﻿using SistemaVentas.Utilidades;
 using System.Data;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SistemaVentas
 {
@@ -8,15 +7,10 @@ namespace SistemaVentas
     {
         /* Parametros obligatorios */
         // inicializado para evitar nullables en el constructor vacio, estos seran llenados obligatoriamente
-        
         public string CodigoCliente { get; set; } = string.Empty;
-        
         public string NombreCliente { get; set; } = string.Empty;
-        
         public string DireccionCliente { get; set; } = string.Empty;
-        
         public string CiudadCliente { get; set; } = string.Empty;
-        
         public string TelefonoCliente { get; set; } = string.Empty;
 
         /* Parametros opcionales */
@@ -24,11 +18,7 @@ namespace SistemaVentas
         public string SectorCliente { get; set; } = string.Empty;
         public string FaxCliente { get; set; } = string.Empty;
         public string ObservacionesCliente { get; set; } = string.Empty;
-        // Aun parametros opcionales, pero se valida que estos no contengan
-        // un valor negativo
-
         public float LimiteCreditoCliente { get; set; } = 0f;
-
         public float BalanceActualCliente { get; set; } = 0f;
 
         // Estado para determinar si se debe crear o actualizar el cliente
@@ -58,6 +48,12 @@ namespace SistemaVentas
             WHERE 
                 CODCLI = @CodigoCliente";
         private const string eliminarClienteQuery = "DELETE FROM SFTCLIE0 WHERE CODCLI = @codigo";
+        private const string actualizarBalanceClienteQuery = @"
+            UPDATE SFTCLIE0
+            SET 
+                BALCLI = @BalanceActualCliente
+            WHERE 
+                CODCLI = @CodigoCliente";
 
         // Headers para renombrar columnas 
 
@@ -108,7 +104,6 @@ namespace SistemaVentas
         public bool InsertarCliente()
         {
             string query = existe ? actualizarClienteQuery : insertarClienteQuery;
-            Validador.Requerido(this);
             return (UtilidadesBD.GuardarRegistro(
                 query,
                 ObtenerParametrosCliente(this)
@@ -151,6 +146,19 @@ namespace SistemaVentas
 
 
 
+        }
+
+        public static bool RestarBalanceCliente(string codigoCliente, int balanceRestar)
+        {
+            Cliente? cliente = ObtenerClientePorCodigo(codigoCliente);
+            return (UtilidadesBD.GuardarRegistro(
+                actualizarBalanceClienteQuery,
+                new Dictionary<string, object>()
+                {
+                    {"@CodigoCliente", cliente.CodigoCliente },
+                    {"@BalanceActualCliente", cliente.BalanceActualCliente - balanceRestar }
+                }
+            ) > 0);
         }
 
         public static bool eliminarCliente(string codigoCliente) => (UtilidadesBD.

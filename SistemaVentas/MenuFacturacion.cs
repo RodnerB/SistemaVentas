@@ -28,12 +28,7 @@ namespace SistemaVentas
             lblDescuentoValor.Text = "$0.00";
             lblTotalFinalValor.Text = $"${montoTotal:F2}";
 
-            // Configurar eventos
-            btnGuardarFactura.Click += BtnGuardarFactura_Click;
-            btnCancelar.Click += BtnCancelar_Click;
-            txtDescuento.TextChanged += TxtDescuento_TextChanged;
-
-            // Configurar valores predeterminados
+            // valores predeterminados
             dtpFechaFactura.Value = DateTime.Now;
             cmbCondicion.SelectedIndex = 0;
 
@@ -51,15 +46,7 @@ namespace SistemaVentas
             try
             {
                 txtNumFactura.Text = Factura.ObtenerNuevoCodigoFactura().ToString();
-                using (SqlConnection conexion = ConexionDB.ObtenerConexion())
-                {
-                    string query = "SELECT ISNULL(MAX(NUMFAC), 0) + 1 FROM SFTFAC0";
-                    using (SqlCommand comando = new SqlCommand(query, conexion))
-                    {
-                        int nuevoNumero = Convert.ToInt32(comando.ExecuteScalar());
-                        txtNumFactura.Text = nuevoNumero.ToString();
-                    }
-                }
+               
             }
             catch (Exception ex)
             {
@@ -73,19 +60,29 @@ namespace SistemaVentas
         {
             try
             {
-                DataTable tablaClientes = UtilidadesBD.ObtenerTodosLosRegistros(
-                    "SELECT CODCLI, NOMCLI + ' ' + APECLI AS NombreCompleto FROM SFTCLIE0");
-
+                DataTable tablaClientes = Cliente.ObtenerClientes();
                 if (tablaClientes != null && tablaClientes.Rows.Count > 0)
                 {
-                    DataRow fila = tablaClientes.NewRow();
-                    fila["CODCLI"] = "";
-                    fila["NombreCompleto"] = "Seleccione un cliente";
-                    tablaClientes.Rows.InsertAt(fila, 0);
+                    // Crear una nueva columna para la combinación de CODCLI y NOMCLI
+                    tablaClientes.Columns.Add("ClienteCompleto", typeof(string));
 
+                    // Llenar la columna "ClienteCompleto" con la combinación de CODCLI y NOMCLI
+                    foreach (DataRow fila in tablaClientes.Rows)
+                    {
+                        fila["ClienteCompleto"] = fila["CODCLI"].ToString() + " - " + fila["NOMCLI"].ToString();
+                    }
+
+                    // Crear una fila en la parte superior para el mensaje predeterminado
+                    DataRow filaDefault = tablaClientes.NewRow();
+                    filaDefault["CODCLI"] = "";
+                    filaDefault["NOMCLI"] = "Seleccione un cliente";
+                    filaDefault["ClienteCompleto"] = "Seleccione un cliente";  // Usar la misma columna para el valor predeterminado
+                    tablaClientes.Rows.InsertAt(filaDefault, 0);
+
+                    // Asignar la tabla al ComboBox
                     cmbCliente.DataSource = tablaClientes;
-                    cmbCliente.DisplayMember = "NombreCompleto";
-                    cmbCliente.ValueMember = "CODCLI";
+                    cmbCliente.DisplayMember = "ClienteCompleto";  // Mostrar la nueva columna
+                    cmbCliente.ValueMember = "CODCLI";  // Mantener CODCLI como el valor
                     cmbCliente.SelectedIndex = 0;
                 }
             }
@@ -157,6 +154,11 @@ namespace SistemaVentas
 
                 // Guardar detalles de la factura
                 GuardarDetallesFactura(numeroFactura);
+                if(condicion == "2")
+                {
+
+                    Cliente.RestarBalanceCliente(codigoCliente, (int)montoTotal);
+                }
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();
@@ -207,6 +209,7 @@ namespace SistemaVentas
 
         private bool ValidarCampos()
         {
+
             if (string.IsNullOrWhiteSpace(txtNumFactura.Text))
             {
                 MessageBox.Show("Debe ingresar un número de factura", "Advertencia",
@@ -217,19 +220,33 @@ namespace SistemaVentas
 
             if (string.IsNullOrWhiteSpace(cmbCliente.SelectedValue?.ToString()) && cmbCondicion.SelectedIndex != 0)
             {
-                MessageBox.Show("Debe seleccionar un cliente", "Advertencia",
+                MessageBox.Show("Para realizar una factura a credito debe seleccionar un cliente", "Advertencia",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 cmbCliente.Focus();
                 return false;
             }
 
-            if (cmbCondicion.SelectedIndex < 0)
+            // 0 = Contado, 1 = Crédito
+            if (cmbCondicion.SelectedIndex == 1)
             {
-                MessageBox.Show("Debe seleccionar una condición de pago", "Advertencia",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                DataRowView clienteSeleccionado = (DataRowView)cmbCliente.SelectedItem;
+                float balanceCliente = Convert.ToSingle(clienteSeleccionado["BALCLI"]);
+
+                if (montoTotal > balanceCliente)
+                {
+                MessageBox.Show(
+                    $"El monto de la factura sobrepasa el balance disponible del cliente \nMonto: ${montoTotal} \nBalance disponible: ${balanceCliente}",
+                    "Advertencia",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
                 cmbCondicion.Focus();
                 return false;
+
+                }
             }
+
 
             return true;
         }
