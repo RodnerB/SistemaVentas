@@ -37,17 +37,17 @@
             tableLayoutPanel3 = new TableLayoutPanel();
             btnCerrar = new Button();
             lblTotalFactura = new Label();
-            dataGridView1 = new DataGridView();
-            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            dgvDetalles = new DataGridView();
             tableLayoutPanel5 = new TableLayoutPanel();
             lblFactura = new Label();
             lblCliente = new Label();
+            colNombreArticulo = new DataGridViewTextBoxColumn();
+            colCantidad = new DataGridViewTextBoxColumn();
+            colPrecio = new DataGridViewTextBoxColumn();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvDetalles).BeginInit();
             tableLayoutPanel5.SuspendLayout();
             SuspendLayout();
             // 
@@ -76,7 +76,7 @@
             tableLayoutPanel2.Controls.Add(tableLayoutPanel4, 0, 1);
             tableLayoutPanel2.Controls.Add(label1, 0, 2);
             tableLayoutPanel2.Controls.Add(tableLayoutPanel3, 0, 5);
-            tableLayoutPanel2.Controls.Add(dataGridView1, 0, 4);
+            tableLayoutPanel2.Controls.Add(dgvDetalles, 0, 4);
             tableLayoutPanel2.Controls.Add(tableLayoutPanel5, 0, 3);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(16, 21);
@@ -163,16 +163,16 @@
             lblTotalFactura.TabIndex = 3;
             lblTotalFactura.Text = "Total de la factura:";
             // 
-            // dataGridView1
+            // dgvDetalles
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.AllowUserToResizeRows = false;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.BackgroundColor = SystemColors.ButtonHighlight;
-            dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.None;
-            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvDetalles.AllowUserToAddRows = false;
+            dgvDetalles.AllowUserToDeleteRows = false;
+            dgvDetalles.AllowUserToResizeRows = false;
+            dgvDetalles.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvDetalles.BackgroundColor = SystemColors.ButtonHighlight;
+            dgvDetalles.BorderStyle = BorderStyle.None;
+            dgvDetalles.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dgvDetalles.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
@@ -180,9 +180,9 @@
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.ButtonHighlight;
             dataGridViewCellStyle1.SelectionForeColor = Color.Black;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridView1.ColumnHeadersHeight = 22;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3 });
+            dgvDetalles.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgvDetalles.ColumnHeadersHeight = 22;
+            dgvDetalles.Columns.AddRange(new DataGridViewColumn[] { colNombreArticulo, colCantidad, colPrecio });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.ButtonHighlight;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -190,36 +190,18 @@
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.ButtonHighlight;
             dataGridViewCellStyle2.SelectionForeColor = Color.Black;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.GridColor = Color.White;
-            dataGridView1.Location = new Point(3, 108);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView1.RowHeadersVisible = false;
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 32;
-            dataGridView1.Size = new Size(656, 265);
-            dataGridView1.TabIndex = 5;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewTextBoxColumn1.HeaderText = "Nombre del artículo";
-            dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            dataGridViewTextBoxColumn2.HeaderText = "Cantidad ";
-            dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            dataGridViewTextBoxColumn3.HeaderText = "Precio";
-            dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            dgvDetalles.DefaultCellStyle = dataGridViewCellStyle2;
+            dgvDetalles.Dock = DockStyle.Fill;
+            dgvDetalles.EnableHeadersVisualStyles = false;
+            dgvDetalles.GridColor = Color.White;
+            dgvDetalles.Location = new Point(3, 108);
+            dgvDetalles.Name = "dgvDetalles";
+            dgvDetalles.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvDetalles.RowHeadersVisible = false;
+            dgvDetalles.RowHeadersWidth = 51;
+            dgvDetalles.RowTemplate.Height = 32;
+            dgvDetalles.Size = new Size(656, 265);
+            dgvDetalles.TabIndex = 5;
             // 
             // tableLayoutPanel5
             // 
@@ -258,6 +240,24 @@
             lblCliente.TabIndex = 1;
             lblCliente.Text = "Cliente";
             // 
+            // colNombreArticulo
+            // 
+            colNombreArticulo.HeaderText = "Nombre del artículo";
+            colNombreArticulo.MinimumWidth = 6;
+            colNombreArticulo.Name = "colNombreArticulo";
+            // 
+            // colCantidad
+            // 
+            colCantidad.HeaderText = "Cantidad ";
+            colCantidad.MinimumWidth = 6;
+            colCantidad.Name = "colCantidad";
+            // 
+            // colPrecio
+            // 
+            colPrecio.HeaderText = "Precio";
+            colPrecio.MinimumWidth = 6;
+            colPrecio.Name = "colPrecio";
+            // 
             // MenuDetallesFactura
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -275,7 +275,7 @@
             tableLayoutPanel2.PerformLayout();
             tableLayoutPanel3.ResumeLayout(false);
             tableLayoutPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvDetalles).EndInit();
             tableLayoutPanel5.ResumeLayout(false);
             tableLayoutPanel5.PerformLayout();
             ResumeLayout(false);
@@ -290,12 +290,14 @@
         private TableLayoutPanel tableLayoutPanel4;
         private Button btnCerrar;
         private Label lblTotalFactura;
-        private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridView dgvDetalles;
         private TableLayoutPanel tableLayoutPanel5;
         private Label lblFactura;
         private Label lblCliente;
+        private DataGridViewTextBoxColumn colNombreArticulo;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn colCantidad;
+        private DataGridViewTextBoxColumn colPrecio;
     }
 }

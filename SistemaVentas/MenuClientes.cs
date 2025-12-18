@@ -184,29 +184,7 @@ namespace SistemaVentas
             }
         }
 
-        private void EliminarCliente(string codigoCliente)
-        {
-            try
-            {
-                if (Cliente.eliminarCliente(codigoCliente))
-                {
-                    MessageBox.Show("Cliente eliminado exitosamente.", "Éxito",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CargarClientes(); // Recarga la lista de clientes después de eliminar uno
-                }
-                else
-                {
-                    MessageBox.Show("No se pudo eliminar el cliente.", "Error",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (Exception ex)
-            {
-                MostrarAdvertenciaCampoVacio(ex.Message, null);
-            }
-            existeElCliente = false;
-            btnAgregarCliente.Enabled = false;
-        }
+       
 
 
         private Cliente ObtenerClienteEnInputs()
@@ -384,15 +362,7 @@ namespace SistemaVentas
             }
 
         }
-        private void dgvClientes_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 && e.ColumnIndex == dgvClientes.Columns["colEliminar"].Index)
-            {
-
-                string codigoCliente = dgvClientes.Rows[e.RowIndex].Cells["colCodigo"].Value.ToString()!;
-                EliminarCliente(codigoCliente);
-            }
-        }
+       
 
         // Evento del botón para volver al menú principal
         private void BtnVolverMenuPrincipal_Click(object sender, EventArgs e)

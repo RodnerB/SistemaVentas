@@ -77,7 +77,6 @@
             tableLayoutPanel11 = new TableLayoutPanel();
             label1 = new Label();
             tableLayoutPanel9 = new TableLayoutPanel();
-            groupBoxResumen = new GroupBox();
             lblEmpresa = new Label();
             tableLayoutPanel14 = new TableLayoutPanel();
             label3 = new Label();
@@ -742,7 +741,6 @@
             // 
             tableLayoutPanel9.ColumnCount = 1;
             tableLayoutPanel9.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel9.Controls.Add(groupBoxResumen, 0, 7);
             tableLayoutPanel9.Controls.Add(lblEmpresa, 0, 0);
             tableLayoutPanel9.Controls.Add(tableLayoutPanel14, 0, 8);
             tableLayoutPanel9.Controls.Add(inpEmpresa, 0, 1);
@@ -769,19 +767,6 @@
             tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel9.Size = new Size(850, 621);
             tableLayoutPanel9.TabIndex = 1;
-            // 
-            // groupBoxResumen
-            // 
-            groupBoxResumen.Anchor = AnchorStyles.None;
-            groupBoxResumen.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            groupBoxResumen.Location = new Point(3, 313);
-            groupBoxResumen.Margin = new Padding(3, 4, 3, 4);
-            groupBoxResumen.Name = "groupBoxResumen";
-            groupBoxResumen.Padding = new Padding(3, 4, 3, 4);
-            groupBoxResumen.Size = new Size(844, 162);
-            groupBoxResumen.TabIndex = 16;
-            groupBoxResumen.TabStop = false;
-            groupBoxResumen.Text = "Vista Previa";
             // 
             // lblEmpresa
             // 
@@ -1313,7 +1298,6 @@
         private TableLayoutPanel tableLayoutPanel11;
         private Label label1;
         private TableLayoutPanel tableLayoutPanel9;
-        private GroupBox groupBoxResumen;
         private Label lblEmpresa;
         private TableLayoutPanel tableLayoutPanel14;
         private Label label3;
