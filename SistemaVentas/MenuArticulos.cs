@@ -264,30 +264,24 @@ namespace SistemaVentas
             };
         }
 
-        private bool AdvertenciaDesArt()
-        {
+        private bool Validaciones ()
+        { 
             if (!Validador.ValidarTamanoPermitido(inpDesArt.Text, 40))
             {
                 MessageBox.Show("Debe introducir una descripción.", "Advertencia",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            return true;
-        }
+          
 
-        private bool AdvertenciaCodArt()
-        {
             if (!Validador.ValidarTamanoPermitido(inpCodArt.Text, 20))
             {
                 MessageBox.Show("Debe de introducir un código de artículo válido de máximo 20 caracteres.", "Advertencia",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            return true;
-        }
 
-        private bool AdvertenciacmbCodUni()
-        {
+        
             if (string.IsNullOrWhiteSpace(cmbCodUni.SelectedValue?.ToString()))
             {
                 MessageBox.Show("Debe de seleccionar una unidad de medida.", "Advertencia",
@@ -299,11 +293,8 @@ namespace SistemaVentas
 
         private void btnAgregarArt_Click(object sender, EventArgs e)
         {
-            if (!AdvertenciaDesArt()) return;
-
-            if (!AdvertenciaCodArt()) return;
-
-            if (!AdvertenciacmbCodUni()) return;
+            if (!Validaciones())
+                return;
 
             articulo = ObtenerArticuloEnText();
 

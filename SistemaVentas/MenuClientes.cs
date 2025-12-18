@@ -231,6 +231,57 @@ namespace SistemaVentas
                 MostrarAdvertenciaCampoVacio("El balance actual no puede ser mayor al límite de crédito.", inpBalCliente);
                 return false;
             }
+
+            if (!Validador.ValidarTamanoPermitido(inpCodCliente.Text, 10))
+            {
+                MessageBox.Show("El código debe tener un máximo de 10 caracteres.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (!Validador.ValidarTamanoPermitido(inpNomCliente.Text, 30))
+            {
+                MessageBox.Show("El nombre debe tener un máximo de 30 caracteres.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (!Validador.ValidarTamanoPermitido(inpApeCliente.Text, 30))
+            {
+                MessageBox.Show("El apellido debe tener un máximo de 30 caracteres.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (!Validador.ValidarTamanoPermitido(inpDirCliente.Text, 50))
+            {
+                MessageBox.Show("La dirección debe tener un máximo de 50 caracteres.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (!Validador.ValidarTamanoPermitido(inpSecCliente.Text, 25))
+            {
+                MessageBox.Show("El sectro debe tener un máximo de 25 caracteres.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (!Validador.ValidarTamanoPermitido(inpCiuCliente.Text, 25))
+            {
+                MessageBox.Show("La ciudad debe tener un máximo de 25 caracteres.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (!Validador.ValidarTamanoPermitido(inpTelCliente.Text, 10))
+            {
+                MessageBox.Show("El teléfono debe tener un máximo de 10 caracteres.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+
+            }
+
             return true;
         }
 
