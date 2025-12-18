@@ -28,6 +28,9 @@ namespace SistemaVentas
         {
             InitializeComponent();  // Inicializa los componentes gráficos del formulario
 
+            this.KeyPreview = true;
+
+
             formMenuPrincipal = MenuPrincipal;  // Guarda la referencia del formulario principal que abrió este formulario
 
 
@@ -78,6 +81,9 @@ namespace SistemaVentas
                 btnVerDetalles.Enabled = false;
                 btnVerDetalles.Click += btnVerDetalles_Click; // Conectar el evento
             }
+
+            // Asignar el evento KeyDown solo al textbox de número de factura
+            inpNumeroFactura.KeyDown += inpNumeroFactura_KeyDown;
         }
 
         private void dgvFacturas_CellContentClick(object? sender, DataGridViewCellEventArgs e)
@@ -121,11 +127,12 @@ namespace SistemaVentas
         }
 
 
-        private void CargarFacturas(){
+        private void CargarFacturas()
+        {
             DataTable facturas = Factura.ObtenerFacturas();
             Factura.CargarFacturasEnGridConFilas(dgvFacturas, facturas);
 
-        } 
+        }
 
         // Método para obtener los datos de entrada y crear un objeto Factura
         private Factura obtenerFacturaInputs()
@@ -314,8 +321,7 @@ namespace SistemaVentas
 
             e.SuppressKeyPress = true; // evita sonido y salto de línea
 
-
-            // Si el control es la caja de número de factura, validar antes de avanzar
+            // Si el control es la caja de número de factura, ejecutar la función del botón Buscar
             if (control.Name == "inpNumFactura")
             {
                 var txtNum = control as TextBox;
@@ -325,8 +331,8 @@ namespace SistemaVentas
                     return; // NO avanzar si está vacío
                 }
 
-                // Avanzar al siguiente control
-                this.SelectNextControl(control, true, true, true, true);
+                // Ejecutar la función del botón Buscar
+                btnBuscarFactura_Click(control, EventArgs.Empty);
                 return;
             }
 
@@ -334,8 +340,7 @@ namespace SistemaVentas
             this.SelectNextControl(control, true, true, true, true);
         }
 
-        // Nuevo helper: mostrar advertencia por campo vacío sin borrar otros campos
-        // y restaurar el foco en el último control con foco (o en controlAFocar si se pasa)
+       
         private void MostrarAdvertenciaCampoVacio(string mensaje, Control? controlAFocar = null)
         {
             MessageBox.Show(mensaje, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -360,11 +365,36 @@ namespace SistemaVentas
                 var btnVerDetalles = this.Controls.Find("btnVerDetalles", true).FirstOrDefault() as Button;
                 if (btnVerDetalles != null)
                     btnVerDetalles.Enabled = false;
+
+                // Habilitar el botón Cancelar
+                var btnCancelar = this.Controls.Find("btnCancelar", true).FirstOrDefault() as Button;
+                if (btnCancelar != null)
+                    btnCancelar.Enabled = true;
+
+                return;
+            }
+
+            // Limpiar y validar el número de factura antes de buscar
+            string numeroFacturaLimpio = inpNumeroFactura.Text.Trim().Replace("\r", "").Replace("\n", "");
+            if (!int.TryParse(numeroFacturaLimpio, out _))
+            {
+                MessageBox.Show("El número de factura debe ser un valor numérico válido.", "Error de entrada",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                facturaEncontrada = false;
+                var btnVerDetalles = this.Controls.Find("btnVerDetalles", true).FirstOrDefault() as Button;
+                if (btnVerDetalles != null)
+                    btnVerDetalles.Enabled = false;
+
+                // Habilitar el botón Cancelar
+                var btnCancelar = this.Controls.Find("btnCancelar", true).FirstOrDefault() as Button;
+                if (btnCancelar != null)
+                    btnCancelar.Enabled = true;
+
                 return;
             }
 
             // Buscar la factura
-            facturaBuscada = Factura.ObtenerFacturaPorCodigo(inpNumeroFactura.Text);
+            facturaBuscada = Factura.ObtenerFacturaPorCodigo(numeroFacturaLimpio);
 
             if (facturaBuscada != null)
             {
@@ -385,6 +415,11 @@ namespace SistemaVentas
             var btnVer = this.Controls.Find("btnVerDetalles", true).FirstOrDefault() as Button;
             if (btnVer != null)
                 btnVer.Enabled = facturaEncontrada;
+
+            // Habilitar el botón Cancelar
+            var btnCancelarBuscar = this.Controls.Find("btnCancelar", true).FirstOrDefault() as Button;
+            if (btnCancelarBuscar != null)
+                btnCancelarBuscar.Enabled = true;
         }
 
         private void btnVerDetalles_Click(object sender, EventArgs e)
@@ -415,6 +450,56 @@ namespace SistemaVentas
         private void inpNumeroFactura_KeyPress(object? sender, KeyPressEventArgs e)
         {
             Validador.validarSoloNumeros(sender, e);
+        }
+
+        private void inpNumeroFactura_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                e.Handled = true;
+
+               
+                if (facturaEncontrada)
+                {
+                    // Ejecutar Ver Detalles
+                    var btnVerDetalles = this.Controls.Find("btnVerDetalles", true).FirstOrDefault() as Button;
+                    if (btnVerDetalles != null && btnVerDetalles.Enabled)
+                        btnVerDetalles.PerformClick();
+                }
+                else
+                {
+                    // Ejecutar Buscar solo si hay texto
+                    if (!string.IsNullOrWhiteSpace(inpNumeroFactura.Text))
+                    {
+                        var btnBuscarFactura = this.Controls.Find("btnBuscarFactura", true).FirstOrDefault() as Button;
+                        if (btnBuscarFactura != null && btnBuscarFactura.Enabled)
+                            btnBuscarFactura.PerformClick();
+                    }
+                }
+               
+            }
+        }
+
+
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            inpNumeroFactura.Clear();
+            inpNumeroFactura.Focus();
+
+            // Resetear estado de búsqueda
+            facturaBuscada = null;
+            facturaEncontrada = false;
+
+            // Deshabilitar el botón Ver Detalles
+            var btnVerDetalles = this.Controls.Find("btnVerDetalles", true).FirstOrDefault() as Button;
+            if (btnVerDetalles != null)
+                btnVerDetalles.Enabled = false;
+
+            var btnCancelar = this.Controls.Find("btnCancelar", true).FirstOrDefault() as Button;
+            if (btnCancelar != null)
+                btnCancelar.Enabled = false;
         }
     }
 }

@@ -32,6 +32,17 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             dgvClientes = new DataGridView();
+            colCodigo = new DataGridViewTextBoxColumn();
+            colNombre = new DataGridViewTextBoxColumn();
+            colApellido = new DataGridViewTextBoxColumn();
+            colDireccion = new DataGridViewTextBoxColumn();
+            colSector = new DataGridViewTextBoxColumn();
+            colCiudad = new DataGridViewTextBoxColumn();
+            colTelefono = new DataGridViewTextBoxColumn();
+            colFax = new DataGridViewTextBoxColumn();
+            colLimite = new DataGridViewTextBoxColumn();
+            colBalance = new DataGridViewTextBoxColumn();
+            colObservaciones = new DataGridViewTextBoxColumn();
             lblClientes = new Label();
             btnVolverMenuPrincipal = new Button();
             tableLayoutPanel1 = new TableLayoutPanel();
@@ -74,17 +85,6 @@
             tableLayoutPanel7 = new TableLayoutPanel();
             label5 = new Label();
             tableLayoutPanel2 = new TableLayoutPanel();
-            colCodigo = new DataGridViewTextBoxColumn();
-            colNombre = new DataGridViewTextBoxColumn();
-            colApellido = new DataGridViewTextBoxColumn();
-            colDireccion = new DataGridViewTextBoxColumn();
-            colSector = new DataGridViewTextBoxColumn();
-            colCiudad = new DataGridViewTextBoxColumn();
-            colTelefono = new DataGridViewTextBoxColumn();
-            colFax = new DataGridViewTextBoxColumn();
-            colLimite = new DataGridViewTextBoxColumn();
-            colBalance = new DataGridViewTextBoxColumn();
-            colObservaciones = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgvClientes).BeginInit();
             tableLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -150,6 +150,83 @@
             dgvClientes.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dgvClientes.Size = new Size(1392, 691);
             dgvClientes.TabIndex = 0;
+            // 
+            // colCodigo
+            // 
+            colCodigo.HeaderText = "Código";
+            colCodigo.MinimumWidth = 6;
+            colCodigo.Name = "colCodigo";
+            colCodigo.ReadOnly = true;
+            // 
+            // colNombre
+            // 
+            colNombre.HeaderText = "Nombre";
+            colNombre.MinimumWidth = 6;
+            colNombre.Name = "colNombre";
+            colNombre.ReadOnly = true;
+            // 
+            // colApellido
+            // 
+            colApellido.HeaderText = "Apellido";
+            colApellido.MinimumWidth = 6;
+            colApellido.Name = "colApellido";
+            colApellido.ReadOnly = true;
+            // 
+            // colDireccion
+            // 
+            colDireccion.HeaderText = "Direccion";
+            colDireccion.MinimumWidth = 6;
+            colDireccion.Name = "colDireccion";
+            colDireccion.ReadOnly = true;
+            // 
+            // colSector
+            // 
+            colSector.HeaderText = "Sector";
+            colSector.MinimumWidth = 6;
+            colSector.Name = "colSector";
+            colSector.ReadOnly = true;
+            // 
+            // colCiudad
+            // 
+            colCiudad.HeaderText = "Ciudad";
+            colCiudad.MinimumWidth = 6;
+            colCiudad.Name = "colCiudad";
+            colCiudad.ReadOnly = true;
+            // 
+            // colTelefono
+            // 
+            colTelefono.HeaderText = "Telefono";
+            colTelefono.MinimumWidth = 6;
+            colTelefono.Name = "colTelefono";
+            colTelefono.ReadOnly = true;
+            // 
+            // colFax
+            // 
+            colFax.HeaderText = "Fax";
+            colFax.MinimumWidth = 6;
+            colFax.Name = "colFax";
+            colFax.ReadOnly = true;
+            // 
+            // colLimite
+            // 
+            colLimite.HeaderText = "Limite Credito";
+            colLimite.MinimumWidth = 6;
+            colLimite.Name = "colLimite";
+            colLimite.ReadOnly = true;
+            // 
+            // colBalance
+            // 
+            colBalance.HeaderText = "Balance";
+            colBalance.MinimumWidth = 6;
+            colBalance.Name = "colBalance";
+            colBalance.ReadOnly = true;
+            // 
+            // colObservaciones
+            // 
+            colObservaciones.HeaderText = "Observaciones";
+            colObservaciones.MinimumWidth = 6;
+            colObservaciones.Name = "colObservaciones";
+            colObservaciones.ReadOnly = true;
             // 
             // lblClientes
             // 
@@ -517,6 +594,7 @@
             btnCancelar.TabIndex = 29;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnBuscarCli
             // 
@@ -681,83 +759,6 @@
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.Size = new Size(48, 59);
             tableLayoutPanel2.TabIndex = 29;
-            // 
-            // colCodigo
-            // 
-            colCodigo.HeaderText = "Código";
-            colCodigo.MinimumWidth = 6;
-            colCodigo.Name = "colCodigo";
-            colCodigo.ReadOnly = true;
-            // 
-            // colNombre
-            // 
-            colNombre.HeaderText = "Nombre";
-            colNombre.MinimumWidth = 6;
-            colNombre.Name = "colNombre";
-            colNombre.ReadOnly = true;
-            // 
-            // colApellido
-            // 
-            colApellido.HeaderText = "Apellido";
-            colApellido.MinimumWidth = 6;
-            colApellido.Name = "colApellido";
-            colApellido.ReadOnly = true;
-            // 
-            // colDireccion
-            // 
-            colDireccion.HeaderText = "Direccion";
-            colDireccion.MinimumWidth = 6;
-            colDireccion.Name = "colDireccion";
-            colDireccion.ReadOnly = true;
-            // 
-            // colSector
-            // 
-            colSector.HeaderText = "Sector";
-            colSector.MinimumWidth = 6;
-            colSector.Name = "colSector";
-            colSector.ReadOnly = true;
-            // 
-            // colCiudad
-            // 
-            colCiudad.HeaderText = "Ciudad";
-            colCiudad.MinimumWidth = 6;
-            colCiudad.Name = "colCiudad";
-            colCiudad.ReadOnly = true;
-            // 
-            // colTelefono
-            // 
-            colTelefono.HeaderText = "Telefono";
-            colTelefono.MinimumWidth = 6;
-            colTelefono.Name = "colTelefono";
-            colTelefono.ReadOnly = true;
-            // 
-            // colFax
-            // 
-            colFax.HeaderText = "Fax";
-            colFax.MinimumWidth = 6;
-            colFax.Name = "colFax";
-            colFax.ReadOnly = true;
-            // 
-            // colLimite
-            // 
-            colLimite.HeaderText = "Limite Credito";
-            colLimite.MinimumWidth = 6;
-            colLimite.Name = "colLimite";
-            colLimite.ReadOnly = true;
-            // 
-            // colBalance
-            // 
-            colBalance.HeaderText = "Balance";
-            colBalance.MinimumWidth = 6;
-            colBalance.Name = "colBalance";
-            colBalance.ReadOnly = true;
-            // 
-            // colObservaciones
-            // 
-            colObservaciones.HeaderText = "Observaciones";
-            colObservaciones.MinimumWidth = 6;
-            colObservaciones.Name = "colObservaciones";
-            colObservaciones.ReadOnly = true;
             // 
             // MenuClientes
             // 
