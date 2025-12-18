@@ -134,8 +134,8 @@ namespace SistemaVentas
         // Handler para volver al menú principal
         private void BtnVolverMenuPrincipal_Click(object? sender, EventArgs e)
         {
-            formMenuPrincipal.Show(); // Muestra el formulario principal nuevamente
-            this.Close(); //Cierra el formulario actual de clientes
+            formMenuPrincipal?.Show(); // Muestra el formulario principal nuevamente
+            this.Close(); //Cierra el formulario actual de artículos
         }
 
         // Método para cargar los artículos en el DataGridView
@@ -236,33 +236,14 @@ namespace SistemaVentas
 
         private void EventoMoverConEnter(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                // Evitar pitido y manejar envío si estamos en el último textbox (txtCosArt)
-                e.SuppressKeyPress = true;
+            if (e.KeyCode != Keys.Enter || !(sender is Control control))
+                return;
 
-                Control origen = (Control)sender;
+            e.SuppressKeyPress = true; // salto de línea
 
-                // Si estamos en el primer textbox y está habilitado el botón buscar, ejecutar búsqueda
-                if (origen == inpCodArt && btnBuscarArt.Enabled)
-                {
-                    btnBuscarArt.PerformClick();
-                    return;
-                }
-
-                // Si el botón Agregar está habilitado y el foco está en el último campo,
-                // simular el clic en el botón Agregar (esto mostrará el MessageBox).
-                if (btnAgregarArt.Enabled && origen == inpCosArt)
-                {
-                    btnAgregarArt.PerformClick();
-                    return;
-                }
-
-                // En el resto de casos, mover el foco al siguiente control
-                this.SelectNextControl(origen, true, true, true, true);
-            }
-        }
-
+            // Comportamiento por defecto para otros controles: avanzar al siguiente control
+            this.SelectNextControl(control, true, true, true, true);
+}
         private void CargarUnidades()
         {
             DataTable tabla = UnidadesMedida.ObtenerListadoCodigos();

@@ -724,6 +724,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Artículos";
             WindowState = FormWindowState.Maximized;
+            Load += MenuArticulos_Load;
             ((System.ComponentModel.ISupportInitialize)dgvArticulos).EndInit();
             tableLayoutPanel1.ResumeLayout(false);
             panel3.ResumeLayout(false);
