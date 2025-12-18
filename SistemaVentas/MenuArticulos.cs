@@ -21,7 +21,8 @@ namespace SistemaVentas
         MenuPrincipal? formMenuPrincipal; // ahora nullable para soportar diseñador
         private readonly UtilidadesUI resizer = new UtilidadesUI();
 
-        // Constructor con referencia al formulario principal (opcional para el diseñador)
+        private Control? ultimoControlConFoco;
+        
         public MenuArticulos(MenuPrincipal? MenuPrincipal = null)
         {
             InitializeComponent();
@@ -75,6 +76,19 @@ namespace SistemaVentas
         {
             // Ajustar el nombre del control si el primer textbox tiene otro nombre
             inpCodArt?.Focus();
+            ultimoControlConFoco = inpCodArt;
+        }
+
+        private void MostrarAdvertenciasCampoVacio(string mensaje, Control? controlFoco = null)
+        {
+            MessageBox.Show(mensaje, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            Control? objetivo = controlFoco ?? ultimoControlConFoco;
+
+            if (objetivo is not null)
+            {
+                this.BeginInvoke(() => objetivo.Focus());
+            }
         }
 
         // Asigna el evento KeyDown a todos los TextBox, incluso dentro de contenedores
@@ -89,6 +103,7 @@ namespace SistemaVentas
 #pragma warning disable CS8622
                     txt.KeyDown += EventoMoverConEnter;
 #pragma warning restore CS8622
+                    txt.Enter += (s, e) => { ultimoControlConFoco = txt; };
                 }
 
                 if (c.HasChildren)
@@ -206,7 +221,7 @@ namespace SistemaVentas
 
                 // Si el botón Agregar está habilitado y el foco está en el último campo,
                 // simular el clic en el botón Agregar (esto mostrará el MessageBox).
-                if (btnAgregarArt.Enabled && origen == txtCosArt)
+                if (btnAgregarArt.Enabled && origen == inpCosArt)
                 {
                     btnAgregarArt.PerformClick();
                     return;
@@ -239,29 +254,34 @@ namespace SistemaVentas
             return new Articulo()
             {
                 CodigoArticulo = inpCodArt.Text,
-                DescripcionArticulo = txtDesArt.Text,
+                DescripcionArticulo = inpDesArt.Text,
                 CodigoUnidad = cmbCodUni.SelectedValue?.ToString() ?? "",
-                ExistenciaMinima = string.IsNullOrWhiteSpace(txtExiMin.Text) ? 0 : Convert.ToSingle(txtExiMin.Text),
-                ExistenciaMaxima = string.IsNullOrWhiteSpace(txtExiMax.Text) ? 0 : Convert.ToSingle(txtExiMax.Text),
-                ExistenciaActual = string.IsNullOrWhiteSpace(txtExiAct.Text) ? 0 : Convert.ToSingle(txtExiAct.Text),
-                PrecioArticulo = string.IsNullOrWhiteSpace(txtPreArt.Text) ? 0 : Convert.ToSingle(txtPreArt.Text),
-                CostoArticulo = string.IsNullOrWhiteSpace(txtCosArt.Text) ? 0 : Convert.ToSingle(txtCosArt.Text)
+                ExistenciaMinima = string.IsNullOrWhiteSpace(inpExiMin.Text) ? 0 : Convert.ToSingle(inpExiMin.Text),
+                ExistenciaMaxima = string.IsNullOrWhiteSpace(inpExiMax.Text) ? 0 : Convert.ToSingle(inpExiMax.Text),
+                ExistenciaActual = string.IsNullOrWhiteSpace(inpExiAct.Text) ? 0 : Convert.ToSingle(inpExiAct.Text),
+                PrecioArticulo = string.IsNullOrWhiteSpace(inpPreArt.Text) ? 0 : Convert.ToSingle(inpPreArt.Text),
+                CostoArticulo = string.IsNullOrWhiteSpace(inpCosArt.Text) ? 0 : Convert.ToSingle(inpCosArt.Text)
             };
         }
 
-        private bool AdvertenciaDesArt()
-        {
-            if (string.IsNullOrWhiteSpace(txtDesArt.Text))
+        private bool Validaciones ()
+        { 
+            if (!Validador.ValidarTamanoPermitido(inpDesArt.Text, 40))
             {
                 MessageBox.Show("Debe introducir una descripción.", "Advertencia",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            return true;
-        }
+          
 
-        private bool AdvertenciacmbCodUni()
-        {
+            if (!Validador.ValidarTamanoPermitido(inpCodArt.Text, 20))
+            {
+                MessageBox.Show("Debe de introducir un código de artículo válido de máximo 20 caracteres.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+        
             if (string.IsNullOrWhiteSpace(cmbCodUni.SelectedValue?.ToString()))
             {
                 MessageBox.Show("Debe de seleccionar una unidad de medida.", "Advertencia",
@@ -273,9 +293,8 @@ namespace SistemaVentas
 
         private void btnAgregarArt_Click(object sender, EventArgs e)
         {
-            if (!AdvertenciaDesArt()) return;
-
-            if (!AdvertenciacmbCodUni()) return;
+            if (!Validaciones())
+                return;
 
             articulo = ObtenerArticuloEnText();
 
@@ -286,12 +305,12 @@ namespace SistemaVentas
 
             // Limpiar casillas después de agregar y restablecer combo
             inpCodArt?.Clear();
-            txtDesArt?.Clear();
-            txtExiMin?.Clear();
-            txtExiMax?.Clear();
-            txtExiAct?.Clear();
-            txtPreArt?.Clear();
-            txtCosArt?.Clear();
+            inpDesArt?.Clear();
+            inpExiMin?.Clear();
+            inpExiMax?.Clear();
+            inpExiAct?.Clear();
+            inpPreArt?.Clear();
+            inpCosArt?.Clear();
             if (cmbCodUni?.Items.Count > 0)
             {
                 cmbCodUni.SelectedIndex = 0;
@@ -316,19 +335,23 @@ namespace SistemaVentas
 
         private void btnBuscarArt_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(inpCodArt.Text)) return;
+            if (string.IsNullOrWhiteSpace(inpCodArt.Text))
+            {
+                MostrarAdvertenciasCampoVacio("Debe introducir el código del artículo a buscar.", inpCodArt);
+                return;
+            }
 
             articulo = BuscarArticulo(inpCodArt.Text);
             if (articulo != null)
             {
                 // Rellenar los controles de la interfaz con los datos del artículo
-                txtDesArt.Text = articulo.DescripcionArticulo;
+                inpDesArt.Text = articulo.DescripcionArticulo;
                 cmbCodUni.SelectedValue = articulo.CodigoUnidad;
-                txtExiMin.Text = articulo.ExistenciaMinima.ToString();
-                txtExiMax.Text = articulo.ExistenciaMaxima.ToString();
-                txtExiAct.Text = articulo.ExistenciaActual.ToString();
-                txtPreArt.Text = articulo.PrecioArticulo.ToString("0.##");
-                txtCosArt.Text = articulo.CostoArticulo.ToString("0.##");
+                inpExiMin.Text = articulo.ExistenciaMinima.ToString();
+                inpExiMax.Text = articulo.ExistenciaMaxima.ToString();
+                inpExiAct.Text = articulo.ExistenciaActual.ToString();
+                inpPreArt.Text = articulo.PrecioArticulo.ToString("0.##");
+                inpCosArt.Text = articulo.CostoArticulo.ToString("0.##");
 
                 existeElArticulo = true;
             }
@@ -336,19 +359,45 @@ namespace SistemaVentas
             {
                 existeElArticulo = false;
 
-                txtDesArt.Clear();
-                txtExiMin.Clear();
-                txtExiMax.Clear();
-                txtExiAct.Clear();
-                txtPreArt.Clear();
-                txtCosArt.Clear();
+                inpDesArt.Clear();
+                inpExiMin.Clear();
+                inpExiMax.Clear();
+                inpExiAct.Clear();
+                inpPreArt.Clear();
+                inpCosArt.Clear();
             }
 
             btnAgregarArt.Enabled = true;
 
             // Mover el cursor automáticamente a la segunda casilla (descripción)
-            txtDesArt?.Focus();
+            inpDesArt?.Focus();
+            ultimoControlConFoco = inpDesArt;
         }
 
+        //  métodos KeyPress para validar solo números
+        private void txtExiMin_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            Validador.validarSoloNumeros(sender, e);
+        }
+
+        private void txtExiMax_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            Validador.validarSoloNumeros(sender, e);
+        }
+
+        private void txtExiAct_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            Validador.validarSoloNumeros(sender, e);
+        }
+
+        private void txtPreArt_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            Validador.validarSoloNumeros(sender, e);
+        }
+
+        private void txtCosArt_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            Validador.validarSoloNumeros(sender, e);
+        }
     }
 }

@@ -51,10 +51,14 @@
             inpFactura = new TextBox();
             inpValorAPagar = new TextBox();
             tableLayoutPanel6 = new TableLayoutPanel();
+            btnPagar = new Button();
             btnBuscarCuentasPorCobrar = new Button();
             label1 = new Label();
             tableLayoutPanel4 = new TableLayoutPanel();
             dgvCuentasPorCobrar = new DataGridView();
+            colNumeroDeFactura = new DataGridViewTextBoxColumn();
+            colVendedor = new DataGridViewTextBoxColumn();
+            colValor = new DataGridViewTextBoxColumn();
             tableLayoutPanel9 = new TableLayoutPanel();
             tableLayoutPanel10 = new TableLayoutPanel();
             label7 = new Label();
@@ -62,9 +66,7 @@
             tableLayoutPanel11 = new TableLayoutPanel();
             label9 = new Label();
             label10 = new Label();
-            colNumeroDeFactura = new DataGridViewTextBoxColumn();
-            colVendedor = new DataGridViewTextBoxColumn();
-            colValor = new DataGridViewTextBoxColumn();
+            button1 = new Button();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             tableLayoutPanel8.SuspendLayout();
@@ -321,16 +323,39 @@
             // tableLayoutPanel6
             // 
             tableLayoutPanel6.ColumnCount = 1;
-            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel6.Controls.Add(btnBuscarCuentasPorCobrar, 0, 1);
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel6.Controls.Add(button1, 0, 2);
+            tableLayoutPanel6.Controls.Add(btnPagar, 0, 1);
+            tableLayoutPanel6.Controls.Add(btnBuscarCuentasPorCobrar, 0, 0);
             tableLayoutPanel6.Dock = DockStyle.Fill;
             tableLayoutPanel6.Location = new Point(3, 663);
             tableLayoutPanel6.Name = "tableLayoutPanel6";
-            tableLayoutPanel6.RowCount = 2;
-            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel6.RowCount = 3;
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel6.Size = new Size(431, 103);
             tableLayoutPanel6.TabIndex = 27;
+            // 
+            // btnPagar
+            // 
+            btnPagar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            btnPagar.BackColor = Color.FromArgb(0, 192, 0);
+            btnPagar.Cursor = Cursors.Hand;
+            btnPagar.Enabled = false;
+            btnPagar.FlatAppearance.BorderColor = Color.White;
+            btnPagar.FlatAppearance.BorderSize = 0;
+            btnPagar.FlatAppearance.MouseDownBackColor = Color.Silver;
+            btnPagar.FlatAppearance.MouseOverBackColor = Color.Silver;
+            btnPagar.FlatStyle = FlatStyle.Flat;
+            btnPagar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnPagar.ForeColor = SystemColors.ButtonHighlight;
+            btnPagar.Location = new Point(3, 37);
+            btnPagar.Name = "btnPagar";
+            btnPagar.Size = new Size(425, 28);
+            btnPagar.TabIndex = 27;
+            btnPagar.Text = "Pagar factura";
+            btnPagar.UseVisualStyleBackColor = false;
             // 
             // btnBuscarCuentasPorCobrar
             // 
@@ -345,7 +370,7 @@
             btnBuscarCuentasPorCobrar.FlatStyle = FlatStyle.Flat;
             btnBuscarCuentasPorCobrar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnBuscarCuentasPorCobrar.ForeColor = SystemColors.ButtonHighlight;
-            btnBuscarCuentasPorCobrar.Location = new Point(3, 54);
+            btnBuscarCuentasPorCobrar.Location = new Point(3, 3);
             btnBuscarCuentasPorCobrar.Name = "btnBuscarCuentasPorCobrar";
             btnBuscarCuentasPorCobrar.Size = new Size(425, 28);
             btnBuscarCuentasPorCobrar.TabIndex = 26;
@@ -429,6 +454,27 @@
             dgvCuentasPorCobrar.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dgvCuentasPorCobrar.Size = new Size(1392, 691);
             dgvCuentasPorCobrar.TabIndex = 1;
+            // 
+            // colNumeroDeFactura
+            // 
+            colNumeroDeFactura.HeaderText = "N. de factura";
+            colNumeroDeFactura.MinimumWidth = 6;
+            colNumeroDeFactura.Name = "colNumeroDeFactura";
+            colNumeroDeFactura.ReadOnly = true;
+            // 
+            // colVendedor
+            // 
+            colVendedor.HeaderText = "Vendedor";
+            colVendedor.MinimumWidth = 6;
+            colVendedor.Name = "colVendedor";
+            colVendedor.ReadOnly = true;
+            // 
+            // colValor
+            // 
+            colValor.HeaderText = "Valor";
+            colValor.MinimumWidth = 6;
+            colValor.Name = "colValor";
+            colValor.ReadOnly = true;
             // 
             // tableLayoutPanel9
             // 
@@ -519,26 +565,25 @@
             label10.TabIndex = 1;
             label10.Text = "Total:";
             // 
-            // colNumeroDeFactura
+            // button1
             // 
-            colNumeroDeFactura.HeaderText = "N. de factura";
-            colNumeroDeFactura.MinimumWidth = 6;
-            colNumeroDeFactura.Name = "colNumeroDeFactura";
-            colNumeroDeFactura.ReadOnly = true;
-            // 
-            // colVendedor
-            // 
-            colVendedor.HeaderText = "Vendedor";
-            colVendedor.MinimumWidth = 6;
-            colVendedor.Name = "colVendedor";
-            colVendedor.ReadOnly = true;
-            // 
-            // colValor
-            // 
-            colValor.HeaderText = "Valor";
-            colValor.MinimumWidth = 6;
-            colValor.Name = "colValor";
-            colValor.ReadOnly = true;
+            button1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            button1.BackColor = Color.Red;
+            button1.Cursor = Cursors.Hand;
+            button1.Enabled = false;
+            button1.FlatAppearance.BorderColor = Color.White;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatAppearance.MouseDownBackColor = Color.Silver;
+            button1.FlatAppearance.MouseOverBackColor = Color.Silver;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.ForeColor = SystemColors.ButtonHighlight;
+            button1.Location = new Point(3, 71);
+            button1.Name = "button1";
+            button1.Size = new Size(425, 28);
+            button1.TabIndex = 28;
+            button1.Text = "Cancelar";
+            button1.UseVisualStyleBackColor = false;
             // 
             // MenuCuentasPorCobrar
             // 
@@ -609,5 +654,8 @@
         private DataGridViewTextBoxColumn colNumeroDeFactura;
         private DataGridViewTextBoxColumn colVendedor;
         private DataGridViewTextBoxColumn colValor;
+        private Button button2;
+        private Button btnPagar;
+        private Button button1;
     }
 }
