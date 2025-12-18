@@ -65,6 +65,12 @@ namespace SistemaVentas
                 // En modo diseño evitar acceso a recursos o datos; pero conservar estados básicos si es necesario
                 btnAgregarArt.Enabled = false;
             }
+
+            inpExiMin.KeyPress += ValidarSoloNumerosKeyPress;
+            inpExiMax.KeyPress += ValidarSoloNumerosKeyPress;
+            inpExiAct.KeyPress += ValidarSoloNumerosKeyPress;
+            inpPreArt.KeyPress += ValidarSoloNumerosKeyPress;
+            inpCosArt.KeyPress += ValidarSoloNumerosKeyPress;
         }
 
         private void MenuArticulos_Resize(object? sender, EventArgs e)
@@ -373,29 +379,7 @@ namespace SistemaVentas
             inpDesArt?.Focus();
             ultimoControlConFoco = inpDesArt;
         }
-
-        //  métodos KeyPress para validar solo números
-        private void txtExiMin_KeyPress(object? sender, KeyPressEventArgs e)
-        {
-            Validador.validarSoloNumeros(sender, e);
-        }
-
-        private void txtExiMax_KeyPress(object? sender, KeyPressEventArgs e)
-        {
-            Validador.validarSoloNumeros(sender, e);
-        }
-
-        private void txtExiAct_KeyPress(object? sender, KeyPressEventArgs e)
-        {
-            Validador.validarSoloNumeros(sender, e);
-        }
-
-        private void txtPreArt_KeyPress(object? sender, KeyPressEventArgs e)
-        {
-            Validador.validarSoloNumeros(sender, e);
-        }
-
-        private void txtCosArt_KeyPress(object? sender, KeyPressEventArgs e)
+        private void ValidarSoloNumerosKeyPress(object? sender, KeyPressEventArgs e)
         {
             Validador.validarSoloNumeros(sender, e);
         }

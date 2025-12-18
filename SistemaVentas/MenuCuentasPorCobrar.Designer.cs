@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             tableLayoutPanel1 = new TableLayoutPanel();
             panel1 = new Panel();
             tableLayoutPanel8 = new TableLayoutPanel();
@@ -51,6 +51,7 @@
             inpFactura = new TextBox();
             inpValorAPagar = new TextBox();
             tableLayoutPanel6 = new TableLayoutPanel();
+            btnCancelar = new Button();
             btnPagar = new Button();
             btnBuscarCuentasPorCobrar = new Button();
             label1 = new Label();
@@ -66,7 +67,6 @@
             tableLayoutPanel11 = new TableLayoutPanel();
             label9 = new Label();
             label10 = new Label();
-            button1 = new Button();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             tableLayoutPanel8.SuspendLayout();
@@ -324,7 +324,7 @@
             // 
             tableLayoutPanel6.ColumnCount = 1;
             tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel6.Controls.Add(button1, 0, 2);
+            tableLayoutPanel6.Controls.Add(btnCancelar, 0, 2);
             tableLayoutPanel6.Controls.Add(btnPagar, 0, 1);
             tableLayoutPanel6.Controls.Add(btnBuscarCuentasPorCobrar, 0, 0);
             tableLayoutPanel6.Dock = DockStyle.Fill;
@@ -336,6 +336,26 @@
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel6.Size = new Size(431, 103);
             tableLayoutPanel6.TabIndex = 27;
+            // 
+            // btnCancelar
+            // 
+            btnCancelar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            btnCancelar.BackColor = Color.Red;
+            btnCancelar.Cursor = Cursors.Hand;
+            btnCancelar.Enabled = false;
+            btnCancelar.FlatAppearance.BorderColor = Color.White;
+            btnCancelar.FlatAppearance.BorderSize = 0;
+            btnCancelar.FlatAppearance.MouseDownBackColor = Color.Silver;
+            btnCancelar.FlatAppearance.MouseOverBackColor = Color.Silver;
+            btnCancelar.FlatStyle = FlatStyle.Flat;
+            btnCancelar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCancelar.ForeColor = SystemColors.ButtonHighlight;
+            btnCancelar.Location = new Point(3, 71);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(425, 28);
+            btnCancelar.TabIndex = 28;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = false;
             // 
             // btnPagar
             // 
@@ -416,39 +436,39 @@
             dgvCuentasPorCobrar.BorderStyle = BorderStyle.None;
             dgvCuentasPorCobrar.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dgvCuentasPorCobrar.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            dgvCuentasPorCobrar.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dgvCuentasPorCobrar.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dgvCuentasPorCobrar.ColumnHeadersHeight = 35;
             dgvCuentasPorCobrar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvCuentasPorCobrar.Columns.AddRange(new DataGridViewColumn[] { colNumeroDeFactura, colVendedor, colValor });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.ButtonHighlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvCuentasPorCobrar.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.ButtonHighlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            dgvCuentasPorCobrar.DefaultCellStyle = dataGridViewCellStyle5;
             dgvCuentasPorCobrar.Dock = DockStyle.Fill;
             dgvCuentasPorCobrar.EnableHeadersVisualStyles = false;
             dgvCuentasPorCobrar.GridColor = SystemColors.HighlightText;
             dgvCuentasPorCobrar.Location = new Point(3, 75);
             dgvCuentasPorCobrar.Name = "dgvCuentasPorCobrar";
             dgvCuentasPorCobrar.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvCuentasPorCobrar.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.Control;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dgvCuentasPorCobrar.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dgvCuentasPorCobrar.RowHeadersVisible = false;
             dgvCuentasPorCobrar.RowHeadersWidth = 51;
             dgvCuentasPorCobrar.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -565,26 +585,6 @@
             label10.TabIndex = 1;
             label10.Text = "Total:";
             // 
-            // button1
-            // 
-            button1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            button1.BackColor = Color.Red;
-            button1.Cursor = Cursors.Hand;
-            button1.Enabled = false;
-            button1.FlatAppearance.BorderColor = Color.White;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatAppearance.MouseDownBackColor = Color.Silver;
-            button1.FlatAppearance.MouseOverBackColor = Color.Silver;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.ForeColor = SystemColors.ButtonHighlight;
-            button1.Location = new Point(3, 71);
-            button1.Name = "button1";
-            button1.Size = new Size(425, 28);
-            button1.TabIndex = 28;
-            button1.Text = "Cancelar";
-            button1.UseVisualStyleBackColor = false;
-            // 
             // MenuCuentasPorCobrar
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -656,6 +656,6 @@
         private DataGridViewTextBoxColumn colValor;
         private Button button2;
         private Button btnPagar;
-        private Button button1;
+        private Button btnCancelar;
     }
 }
