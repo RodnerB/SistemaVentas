@@ -103,14 +103,13 @@
             inpCodUni = new TextBox();
             lblCodUni = new Label();
             tableLayoutPanel18 = new TableLayoutPanel();
-            btnAgregarUni = new Button();
+            btnGuardarUni = new Button();
             btnBuscarUnidad = new Button();
             tableLayoutPanel19 = new TableLayoutPanel();
-            button2 = new Button();
+            btnCancelarUnidad = new Button();
             dgvUnidad = new DataGridView();
             colCodigoUnidad = new DataGridViewTextBoxColumn();
             colDescripcionUnidad = new DataGridViewTextBoxColumn();
-            colAccion = new DataGridViewButtonColumn();
             panel1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -229,7 +228,7 @@
             label5.ForeColor = Color.Gray;
             label5.Location = new Point(3, 27);
             label5.Name = "label5";
-            label5.Size = new Size(296, 20);
+            label5.Size = new Size(232, 15);
             label5.TabIndex = 2;
             label5.Text = "Administra la información de tu empresa";
             // 
@@ -238,9 +237,9 @@
             lblClientes.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblClientes.AutoSize = true;
             lblClientes.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-            lblClientes.Location = new Point(3, 0);
+            lblClientes.Location = new Point(3, 2);
             lblClientes.Name = "lblClientes";
-            lblClientes.Size = new Size(295, 27);
+            lblClientes.Size = new Size(247, 25);
             lblClientes.TabIndex = 1;
             lblClientes.Text = "Configuración de Empresa";
             // 
@@ -420,9 +419,9 @@
             label8.Anchor = AnchorStyles.Left;
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(3, 2);
+            label8.Location = new Point(3, 7);
             label8.Name = "label8";
-            label8.Size = new Size(289, 46);
+            label8.Size = new Size(234, 37);
             label8.TabIndex = 3;
             label8.Text = "Lista de Usuarios";
             // 
@@ -490,9 +489,9 @@
             // 
             label6.Anchor = AnchorStyles.Left;
             label6.AutoSize = true;
-            label6.Location = new Point(3, 87);
+            label6.Location = new Point(3, 89);
             label6.Name = "label6";
-            label6.Size = new Size(64, 20);
+            label6.Size = new Size(51, 15);
             label6.TabIndex = 15;
             label6.Text = "Nombre";
             // 
@@ -503,16 +502,16 @@
             cmbEstado.FormattingEnabled = true;
             cmbEstado.Location = new Point(3, 261);
             cmbEstado.Name = "cmbEstado";
-            cmbEstado.Size = new Size(398, 28);
+            cmbEstado.Size = new Size(398, 23);
             cmbEstado.TabIndex = 17;
             // 
             // label7
             // 
             label7.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label7.AutoSize = true;
-            label7.Location = new Point(3, 22);
+            label7.Location = new Point(3, 27);
             label7.Name = "label7";
-            label7.Size = new Size(59, 20);
+            label7.Size = new Size(47, 15);
             label7.TabIndex = 0;
             label7.Text = "Usuario";
             // 
@@ -521,7 +520,7 @@
             label9.AutoSize = true;
             label9.Location = new Point(3, 236);
             label9.Name = "label9";
-            label9.Size = new Size(54, 20);
+            label9.Size = new Size(42, 15);
             label9.TabIndex = 16;
             label9.Text = "Estado";
             // 
@@ -529,25 +528,25 @@
             // 
             inpUsuario.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             inpUsuario.Enabled = false;
-            inpUsuario.Location = new Point(3, 49);
+            inpUsuario.Location = new Point(3, 51);
             inpUsuario.Name = "inpUsuario";
-            inpUsuario.Size = new Size(398, 27);
+            inpUsuario.Size = new Size(398, 23);
             inpUsuario.TabIndex = 1;
             // 
             // inpContrasena
             // 
             inpContrasena.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            inpContrasena.Location = new Point(3, 200);
+            inpContrasena.Location = new Point(3, 202);
             inpContrasena.Name = "inpContrasena";
-            inpContrasena.Size = new Size(398, 27);
+            inpContrasena.Size = new Size(398, 23);
             inpContrasena.TabIndex = 20;
             // 
             // inpNombre
             // 
             inpNombre.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            inpNombre.Location = new Point(3, 125);
+            inpNombre.Location = new Point(3, 127);
             inpNombre.Name = "inpNombre";
-            inpNombre.Size = new Size(398, 27);
+            inpNombre.Size = new Size(398, 23);
             inpNombre.TabIndex = 19;
             // 
             // label10
@@ -555,7 +554,7 @@
             label10.AutoSize = true;
             label10.Location = new Point(3, 168);
             label10.Name = "label10";
-            label10.Size = new Size(83, 20);
+            label10.Size = new Size(67, 15);
             label10.TabIndex = 18;
             label10.Text = "Contraseña";
             // 
@@ -581,9 +580,9 @@
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label11.ForeColor = SystemColors.Highlight;
-            label11.Location = new Point(56, 1);
+            label11.Location = new Point(56, 13);
             label11.Name = "label11";
-            label11.Size = new Size(286, 40);
+            label11.Size = new Size(270, 15);
             label11.TabIndex = 2;
             label11.Text = "Aquí Puedes Gestionar los Usuarios del Sistema.";
             // 
@@ -631,6 +630,7 @@
             btnCancelarUsuario.TabIndex = 13;
             btnCancelarUsuario.Text = "Cancelar";
             btnCancelarUsuario.UseVisualStyleBackColor = false;
+            btnCancelarUsuario.Click += btnCancelarUsuario_Click;
             // 
             // btnGuardarUsuario
             // 
@@ -649,6 +649,7 @@
             btnGuardarUsuario.TabIndex = 7;
             btnGuardarUsuario.Text = "Guardar Usuario";
             btnGuardarUsuario.UseVisualStyleBackColor = false;
+            btnGuardarUsuario.Click += btnGuardarUsuario_Click;
             // 
             // btnBuscarUsuario
             // 
@@ -667,15 +668,16 @@
             btnBuscarUsuario.TabIndex = 2;
             btnBuscarUsuario.Text = "Buscar Usuario";
             btnBuscarUsuario.UseVisualStyleBackColor = false;
+            btnBuscarUsuario.Click += btnBuscarUsuario_Click;
             // 
             // labelusuarioooooo
             // 
             labelusuarioooooo.Anchor = AnchorStyles.Left;
             labelusuarioooooo.AutoSize = true;
             labelusuarioooooo.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelusuarioooooo.Location = new Point(3, 2);
+            labelusuarioooooo.Location = new Point(3, 6);
             labelusuarioooooo.Name = "labelusuarioooooo";
-            labelusuarioooooo.Size = new Size(350, 46);
+            labelusuarioooooo.Size = new Size(283, 37);
             labelusuarioooooo.TabIndex = 0;
             labelusuarioooooo.Text = "Usuarios del Sistema";
             // 
@@ -731,9 +733,9 @@
             label1.BackColor = SystemColors.ButtonHighlight;
             label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(3, 0);
+            label1.Location = new Point(3, 5);
             label1.Name = "label1";
-            label1.Size = new Size(422, 46);
+            label1.Size = new Size(339, 37);
             label1.TabIndex = 0;
             label1.Text = "Información Empresarial ";
             // 
@@ -772,9 +774,9 @@
             // 
             lblEmpresa.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblEmpresa.AutoSize = true;
-            lblEmpresa.Location = new Point(3, 41);
+            lblEmpresa.Location = new Point(3, 46);
             lblEmpresa.Name = "lblEmpresa";
-            lblEmpresa.Size = new Size(170, 20);
+            lblEmpresa.Size = new Size(133, 15);
             lblEmpresa.TabIndex = 1;
             lblEmpresa.Text = "  Nombre de la Empresa";
             // 
@@ -800,9 +802,9 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = SystemColors.Highlight;
-            label3.Location = new Point(117, 15);
+            label3.Location = new Point(117, 17);
             label3.Name = "label3";
-            label3.Size = new Size(633, 20);
+            label3.Size = new Size(497, 15);
             label3.TabIndex = 0;
             label3.Text = "Esta información aparecera en todas las facturas y documentos generados por el sistema.";
             // 
@@ -821,7 +823,7 @@
             inpEmpresa.Anchor = AnchorStyles.Top;
             inpEmpresa.Location = new Point(3, 64);
             inpEmpresa.Name = "inpEmpresa";
-            inpEmpresa.Size = new Size(844, 27);
+            inpEmpresa.Size = new Size(844, 23);
             inpEmpresa.TabIndex = 2;
             // 
             // lblDireccion
@@ -829,7 +831,7 @@
             lblDireccion.AutoSize = true;
             lblDireccion.Location = new Point(3, 99);
             lblDireccion.Name = "lblDireccion";
-            lblDireccion.Size = new Size(80, 20);
+            lblDireccion.Size = new Size(63, 15);
             lblDireccion.TabIndex = 3;
             lblDireccion.Text = "  Dirección";
             // 
@@ -838,7 +840,7 @@
             inpEmail.Anchor = AnchorStyles.Top;
             inpEmail.Location = new Point(3, 259);
             inpEmail.Name = "inpEmail";
-            inpEmail.Size = new Size(844, 27);
+            inpEmail.Size = new Size(844, 23);
             inpEmail.TabIndex = 9;
             // 
             // inpDireccion
@@ -846,7 +848,7 @@
             inpDireccion.Anchor = AnchorStyles.Top;
             inpDireccion.Location = new Point(3, 131);
             inpDireccion.Name = "inpDireccion";
-            inpDireccion.Size = new Size(844, 27);
+            inpDireccion.Size = new Size(844, 23);
             inpDireccion.TabIndex = 4;
             // 
             // lblEmail
@@ -854,7 +856,7 @@
             lblEmail.AutoSize = true;
             lblEmail.Location = new Point(3, 226);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(140, 20);
+            lblEmail.Size = new Size(111, 15);
             lblEmail.TabIndex = 8;
             lblEmail.Text = "  Correo electrónico";
             // 
@@ -880,7 +882,7 @@
             // 
             inpFax.Location = new Point(425, 30);
             inpFax.Name = "inpFax";
-            inpFax.Size = new Size(416, 27);
+            inpFax.Size = new Size(416, 23);
             inpFax.TabIndex = 13;
             // 
             // lblTelefono
@@ -888,7 +890,7 @@
             lblTelefono.AutoSize = true;
             lblTelefono.Location = new Point(3, 0);
             lblTelefono.Name = "lblTelefono";
-            lblTelefono.Size = new Size(75, 20);
+            lblTelefono.Size = new Size(59, 15);
             lblTelefono.TabIndex = 5;
             lblTelefono.Text = "  Teléfono";
             // 
@@ -897,7 +899,7 @@
             inpTelefono.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             inpTelefono.Location = new Point(3, 30);
             inpTelefono.Name = "inpTelefono";
-            inpTelefono.Size = new Size(416, 27);
+            inpTelefono.Size = new Size(416, 23);
             inpTelefono.TabIndex = 6;
             // 
             // lblFax
@@ -905,7 +907,7 @@
             lblFax.AutoSize = true;
             lblFax.Location = new Point(425, 0);
             lblFax.Name = "lblFax";
-            lblFax.Size = new Size(34, 20);
+            lblFax.Size = new Size(27, 15);
             lblFax.TabIndex = 7;
             lblFax.Text = " Fax";
             // 
@@ -941,6 +943,7 @@
             btnGuardar.TabIndex = 10;
             btnGuardar.Text = "Guardar cambios ";
             btnGuardar.UseVisualStyleBackColor = false;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // btnCancelar
             // 
@@ -994,9 +997,9 @@
             label2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(3, 1);
+            label2.Location = new Point(3, 10);
             label2.Name = "label2";
-            label2.Size = new Size(347, 46);
+            label2.Size = new Size(281, 37);
             label2.TabIndex = 2;
             label2.Text = "Unidades de Medida";
             // 
@@ -1032,34 +1035,34 @@
             inpDesUni.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             inpDesUni.Location = new Point(3, 131);
             inpDesUni.Name = "inpDesUni";
-            inpDesUni.Size = new Size(844, 27);
+            inpDesUni.Size = new Size(844, 23);
             inpDesUni.TabIndex = 15;
             // 
             // lblDesUni
             // 
             lblDesUni.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblDesUni.AutoSize = true;
-            lblDesUni.Location = new Point(3, 108);
+            lblDesUni.Location = new Point(3, 113);
             lblDesUni.Name = "lblDesUni";
-            lblDesUni.Size = new Size(87, 20);
+            lblDesUni.Size = new Size(69, 15);
             lblDesUni.TabIndex = 14;
             lblDesUni.Text = "Descripción";
             // 
             // inpCodUni
             // 
             inpCodUni.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            inpCodUni.Location = new Point(3, 69);
+            inpCodUni.Location = new Point(3, 73);
             inpCodUni.Name = "inpCodUni";
-            inpCodUni.Size = new Size(844, 27);
+            inpCodUni.Size = new Size(844, 23);
             inpCodUni.TabIndex = 13;
             // 
             // lblCodUni
             // 
             lblCodUni.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblCodUni.AutoSize = true;
-            lblCodUni.Location = new Point(3, 42);
+            lblCodUni.Location = new Point(3, 47);
             lblCodUni.Name = "lblCodUni";
-            lblCodUni.Size = new Size(58, 20);
+            lblCodUni.Size = new Size(46, 15);
             lblCodUni.TabIndex = 12;
             lblCodUni.Text = "Código";
             // 
@@ -1068,7 +1071,7 @@
             tableLayoutPanel18.ColumnCount = 2;
             tableLayoutPanel18.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel18.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel18.Controls.Add(btnAgregarUni, 1, 0);
+            tableLayoutPanel18.Controls.Add(btnGuardarUni, 1, 0);
             tableLayoutPanel18.Controls.Add(btnBuscarUnidad, 0, 0);
             tableLayoutPanel18.Dock = DockStyle.Fill;
             tableLayoutPanel18.Location = new Point(3, 515);
@@ -1078,23 +1081,24 @@
             tableLayoutPanel18.Size = new Size(844, 49);
             tableLayoutPanel18.TabIndex = 10;
             // 
-            // btnAgregarUni
+            // btnGuardarUni
             // 
-            btnAgregarUni.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            btnAgregarUni.BackColor = Color.FromArgb(0, 192, 0);
-            btnAgregarUni.Cursor = Cursors.Hand;
-            btnAgregarUni.FlatAppearance.BorderSize = 0;
-            btnAgregarUni.FlatAppearance.MouseDownBackColor = Color.Silver;
-            btnAgregarUni.FlatAppearance.MouseOverBackColor = Color.Silver;
-            btnAgregarUni.FlatStyle = FlatStyle.Flat;
-            btnAgregarUni.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnAgregarUni.ForeColor = Color.White;
-            btnAgregarUni.Location = new Point(425, 18);
-            btnAgregarUni.Name = "btnAgregarUni";
-            btnAgregarUni.Size = new Size(416, 28);
-            btnAgregarUni.TabIndex = 7;
-            btnAgregarUni.Text = "Agregar unidad";
-            btnAgregarUni.UseVisualStyleBackColor = false;
+            btnGuardarUni.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnGuardarUni.BackColor = Color.FromArgb(0, 192, 0);
+            btnGuardarUni.Cursor = Cursors.Hand;
+            btnGuardarUni.FlatAppearance.BorderSize = 0;
+            btnGuardarUni.FlatAppearance.MouseDownBackColor = Color.Silver;
+            btnGuardarUni.FlatAppearance.MouseOverBackColor = Color.Silver;
+            btnGuardarUni.FlatStyle = FlatStyle.Flat;
+            btnGuardarUni.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnGuardarUni.ForeColor = Color.White;
+            btnGuardarUni.Location = new Point(425, 18);
+            btnGuardarUni.Name = "btnGuardarUni";
+            btnGuardarUni.Size = new Size(416, 28);
+            btnGuardarUni.TabIndex = 7;
+            btnGuardarUni.Text = "Guardar unidad";
+            btnGuardarUni.UseVisualStyleBackColor = false;
+            btnGuardarUni.Click += btnAgregarUni_Click;
             // 
             // btnBuscarUnidad
             // 
@@ -1114,12 +1118,13 @@
             btnBuscarUnidad.TabIndex = 0;
             btnBuscarUnidad.Text = "Buscar unidad";
             btnBuscarUnidad.UseVisualStyleBackColor = false;
+            btnBuscarUnidad.Click += btnBuscarUnidad_Click;
             // 
             // tableLayoutPanel19
             // 
             tableLayoutPanel19.ColumnCount = 1;
             tableLayoutPanel19.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel19.Controls.Add(button2, 0, 0);
+            tableLayoutPanel19.Controls.Add(btnCancelarUnidad, 0, 0);
             tableLayoutPanel19.Dock = DockStyle.Fill;
             tableLayoutPanel19.Location = new Point(3, 570);
             tableLayoutPanel19.Name = "tableLayoutPanel19";
@@ -1128,23 +1133,24 @@
             tableLayoutPanel19.Size = new Size(844, 48);
             tableLayoutPanel19.TabIndex = 11;
             // 
-            // button2
+            // btnCancelarUnidad
             // 
-            button2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            button2.BackColor = Color.Red;
-            button2.Cursor = Cursors.Hand;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatAppearance.MouseDownBackColor = Color.Silver;
-            button2.FlatAppearance.MouseOverBackColor = Color.Silver;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(3, 10);
-            button2.Name = "button2";
-            button2.Size = new Size(838, 28);
-            button2.TabIndex = 12;
-            button2.Text = "Cancelar";
-            button2.UseVisualStyleBackColor = false;
+            btnCancelarUnidad.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnCancelarUnidad.BackColor = Color.Red;
+            btnCancelarUnidad.Cursor = Cursors.Hand;
+            btnCancelarUnidad.FlatAppearance.BorderSize = 0;
+            btnCancelarUnidad.FlatAppearance.MouseDownBackColor = Color.Silver;
+            btnCancelarUnidad.FlatAppearance.MouseOverBackColor = Color.Silver;
+            btnCancelarUnidad.FlatStyle = FlatStyle.Flat;
+            btnCancelarUnidad.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCancelarUnidad.ForeColor = Color.White;
+            btnCancelarUnidad.Location = new Point(3, 10);
+            btnCancelarUnidad.Name = "btnCancelarUnidad";
+            btnCancelarUnidad.Size = new Size(838, 28);
+            btnCancelarUnidad.TabIndex = 12;
+            btnCancelarUnidad.Text = "Cancelar";
+            btnCancelarUnidad.UseVisualStyleBackColor = false;
+            btnCancelarUnidad.Click += btnCancelarUnidad_Click;
             // 
             // dgvUnidad
             // 
@@ -1168,7 +1174,7 @@
             dgvUnidad.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvUnidad.ColumnHeadersHeight = 35;
             dgvUnidad.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvUnidad.Columns.AddRange(new DataGridViewColumn[] { colCodigoUnidad, colDescripcionUnidad, colAccion });
+            dgvUnidad.Columns.AddRange(new DataGridViewColumn[] { colCodigoUnidad, colDescripcionUnidad });
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = Color.White;
             dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
@@ -1211,16 +1217,6 @@
             colDescripcionUnidad.MinimumWidth = 6;
             colDescripcionUnidad.Name = "colDescripcionUnidad";
             colDescripcionUnidad.ReadOnly = true;
-            // 
-            // colAccion
-            // 
-            colAccion.FlatStyle = FlatStyle.Flat;
-            colAccion.HeaderText = "Acción";
-            colAccion.MinimumWidth = 6;
-            colAccion.Name = "colAccion";
-            colAccion.ReadOnly = true;
-            colAccion.Text = "Eliminar";
-            colAccion.UseColumnTextForButtonValue = true;
             // 
             // MenuConfiguracion
             // 
@@ -1328,8 +1324,8 @@
         private Button button7;
         private TableLayoutPanel tableLayoutPanel19;
         private Button btnBuscarUnidad;
-        private Button btnAgregarUni;
-        private Button button2;
+        private Button btnGuardarUni;
+        private Button btnCancelarUnidad;
         private DataGridView dgvUnidad;
         private TableLayoutPanel tableLayoutPanel20;
         private TableLayoutPanel tableLayoutPanel25;
@@ -1355,12 +1351,11 @@
         private Label labelusuarioooooo;
         private Label label11;
         private DataGridViewButtonColumn ColAcciones;
-        private DataGridViewTextBoxColumn colCodigoUnidad;
-        private DataGridViewTextBoxColumn colDescripcionUnidad;
-        private DataGridViewButtonColumn colAccion;
         private DataGridViewTextBoxColumn colUsuario;
         private DataGridViewTextBoxColumn colNombre;
         private DataGridViewTextBoxColumn colEstado;
         private DataGridViewButtonColumn colEliminar;
+        private DataGridViewTextBoxColumn colCodigoUnidad;
+        private DataGridViewTextBoxColumn colDescripcionUnidad;
     }
 }

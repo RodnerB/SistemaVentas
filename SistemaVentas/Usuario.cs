@@ -40,10 +40,10 @@ namespace SistemaVentas
             {"colEstado", "ESTAUSU"}
         };
 
-        public Usuario(string usuario, string password)
+        public Usuario(string usuario, string password = null)
         {
             this.usuario = usuario;
-            this.password = password;
+            this.password = string.IsNullOrWhiteSpace(password) ? usuario : password;
         }
 
         private static Dictionary<string, object> ObtenerParametrosUsuario(Usuario usuario)

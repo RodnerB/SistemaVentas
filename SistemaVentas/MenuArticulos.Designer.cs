@@ -31,6 +31,14 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             dgvArticulos = new DataGridView();
+            colCodigo = new DataGridViewTextBoxColumn();
+            colDescripcion = new DataGridViewTextBoxColumn();
+            colUnidad = new DataGridViewTextBoxColumn();
+            colExistenciaMinima = new DataGridViewTextBoxColumn();
+            colExisteciaMaxima = new DataGridViewTextBoxColumn();
+            colExistenciaActual = new DataGridViewTextBoxColumn();
+            colPrecioDeVenta = new DataGridViewTextBoxColumn();
+            colCostoDeCompra = new DataGridViewTextBoxColumn();
             lblCosArt = new Label();
             lblPreArt = new Label();
             btnGuardarArt = new Button();
@@ -72,14 +80,6 @@
             lblArticulos = new Label();
             tableLayoutPanel9 = new TableLayoutPanel();
             btnCancelar = new Button();
-            colCodigo = new DataGridViewTextBoxColumn();
-            colDescripcion = new DataGridViewTextBoxColumn();
-            colUnidad = new DataGridViewTextBoxColumn();
-            colExistenciaMinima = new DataGridViewTextBoxColumn();
-            colExisteciaMaxima = new DataGridViewTextBoxColumn();
-            colExistenciaActual = new DataGridViewTextBoxColumn();
-            colPrecioDeVenta = new DataGridViewTextBoxColumn();
-            colCostoDeCompra = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgvArticulos).BeginInit();
             tableLayoutPanel1.SuspendLayout();
             panel3.SuspendLayout();
@@ -142,6 +142,54 @@
             dgvArticulos.RowTemplate.Height = 32;
             dgvArticulos.Size = new Size(1217, 505);
             dgvArticulos.TabIndex = 0;
+            // 
+            // colCodigo
+            // 
+            colCodigo.HeaderText = "Código";
+            colCodigo.MinimumWidth = 6;
+            colCodigo.Name = "colCodigo";
+            // 
+            // colDescripcion
+            // 
+            colDescripcion.HeaderText = "Descripción";
+            colDescripcion.MinimumWidth = 6;
+            colDescripcion.Name = "colDescripcion";
+            // 
+            // colUnidad
+            // 
+            colUnidad.HeaderText = "Unidad";
+            colUnidad.MinimumWidth = 6;
+            colUnidad.Name = "colUnidad";
+            // 
+            // colExistenciaMinima
+            // 
+            colExistenciaMinima.HeaderText = "Existencia mínima";
+            colExistenciaMinima.MinimumWidth = 6;
+            colExistenciaMinima.Name = "colExistenciaMinima";
+            // 
+            // colExisteciaMaxima
+            // 
+            colExisteciaMaxima.HeaderText = "Existencia maxima";
+            colExisteciaMaxima.MinimumWidth = 6;
+            colExisteciaMaxima.Name = "colExisteciaMaxima";
+            // 
+            // colExistenciaActual
+            // 
+            colExistenciaActual.HeaderText = "Existencia actual";
+            colExistenciaActual.MinimumWidth = 6;
+            colExistenciaActual.Name = "colExistenciaActual";
+            // 
+            // colPrecioDeVenta
+            // 
+            colPrecioDeVenta.HeaderText = "Precio de venta";
+            colPrecioDeVenta.MinimumWidth = 6;
+            colPrecioDeVenta.Name = "colPrecioDeVenta";
+            // 
+            // colCostoDeCompra
+            // 
+            colCostoDeCompra.HeaderText = "Costo de compra";
+            colCostoDeCompra.MinimumWidth = 6;
+            colCostoDeCompra.Name = "colCostoDeCompra";
             // 
             // lblCosArt
             // 
@@ -686,54 +734,6 @@
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = false;
             btnCancelar.Click += btnCancelar_Click;
-            // 
-            // colCodigo
-            // 
-            colCodigo.HeaderText = "Código";
-            colCodigo.MinimumWidth = 6;
-            colCodigo.Name = "colCodigo";
-            // 
-            // colDescripcion
-            // 
-            colDescripcion.HeaderText = "Descripción";
-            colDescripcion.MinimumWidth = 6;
-            colDescripcion.Name = "colDescripcion";
-            // 
-            // colUnidad
-            // 
-            colUnidad.HeaderText = "Unidad";
-            colUnidad.MinimumWidth = 6;
-            colUnidad.Name = "colUnidad";
-            // 
-            // colExistenciaMinima
-            // 
-            colExistenciaMinima.HeaderText = "Existencia mínima";
-            colExistenciaMinima.MinimumWidth = 6;
-            colExistenciaMinima.Name = "colExistenciaMinima";
-            // 
-            // colExisteciaMaxima
-            // 
-            colExisteciaMaxima.HeaderText = "Existencia maxima";
-            colExisteciaMaxima.MinimumWidth = 6;
-            colExisteciaMaxima.Name = "colExisteciaMaxima";
-            // 
-            // colExistenciaActual
-            // 
-            colExistenciaActual.HeaderText = "Existencia actual";
-            colExistenciaActual.MinimumWidth = 6;
-            colExistenciaActual.Name = "colExistenciaActual";
-            // 
-            // colPrecioDeVenta
-            // 
-            colPrecioDeVenta.HeaderText = "Precio de venta";
-            colPrecioDeVenta.MinimumWidth = 6;
-            colPrecioDeVenta.Name = "colPrecioDeVenta";
-            // 
-            // colCostoDeCompra
-            // 
-            colCostoDeCompra.HeaderText = "Costo de compra";
-            colCostoDeCompra.MinimumWidth = 6;
-            colCostoDeCompra.Name = "colCostoDeCompra";
             // 
             // MenuArticulos
             // 
