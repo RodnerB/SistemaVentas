@@ -10,21 +10,21 @@ namespace SistemaVentas
     {
         UnidadesMedida? unidadesMedida = new UnidadesMedida();
         bool existeUnidad = false;
-        
+
         Usuario? usuario = null;
         bool existeUsuario = false;
-        
+
         private MenuPrincipal? formMenuPrincipal;
         private readonly UtilidadesUI resizer = new UtilidadesUI();
-
+        private string? contrasenaUsuari = null;
         // Constructor sin parámetros (necesario para el diseñador)
         public MenuConfiguracion()
         {
             InitializeComponent();
 
             // Inicializar estados de los botones
-            InicializarEstadoBotones();
-            InicializarEstadoBotonesUsuario();
+            activarInputsUnidad(false);
+            ActivarInputsUsuario(false);
 
             this.AcceptButton = btnBuscarUnidad;
 
@@ -32,7 +32,7 @@ namespace SistemaVentas
             CargarUnidades();
             CargarUsuarios();
             CargarEstados();
-            
+
             this.StartPosition = FormStartPosition.CenterScreen;
 
             // Asegurar que el primer cuadro de texto reciba el foco al mostrarse
@@ -52,7 +52,7 @@ namespace SistemaVentas
 
                 // Aplicar redondeo a hijos (no TextBox ni al propio Form)
                 try { UtilidadesUI.ApplyRoundedExceptTextBoxes(this, 12); } catch { }
-                
+
                 // AGREGAR ESTA LÍNEA
                 this.Load += MenuConfiguracion_Load;
             }
@@ -86,20 +86,18 @@ namespace SistemaVentas
         {
             resizer.ResizeControls(this);
         }
-
-        #region Unidades de Medida
-
-        private void InicializarEstadoBotones()
-        {
-            btnBuscarUnidad.Enabled = true;
-            btnAgregarUni.Enabled = false;
-            this.AcceptButton = btnBuscarUnidad;
-        }
+        // ---------------------------
+        // Unidades medida
+        // ---------------------------
 
         private void activarInputsUnidad(bool activar)
         {
             inpCodUni.Enabled = !activar;
             inpDesUni.Enabled = activar;
+
+            btnBuscarUsuario.Enabled = !activar;
+            btnGuardarUni.Enabled = activar;
+            btnCancelarUnidad.Enabled = activar;
         }
 
         private void CargarUnidades()
@@ -137,6 +135,8 @@ namespace SistemaVentas
             }
         }
 
+        //TODO: REFACTORIZAR ESTO PARA QUE SEA LA CLASE QUE DECIDA SI GUARDAR O CREAR COMO EN CLIENTES Y ARTCIULOS
+
         private void GuardarUnidad(UnidadesMedida unidad)
         {
             try
@@ -161,36 +161,7 @@ namespace SistemaVentas
             }
 
             existeUnidad = false;
-            InicializarEstadoBotones();
-        }
-
-        private void EliminarUnidad(UnidadesMedida unidad)
-        {
-            try
-            {
-                if (unidad != null && unidad.CodigoUnidad != null)
-                {
-                    if (unidad.EliminarUnidad(unidad))
-                    {
-                        MessageBox.Show("Unidad eliminada exitosamente.", "Éxito",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        CargarUnidades();
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se pudo eliminar la unidad.", "Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error en la base de datos: " + ex.Message,
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
-            existeUnidad = false;
-            InicializarEstadoBotones();
+            activarInputsUnidad(false);
         }
 
         private UnidadesMedida ObtenerUnidadesEnText()
@@ -239,35 +210,7 @@ namespace SistemaVentas
                 return;
 
             GuardarUnidad(unidadesMedida);
-
-            inpCodUni?.Clear();
-            inpDesUni?.Clear();
-            inpCodUni?.Focus();
-        }
-
-        private void btnModificarUni_Click(object sender, EventArgs e)
-        {
-            if (!Validaciones()) return;
-
-            unidadesMedida = ObtenerUnidadesEnText();
-
-            if (unidadesMedida == null)
-                return;
-
-            ModificarUnidad(unidadesMedida);
-            CargarUnidades();
-
-            btnAgregarUni.Enabled = false;
-        }
-
-        private void btnEliminarUni_Click(object sender, EventArgs e)
-        {
-            var confirm = MessageBox.Show("¿Confirma que desea eliminar esta unidad?", "Confirmar eliminación",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (confirm != DialogResult.Yes) return;
-
-            unidadesMedida = ObtenerUnidadesEnText();
-            EliminarUnidad(unidadesMedida);
+            limpiarCamposUnidad();
         }
 
         private void btnBuscarUnidad_Click(object sender, EventArgs e)
@@ -286,10 +229,24 @@ namespace SistemaVentas
                 inpDesUni.Clear();
             }
 
-            btnAgregarUni.Enabled = true;
-            this.AcceptButton = btnAgregarUni;
-            activarInputsUnidad(true); 
+            btnGuardarUni.Enabled = true;
+            this.AcceptButton = btnGuardarUni;
+            activarInputsUnidad(true);
 
+            
+        }
+
+        private void limpiarCamposUnidad()
+        {
+            inpCodUni?.Clear();
+            inpDesUni?.Clear();
+            inpCodUni?.Focus();
+        }
+
+        private void btnCancelarUnidad_Click(object sender, EventArgs e)
+        {
+            existeUnidad = false;
+            activarInputsUnidad(false);
             inpDesUni?.Focus();
         }
 
@@ -318,17 +275,6 @@ namespace SistemaVentas
             }
         }
 
-        #endregion
-
-        #region Usuarios
-
-        private void InicializarEstadoBotonesUsuario()
-        {
-            btnBuscarUsuario.Enabled = true;
-            btnGuardarUsuario.Enabled = false;
-            btnCancelarUsuario.Enabled = false;
-            ActivarInputsUsuario(false);
-        }
 
         private void ActivarInputsUsuario(bool activar)
         {
@@ -336,6 +282,10 @@ namespace SistemaVentas
             inpNombre.Enabled = activar;
             inpContrasena.Enabled = activar;
             cmbEstado.Enabled = activar;
+
+            btnBuscarUsuario.Enabled = !activar;
+            btnGuardarUsuario.Enabled = activar;
+            btnCancelarUsuario.Enabled = activar;
         }
 
         private void CargarEstados()
@@ -392,6 +342,7 @@ namespace SistemaVentas
                 else
                 {
                     existeUsuario = true;
+                    contrasenaUsuari = usuarioEncontrado.password;
                 }
                 return usuarioEncontrado;
             }
@@ -409,7 +360,7 @@ namespace SistemaVentas
             try
             {
                 usuario.existe = existeUsuario;
-                
+
                 if (usuario.GuardarUsuario())
                 {
                     string mensaje = existeUsuario ? "Usuario modificado exitosamente" : "Usuario guardado exitosamente";
@@ -417,7 +368,7 @@ namespace SistemaVentas
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarUsuarios();
                     LimpiarCamposUsuario();
-                    InicializarEstadoBotonesUsuario();
+                    
                 }
                 else
                 {
@@ -432,32 +383,9 @@ namespace SistemaVentas
             }
         }
 
-        private void EliminarUsuario(string codigoUsuario)
-        {
-            try
-            {
-                if (Usuario.EliminarUsuario(codigoUsuario))
-                {
-                    MessageBox.Show("Usuario eliminado exitosamente.", "Éxito",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CargarUsuarios();
-                }
-                else
-                {
-                    MessageBox.Show("No se pudo eliminar el usuario.", "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error en la base de datos: " + ex.Message,
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private Usuario ObtenerUsuarioEnInputs()
         {
-            return new Usuario(inpUsuario.Text.Trim(), inpContrasena.Text.Trim())
+            return new Usuario(inpUsuario.Text.Trim(),contrasenaUsuari)
             {
                 nombre = inpNombre.Text.Trim(),
                 estado = cmbEstado.SelectedValue?.ToString() ?? "2"
@@ -520,7 +448,7 @@ namespace SistemaVentas
             }
 
             usuario = BuscarUsuario(inpUsuario.Text.Trim());
-            
+
             if (usuario != null)
             {
                 // Usuario encontrado - cargar datos
@@ -540,9 +468,7 @@ namespace SistemaVentas
 
             // Habilitar campos para editar/crear
             ActivarInputsUsuario(true);
-            btnGuardarUsuario.Enabled = true;
-            btnCancelarUsuario.Enabled = true;
-            
+
             // Mover foco al nombre
             inpNombre?.Focus();
         }
@@ -561,32 +487,12 @@ namespace SistemaVentas
         private void btnCancelarUsuario_Click(object sender, EventArgs e)
         {
             LimpiarCamposUsuario();
-            InicializarEstadoBotonesUsuario();
+            ActivarInputsUsuario(false);
             inpUsuario.Focus();
         }
 
-        private void dgvVerUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // Verificar que sea un clic válido en la columna de eliminar
-            if (e.RowIndex >= 0 && e.ColumnIndex == dgvVerUsuarios.Columns["colEliminar"].Index)
-            {
-                string codigoUsuario = dgvVerUsuarios.Rows[e.RowIndex].Cells["colUsuario"].Value.ToString()!;
-                
-                var confirm = MessageBox.Show($"¿Está seguro de eliminar el usuario '{codigoUsuario}'?", 
-                    "Confirmar eliminación",
-                    MessageBoxButtons.YesNo, 
-                    MessageBoxIcon.Question);
-                
-                if (confirm == DialogResult.Yes)
-                {
-                    EliminarUsuario(codigoUsuario);
-                }
-            }
-        }
 
-        #endregion
-
-        #region Eventos Generales
+        //  eventios
 
         private void EventoMoverConEnter(object sender, KeyEventArgs e)
         {
@@ -596,9 +502,9 @@ namespace SistemaVentas
                 Control origen = (Control)sender;
 
                 // Para unidades de medida
-                if (btnAgregarUni.Enabled && origen == inpDesUni)
+                if (btnGuardarUni.Enabled && origen == inpDesUni)
                 {
-                    btnAgregarUni.PerformClick();
+                    btnGuardarUni.PerformClick();
                     return;
                 }
 
@@ -631,6 +537,10 @@ namespace SistemaVentas
             activarInputsUnidad(false);
         }
 
-        #endregion
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
