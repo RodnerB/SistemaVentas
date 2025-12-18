@@ -35,6 +35,18 @@ namespace SistemaVentas
             // Asignar handler KeyDown a todos los TextBox (recursivo para controles anidados)
             AttachKeyDownToTextBoxes(this);
 
+            // Suscribir eventos KeyPress para validación numérica usando un único manejador
+            inpCredCliente.KeyPress += ValidarSoloNumerosKeyPress;
+            inpBalCliente.KeyPress += ValidarSoloNumerosKeyPress;
+            inpFaxCliente.KeyPress += ValidarSoloNumerosKeyPress;
+            inpTelCliente.KeyPress += ValidarSoloNumerosKeyPress;
+            inpCiuCliente.KeyPress += validarSoloLetras;
+            inpSecCliente.KeyPress += validarSoloLetras;
+            inpApeCliente.KeyPress += validarSoloLetras;
+            inpNomCliente.KeyPress += validarSoloLetras;
+            inpDirCliente.KeyPress += validarSoloLetras;
+
+
             // Cuando el formulario se muestre, establecer el foco en la primera casilla de texto
             this.Shown += Form2_Shown;
         }
@@ -157,7 +169,7 @@ namespace SistemaVentas
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarClientes(); // Recarga la lista de clientes después de agregar uno
 
-                    
+
                     existeElCliente = false;
                     btnAgregarCliente.Enabled = false;
                     return true;
@@ -221,7 +233,7 @@ namespace SistemaVentas
          -----------------------------------------
         */
 
-        // Validar tamaños y que el balance no sea mayor al limite
+
         public bool Validaciones()
         {
             if (!Validador.EsCantidadMenorAlTope(
@@ -279,7 +291,21 @@ namespace SistemaVentas
                 MessageBox.Show("El teléfono debe tener un máximo de 10 caracteres.", "Advertencia",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
+            }
 
+            if (!Validador.ValidarTamanoPermitido(inpFaxCliente.Text, 10))
+            {
+                MessageBox.Show("El fax debe tener un máximo de 10 caracteres.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+
+            if (string.IsNullOrWhiteSpace(inpObsCliente.Text))
+            {
+                MessageBox.Show("Debe introducir una descripción.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
             }
 
             return true;
@@ -288,9 +314,9 @@ namespace SistemaVentas
 
 
         /* 
-         -----------------------------------------
-         * EVENTOS AQUi:
-         -----------------------------------------
+         ---------------------------
+         * EVENTOS AQUÍ:
+         ---------------------------
         */
 
         private void btnBuscarCli_Click(object? sender, EventArgs e)
@@ -386,16 +412,23 @@ namespace SistemaVentas
             this.SelectNextControl(control, true, true, true, true);
         }
 
-        private void inpCredCliente_KeyPress(object? sender, KeyPressEventArgs e)
-        {
-            Validador.validarSoloNumeros(sender, e);
-
-        }
-
         private void MenuClientes_Load(object sender, EventArgs e)
         {
             CargarClientes();
             activarInputs(false);
+        }
+
+        private void ValidarSoloNumerosKeyPress(object? sender, KeyPressEventArgs e)
+        {
+            Validador.validarSoloNumeros(sender, e);
+        }
+
+        public static void validarSoloLetras(object? sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
         }
     }
 }

@@ -80,6 +80,7 @@
             inpPreArt = new TextBox();
             lblArticulos = new Label();
             tableLayoutPanel9 = new TableLayoutPanel();
+            btnCancelar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvArticulos).BeginInit();
             tableLayoutPanel1.SuspendLayout();
             panel3.SuspendLayout();
@@ -228,9 +229,9 @@
             btnAgregarArt.FlatStyle = FlatStyle.Flat;
             btnAgregarArt.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnAgregarArt.ForeColor = SystemColors.ButtonHighlight;
-            btnAgregarArt.Location = new Point(38, 54);
+            btnAgregarArt.Location = new Point(37, 36);
             btnAgregarArt.Name = "btnAgregarArt";
-            btnAgregarArt.Size = new Size(354, 28);
+            btnAgregarArt.Size = new Size(356, 27);
             btnAgregarArt.TabIndex = 18;
             btnAgregarArt.Text = "Agregar artículo";
             btnAgregarArt.UseVisualStyleBackColor = false;
@@ -247,9 +248,9 @@
             btnBuscarArt.FlatStyle = FlatStyle.Flat;
             btnBuscarArt.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnBuscarArt.ForeColor = SystemColors.ButtonHighlight;
-            btnBuscarArt.Location = new Point(37, 11);
+            btnBuscarArt.Location = new Point(37, 3);
             btnBuscarArt.Name = "btnBuscarArt";
-            btnBuscarArt.Size = new Size(357, 28);
+            btnBuscarArt.Size = new Size(357, 27);
             btnBuscarArt.TabIndex = 21;
             btnBuscarArt.Text = "Buscar artículo";
             btnBuscarArt.UseVisualStyleBackColor = false;
@@ -604,7 +605,7 @@
             inpExiMax.Name = "inpExiMax";
             inpExiMax.Size = new Size(115, 27);
             inpExiMax.TabIndex = 11;
-            inpExiMax.KeyPress += txtExiMax_KeyPress;
+            inpExiMax.KeyPress += ValidarSoloNumerosKeyPress;
             // 
             // inpExiMin
             // 
@@ -612,7 +613,7 @@
             inpExiMin.Name = "inpExiMin";
             inpExiMin.Size = new Size(115, 27);
             inpExiMin.TabIndex = 14;
-            inpExiMin.KeyPress += txtExiMin_KeyPress;
+            inpExiMin.KeyPress += ValidarSoloNumerosKeyPress;
             // 
             // lblExiAct
             // 
@@ -629,7 +630,7 @@
             inpExiAct.Name = "inpExiAct";
             inpExiAct.Size = new Size(115, 27);
             inpExiAct.TabIndex = 13;
-            inpExiAct.KeyPress += txtExiAct_KeyPress;
+            inpExiAct.KeyPress += ValidarSoloNumerosKeyPress;
             // 
             // tableLayoutPanel8
             // 
@@ -657,7 +658,7 @@
             inpCosArt.Name = "inpCosArt";
             inpCosArt.Size = new Size(359, 27);
             inpCosArt.TabIndex = 16;
-            inpCosArt.KeyPress += txtCosArt_KeyPress;
+            inpCosArt.KeyPress += ValidarSoloNumerosKeyPress;
             // 
             // inpPreArt
             // 
@@ -665,7 +666,7 @@
             inpPreArt.Name = "inpPreArt";
             inpPreArt.Size = new Size(359, 27);
             inpPreArt.TabIndex = 17;
-            inpPreArt.KeyPress += txtPreArt_KeyPress;
+            inpPreArt.KeyPress += ValidarSoloNumerosKeyPress;
             // 
             // lblArticulos
             // 
@@ -682,16 +683,36 @@
             // 
             tableLayoutPanel9.ColumnCount = 1;
             tableLayoutPanel9.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel9.Controls.Add(btnCancelar, 0, 2);
             tableLayoutPanel9.Controls.Add(btnAgregarArt, 0, 1);
             tableLayoutPanel9.Controls.Add(btnBuscarArt, 0, 0);
             tableLayoutPanel9.Dock = DockStyle.Fill;
             tableLayoutPanel9.Location = new Point(3, 654);
             tableLayoutPanel9.Name = "tableLayoutPanel9";
-            tableLayoutPanel9.RowCount = 2;
-            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel9.RowCount = 3;
+            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel9.Size = new Size(431, 102);
             tableLayoutPanel9.TabIndex = 16;
+            // 
+            // btnCancelar
+            // 
+            btnCancelar.Anchor = AnchorStyles.Top;
+            btnCancelar.BackColor = Color.Red;
+            btnCancelar.Cursor = Cursors.Hand;
+            btnCancelar.FlatAppearance.BorderSize = 0;
+            btnCancelar.FlatAppearance.MouseDownBackColor = Color.Silver;
+            btnCancelar.FlatAppearance.MouseOverBackColor = Color.Silver;
+            btnCancelar.FlatStyle = FlatStyle.Flat;
+            btnCancelar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnCancelar.ForeColor = SystemColors.ButtonHighlight;
+            btnCancelar.Location = new Point(37, 69);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(356, 27);
+            btnCancelar.TabIndex = 22;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = false;
             // 
             // MenuArticulos
             // 
@@ -703,6 +724,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Artículos";
             WindowState = FormWindowState.Maximized;
+            Load += MenuArticulos_Load;
             ((System.ComponentModel.ISupportInitialize)dgvArticulos).EndInit();
             tableLayoutPanel1.ResumeLayout(false);
             panel3.ResumeLayout(false);
@@ -786,5 +808,6 @@
         private DataGridViewTextBoxColumn colPrecioDeVenta;
         private DataGridViewTextBoxColumn colCostoDeCompra;
         private DataGridViewButtonColumn colAccion;
+        private Button btnCancelar;
     }
 }

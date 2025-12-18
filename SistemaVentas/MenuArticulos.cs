@@ -65,6 +65,13 @@ namespace SistemaVentas
                 // En modo diseño evitar acceso a recursos o datos; pero conservar estados básicos si es necesario
                 btnAgregarArt.Enabled = false;
             }
+
+            inpExiMin.KeyPress += ValidarSoloNumerosKeyPress;
+            inpExiMax.KeyPress += ValidarSoloNumerosKeyPress;
+            inpExiAct.KeyPress += ValidarSoloNumerosKeyPress;
+            inpPreArt.KeyPress += ValidarSoloNumerosKeyPress;
+            inpCosArt.KeyPress += ValidarSoloNumerosKeyPress;
+            inpDesArt.KeyPress += validarSoloLetras;
         }
 
         private void MenuArticulos_Resize(object? sender, EventArgs e)
@@ -111,11 +118,24 @@ namespace SistemaVentas
             }
         }
 
+        // activar o desactivar texto de los inputs
+        private void activarInputs(bool activar)
+        {
+            inpCodArt.Enabled = !activar;
+            inpDesArt.Enabled = activar;
+            cmbCodUni.Enabled = activar;
+            inpExiMin.Enabled = activar;
+            inpExiMax.Enabled = activar;
+            inpExiAct.Enabled = activar;
+            inpPreArt.Enabled = activar;
+            inpCosArt.Enabled = activar;
+        }
+
         // Handler para volver al menú principal
         private void BtnVolverMenuPrincipal_Click(object? sender, EventArgs e)
         {
-            formMenuPrincipal.Show(); // Muestra el formulario principal nuevamente
-            this.Close(); //Cierra el formulario actual de clientes
+            formMenuPrincipal?.Show(); // Muestra el formulario principal nuevamente
+            this.Close(); //Cierra el formulario actual de artículos
         }
 
         // Método para cargar los artículos en el DataGridView
@@ -143,6 +163,10 @@ namespace SistemaVentas
                     existeElArticulo = false;
                     MessageBox.Show("El artículo no existe.", "No encontrado",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    existeElArticulo = true;
                 }
                 return articulo;
             }
@@ -212,26 +236,14 @@ namespace SistemaVentas
 
         private void EventoMoverConEnter(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                // Evitar pitido y manejar envío si estamos en el último textbox (txtCosArt)
-                e.SuppressKeyPress = true;
+            if (e.KeyCode != Keys.Enter || !(sender is Control control))
+                return;
 
-                Control origen = (Control)sender;
+            e.SuppressKeyPress = true; // salto de línea
 
-                // Si el botón Agregar está habilitado y el foco está en el último campo,
-                // simular el clic en el botón Agregar (esto mostrará el MessageBox).
-                if (btnAgregarArt.Enabled && origen == inpCosArt)
-                {
-                    btnAgregarArt.PerformClick();
-                    return;
-                }
-
-                // En el resto de casos, mover el foco al siguiente control
-                this.SelectNextControl(origen, true, true, true, true);
-            }
-        }
-
+            // Comportamiento por defecto para otros controles: avanzar al siguiente control
+            this.SelectNextControl(control, true, true, true, true);
+}
         private void CargarUnidades()
         {
             DataTable tabla = UnidadesMedida.ObtenerListadoCodigos();
@@ -304,6 +316,7 @@ namespace SistemaVentas
             GuardarArticulo(articulo);
 
             // Limpiar casillas después de agregar y restablecer combo
+            activarInputs(false);
             inpCodArt?.Clear();
             inpDesArt?.Clear();
             inpExiMin?.Clear();
@@ -342,6 +355,11 @@ namespace SistemaVentas
             }
 
             articulo = BuscarArticulo(inpCodArt.Text);
+            
+            // Siempre habilitar los inputs después de buscar (encuentre o no el artículo)
+            activarInputs(true);
+            btnAgregarArt.Enabled = true;
+
             if (articulo != null)
             {
                 // Rellenar los controles de la interfaz con los datos del artículo
@@ -352,13 +370,10 @@ namespace SistemaVentas
                 inpExiAct.Text = articulo.ExistenciaActual.ToString();
                 inpPreArt.Text = articulo.PrecioArticulo.ToString("0.##");
                 inpCosArt.Text = articulo.CostoArticulo.ToString("0.##");
-
-                existeElArticulo = true;
             }
             else
             {
-                existeElArticulo = false;
-
+                // Limpiar campos si no se encontró
                 inpDesArt.Clear();
                 inpExiMin.Clear();
                 inpExiMax.Clear();
@@ -367,37 +382,28 @@ namespace SistemaVentas
                 inpCosArt.Clear();
             }
 
-            btnAgregarArt.Enabled = true;
-
             // Mover el cursor automáticamente a la segunda casilla (descripción)
             inpDesArt?.Focus();
             ultimoControlConFoco = inpDesArt;
         }
 
-        //  métodos KeyPress para validar solo números
-        private void txtExiMin_KeyPress(object? sender, KeyPressEventArgs e)
+        private void MenuArticulos_Load(object sender, EventArgs e)
+        {
+            CargarArticulos();
+            activarInputs(false);
+        }
+
+        private void ValidarSoloNumerosKeyPress(object? sender, KeyPressEventArgs e)
         {
             Validador.validarSoloNumeros(sender, e);
         }
 
-        private void txtExiMax_KeyPress(object? sender, KeyPressEventArgs e)
+        public static void validarSoloLetras(object? sender, KeyPressEventArgs e)
         {
-            Validador.validarSoloNumeros(sender, e);
-        }
-
-        private void txtExiAct_KeyPress(object? sender, KeyPressEventArgs e)
-        {
-            Validador.validarSoloNumeros(sender, e);
-        }
-
-        private void txtPreArt_KeyPress(object? sender, KeyPressEventArgs e)
-        {
-            Validador.validarSoloNumeros(sender, e);
-        }
-
-        private void txtCosArt_KeyPress(object? sender, KeyPressEventArgs e)
-        {
-            Validador.validarSoloNumeros(sender, e);
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
         }
     }
 }
