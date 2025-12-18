@@ -22,7 +22,7 @@ namespace SistemaVentas
         private readonly UtilidadesUI resizer = new UtilidadesUI();
 
         private Control? ultimoControlConFoco;
-        
+
         public MenuArticulos(MenuPrincipal? MenuPrincipal = null)
         {
             InitializeComponent();
@@ -42,13 +42,13 @@ namespace SistemaVentas
                 this.Resize += MenuArticulos_Resize;
 
                 // Inicializar estados de los botones: solo Buscar y Volver habilitados
-                btnAgregarArt.Enabled = false;
+                btnGuardarArt.Enabled = false;
                 btnBuscarArt.Enabled = true;
                 if (btnVolverMenuPrincipal is not null)
                     btnVolverMenuPrincipal.Enabled = true;
 
                 // Permitir que Enter active el botón de agregar cuando esté habilitado
-                this.AcceptButton = btnAgregarArt;
+                this.AcceptButton = btnGuardarArt;
 
                 CargarArticulos();
                 CargarUnidades(); // <-- Asegurar que el combo se llene al crear el formulario
@@ -63,7 +63,7 @@ namespace SistemaVentas
             else
             {
                 // En modo diseño evitar acceso a recursos o datos; pero conservar estados básicos si es necesario
-                btnAgregarArt.Enabled = false;
+                btnGuardarArt.Enabled = false;
             }
 
             inpExiMin.KeyPress += ValidarSoloNumerosKeyPress;
@@ -129,6 +129,10 @@ namespace SistemaVentas
             inpExiAct.Enabled = activar;
             inpPreArt.Enabled = activar;
             inpCosArt.Enabled = activar;
+
+            btnBuscarArt.Enabled = !activar;
+            btnGuardarArt.Enabled = activar;
+            btnCancelar.Enabled = activar;
         }
 
         // Handler para volver al menú principal
@@ -183,14 +187,8 @@ namespace SistemaVentas
         {
             try
             {
-                if (existeElArticulo)
-                {
-                    // Ya no se permite modificar; informar al usuario y salir
-                    MessageBox.Show("El artículo ya existe. La modificación ha sido deshabilitada.", "Información",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-                else if (Articulo.InsertarArticulo(articulo))
+                articulo.existe = existeElArticulo;
+                if (articulo.InsertarArticulo())
                 {
                     MessageBox.Show("Artículo guardado existosamente", "Éxito",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -204,10 +202,9 @@ namespace SistemaVentas
                 return;
             }
             existeElArticulo = false;
-            btnAgregarArt.Enabled = false;
             cmbCodUni.SelectedIndex = 0;
         }
-
+        /*
         private void EliminarArticulo(Articulo articulo)
         {
             try
@@ -231,8 +228,8 @@ namespace SistemaVentas
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             existeElArticulo = false;
-            btnAgregarArt.Enabled = false;
-        }
+            btnGuardarArt.Enabled = false;
+        }*/
 
         private void EventoMoverConEnter(object sender, KeyEventArgs e)
         {
@@ -243,7 +240,7 @@ namespace SistemaVentas
 
             // Comportamiento por defecto para otros controles: avanzar al siguiente control
             this.SelectNextControl(control, true, true, true, true);
-}
+        }
         private void CargarUnidades()
         {
             DataTable tabla = UnidadesMedida.ObtenerListadoCodigos();
@@ -276,33 +273,6 @@ namespace SistemaVentas
             };
         }
 
-        private bool Validaciones ()
-        { 
-            if (!Validador.ValidarTamanoPermitido(inpDesArt.Text, 40))
-            {
-                MessageBox.Show("Debe introducir una descripción.", "Advertencia",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-          
-
-            if (!Validador.ValidarTamanoPermitido(inpCodArt.Text, 20))
-            {
-                MessageBox.Show("Debe de introducir un código de artículo válido de máximo 20 caracteres.", "Advertencia",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-        
-            if (string.IsNullOrWhiteSpace(cmbCodUni.SelectedValue?.ToString()))
-            {
-                MessageBox.Show("Debe de seleccionar una unidad de medida.", "Advertencia",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            return true;
-        }
-
         private void btnAgregarArt_Click(object sender, EventArgs e)
         {
             if (!Validaciones())
@@ -317,13 +287,7 @@ namespace SistemaVentas
 
             // Limpiar casillas después de agregar y restablecer combo
             activarInputs(false);
-            inpCodArt?.Clear();
-            inpDesArt?.Clear();
-            inpExiMin?.Clear();
-            inpExiMax?.Clear();
-            inpExiAct?.Clear();
-            inpPreArt?.Clear();
-            inpCosArt?.Clear();
+            limpiarInputs();
             if (cmbCodUni?.Items.Count > 0)
             {
                 cmbCodUni.SelectedIndex = 0;
@@ -331,12 +295,6 @@ namespace SistemaVentas
 
             // Poner foco en la primera casilla
             inpCodArt?.Focus();
-        }
-
-        private void btnEliminarArt_Click(object sender, EventArgs e)
-        {
-            articulo = ObtenerArticuloEnText();
-            EliminarArticulo(articulo);
         }
 
         // Mantener un handler vacío/informativo por si el diseñador sigue enlazando el evento
@@ -355,10 +313,10 @@ namespace SistemaVentas
             }
 
             articulo = BuscarArticulo(inpCodArt.Text);
-            
+
             // Siempre habilitar los inputs después de buscar (encuentre o no el artículo)
             activarInputs(true);
-            btnAgregarArt.Enabled = true;
+            btnGuardarArt.Enabled = true;
 
             if (articulo != null)
             {
@@ -370,16 +328,6 @@ namespace SistemaVentas
                 inpExiAct.Text = articulo.ExistenciaActual.ToString();
                 inpPreArt.Text = articulo.PrecioArticulo.ToString("0.##");
                 inpCosArt.Text = articulo.CostoArticulo.ToString("0.##");
-            }
-            else
-            {
-                // Limpiar campos si no se encontró
-                inpDesArt.Clear();
-                inpExiMin.Clear();
-                inpExiMax.Clear();
-                inpExiAct.Clear();
-                inpPreArt.Clear();
-                inpCosArt.Clear();
             }
 
             // Mover el cursor automáticamente a la segunda casilla (descripción)
@@ -404,6 +352,81 @@ namespace SistemaVentas
             {
                 e.Handled = true;
             }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            activarInputs(false);
+            limpiarInputs();
+        }
+
+        private void limpiarInputs()
+        {
+            inpCodArt.Clear();
+            inpDesArt.Clear();
+            inpExiMin.Clear();
+            inpExiMax.Clear();
+            inpExiAct.Clear();
+            inpPreArt.Clear();
+            inpCosArt.Clear();
+            cmbCodUni.SelectedIndex = 0;
+        }
+
+        private bool Validaciones()
+        {
+            if (!Validador.ValidarTamanoPermitido(inpDesArt.Text, 40))
+            {
+                MessageBox.Show("Debe introducir una descripción.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (!Validador.ValidarTamanoPermitido(inpCodArt.Text, 20))
+            {
+                MessageBox.Show("Debe de introducir un código de artículo válido de máximo 20 caracteres.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(cmbCodUni.SelectedValue?.ToString()))
+            {
+                MessageBox.Show("Debe de seleccionar una unidad de medida.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Validar existencias
+            int exiMin = string.IsNullOrWhiteSpace(inpExiMin.Text) ? 0 : Convert.ToInt32(inpExiMin.Text);
+            int exiMax = string.IsNullOrWhiteSpace(inpExiMax.Text) ? 0 : Convert.ToInt32(inpExiMax.Text);
+            int exiAct = string.IsNullOrWhiteSpace(inpExiAct.Text) ? 0 : Convert.ToInt32(inpExiAct.Text);
+
+            // Validar que la existencia máxima sea mayor que la mínima
+            if (!Validador.EsCantidadMenorAlTope(exiMax, exiMin))
+            {
+                MessageBox.Show("La existencia máxima debe ser mayor que la existencia mínima.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                inpExiMax.Focus();
+                return false;
+            }
+
+            // Validar que la existencia actual esté dentro del rango
+            if (!Validador.EsCantidadMenorAlTope(exiAct, exiMin))
+            {
+                MessageBox.Show("La existencia actual no puede ser menor que la existencia mínima.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                inpExiAct.Focus();
+                return false;
+            }
+
+            if (!Validador.EsCantidadMenorAlTope(exiMax, exiAct))
+            {
+                MessageBox.Show("La existencia actual no puede ser mayor que la existencia máxima.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                inpExiAct.Focus();
+                return false;
+            }
+
+            return true;
         }
     }
 }
