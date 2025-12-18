@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel3 = new TableLayoutPanel();
             panel1 = new Panel();
@@ -59,10 +59,10 @@
             panel3 = new Panel();
             tableLayoutPanel10 = new TableLayoutPanel();
             tableLayoutPanel11 = new TableLayoutPanel();
-            lblBuscarProducto = new Label();
+            label1 = new Label();
             lstResultadosBusqueda = new ListBox();
             txtBuscarProducto = new TextBox();
-            label1 = new Label();
+            lblBuscarProducto = new Label();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             panel1.SuspendLayout();
@@ -356,14 +356,14 @@
             dgvProductosSeleccionados.BorderStyle = BorderStyle.None;
             dgvProductosSeleccionados.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvProductosSeleccionados.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Control;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Control;
-            dataGridViewCellStyle5.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dgvProductosSeleccionados.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Control;
+            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvProductosSeleccionados.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvProductosSeleccionados.ColumnHeadersHeight = 40;
             dgvProductosSeleccionados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvProductosSeleccionados.Columns.AddRange(new DataGridViewColumn[] { colCodigo, colDescripcion, colPrecioUnitario, colCantidad, colSubtotal, colEliminar });
@@ -372,14 +372,14 @@
             dgvProductosSeleccionados.GridColor = Color.LightGray;
             dgvProductosSeleccionados.Location = new Point(3, 51);
             dgvProductosSeleccionados.Name = "dgvProductosSeleccionados";
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Control;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgvProductosSeleccionados.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvProductosSeleccionados.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvProductosSeleccionados.RowHeadersVisible = false;
             dgvProductosSeleccionados.RowHeadersWidth = 51;
             dgvProductosSeleccionados.Size = new Size(1650, 378);
@@ -486,16 +486,16 @@
             tableLayoutPanel11.Size = new Size(775, 198);
             tableLayoutPanel11.TabIndex = 0;
             // 
-            // lblBuscarProducto
+            // label1
             // 
-            lblBuscarProducto.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            lblBuscarProducto.AutoSize = true;
-            lblBuscarProducto.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblBuscarProducto.Location = new Point(3, 57);
-            lblBuscarProducto.Name = "lblBuscarProducto";
-            lblBuscarProducto.Size = new Size(204, 15);
-            lblBuscarProducto.TabIndex = 1;
-            lblBuscarProducto.Text = "Buscar Producto (Código o Nombre):";
+            label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(3, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(179, 37);
+            label1.TabIndex = 5;
+            label1.Text = "Nueva Venta";
             // 
             // lstResultadosBusqueda
             // 
@@ -522,16 +522,16 @@
             txtBuscarProducto.TextChanged += TxtBuscarProducto_TextChanged;
             txtBuscarProducto.KeyDown += TxtBuscarProducto_KeyDown;
             // 
-            // label1
+            // lblBuscarProducto
             // 
-            label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(3, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(179, 37);
-            label1.TabIndex = 5;
-            label1.Text = "Nueva Venta";
+            lblBuscarProducto.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            lblBuscarProducto.AutoSize = true;
+            lblBuscarProducto.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblBuscarProducto.Location = new Point(3, 57);
+            lblBuscarProducto.Name = "lblBuscarProducto";
+            lblBuscarProducto.Size = new Size(204, 15);
+            lblBuscarProducto.TabIndex = 1;
+            lblBuscarProducto.Text = "Buscar Producto (Código o Nombre):";
             // 
             // MenuVentas
             // 

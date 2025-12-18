@@ -48,6 +48,12 @@ namespace SistemaVentas
             WHERE 
                 CODCLI = @CodigoCliente";
         private const string eliminarClienteQuery = "DELETE FROM SFTCLIE0 WHERE CODCLI = @codigo";
+        private const string actualizarBalanceClienteQuery = @"
+            UPDATE SFTCLIE0
+            SET 
+                BALCLI = @BalanceActualCliente
+            WHERE 
+                CODCLI = @CodigoCliente";
 
         // Headers para renombrar columnas 
 
@@ -140,6 +146,19 @@ namespace SistemaVentas
 
 
 
+        }
+
+        public static bool RestarBalanceCliente(string codigoCliente, int balanceRestar)
+        {
+            Cliente? cliente = ObtenerClientePorCodigo(codigoCliente);
+            return (UtilidadesBD.GuardarRegistro(
+                actualizarBalanceClienteQuery,
+                new Dictionary<string, object>()
+                {
+                    {"@CodigoCliente", cliente.CodigoCliente },
+                    {"@BalanceActualCliente", cliente.BalanceActualCliente - balanceRestar }
+                }
+            ) > 0);
         }
 
         public static bool eliminarCliente(string codigoCliente) => (UtilidadesBD.
