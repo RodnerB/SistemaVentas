@@ -28,22 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             dgvClientes = new DataGridView();
-            colCodigo = new DataGridViewTextBoxColumn();
-            colNombre = new DataGridViewTextBoxColumn();
-            colApellido = new DataGridViewTextBoxColumn();
-            colDireccion = new DataGridViewTextBoxColumn();
-            colSector = new DataGridViewTextBoxColumn();
-            colCiudad = new DataGridViewTextBoxColumn();
-            colTelefono = new DataGridViewTextBoxColumn();
-            colFax = new DataGridViewTextBoxColumn();
-            colLimite = new DataGridViewTextBoxColumn();
-            colBalance = new DataGridViewTextBoxColumn();
-            colObservaciones = new DataGridViewTextBoxColumn();
-            colEliminar = new DataGridViewButtonColumn();
             lblClientes = new Label();
             btnVolverMenuPrincipal = new Button();
             tableLayoutPanel1 = new TableLayoutPanel();
@@ -73,6 +61,7 @@
             inpObsCliente = new TextBox();
             lblCodCli = new Label();
             tableLayoutPanel6 = new TableLayoutPanel();
+            btnCancelar = new Button();
             btnBuscarCli = new Button();
             btnAgregarCliente = new Button();
             label3 = new Label();
@@ -85,7 +74,17 @@
             tableLayoutPanel7 = new TableLayoutPanel();
             label5 = new Label();
             tableLayoutPanel2 = new TableLayoutPanel();
-            btnCancelar = new Button();
+            colCodigo = new DataGridViewTextBoxColumn();
+            colNombre = new DataGridViewTextBoxColumn();
+            colApellido = new DataGridViewTextBoxColumn();
+            colDireccion = new DataGridViewTextBoxColumn();
+            colSector = new DataGridViewTextBoxColumn();
+            colCiudad = new DataGridViewTextBoxColumn();
+            colTelefono = new DataGridViewTextBoxColumn();
+            colFax = new DataGridViewTextBoxColumn();
+            colLimite = new DataGridViewTextBoxColumn();
+            colBalance = new DataGridViewTextBoxColumn();
+            colObservaciones = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgvClientes).BeginInit();
             tableLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -113,132 +112,44 @@
             dgvClientes.BorderStyle = BorderStyle.None;
             dgvClientes.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dgvClientes.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvClientes.ColumnHeadersHeight = 35;
             dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvClientes.Columns.AddRange(new DataGridViewColumn[] { colCodigo, colNombre, colApellido, colDireccion, colSector, colCiudad, colTelefono, colFax, colLimite, colBalance, colObservaciones, colEliminar });
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Window;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.ButtonHighlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dgvClientes.DefaultCellStyle = dataGridViewCellStyle5;
+            dgvClientes.Columns.AddRange(new DataGridViewColumn[] { colCodigo, colNombre, colApellido, colDireccion, colSector, colCiudad, colTelefono, colFax, colLimite, colBalance, colObservaciones });
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.ButtonHighlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvClientes.DefaultCellStyle = dataGridViewCellStyle2;
             dgvClientes.Dock = DockStyle.Fill;
             dgvClientes.EnableHeadersVisualStyles = false;
             dgvClientes.GridColor = SystemColors.HighlightText;
             dgvClientes.Location = new Point(3, 74);
             dgvClientes.Name = "dgvClientes";
             dgvClientes.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Control;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgvClientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvClientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvClientes.RowHeadersVisible = false;
             dgvClientes.RowHeadersWidth = 51;
             dgvClientes.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dgvClientes.Size = new Size(1392, 691);
             dgvClientes.TabIndex = 0;
-            dgvClientes.CellClick += dgvClientes_CellClick;
-            // 
-            // colCodigo
-            // 
-            colCodigo.HeaderText = "Código";
-            colCodigo.MinimumWidth = 6;
-            colCodigo.Name = "colCodigo";
-            colCodigo.ReadOnly = true;
-            // 
-            // colNombre
-            // 
-            colNombre.HeaderText = "Nombre";
-            colNombre.MinimumWidth = 6;
-            colNombre.Name = "colNombre";
-            colNombre.ReadOnly = true;
-            // 
-            // colApellido
-            // 
-            colApellido.HeaderText = "Apellido";
-            colApellido.MinimumWidth = 6;
-            colApellido.Name = "colApellido";
-            colApellido.ReadOnly = true;
-            // 
-            // colDireccion
-            // 
-            colDireccion.HeaderText = "Direccion";
-            colDireccion.MinimumWidth = 6;
-            colDireccion.Name = "colDireccion";
-            colDireccion.ReadOnly = true;
-            // 
-            // colSector
-            // 
-            colSector.HeaderText = "Sector";
-            colSector.MinimumWidth = 6;
-            colSector.Name = "colSector";
-            colSector.ReadOnly = true;
-            // 
-            // colCiudad
-            // 
-            colCiudad.HeaderText = "Ciudad";
-            colCiudad.MinimumWidth = 6;
-            colCiudad.Name = "colCiudad";
-            colCiudad.ReadOnly = true;
-            // 
-            // colTelefono
-            // 
-            colTelefono.HeaderText = "Telefono";
-            colTelefono.MinimumWidth = 6;
-            colTelefono.Name = "colTelefono";
-            colTelefono.ReadOnly = true;
-            // 
-            // colFax
-            // 
-            colFax.HeaderText = "Fax";
-            colFax.MinimumWidth = 6;
-            colFax.Name = "colFax";
-            colFax.ReadOnly = true;
-            // 
-            // colLimite
-            // 
-            colLimite.HeaderText = "Limite Credito";
-            colLimite.MinimumWidth = 6;
-            colLimite.Name = "colLimite";
-            colLimite.ReadOnly = true;
-            // 
-            // colBalance
-            // 
-            colBalance.HeaderText = "Balance";
-            colBalance.MinimumWidth = 6;
-            colBalance.Name = "colBalance";
-            colBalance.ReadOnly = true;
-            // 
-            // colObservaciones
-            // 
-            colObservaciones.HeaderText = "Observaciones";
-            colObservaciones.MinimumWidth = 6;
-            colObservaciones.Name = "colObservaciones";
-            colObservaciones.ReadOnly = true;
-            // 
-            // colEliminar
-            // 
-            colEliminar.FlatStyle = FlatStyle.Flat;
-            colEliminar.HeaderText = "Accion";
-            colEliminar.MinimumWidth = 6;
-            colEliminar.Name = "colEliminar";
-            colEliminar.ReadOnly = true;
-            colEliminar.Text = "Eliminar";
-            colEliminar.UseColumnTextForButtonValue = true;
             // 
             // lblClientes
             // 
@@ -587,6 +498,26 @@
             tableLayoutPanel6.Size = new Size(392, 103);
             tableLayoutPanel6.TabIndex = 30;
             // 
+            // btnCancelar
+            // 
+            btnCancelar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            btnCancelar.BackColor = Color.Red;
+            btnCancelar.Cursor = Cursors.Hand;
+            btnCancelar.Enabled = false;
+            btnCancelar.FlatAppearance.BorderColor = Color.White;
+            btnCancelar.FlatAppearance.BorderSize = 0;
+            btnCancelar.FlatAppearance.MouseDownBackColor = Color.Silver;
+            btnCancelar.FlatAppearance.MouseOverBackColor = Color.Silver;
+            btnCancelar.FlatStyle = FlatStyle.Flat;
+            btnCancelar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCancelar.ForeColor = SystemColors.ButtonHighlight;
+            btnCancelar.Location = new Point(3, 71);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(386, 28);
+            btnCancelar.TabIndex = 29;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = false;
+            // 
             // btnBuscarCli
             // 
             btnBuscarCli.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -751,25 +682,82 @@
             tableLayoutPanel2.Size = new Size(48, 59);
             tableLayoutPanel2.TabIndex = 29;
             // 
-            // btnCancelar
+            // colCodigo
             // 
-            btnCancelar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            btnCancelar.BackColor = Color.Red;
-            btnCancelar.Cursor = Cursors.Hand;
-            btnCancelar.Enabled = false;
-            btnCancelar.FlatAppearance.BorderColor = Color.White;
-            btnCancelar.FlatAppearance.BorderSize = 0;
-            btnCancelar.FlatAppearance.MouseDownBackColor = Color.Silver;
-            btnCancelar.FlatAppearance.MouseOverBackColor = Color.Silver;
-            btnCancelar.FlatStyle = FlatStyle.Flat;
-            btnCancelar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCancelar.ForeColor = SystemColors.ButtonHighlight;
-            btnCancelar.Location = new Point(3, 71);
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(386, 28);
-            btnCancelar.TabIndex = 29;
-            btnCancelar.Text = "Cancelar";
-            btnCancelar.UseVisualStyleBackColor = false;
+            colCodigo.HeaderText = "Código";
+            colCodigo.MinimumWidth = 6;
+            colCodigo.Name = "colCodigo";
+            colCodigo.ReadOnly = true;
+            // 
+            // colNombre
+            // 
+            colNombre.HeaderText = "Nombre";
+            colNombre.MinimumWidth = 6;
+            colNombre.Name = "colNombre";
+            colNombre.ReadOnly = true;
+            // 
+            // colApellido
+            // 
+            colApellido.HeaderText = "Apellido";
+            colApellido.MinimumWidth = 6;
+            colApellido.Name = "colApellido";
+            colApellido.ReadOnly = true;
+            // 
+            // colDireccion
+            // 
+            colDireccion.HeaderText = "Direccion";
+            colDireccion.MinimumWidth = 6;
+            colDireccion.Name = "colDireccion";
+            colDireccion.ReadOnly = true;
+            // 
+            // colSector
+            // 
+            colSector.HeaderText = "Sector";
+            colSector.MinimumWidth = 6;
+            colSector.Name = "colSector";
+            colSector.ReadOnly = true;
+            // 
+            // colCiudad
+            // 
+            colCiudad.HeaderText = "Ciudad";
+            colCiudad.MinimumWidth = 6;
+            colCiudad.Name = "colCiudad";
+            colCiudad.ReadOnly = true;
+            // 
+            // colTelefono
+            // 
+            colTelefono.HeaderText = "Telefono";
+            colTelefono.MinimumWidth = 6;
+            colTelefono.Name = "colTelefono";
+            colTelefono.ReadOnly = true;
+            // 
+            // colFax
+            // 
+            colFax.HeaderText = "Fax";
+            colFax.MinimumWidth = 6;
+            colFax.Name = "colFax";
+            colFax.ReadOnly = true;
+            // 
+            // colLimite
+            // 
+            colLimite.HeaderText = "Limite Credito";
+            colLimite.MinimumWidth = 6;
+            colLimite.Name = "colLimite";
+            colLimite.ReadOnly = true;
+            // 
+            // colBalance
+            // 
+            colBalance.HeaderText = "Balance";
+            colBalance.MinimumWidth = 6;
+            colBalance.Name = "colBalance";
+            colBalance.ReadOnly = true;
+            // 
+            // colObservaciones
+            // 
+            colObservaciones.HeaderText = "Observaciones";
+            colObservaciones.MinimumWidth = 6;
+            colObservaciones.Name = "colObservaciones";
+            colObservaciones.ReadOnly = true;
             // 
             // MenuClientes
             // 
@@ -847,6 +835,7 @@
         private PictureBox picClientes;
         private Label label3;
         private DataGridViewButtonColumn Eliminar;
+        private Button btnCancelar;
         private DataGridViewTextBoxColumn colCodigo;
         private DataGridViewTextBoxColumn colNombre;
         private DataGridViewTextBoxColumn colApellido;
@@ -858,7 +847,5 @@
         private DataGridViewTextBoxColumn colLimite;
         private DataGridViewTextBoxColumn colBalance;
         private DataGridViewTextBoxColumn colObservaciones;
-        private DataGridViewButtonColumn colEliminar;
-        private Button btnCancelar;
     }
 }
