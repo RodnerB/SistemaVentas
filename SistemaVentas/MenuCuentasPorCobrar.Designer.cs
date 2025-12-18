@@ -48,8 +48,8 @@
             lblValorAPagar = new Label();
             inpCodigoDelCliente = new TextBox();
             inpNombreDelCliente = new TextBox();
-            inpFactura = new TextBox();
             inpValorAPagar = new TextBox();
+            cmbFacturas = new ComboBox();
             tableLayoutPanel6 = new TableLayoutPanel();
             btnCancelar = new Button();
             btnPagar = new Button();
@@ -57,9 +57,9 @@
             label1 = new Label();
             tableLayoutPanel4 = new TableLayoutPanel();
             dgvCuentasPorCobrar = new DataGridView();
-            colNumeroDeFactura = new DataGridViewTextBoxColumn();
-            colFecha = new DataGridViewTextBoxColumn();
-            colValor = new DataGridViewTextBoxColumn();
+            colNumeroFactura = new DataGridViewTextBoxColumn();
+            colFechaFactura = new DataGridViewTextBoxColumn();
+            colMontoFactura = new DataGridViewTextBoxColumn();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             tableLayoutPanel8.SuspendLayout();
@@ -230,8 +230,8 @@
             tableLayoutPanel5.Controls.Add(lblValorAPagar, 0, 6);
             tableLayoutPanel5.Controls.Add(inpCodigoDelCliente, 0, 1);
             tableLayoutPanel5.Controls.Add(inpNombreDelCliente, 0, 3);
-            tableLayoutPanel5.Controls.Add(inpFactura, 0, 5);
             tableLayoutPanel5.Controls.Add(inpValorAPagar, 0, 7);
+            tableLayoutPanel5.Controls.Add(cmbFacturas, 0, 5);
             tableLayoutPanel5.Location = new Point(40, 57);
             tableLayoutPanel5.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -306,15 +306,6 @@
             inpNombreDelCliente.Size = new Size(295, 23);
             inpNombreDelCliente.TabIndex = 5;
             // 
-            // inpFactura
-            // 
-            inpFactura.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            inpFactura.Location = new Point(3, 148);
-            inpFactura.Margin = new Padding(3, 2, 3, 2);
-            inpFactura.Name = "inpFactura";
-            inpFactura.Size = new Size(295, 23);
-            inpFactura.TabIndex = 6;
-            // 
             // inpValorAPagar
             // 
             inpValorAPagar.Anchor = AnchorStyles.Left | AnchorStyles.Right;
@@ -324,6 +315,18 @@
             inpValorAPagar.ReadOnly = true;
             inpValorAPagar.Size = new Size(295, 23);
             inpValorAPagar.TabIndex = 7;
+            // 
+            // cmbFacturas
+            // 
+            cmbFacturas.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            cmbFacturas.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbFacturas.Enabled = false;
+            cmbFacturas.FormattingEnabled = true;
+            cmbFacturas.Location = new Point(3, 148);
+            cmbFacturas.Name = "cmbFacturas";
+            cmbFacturas.Size = new Size(295, 23);
+            cmbFacturas.TabIndex = 8;
+            cmbFacturas.SelectedIndexChanged += cmbFacturas_SelectedIndexChanged;
             // 
             // tableLayoutPanel6
             // 
@@ -385,6 +388,7 @@
             btnPagar.TabIndex = 27;
             btnPagar.Text = "Pagar factura";
             btnPagar.UseVisualStyleBackColor = false;
+            btnPagar.Click += btnPagar_Click;
             // 
             // btnBuscarCuentasPorCobrar
             // 
@@ -456,7 +460,7 @@
             dgvCuentasPorCobrar.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvCuentasPorCobrar.ColumnHeadersHeight = 35;
             dgvCuentasPorCobrar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvCuentasPorCobrar.Columns.AddRange(new DataGridViewColumn[] { colNumeroDeFactura, colFecha, colValor });
+            dgvCuentasPorCobrar.Columns.AddRange(new DataGridViewColumn[] { colNumeroFactura, colFechaFactura, colMontoFactura });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -486,26 +490,26 @@
             dgvCuentasPorCobrar.Size = new Size(1217, 574);
             dgvCuentasPorCobrar.TabIndex = 1;
             // 
-            // colNumeroDeFactura
+            // colNumeroFactura
             // 
-            colNumeroDeFactura.HeaderText = "N. de factura";
-            colNumeroDeFactura.MinimumWidth = 6;
-            colNumeroDeFactura.Name = "colNumeroDeFactura";
-            colNumeroDeFactura.ReadOnly = true;
+            colNumeroFactura.HeaderText = "N. de factura";
+            colNumeroFactura.MinimumWidth = 6;
+            colNumeroFactura.Name = "colNumeroFactura";
+            colNumeroFactura.ReadOnly = true;
             // 
-            // colFecha
+            // colFechaFactura
             // 
-            colFecha.HeaderText = "Fecha";
-            colFecha.MinimumWidth = 6;
-            colFecha.Name = "colFecha";
-            colFecha.ReadOnly = true;
+            colFechaFactura.HeaderText = "Fecha";
+            colFechaFactura.MinimumWidth = 6;
+            colFechaFactura.Name = "colFechaFactura";
+            colFechaFactura.ReadOnly = true;
             // 
-            // colValor
+            // colMontoFactura
             // 
-            colValor.HeaderText = "Valor";
-            colValor.MinimumWidth = 6;
-            colValor.Name = "colValor";
-            colValor.ReadOnly = true;
+            colMontoFactura.HeaderText = "Valor";
+            colMontoFactura.MinimumWidth = 6;
+            colMontoFactura.Name = "colMontoFactura";
+            colMontoFactura.ReadOnly = true;
             // 
             // MenuCuentasPorCobrar
             // 
@@ -558,15 +562,15 @@
         private Label lblValorAPagar;
         private TextBox inpCodigoDelCliente;
         private TextBox inpNombreDelCliente;
-        private TextBox inpFactura;
         private TextBox inpValorAPagar;
         private Button btnBuscarCuentasPorCobrar;
         private Label label1;
         private Button button2;
         private Button btnPagar;
         private Button btnCancelar;
-        private DataGridViewTextBoxColumn colNumeroDeFactura;
-        private DataGridViewTextBoxColumn colFecha;
-        private DataGridViewTextBoxColumn colValor;
+        private DataGridViewTextBoxColumn colNumeroFactura;
+        private DataGridViewTextBoxColumn colFechaFactura;
+        private DataGridViewTextBoxColumn colMontoFactura;
+        private ComboBox cmbFacturas;
     }
 }

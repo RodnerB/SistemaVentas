@@ -55,7 +55,7 @@ namespace SistemaVentas
         {
              string getFacturasCreditoPorClienteQuery = @$"
                 SELECT NUMFAC, FECFAC, MONFAC FROM SFTFAC0 
-                WHERE CODCLI = {codigoCliente} AND CONDICION = '2' AND MONFAC > 0";
+                WHERE CODCLI = '{codigoCliente}' AND CONDICION = '2' AND MONFAC > 0";
 
             return UtilidadesBD.ObtenerTodosLosRegistros(getFacturasCreditoPorClienteQuery);
         }
