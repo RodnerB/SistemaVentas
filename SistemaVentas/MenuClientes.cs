@@ -44,7 +44,6 @@ namespace SistemaVentas
             inpSecCliente.KeyPress += validarSoloLetras;
             inpApeCliente.KeyPress += validarSoloLetras;
             inpNomCliente.KeyPress += validarSoloLetras;
-            inpDirCliente.KeyPress += validarSoloLetras;
 
 
             // Cuando el formulario se muestre, establecer el foco en la primera casilla de texto

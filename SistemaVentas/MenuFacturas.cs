@@ -121,7 +121,11 @@ namespace SistemaVentas
         }
 
 
-        private void CargarFacturas() => Factura.CargarFacturasEnGridConFilas(dgvFacturas);
+        private void CargarFacturas(){
+            DataTable facturas = Factura.ObtenerFacturas();
+            Factura.CargarFacturasEnGridConFilas(dgvFacturas, facturas);
+
+        } 
 
         // Método para obtener los datos de entrada y crear un objeto Factura
         private Factura obtenerFacturaInputs()
