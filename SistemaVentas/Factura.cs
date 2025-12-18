@@ -41,9 +41,7 @@ namespace SistemaVentas
             this.montoFactura = montoFactura;
         }
 
-        public static DataTable ObtenerFacturas() => UtilidadesBD.ObtenerTodosLosRegistros(getFacturasQuery);
         // Obbtiene el ultimo codigo de una factura y lo retorna sumandole 1 al valor
-
         public static int ObtenerNuevoCodigoFactura()
         {
             // recupera el datatable con el resultado de la consulta
@@ -52,9 +50,17 @@ namespace SistemaVentas
             return Convert.ToInt32(tabla.Rows[0][0]);
         } 
 
-        public static void CargarFacturasEnGridConFilas(DataGridView dataGrid)
+        public static DataTable ObtenerFacturas() => UtilidadesBD.ObtenerTodosLosRegistros(getFacturasQuery);
+        public static DataTable ObtenerFacturasCreditoPorCliente(string codigoCliente)
         {
-            DataTable tabla = ObtenerFacturas();
+             string getFacturasCreditoPorClienteQuery = @$"
+                SELECT NUMFAC, FECFAC, MONFAC FROM SFTFAC0 
+                WHERE CODCLI = '{codigoCliente}' AND CONDICION = '2' AND MONFAC > 0";
+
+            return UtilidadesBD.ObtenerTodosLosRegistros(getFacturasCreditoPorClienteQuery);
+        }
+        public static void CargarFacturasEnGridConFilas(DataGridView dataGrid, DataTable tabla)
+        {
             UtilidadesUI.CargarDatosEnGridConFilas(
                 tabla,
                 dataGrid,
